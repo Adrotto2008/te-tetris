@@ -1,2 +1,2 @@
-# tetris
-un potenziale tetris da terminale in c++ perchè siamo fortissimi
+# te-tetris
+tetris made in c++ with a lot of new features!

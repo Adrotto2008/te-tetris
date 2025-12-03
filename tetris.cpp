@@ -6,7 +6,7 @@ rivedere le funzioni di controllo di spostamento per i bordi, e giro per eventua
 -------ottimizzare la funzione stampa_campo() : non fargli stampare tutto il campo ogni volta, ma solo quando serve, e solo le parti modificate
 togliere lo sleep e utilizzare i thread per la stampa, e l'input e i controlli di collisione, probebilmente ne servono 3
 creare una coda di generazione dei tetramini per vedere i prossimi tetramini richiamando/modificando random_tetramino()
-*/
+s*/
 
 #include <stdio.h>
 #include <stdbool.h>

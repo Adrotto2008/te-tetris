@@ -324,145 +324,193 @@ class Tetramino {
         //Metodo che controlla se il tetramino puo girare
         short puo_girare() {
 
-            //if(tipo == tetramino_o)
-            //    return -1;
-
-            COORD centro = p[0];
-            COORD distanza[8];
-            COORD temp_prima[8];
-            COORD temp_dopo[8];
-
-            for(short i = 0; i < 8; i++){
-
-                if(i % 2 == 1){
-                    temp_prima[i] = p[i-1];
-                }else{
-                    temp_prima[i] = p[i];
-                }
-
-            }
-
-            for(short i = 0; i < 4; i++){
-
-                //distanza dei punti x e y dal centro
-                distanza[i] = {(short)(p[i].X - centro.X), (short)(p[i].Y - centro.Y)};
-
-                //Coordinate dopo lo spostamento
-                temp_prima[i] = {(short)(centro.X - distanza[i].Y), (short)(centro.Y + distanza[i].X)};
-
-            }
-
-            for(short i = 4; i < 8; i++){
-
-                temp_prima[i] = temp_prima[i - 4];
-
-            }
-
-            short u = 1;
-            
-            for(short i = 0; i < 8; i++){
-
-                if(i % 2 == 1){
-
-                    for(short j = 0; j < i; j++){
-                        if(temp_dopo[j].X == temp_prima[i].X + 1){
-                            temp_dopo[j].X--;
-                            u = 0;
-                            break;
-                        }
-                    }
-
-                    temp_dopo[i].Y = temp_prima[i].Y;
-                    temp_dopo[i].X = temp_prima[i].X + u;
-                }else{
-                    temp_dopo[i].Y = temp_prima[i].Y;
-                    temp_dopo[i].X = temp_prima[i].X;        
-                }
-
-            }
-
-            for(short i = 0; i < 8; i++) {
-
-                //Controllo che con lo spoostamento non esco dai bordi
-                if(temp_dopo[i].X <= -1 || temp_dopo[i].X >= CAMPO_LUNGHEZZA - 2) return 0;
-                if(temp_dopo[i].Y <= -1 || temp_dopo[i].Y >= CAMPO_ALTEZZA - 2) return 0;
-                
-                //Controllo che con lo spostamento non sostituisco un altro tetramino
-                if(campo[temp_dopo[i].Y][temp_dopo[i].X].id != 32 && campo[temp_dopo[i].Y][temp_dopo[i].X].id != id_tetramino) return 0;
-            }
+           
 
             return 1;
         }
 
-        //Metodo che effettua il giramento del tetramino (modificare raddoppiando le x?)
+        //Metodo che effettua il giramento del tetramino
         void gira(){
-            
-            COORD centro = p[0];
-            COORD distanza[8];
-            COORD temp_prima[8];
-            COORD temp_dopo[8];
-            short prova[CAMPO_ALTEZZA - 2][CAMPO_LUNGHEZZA - 2];
-            for(short i = 0; i < CAMPO_ALTEZZA - 2; i++){
+        
+            COORD temp[8];
+            char mini_campo[CAMPO_ALTEZZA - 2][CAMPO_LUNGHEZZA - 2];
 
-                for(short j = 0; j < CAMPO_LUNGHEZZA - 2; j++){
-                    prova[i][j] = -1;
+            for(short i = 0; i < CAMPO_ALTEZZA - 2; i++){
+                for(short j = 0; j< CAMPO_LUNGHEZZA - 2; j++){
+                    mini_campo[i][j] = BLOCCO;
+                }
+            }
+
+            //fai un array di contatori e conta quanto hai distanziato ogni cordinata, dopo stringi i blocchi del contatore assegnato
+
+            for(short i = 0; i < 8; i++){
+
+                if(i % 2 == 0){
+
+                    temp[i] = p[i];
+
+                    if(temp[i].X > p[0].X){
+
+                        temp[i].X+=2;
+
+                        for(short j = 0; j < 8; j++){
+                    
+                            if(j % 2 == 0){
+
+                                if(temp[j].Y == temp[i].Y){//stessa y
+                                    
+                                    if(temp[j].X > temp[0].X && temp[j].X < temp[i].X){
+                                        temp[i].X+=2;
+                                    }
+
+                                } 
+
+                            }
+
+                        }
+
+                        
+                    }
+                    if(temp[i].X < p[0].X){
+                        temp[i].X-=2;
+
+                        for(short j = 0; j < 8; j++){
+                    
+                            if(j % 2 == 0){
+
+                                if(temp[j].Y == temp[i].Y){//stessa y
+                                    
+                                    if(temp[j].X < temp[0].X && temp[j].X > temp[i].X){
+                                        temp[i].X-=2;
+                                    }
+
+                                } 
+
+                            }
+
+                        }
+
+                    }
+                    if(temp[i].Y > p[0].Y){
+                        temp[i].Y+=2;
+
+                        for(short j = 0; j < 8; j++){
+                    
+                            if(j % 2 == 0){
+
+                                if(temp[j].X == temp[i].X){//stessa y cONTROLLA QUI
+                                    
+                                    if(temp[j].Y > temp[0].Y && temp[j].Y < temp[i].Y){
+                                        temp[i].Y+=2;
+                                    }
+
+                                } 
+
+                            }
+
+                        }
+                    }
+                    if(temp[i].Y < p[i].Y){
+                        temp[i].Y-=2;
+
+                        for(short j = 0; j < 8; j++){
+                    
+                            if(j % 2 == 0){
+
+                                if(temp[j].X == temp[i].X){//stessa y cONTROLLA QUI
+                                    
+                                    if(temp[j].Y < temp[0].Y && temp[j].Y > temp[i].Y){
+                                        temp[i].Y-=2;
+                                    }
+
+                                } 
+
+                            }
+
+                        }
+                    }
+                    
                 }
 
             }
+
+            COORD centro = p[0];
 
             for(short i = 0; i < 8; i++){
 
                 campo[p[i].Y][p[i].X].id = 32;
                 campo[p[i].Y][p[i].X].blocco = 32;
 
-                if(i % 2 == 1){
-                    temp_prima[i] = p[i-1];
+                if(i % 2 == 0){
+                    
 
-                }else{
-                    temp_prima[i] = p[i];
+                    COORD distanza = {(short)(temp[i].X - centro.X), (short)(temp[i].Y - centro.Y)};
+
+                    COORD nuova = {(short)(centro.X - distanza.Y), (short)(centro.Y + distanza.X)};
+
+                    temp[i] = {nuova.X, nuova.Y};
                 }
-
-            }
-
-            for(short i = 0; i < 8; i++){
-
-                //distanza dei punti x e y dal centro
-                distanza[i] = {(short)(temp_prima[i].X - centro.X), (short)(temp_prima[i].Y - centro.Y)};
-
-                //Coordinate dopo lo spostamento
-                temp_prima[i] = {(short)(centro.X - distanza[i].Y), (short)(centro.Y + distanza[i].X)};
-
-            }
-            short u = 1;
-            for(short i = 0; i < 8; i++){
-
                 
+                
+            }
+
+            for(short i = 0; i < 8; i++){
+
+                if(i % 2 == 0)
+                    mini_campo[temp[i].Y][temp[i].X] = BLOCCO_SINISTRA;
+
+            }
+
+            for(short i = 0; i < 8; i++){
 
                 if(i % 2 == 0){
-                    p[i].Y = temp_prima[i].Y;
-                    p[i].X = temp_prima[i].X;        
-                }
-                prova[p[i].Y][p[i].X] = i;
-            }
-            for(short i = 0; i < 8; i++){
+                    while(temp[i].X < temp[0].X - 2 ){ // && mini_campo[temp[i].Y][temp[i].X + 1] != BLOCCO_SINISTRA
 
-                
+                        temp[i].X+=1;
 
-                if(i % 2 == 1){
+                    }
+                    while(temp[i].X > temp[0].X + 2){
 
-                    while(prova[temp_prima[i].Y][temp_prima[i].X - u] != -1){
-                        u++;
-                        printf("%hd",i);
+                        temp[i].X-=1;
+
+                    }
+                    while(temp[i].Y < temp[0].Y - 1){
+
+                        temp[i].Y+=1;
+
+                    }
+                    while(temp[i].Y > temp[0].Y + 1){
+
+                        temp[i].Y-=1;
+ 
                     }
 
-                    p[i].Y = temp_prima[i].Y;
-                    p[i].X = temp_prima[i].X - u;
-                    u = 1;
                 }
-                prova[p[i].Y][p[i].X] = i;
+                    
+    
+
             }
 
+            for(short i = 0; i < 8; i++){
+
+                if(i % 2 == 1){
+                    temp[i].Y = temp[i - 1].Y;
+                    temp[i].X = temp[i - 1].X + 1;
+                }
+
+            }
+
+            for(short i = 0; i < 8; i++){
+
+                p[i] = temp[i];
+
+            }
+
+
+
         }
+
+        
 
         //Metodo che imposta gli id del tetramino corrente sul campo
         void stampa_id(){
@@ -704,7 +752,7 @@ int main(void){
     char input;
     COORD backup_tetramino[8] = {0, 0};
     
-    
+
 
     Tetramino* CodaTetramini[4] = {NULL};
     Tetramino* RiservaTetramino[2] = {NULL};
@@ -1097,7 +1145,7 @@ short controllo_punti(){
     if(linee_riempite != 0){
         scesa_campo(linee_riempite, posizione_riga);
     }
-    
+
     return linee_riempite;
 
 }
@@ -1234,7 +1282,7 @@ void stampa_campo(COORD posizione_tetramino[], COORD backup_posizione_tetramino[
 
     for(short i = 0; i < 8; i++){
         cursore_manuale(posizione_tetramino[i].X + 1, posizione_tetramino[i].Y + 1);
-        printf("%c", campo[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco);
+        printf("%c", campo[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco);//printf("%c", campo[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco);
     }
     
     posizione_cursore(coord_fine);

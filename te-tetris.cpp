@@ -32,7 +32,7 @@ s*/
 // COSTANTI
 
 #define CAMPO_ALTEZZA 25
-#define CAMPO_LUNGHEZZA 20
+#define CAMPO_LUNGHEZZA 40
 #define CAMPO_CENTRO CAMPO_LUNGHEZZA / 2
 #define FUTURI_ALTEZZA 10
 #define FUTURI_LUNGHEZZA 20
@@ -172,9 +172,8 @@ class Tetramino {
     	private :
     	
     	//Variabili
-
-        short rotazione = 0;
         
+        short rotazione = 0;
         char colore = 0;
 	    static int id_tetramini;
     	
@@ -324,7 +323,176 @@ class Tetramino {
         //Metodo che controlla se il tetramino puo girare
         short puo_girare() {
 
-           
+           COORD temp[8];
+
+            for(short i = 0; i < 8; i++){
+                if(i % 2 == 0){
+                    temp[i] = p[i];
+                }
+
+            }
+
+            if(tipo == tetramino_i){
+
+                if(rotazione % 2 == 0){
+
+                    temp[2]={(short)(temp[0].X + 2), temp[0].Y};
+                    temp[4]={(short)(temp[0].X - 2), temp[0].Y};
+                    temp[6]={(short)(temp[0].X - 4), temp[0].Y};
+
+                } else {
+
+                    temp[2]={temp[0].X, (short)(temp[0].Y - 1)};
+                    temp[4]={temp[0].X, (short)(temp[0].Y + 1)};
+                    temp[6]={temp[0].X, (short)(temp[0].Y + 2)};
+
+                }
+
+                
+
+            } else if(tipo == tetramino_t){
+                
+                if(rotazione == 0){
+
+                    temp[2]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[6]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 1){
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 2){
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+
+                }else{
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+
+                }
+
+            } else if(tipo == tetramino_l){
+
+                if(rotazione == 0){
+
+                    temp[2]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+
+                } else if(rotazione == 1){
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 2){
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+
+                }else{
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[6]={(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+
+                }
+
+            } else if(tipo == tetramino_j){
+
+                if(rotazione == 0){
+
+                    temp[2]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 1){
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 2){
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+
+                }else{
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+
+                }
+
+            } else if(tipo == tetramino_z){
+
+                if(rotazione % 2 == 0){
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+
+                } else {
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+
+                }
+
+            } else if(tipo == tetramino_s){
+
+                if(rotazione % 2 == 0){
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+
+                } else {
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+
+                }
+
+            }
+            
+            for(short i = 0; i < 8; i++){
+
+                if(i % 2 == 1){
+                    temp[i].Y = temp[i - 1].Y;
+                    temp[i].X = temp[i - 1].X + 1;
+                }
+
+            }
+
+            for(short i = 0; i < 8; i++){
+
+                if(temp[i].X <= -1 || temp[i].X >= CAMPO_LUNGHEZZA - 2){
+                    return 0;
+                }
+
+                if(temp[i].Y <= 0 || temp[i].Y >= CAMPO_ALTEZZA - 2){
+                    return 0;
+                }
+
+                if(campo[temp[i].Y][temp[i].X].id != 32 && campo[temp[i].Y][temp[i].X].id != id_tetramino){
+                    return 0;
+                }
+
+            }
+
 
             return 1;
         }
@@ -333,163 +501,157 @@ class Tetramino {
         void gira(){
         
             COORD temp[8];
-            char mini_campo[CAMPO_ALTEZZA - 2][CAMPO_LUNGHEZZA - 2];
-
-            for(short i = 0; i < CAMPO_ALTEZZA - 2; i++){
-                for(short j = 0; j< CAMPO_LUNGHEZZA - 2; j++){
-                    mini_campo[i][j] = BLOCCO;
-                }
-            }
-
-            //fai un array di contatori e conta quanto hai distanziato ogni cordinata, dopo stringi i blocchi del contatore assegnato
 
             for(short i = 0; i < 8; i++){
-
                 if(i % 2 == 0){
-
                     temp[i] = p[i];
-
-                    if(temp[i].X > p[0].X){
-
-                        temp[i].X+=2;
-
-                        for(short j = 0; j < 8; j++){
-                    
-                            if(j % 2 == 0){
-
-                                if(temp[j].Y == temp[i].Y){//stessa y
-                                    
-                                    if(temp[j].X > temp[0].X && temp[j].X < temp[i].X){
-                                        temp[i].X+=2;
-                                    }
-
-                                } 
-
-                            }
-
-                        }
-
-                        
-                    }
-                    if(temp[i].X < p[0].X){
-                        temp[i].X-=2;
-
-                        for(short j = 0; j < 8; j++){
-                    
-                            if(j % 2 == 0){
-
-                                if(temp[j].Y == temp[i].Y){//stessa y
-                                    
-                                    if(temp[j].X < temp[0].X && temp[j].X > temp[i].X){
-                                        temp[i].X-=2;
-                                    }
-
-                                } 
-
-                            }
-
-                        }
-
-                    }
-                    if(temp[i].Y > p[0].Y){
-                        temp[i].Y+=2;
-
-                        for(short j = 0; j < 8; j++){
-                    
-                            if(j % 2 == 0){
-
-                                if(temp[j].X == temp[i].X){//stessa y cONTROLLA QUI
-                                    
-                                    if(temp[j].Y > temp[0].Y && temp[j].Y < temp[i].Y){
-                                        temp[i].Y+=2;
-                                    }
-
-                                } 
-
-                            }
-
-                        }
-                    }
-                    if(temp[i].Y < p[i].Y){
-                        temp[i].Y-=2;
-
-                        for(short j = 0; j < 8; j++){
-                    
-                            if(j % 2 == 0){
-
-                                if(temp[j].X == temp[i].X){//stessa y cONTROLLA QUI
-                                    
-                                    if(temp[j].Y < temp[0].Y && temp[j].Y > temp[i].Y){
-                                        temp[i].Y-=2;
-                                    }
-
-                                } 
-
-                            }
-
-                        }
-                    }
-                    
                 }
-
-            }
-
-            COORD centro = p[0];
-
-            for(short i = 0; i < 8; i++){
 
                 campo[p[i].Y][p[i].X].id = 32;
                 campo[p[i].Y][p[i].X].blocco = 32;
-
-                if(i % 2 == 0){
-                    
-
-                    COORD distanza = {(short)(temp[i].X - centro.X), (short)(temp[i].Y - centro.Y)};
-
-                    COORD nuova = {(short)(centro.X - distanza.Y), (short)(centro.Y + distanza.X)};
-
-                    temp[i] = {nuova.X, nuova.Y};
-                }
-                
-                
             }
 
-            for(short i = 0; i < 8; i++){
+            if(tipo == tetramino_i){
 
-                if(i % 2 == 0)
-                    mini_campo[temp[i].Y][temp[i].X] = BLOCCO_SINISTRA;
+                if(rotazione % 2 == 0){
 
-            }
+                    temp[2]={(short)(temp[0].X + 2), temp[0].Y};
+                    temp[4]={(short)(temp[0].X - 2), temp[0].Y};
+                    temp[6]={(short)(temp[0].X - 4), temp[0].Y};
 
-            for(short i = 0; i < 8; i++){
+                } else {
 
-                if(i % 2 == 0){
-                    while(temp[i].X < temp[0].X - 2 ){ // && mini_campo[temp[i].Y][temp[i].X + 1] != BLOCCO_SINISTRA
-
-                        temp[i].X+=1;
-
-                    }
-                    while(temp[i].X > temp[0].X + 2){
-
-                        temp[i].X-=1;
-
-                    }
-                    while(temp[i].Y < temp[0].Y - 1){
-
-                        temp[i].Y+=1;
-
-                    }
-                    while(temp[i].Y > temp[0].Y + 1){
-
-                        temp[i].Y-=1;
- 
-                    }
+                    temp[2]={temp[0].X, (short)(temp[0].Y - 1)};
+                    temp[4]={temp[0].X, (short)(temp[0].Y + 1)};
+                    temp[6]={temp[0].X, (short)(temp[0].Y + 2)};
 
                 }
-                    
-    
+
+                
+
+            } else if(tipo == tetramino_t){
+                
+                if(rotazione == 0){
+
+                    temp[2]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[6]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 1){
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 2){
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+
+                }else{
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+
+                }
+
+            } else if(tipo == tetramino_l){
+
+                if(rotazione == 0){
+
+                    temp[2]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+
+                } else if(rotazione == 1){
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 2){
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+
+                }else{
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[6]={(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+
+                }
+
+            } else if(tipo == tetramino_j){
+
+                if(rotazione == 0){
+
+                    temp[2]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 1){
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 2){
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+
+                }else{
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+
+                }
+
+            } else if(tipo == tetramino_z){
+
+                if(rotazione % 2 == 0){
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+
+                } else {
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+
+                }
+
+            } else if(tipo == tetramino_s){
+
+                if(rotazione % 2 == 0){
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+
+                } else {
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+
+                }
 
             }
+
+
+            
+
+            rotazione++;
+            if(rotazione == 5) rotazione = 0;      
 
             for(short i = 0; i < 8; i++){
 
@@ -574,7 +736,7 @@ class Tetramino {
 
             for(short i = 0; i < 8; i++) {
 
-                if(p[i].X - 1  == -1){
+                if(p[i].X - 1  <= -1){
                     //in_movimento = false; in teoria dovrebbe ancora poter cadere
                     return false;
                 }

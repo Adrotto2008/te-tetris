@@ -1,4 +1,7 @@
 /*
+HO MESSO CHE LE P SONO 8 LE PARI SONO [ MENTRE LE DISPARI SONO ], HO CAMBIATO A MANNO TUTTE LE POSIZIONI DELLE CORDINATE
+E HO CAMBIATO ALCUNI COLORI E NOMI, PER QUESTO NELLA STAMPA DEI FUTURI E RISERVE HANNO COLORI DIVERSI O ALTRO, (J L Z S), DEVI 
+-------RISOLVI GIRA E CADUTA VELOCE E GHOST BLOCK, HO CAMBIATO 0 CON 32 
 controllare la tonalit�  dei colori
 controllare le posizioni di tutti i p[] nella funzione inizializza mettendo p[0] come centro per il giramento dei tetramini
 modificare la funzione gira e aggiungere delle cordinate p[] perchè la lunghezza dovrebbe raddoppiarsi
@@ -14,12 +17,9 @@ s*/
 #include <strings.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <windows.h>
-#include <winbase.h>
 #include <math.h>
-#include <direct.h>
 #include <time.h>
-#include <conio.h>
+
 #include <limits.h>
 #include <iostream>
 // riga 58 e 153 433 circa
@@ -28,20 +28,31 @@ s*/
 
 // COSTANTI
 
-#define CAMPO_ALTEZZA 10
-#define CAMPO_LUNGHEZZA 10
+#define CAMPO_ALTEZZA 25
+#define CAMPO_LUNGHEZZA 40
 #define CAMPO_CENTRO CAMPO_LUNGHEZZA / 2
 #define FUTURI_ALTEZZA 10
 #define FUTURI_LUNGHEZZA 20
 #define FUTURI_SECONDO (FUTURI_LUNGHEZZA - (CAMPO_LUNGHEZZA + 4) / 3)
 #define FUTURI_CENTRO CAMPO_LUNGHEZZA + 4 + ((FUTURI_LUNGHEZZA - (CAMPO_LUNGHEZZA + 4)) / 2)
-#define BLOCCO 219 //Blocco intero
+#define BLOCCO 219 //blocco intero usato dai ghost block per il momento
+#define BLOCCO_SINISTRA '[' 
+#define BLOCCO_DESTRA   ']'
 
 // INPUT
 
-#define ROTAZIONE 'w'
+#define ROTAZIONE 'w' 
 #define CADUTA_VELOCE 'q'
 #define CADUTA_ISTANTANEA 's'
+
+/* non so perchè ma lagga se si usano questo comandi
+#define ROTAZIONE 72 // freccia in alto
+#define CADUTA_VELOCE 80 // freccia giù
+#define CADUTA_ISTANTANEA 32 // barra spaziatrice
+#define SINISTRA 75 //freccia sinistra
+#define DESTRA 77 // freccia destra 
+#define CAMBIO 'c' // per il tetramino di riserva
+*/
 
 // CURSORE
 
@@ -117,35 +128,51 @@ class Campo{
 	
 };
 
+typedef struct {
+    int X;
+    int Y;
+} COORD;
+
+
 //Variabili globali
 
 Campo campo[CAMPO_ALTEZZA - 2][CAMPO_LUNGHEZZA - 2]; //ok allora per il momento TEORICAMENTE (non ho provato visto che abbiamo solo un tetramino )funziona, ma è lentissimo visto che fa 13 volte il lavoro, quidni direi di ottimizzarlo mettendo che la posto di 32 quando c'è il rosso la cella vale -1 etc.
-COORD coord_tetramino_futuro = {CAMPO_LUNGHEZZA + 13, 4};
-COORD coord_secondo_tetramino_futuro = {CAMPO_LUNGHEZZA + 13 + 18, 4};
-COORD coord_terzo_tetramino_futuro = {CAMPO_LUNGHEZZA + 13 + 18 + 19, 4};
-COORD coord_tetramino_riserva = {CAMPO_LUNGHEZZA + 13, FUTURI_ALTEZZA + 8};
+COORD coord_tetramino_futuro = {CAMPO_LUNGHEZZA + 13, 2};
+COORD coord_secondo_tetramino_futuro = {CAMPO_LUNGHEZZA + 13 + 18, 2};
+COORD coord_terzo_tetramino_futuro = {CAMPO_LUNGHEZZA + 13 + 18 + 19, 2};
+COORD coord_tetramino_riserva = {CAMPO_LUNGHEZZA + 13, FUTURI_ALTEZZA + 4};
 COORD coord_posizione_campo = {1, 1}; // messsa manualmente da rivedere
+COORD coord_punteggio = {CAMPO_LUNGHEZZA + FUTURI_LUNGHEZZA + 7, FUTURI_ALTEZZA + 5};
 COORD coord_fine = {0, CAMPO_ALTEZZA + 10}; //Posizione finale del cursore 
 
 //Funzioni
-void stampa_campo_totale();
 short controllo_punti();
-void scesa_campo(short linee_riempite);
+void scesa_campo(short linee_riempite, short posizione_linea);
 void stampa_coda_tetramini(short tipo1, short tipo2, short tipo3);
 void stampa_riserva_tetramino(short tipo);
 void inizializza_campo();
 COORD posizione_attuale();
 void pulisci_tetramino(COORD posizione_tetramino[]);
 void sparisci_tetramino(COORD posizione_tetramino[]);
+void stampa_campo_totale();
 void stampa_campo(COORD posizione_tetramin[], COORD backup_posizione_tetramino[], COORD posizione_ghost_block[], bool in_movimento);
 void cornice(short margine_sinistro, short margine_superiore, short margine_destro, short margine_inferiore);
 void cursore_manuale(short x, short y);
-COORD posizione_attuale();
 void pulisci();
-void cursore_alto(COORD* coord_posizione, short delta);
-void cursore_basso(COORD* coord_posizione, short delta);
-void cursore_sinistra(COORD* coord_posizione, short delta);
-void cursore_destra(COORD* coord_posizione, short delta);
+void cursore_manuale(int x, int y);
+
+COORD posizione_attuale();
+
+void cursore_alto(COORD* coord_posizione, int delta);
+
+void cursore_basso(COORD* coord_posizione, int delta);
+
+void cursore_sinistra(COORD* coord_posizione, int delta);
+
+void cursore_destra(COORD* coord_posizione, int delta);
+
+void posizione_cursore(COORD coord_posizione);
+
 void posizione_cursore(COORD coord_posizione);
 void nascondi_cursore();
 void mostra_cursore();
@@ -157,9 +184,8 @@ class Tetramino {
     	private :
     	
     	//Variabili
-
-        short rotazione = 0;
         
+        short rotazione = 0;
         char colore = 0;
 	    static int id_tetramini;
     	
@@ -168,7 +194,7 @@ class Tetramino {
         short sleep;
         int id_tetramino = 0;
         short tipo = 0;
-	    COORD p[4]; //Coordinate dei 4 punti
+	    COORD p[8]; //Coordinate dei 4 punti
 	    bool in_movimento = true; //Serve per capire se il tetramino è in movimento o se è stato posizionato 
         
         Tetramino(){
@@ -186,55 +212,87 @@ class Tetramino {
 
         //Metodo che assegna il colore del tetramino in base al tipo
         void controllo_colore(){
-            switch(tipo){
+            switch(tipo){ //tutti gli indici pari indicano [ mentre quelli dispari ]
             case tetramino_i:
                 colore = ciano; 
                 p[0] = {CAMPO_CENTRO, 2};
-	            p[1] = {CAMPO_CENTRO, 1};
-	            p[2] = {CAMPO_CENTRO, 3};
-				p[3] = {CAMPO_CENTRO, 4};
+                p[1] = {CAMPO_CENTRO + 1, 2};
+	            p[2] = {CAMPO_CENTRO, 1};
+	            p[3] = {CAMPO_CENTRO + 1, 1};
+                p[4] = {CAMPO_CENTRO, 3};
+				p[5] = {CAMPO_CENTRO + 1, 3};
+                p[6] = {CAMPO_CENTRO, 4};
+                p[7] = {CAMPO_CENTRO + 1, 4};
                 break;
             case tetramino_j:
                 colore = blu; 
                 p[0] = {CAMPO_CENTRO, 2};
-	            p[1] = {CAMPO_CENTRO, 1};
-	            p[2] = {CAMPO_CENTRO, 3};
-				p[3] = {CAMPO_CENTRO - 1, 3};
+                p[1] = {CAMPO_CENTRO + 1, 2};
+	            p[2] = {CAMPO_CENTRO, 1};
+                p[3] = {CAMPO_CENTRO + 1, 1};
+	            p[4] = {CAMPO_CENTRO, 3};
+				p[5] = {CAMPO_CENTRO + 1, 3};
+                p[6] = {CAMPO_CENTRO - 2, 3};
+                p[7] = {CAMPO_CENTRO - 1, 3};
+                
                 break;
             case tetramino_l:
                 colore = arancione;
                 p[0] = {CAMPO_CENTRO, 2};
-	            p[1] = {CAMPO_CENTRO, 1};
-	            p[2] = {CAMPO_CENTRO, 3};
-				p[3] = {CAMPO_CENTRO + 1, 3};
+	            p[1] = {CAMPO_CENTRO + 1, 2};
+                p[2] = {CAMPO_CENTRO, 1};
+	            p[3] = {CAMPO_CENTRO + 1, 1};
+                p[4] = {CAMPO_CENTRO, 3};
+				p[5] = {CAMPO_CENTRO + 1, 3};
+                p[6] = {CAMPO_CENTRO + 2, 3};
+                p[7] = {CAMPO_CENTRO + 3, 3};
+                
                 break;
             case tetramino_o:
                 colore = giallo; 
                 p[0] = {CAMPO_CENTRO, 1};
-	            p[1] = {CAMPO_CENTRO + 1, 1};
-	            p[2] = {CAMPO_CENTRO, 2};
-				p[3] = {CAMPO_CENTRO + 1, 2};
-                break;
-            case tetramino_s:
-                colore = verde;
-                p[0] = {CAMPO_CENTRO, 1};
-	            p[1] = {CAMPO_CENTRO - 1, 1};
-	            p[2] = {CAMPO_CENTRO, 2};
-				p[3] = {CAMPO_CENTRO + 1, 2};
+                p[1] = {CAMPO_CENTRO + 1, 1};
+	            p[2] = {CAMPO_CENTRO + 2, 1};
+                p[3] = {CAMPO_CENTRO + 3, 1};
+	            p[4] = {CAMPO_CENTRO, 2};
+                p[5] = {CAMPO_CENTRO + 1, 2};
+				p[6] = {CAMPO_CENTRO + 2, 2};
+                p[7] = {CAMPO_CENTRO + 3, 2};
+            
                 break;
             case tetramino_z:
-                colore = rosso; 
+                colore = rosso;
                 p[0] = {CAMPO_CENTRO, 1};
 	            p[1] = {CAMPO_CENTRO + 1, 1};
-	            p[2] = {CAMPO_CENTRO, 2};
-				p[3] = {CAMPO_CENTRO - 1, 2};
+                p[2] = {CAMPO_CENTRO - 2, 1};
+                p[3] = {CAMPO_CENTRO - 1, 1};
+	            p[4] = {CAMPO_CENTRO, 2};
+                p[5] = {CAMPO_CENTRO + 1, 2};
+				p[6] = {CAMPO_CENTRO + 2, 2};
+                p[7] = {CAMPO_CENTRO + 3, 2};
+
+                break;
+            case tetramino_s:
+                colore = verde; 
+                p[0] = {CAMPO_CENTRO, 1};
+                p[1] = {CAMPO_CENTRO + 1, 1};
+	            p[2] = {CAMPO_CENTRO + 2, 1};
+                p[3] = {CAMPO_CENTRO + 3, 1};
+                p[4] = {CAMPO_CENTRO, 2};
+	            p[5] = {CAMPO_CENTRO + 1, 2};
+				p[6] = {CAMPO_CENTRO - 2, 2};
+                p[7] = {CAMPO_CENTRO - 1, 2};
                 break;
             case tetramino_t:
                 colore = magenta;
                 p[0] = {CAMPO_CENTRO, 1};
-	            p[1] = {CAMPO_CENTRO - 1, 1};
-	            p[2] = {CAMPO_CENTRO + 1, 1};
-				p[3] = {CAMPO_CENTRO, 2};
+                p[1] = {CAMPO_CENTRO + 1, 1};
+	            p[2] = {CAMPO_CENTRO - 2, 1};
+                p[3] = {CAMPO_CENTRO - 1, 1};
+	            p[4] = {CAMPO_CENTRO + 2, 1};
+                p[5] = {CAMPO_CENTRO + 3, 1};
+				p[6] = {CAMPO_CENTRO, 2};
+                p[7] = {CAMPO_CENTRO + 1, 2};
                 break;
             //Se non è nessuno è bianco ma in teoria non dovrebbe mai esserlo
             default:
@@ -268,7 +326,7 @@ class Tetramino {
         //Metodo che imposta il colore nella casella del campo associata
         void stampa_colore(){
 
-            for(short i = 0; i < 4; i++){
+            for(short i = 0; i < 8; i++){
                 campo[p[i].Y][p[i].X].colore = colore;
             }
 
@@ -277,53 +335,361 @@ class Tetramino {
         //Metodo che controlla se il tetramino puo girare
         short puo_girare() {
 
-            if(tipo == tetramino_o)
-                return -1;
+           COORD temp[8];
 
-            COORD centro = p[0];
+            for(short i = 0; i < 8; i++){
+                if(i % 2 == 0){
+                    temp[i] = p[i];
+                }
 
-            for(short i = 0; i < 4; i++) {
-                
-                //distanza dei punti x e y dal centro
-                COORD distanza = {(short)(p[i].X - centro.X), (short)(p[i].Y - centro.Y)};
-
-                //Coordinate dopo lo spostamento
-                COORD temp = {(short)(centro.X - distanza.Y), (short)(centro.Y + distanza.X)};
-
-                //Controllo che con lo spoostamento non esco dai bordi
-                if(temp.X == 0 || temp.X == CAMPO_LUNGHEZZA - 2) return 0;
-                if(temp.Y == 0 || temp.Y == CAMPO_ALTEZZA - 2) return 0;
-                
-                //Controllo che con lo spostamento non sostituisco un altro tetramino
-                if(campo[temp.Y][temp.X].id != 0 && campo[temp.Y][temp.X].id != id_tetramino) return 0;
             }
+
+            if(tipo == tetramino_i){
+
+                if(rotazione % 2 == 0){
+
+                    temp[2]={(short)(temp[0].X + 2), temp[0].Y};
+                    temp[4]={(short)(temp[0].X - 2), temp[0].Y};
+                    temp[6]={(short)(temp[0].X - 4), temp[0].Y};
+
+                } else {
+
+                    temp[2]={temp[0].X, (short)(temp[0].Y - 1)};
+                    temp[4]={temp[0].X, (short)(temp[0].Y + 1)};
+                    temp[6]={temp[0].X, (short)(temp[0].Y + 2)};
+
+                }
+
+                
+
+            } else if(tipo == tetramino_t){
+                
+                if(rotazione == 0){
+
+                    temp[2]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[6]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 1){
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 2){
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+
+                }else{
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+
+                }
+
+            } else if(tipo == tetramino_l){
+
+                if(rotazione == 0){
+
+                    temp[2]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+
+                } else if(rotazione == 1){
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 2){
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+
+                }else{
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[6]={(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+
+                }
+
+            } else if(tipo == tetramino_j){
+
+                if(rotazione == 0){
+
+                    temp[2]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 1){
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 2){
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+
+                }else{
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+
+                }
+
+            } else if(tipo == tetramino_z){
+
+                if(rotazione % 2 == 0){
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+
+                } else {
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+
+                }
+
+            } else if(tipo == tetramino_s){
+
+                if(rotazione % 2 == 0){
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+
+                } else {
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+
+                }
+
+            }
+            
+            for(short i = 0; i < 8; i++){
+
+                if(i % 2 == 1){
+                    temp[i].Y = temp[i - 1].Y;
+                    temp[i].X = temp[i - 1].X + 1;
+                }
+
+            }
+
+            for(short i = 0; i < 8; i++){
+
+                if(temp[i].X <= -1 || temp[i].X >= CAMPO_LUNGHEZZA - 2){
+                    return 0;
+                }
+
+                if(temp[i].Y <= 0 || temp[i].Y >= CAMPO_ALTEZZA - 2){
+                    return 0;
+                }
+
+                if(campo[temp[i].Y][temp[i].X].id != 32 && campo[temp[i].Y][temp[i].X].id != id_tetramino){
+                    return 0;
+                }
+
+            }
+
 
             return 1;
         }
 
-        //Metodo che effettua il giramento del tetramino (modificare raddoppiando le x?)
+        //Metodo che effettua il giramento del tetramino
         void gira(){
-            
-            COORD centro = p[0];
+        
+            COORD temp[8];
 
-            for(short i = 0; i < 4; i++){
-                    
-                campo[p[i].Y][p[i].X].id = 0;
+            for(short i = 0; i < 8; i++){
+                if(i % 2 == 0){
+                    temp[i] = p[i];
+                }
+
+                campo[p[i].Y][p[i].X].id = 32;
                 campo[p[i].Y][p[i].X].blocco = 32;
-
-                COORD distanza = {(short)(p[i].X - centro.X), (short)(p[i].Y - centro.Y)};
-
-                COORD nuova = {(short)(centro.X - distanza.Y), (short)(centro.Y + distanza.X)};
-
-                p[i] = {nuova.X, nuova.Y};
-                
             }
+
+            if(tipo == tetramino_i){
+
+                if(rotazione % 2 == 0){
+
+                    temp[2]={(short)(temp[0].X + 2), temp[0].Y};
+                    temp[4]={(short)(temp[0].X - 2), temp[0].Y};
+                    temp[6]={(short)(temp[0].X - 4), temp[0].Y};
+
+                } else {
+
+                    temp[2]={temp[0].X, (short)(temp[0].Y - 1)};
+                    temp[4]={temp[0].X, (short)(temp[0].Y + 1)};
+                    temp[6]={temp[0].X, (short)(temp[0].Y + 2)};
+
+                }
+
+                
+
+            } else if(tipo == tetramino_t){
+                
+                if(rotazione == 0){
+
+                    temp[2]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[6]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 1){
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 2){
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+
+                }else{
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+
+                }
+
+            } else if(tipo == tetramino_l){
+
+                if(rotazione == 0){
+
+                    temp[2]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+
+                } else if(rotazione == 1){
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 2){
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+
+                }else{
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[6]={(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+
+                }
+
+            } else if(tipo == tetramino_j){
+
+                if(rotazione == 0){
+
+                    temp[2]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 1){
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+
+                } else if(rotazione == 2){
+
+                    temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+
+                }else{
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+
+                }
+
+            } else if(tipo == tetramino_z){
+
+                if(rotazione % 2 == 0){
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+
+                } else {
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+
+                }
+
+            } else if(tipo == tetramino_s){
+
+                if(rotazione % 2 == 0){
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
+                    temp[6]={(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+
+                } else {
+
+                    temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
+                    temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+                    temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
+
+                }
+
+            }
+
+
+            
+
+            rotazione++;
+            if(rotazione == 5) rotazione = 0;      
+
+            for(short i = 0; i < 8; i++){
+
+                if(i % 2 == 1){
+                    temp[i].Y = temp[i - 1].Y;
+                    temp[i].X = temp[i - 1].X + 1;
+                }
+
+            }
+
+            for(short i = 0; i < 8; i++){
+
+                p[i] = temp[i];
+
+            }
+
+
+
         }
+
+        
 
         //Metodo che imposta gli id del tetramino corrente sul campo
         void stampa_id(){
             
-            for(short i = 0; i < 4; i++){
+            for(short i = 0; i < 8; i++){
                 campo[p[i].Y][p[i].X].id = id_tetramino;
             }
 
@@ -332,15 +698,15 @@ class Tetramino {
         //Metodo che controlla se c'è un tetramino sotto quello corrente ---COLLISIONI---
         bool puo_cadere(){
 
-            for(short i = 0; i < 4; i++) {
+            for(short i = 0; i < 8; i++) {
 
-                if(p[i].Y + 1  == CAMPO_ALTEZZA - 2){
+                if(p[i].Y + 1  >= CAMPO_ALTEZZA - 2){
                     in_movimento = false;
                     return false;
                 }
                     
 
-                if(campo[p[i].Y+1][p[i].X].id != 0 && campo[p[i].Y+1][p[i].X].id != id_tetramino){
+                if(campo[p[i].Y+1][p[i].X].id != 32 && campo[p[i].Y+1][p[i].X].id != id_tetramino){
                     in_movimento = false;
                     return false;
                 }
@@ -356,15 +722,15 @@ class Tetramino {
         //Metodo che controlla se c'è un tetramino o altro a destra di quello corrente ---COLLISIONI---
         bool puo_destra(){
 
-            for(short i = 0; i < 4; i++) {
+            for(short i = 0; i < 8; i++) {
 
-                if(p[i].X + 1  == CAMPO_LUNGHEZZA - 2){
+                if(p[i].X + 1  >= CAMPO_LUNGHEZZA - 2){
                     //in_movimento = false; in teoria dovrebbe ancora poter cadere
                     return false;
                 }
                     
 
-                if(campo[p[i].Y][p[i].X + 1].id != 0 && campo[p[i].Y][p[i].X + 1].id != id_tetramino){
+                if(campo[p[i].Y][p[i].X + 1].id != 32 && campo[p[i].Y][p[i].X + 1].id != id_tetramino){
                     //in_movimento = false; in teoria dovrebbe ancora poter cadere
                     return false; 
                 }
@@ -380,15 +746,15 @@ class Tetramino {
         //Metodo che controlla se c'è un tetramino o altro a sinistra di quello corrente ---COLLISIONI---
         bool puo_sinistra(){
 
-            for(short i = 0; i < 4; i++) {
+            for(short i = 0; i < 8; i++) {
 
-                if(p[i].X - 1  == 0){
+                if(p[i].X - 1  <= -1){
                     //in_movimento = false; in teoria dovrebbe ancora poter cadere
                     return false;
                 }
                     
 
-                if(campo[p[i].Y][p[i].X - 1].id != 0 && campo[p[i].Y][p[i].X - 1].id != id_tetramino){
+                if(campo[p[i].Y][p[i].X - 1].id != 32 && campo[p[i].Y][p[i].X - 1].id != id_tetramino){
                     //in_movimento = false; in teoria dovrebbe ancora poter cadere
                     return false; 
                 }
@@ -404,8 +770,12 @@ class Tetramino {
         //Metodo che stampa il tetramino corrente
         void stampa(){
 
-            for(short i = 0; i < 4; i++){
-                campo[p[i].Y][p[i].X].blocco = BLOCCO;
+            for(short i = 0; i < 8; i++){
+                if(i % 2 == 0){
+                    campo[p[i].Y][p[i].X].blocco = BLOCCO_SINISTRA;
+                } else {
+                    campo[p[i].Y][p[i].X].blocco = BLOCCO_DESTRA;
+                }
             }
             this->stampa_colore();
 
@@ -414,8 +784,8 @@ class Tetramino {
         //Metodo che effettua la caduta lenta del tetramino
         void caduta_lenta(){
             
-            for(short i = 0; i < 4; i++){
-                campo[p[i].Y][p[i].X].id = 0;
+            for(short i = 0; i < 8; i++){
+                campo[p[i].Y][p[i].X].id = 32;
                 campo[p[i].Y][p[i].X].blocco = 32;
 				campo[p[i].Y][p[i].X].colore = bianco;
                 p[i].Y+= 1;
@@ -428,8 +798,8 @@ class Tetramino {
         //Metodo che effettua la caduta veloce del tetramino
         void caduta_veloce(){
             
-            for(short i = 0; i < 4; i++){
-            	campo[p[i].Y][p[i].X].id = 0;
+            for(short i = 0; i < 8; i++){
+            	campo[p[i].Y][p[i].X].id = 32;
                 campo[p[i].Y][p[i].X].blocco = 32;
                 campo[p[i].Y][p[i].X].colore = bianco;
                 p[i].Y+= 1;
@@ -441,24 +811,24 @@ class Tetramino {
 
         void caduta_istantanea(){
 
-            for(short i = 0; i < 4; i++){
-            	campo[p[i].Y][p[i].X].id = 0;
+            for(short i = 0; i < 8; i++){
+            	campo[p[i].Y][p[i].X].id = 32;
                 campo[p[i].Y][p[i].X].blocco = 32;
                 campo[p[i].Y][p[i].X].colore = bianco;
             }
 
             while(1){
 
-                for(short i = 0; i < 4; i++){
+                for(short i = 0; i < 8; i++){
                     
-                    if(campo[p[i].Y + 1][p[i].X].id != 0 && campo[p[i].Y + 1][p[i].X].id != id_tetramino){
+                    if(campo[p[i].Y + 1][p[i].X].id != 32 && campo[p[i].Y + 1][p[i].X].id != id_tetramino || p[i].Y + 1 >= CAMPO_ALTEZZA - 2){
                         this->in_movimento = false;
                         return;
                     }
 
                 }
 
-                for(short i = 0; i < 4; i++){
+                for(short i = 0; i < 8; i++){
                     this->p[i].Y+=1;
                 }
 
@@ -471,9 +841,9 @@ class Tetramino {
 
             this->stampa_id();
 
-            static COORD p_ghost[4];
+            static COORD p_ghost[8];
 
-            for(short i = 0; i < 4; i++){
+            for(short i = 0; i < 8; i++){
 
                 p_ghost[i].X = p[i].X;
                 p_ghost[i].Y = p[i].Y;
@@ -482,16 +852,16 @@ class Tetramino {
 
             while(1){
 
-                for(short i = 0; i < 4; i++){
+                for(short i = 0; i < 8; i++){
                     
-                    if(campo[p_ghost[i].Y + 1][p_ghost[i].X].id != 0 && campo[p_ghost[i].Y + 1][p_ghost[i].X].id != id_tetramino){
+                    if(campo[p_ghost[i].Y + 1][p_ghost[i].X].id != 32 && campo[p_ghost[i].Y + 1][p_ghost[i].X].id != id_tetramino || p_ghost[i].Y + 1 >= CAMPO_ALTEZZA - 2){
                         this->stampa();
                         return p_ghost;
                     }
 
                 }
 
-                for(short i = 0; i < 4; i++){
+                for(short i = 0; i < 8; i++){
                     p_ghost[i].Y+=1;
                 }
 
@@ -503,11 +873,11 @@ class Tetramino {
         //Metodo che effettua lo spostamento a destra del tetramino
         void sposta_destra(){
             
-            for(short i = 0; i < 4; i++){
-            	campo[p[i].Y][p[i].X].id = 0;
+            for(short i = 0; i < 8; i++){
+            	campo[p[i].Y][p[i].X].id = 32;
                 campo[p[i].Y][p[i].X].blocco = 32;
                 campo[p[i].Y][p[i].X].colore = bianco;
-                p[i].X+= 1;
+                p[i].X+= 2;
             }
 
         }
@@ -515,11 +885,11 @@ class Tetramino {
         //Metodo che effettua lo spostamento a sinistra del tetramino
         void sposta_sinistra(){
 
-            for(short i = 0; i < 4; i++){
-            	campo[p[i].Y][p[i].X].id = 0;
+            for(short i = 0; i < 8; i++){
+            	campo[p[i].Y][p[i].X].id = 32;
                 campo[p[i].Y][p[i].X].blocco = 32;
                 campo[p[i].Y][p[i].X].colore = bianco;
-                p[i].X-= 1;
+                p[i].X-= 2;
             }
 
         }
@@ -536,12 +906,158 @@ int Tetramino::id_tetramini = '1' - 1; //inizio da '1' solo perchè in caso di b
 
 int main(void){
 
-
+    printf(BIANCO);
+    cmd_grande();
+    nascondi_cursore();
+   
     srand(time(NULL));
     pulisci();
-    
     inizializza_campo();
-    stampa_campo_totale();
+
+    // disegno la cornice del campo
+    cornice(0, 0, CAMPO_LUNGHEZZA, CAMPO_ALTEZZA);
+    // disegno la cornice dei tetramini futuri
+    cornice(CAMPO_LUNGHEZZA + 4, 0, FUTURI_LUNGHEZZA, FUTURI_ALTEZZA + 1); 
+    cornice(CAMPO_LUNGHEZZA + 4 + FUTURI_LUNGHEZZA - 1, 0, FUTURI_LUNGHEZZA, FUTURI_ALTEZZA + 1);
+    cornice(CAMPO_LUNGHEZZA + 4 + FUTURI_LUNGHEZZA + - 1 + FUTURI_LUNGHEZZA - 1, 0, FUTURI_LUNGHEZZA, FUTURI_ALTEZZA + 1);
+    // disegno la cornice del tetramino di riserva
+    cornice(CAMPO_LUNGHEZZA + 4, FUTURI_ALTEZZA + 2, FUTURI_LUNGHEZZA, CAMPO_ALTEZZA - FUTURI_ALTEZZA - 2); 
+
+    char input;
+    COORD backup_tetramino[8] = {0, 0};
+    
+
+
+    Tetramino* CodaTetramini[4] = {NULL};
+    Tetramino* RiservaTetramino[2] = {NULL};
+    short sostituzioni = 0;
+    int punteggio = 0;
+
+    for(short i = 0; i < 3; i++){
+        CodaTetramini[i] = new Tetramino();
+    }
+
+	for(short j = 0; j < 50; j++){ // numero tetramini totali
+
+        CodaTetramini[3] = new Tetramino();
+
+        stampa_coda_tetramini(CodaTetramini[1]->tipo, CodaTetramini[2]->tipo, CodaTetramini[3]->tipo);
+
+        short linee_riempite = controllo_punti();
+
+        posizione_cursore(coord_punteggio);
+        if(linee_riempite > 0)      punteggio += linee_riempite * 100;
+        printf("punteggio : %3d", punteggio);
+        
+		bool puo_sostituire = true;
+
+		while(CodaTetramini[0]->in_movimento){//FARE in_movimento
+
+            pulisci_tetramino(CodaTetramini[0]->ghost_block());
+
+	        input = 0;
+	        if(_kbhit()){
+	            input =_getch();
+	            input = tolower(input);
+	        }
+
+            //salvo le cordinate in dei backup
+            for(short k = 0; k < 8; k++){
+                backup_tetramino[k] = CodaTetramini[0]->p[k];
+            }
+	
+            
+	        
+	        // bisogna richiamarlo prima di fare un controllo quindi io forse lo metterei dentro ad ogni controllo all'inizio ma forse
+	
+	        if(CodaTetramini[0]->in_movimento){
+	            CodaTetramini[0]->stampa_id(); 
+	            
+                if(input == 'c' && puo_sostituire){
+
+                    puo_sostituire = false; //in questo modo posso effettuare una sostituzione per tetramino
+                    sostituzioni++;
+
+                    if(sostituzioni != 2){ // != 2 perchè la prima volta lo puoi fare 2 volte quindi è un modo rozzo per evitare il bug                    
+
+                        sparisci_tetramino(CodaTetramini[0]->p);
+                        pulisci_tetramino(CodaTetramini[0]->p);
+
+                        if(sostituzioni == 1){
+                            RiservaTetramino[0] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo);
+                            stampa_riserva_tetramino(RiservaTetramino[0]->tipo);
+                            break;
+                        } else {
+                            RiservaTetramino[1] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo);
+                            delete(CodaTetramini[0]);
+                            CodaTetramini[0] = new Tetramino(RiservaTetramino[0]->id_tetramino, RiservaTetramino[0]->tipo);
+                            delete(RiservaTetramino[0]);
+                            RiservaTetramino[0] = new Tetramino(RiservaTetramino[1]->id_tetramino, RiservaTetramino[1]->tipo);
+                            delete(RiservaTetramino[1]);
+                        }
+                        
+                        stampa_riserva_tetramino(RiservaTetramino[0]->tipo);
+
+                    }
+
+                }
+
+                INPUT:
+                
+                if(input == 'd' && CodaTetramini[0]->puo_destra()){
+	                CodaTetramini[0]->sposta_destra();
+	            }else
+
+	            if(input == 'a' && CodaTetramini[0]->puo_sinistra()){
+	                CodaTetramini[0]->sposta_sinistra();
+	            }
+
+                if(input == ROTAZIONE && CodaTetramini[0]->puo_girare() == 1) {
+	                CodaTetramini[0]->gira();
+	            }
+
+                if(input == CADUTA_ISTANTANEA){
+                    pulisci_tetramino(CodaTetramini[0]->p);
+                    CodaTetramini[0]->caduta_istantanea();
+                }
+                
+                if(_kbhit()){
+                    input =_getch();
+                    input = tolower(input);
+                    goto INPUT;
+                }  
+
+
+
+                if(CodaTetramini[0]->puo_cadere()) {
+
+                    if(input == CADUTA_VELOCE){
+                        CodaTetramini[0]->caduta_veloce();
+                    }else{
+                        CodaTetramini[0]->caduta_lenta();
+                    }
+	                
+	            }
+
+	            
+	            
+	        }
+	        
+            
+	        CodaTetramini[0]->stampa();
+
+	        stampa_campo(CodaTetramini[0]->p, backup_tetramino, CodaTetramini[0]->ghost_block(), CodaTetramini[0]->in_movimento);
+	        Sleep(CodaTetramini[0]->sleep);
+	    }
+		
+		delete(CodaTetramini[0]);
+        
+        for(short i = 0; i < 3; i++){
+            CodaTetramini[i] = CodaTetramini[i+1];
+        }
+		
+	}
+
     
 
     posizione_cursore(coord_fine);
@@ -550,82 +1066,94 @@ int main(void){
 
 }
 
-void stampa_campo_totale(){
-	
-	for(int i = 0; i < CAMPO_ALTEZZA - 2; i++){
-		
-		cursore_manuale(1, i + 1);
-		
-		for(int j = 0; j < CAMPO_LUNGHEZZA - 2; j++){
-			
-			printf("%d", campo[i][j].id);
-			
-		}
-		
-	}
-	
-}
-
 void stampa_riserva_tetramino(short tipo){
 
-    char tetramino[4][4] = {0};
+    char tetramino[8][8] = {0};
 
     switch(tipo){ 
         case tetramino_i:
-            tetramino[0][1] = BLOCCO;
-            tetramino[1][1] = BLOCCO;
-            tetramino[2][1] = BLOCCO;
-            tetramino[3][1] = BLOCCO;
+            tetramino[2][1] = BLOCCO_SINISTRA;
+            tetramino[3][1] = BLOCCO_SINISTRA;
+            tetramino[4][1] = BLOCCO_SINISTRA;
+            tetramino[5][1] = BLOCCO_SINISTRA;
+            tetramino[2][2] = BLOCCO_DESTRA;
+            tetramino[3][2] = BLOCCO_DESTRA;
+            tetramino[4][2] = BLOCCO_DESTRA;
+            tetramino[5][2] = BLOCCO_DESTRA;
             printf(CIANO);
             break;
         case tetramino_j:
-            tetramino[0][1] = BLOCCO;
-            tetramino[1][1] = BLOCCO;
-            tetramino[2][0] = BLOCCO;
-            tetramino[2][1] = BLOCCO;
+            tetramino[0][2] = BLOCCO_SINISTRA;
+            tetramino[1][2] = BLOCCO_SINISTRA;
+            tetramino[2][0] = BLOCCO_SINISTRA;
+            tetramino[2][2] = BLOCCO_SINISTRA;
+            tetramino[0][3] = BLOCCO_DESTRA;
+            tetramino[1][3] = BLOCCO_DESTRA;
+            tetramino[2][1] = BLOCCO_DESTRA;
+            tetramino[2][3] = BLOCCO_DESTRA;
             printf(BLU_CHIARO);
             break;
         case tetramino_l:
-            tetramino[0][1] = BLOCCO;
-            tetramino[1][1] = BLOCCO;
-            tetramino[2][1] = BLOCCO;
-            tetramino[2][2] = BLOCCO;
+            tetramino[0][1] = BLOCCO_SINISTRA;
+            tetramino[1][1] = BLOCCO_SINISTRA;
+            tetramino[2][1] = BLOCCO_SINISTRA;
+            tetramino[2][3] = BLOCCO_SINISTRA;
+            tetramino[0][2] = BLOCCO_DESTRA;
+            tetramino[1][2] = BLOCCO_DESTRA;
+            tetramino[2][2] = BLOCCO_DESTRA;
+            tetramino[2][4] = BLOCCO_DESTRA;
             printf(ARANCIONE);
             break;
         case tetramino_o:
-            tetramino[0][0] = BLOCCO;
-            tetramino[0][1] = BLOCCO;
-            tetramino[1][0] = BLOCCO;
-            tetramino[1][1] = BLOCCO;
+            tetramino[0][0] = BLOCCO_SINISTRA;
+            tetramino[0][2] = BLOCCO_SINISTRA;
+            tetramino[1][0] = BLOCCO_SINISTRA;
+            tetramino[1][2] = BLOCCO_SINISTRA;
+            tetramino[0][1] = BLOCCO_DESTRA;
+            tetramino[0][3] = BLOCCO_DESTRA;
+            tetramino[1][1] = BLOCCO_DESTRA;
+            tetramino[1][3] = BLOCCO_DESTRA;
             printf(GIALLO_CHIARO);
             break;
-        case tetramino_s:
-            tetramino[0][0] = BLOCCO;
-            tetramino[0][1] = BLOCCO;
-            tetramino[1][1] = BLOCCO;
-            tetramino[1][2] = BLOCCO;
-            printf(VERDE_CHIARO);
-            break;
         case tetramino_z:
-            tetramino[0][1] = BLOCCO;
-            tetramino[0][2] = BLOCCO;
-            tetramino[1][0] = BLOCCO;
-            tetramino[1][1] = BLOCCO;
+            tetramino[0][0] = BLOCCO_SINISTRA;
+            tetramino[0][2] = BLOCCO_SINISTRA;
+            tetramino[1][2] = BLOCCO_SINISTRA;
+            tetramino[1][4] = BLOCCO_SINISTRA;
+            tetramino[0][1] = BLOCCO_DESTRA;
+            tetramino[0][3] = BLOCCO_DESTRA;
+            tetramino[1][3] = BLOCCO_DESTRA;
+            tetramino[1][5] = BLOCCO_DESTRA;
             printf(ROSSO_CHIARO);
             break;
+        case tetramino_s:
+            tetramino[0][2] = BLOCCO_SINISTRA;
+            tetramino[0][4] = BLOCCO_SINISTRA;
+            tetramino[1][0] = BLOCCO_SINISTRA;
+            tetramino[1][2] = BLOCCO_SINISTRA;
+            tetramino[0][3] = BLOCCO_DESTRA;
+            tetramino[0][5] = BLOCCO_DESTRA;
+            tetramino[1][1] = BLOCCO_DESTRA;
+            tetramino[1][3] = BLOCCO_DESTRA;
+            printf(VERDE_CHIARO);
+            break;
         case tetramino_t:
-            tetramino[0][0] = BLOCCO;
-            tetramino[0][1] = BLOCCO;
-            tetramino[0][2] = BLOCCO;
-            tetramino[1][1] = BLOCCO;
+            tetramino[0][0] = BLOCCO_SINISTRA;
+            tetramino[0][2] = BLOCCO_SINISTRA;
+            tetramino[0][4] = BLOCCO_SINISTRA;
+            tetramino[1][2] = BLOCCO_SINISTRA;
+            tetramino[0][1] = BLOCCO_DESTRA;
+            tetramino[0][3] = BLOCCO_DESTRA;
+            tetramino[0][5] = BLOCCO_DESTRA;
+            tetramino[1][3] = BLOCCO_DESTRA;
             printf(MAGENTA_CHIARO);
             break;
     }
 
     // Stampa i tetramini usando le matrici
-    for(short i = 0; i < 4; i++) {
+    for(short i = 0; i < 8; i++) {
         posizione_cursore({coord_tetramino_riserva.X, (short)(coord_tetramino_riserva.Y + i)});
-        for(short j = 0; j < 4; j++) {
+        for(short j = 0; j < 8; j++) {
             printf("%c", tetramino[i][j] ? tetramino[i][j] : ' ');
         }
     }
@@ -634,7 +1162,7 @@ void stampa_riserva_tetramino(short tipo){
 
 void stampa_coda_tetramini(short tipo1, short tipo2, short tipo3){    //non avevo sbatti
 
-    char tetramino[3][4][4] = {0};
+    char tetramino[3][8][8] = {0};
 
     COORD coord_futuro[3] = {coord_tetramino_futuro, coord_secondo_tetramino_futuro, coord_terzo_tetramino_futuro};
     short tipo[3] = {tipo1, tipo2, tipo3};
@@ -643,61 +1171,89 @@ void stampa_coda_tetramini(short tipo1, short tipo2, short tipo3){    //non avev
 
         switch(tipo[j]){ 
             case tetramino_i:
-                tetramino[j][0][1] = BLOCCO;
-                tetramino[j][1][1] = BLOCCO;
-                tetramino[j][2][1] = BLOCCO;
-                tetramino[j][3][1] = BLOCCO;
+                tetramino[j][2][1] = BLOCCO_SINISTRA;
+                tetramino[j][3][1] = BLOCCO_SINISTRA;
+                tetramino[j][4][1] = BLOCCO_SINISTRA;
+                tetramino[j][5][1] = BLOCCO_SINISTRA;
+                tetramino[j][2][2] = BLOCCO_DESTRA;
+                tetramino[j][3][2] = BLOCCO_DESTRA;
+                tetramino[j][4][2] = BLOCCO_DESTRA;
+                tetramino[j][5][2] = BLOCCO_DESTRA;
                 printf(CIANO);
                 break;
             case tetramino_j:
-                tetramino[j][0][1] = BLOCCO;
-                tetramino[j][1][1] = BLOCCO;
-                tetramino[j][2][0] = BLOCCO;
-                tetramino[j][2][1] = BLOCCO;
+                tetramino[j][0][2] = BLOCCO_SINISTRA;
+                tetramino[j][1][2] = BLOCCO_SINISTRA;
+                tetramino[j][2][0] = BLOCCO_SINISTRA;
+                tetramino[j][2][2] = BLOCCO_SINISTRA;
+                tetramino[j][0][3] = BLOCCO_DESTRA;
+                tetramino[j][1][3] = BLOCCO_DESTRA;
+                tetramino[j][2][1] = BLOCCO_DESTRA;
+                tetramino[j][2][3] = BLOCCO_DESTRA;
                 printf(BLU_CHIARO);
                 break;
             case tetramino_l:
-                tetramino[j][0][1] = BLOCCO;
-                tetramino[j][1][1] = BLOCCO;
-                tetramino[j][2][1] = BLOCCO;
-                tetramino[j][2][2] = BLOCCO;
+                tetramino[j][0][1] = BLOCCO_SINISTRA;
+                tetramino[j][1][1] = BLOCCO_SINISTRA;
+                tetramino[j][2][1] = BLOCCO_SINISTRA;
+                tetramino[j][2][3] = BLOCCO_SINISTRA;
+                tetramino[j][0][2] = BLOCCO_DESTRA;
+                tetramino[j][1][2] = BLOCCO_DESTRA;
+                tetramino[j][2][2] = BLOCCO_DESTRA;
+                tetramino[j][2][4] = BLOCCO_DESTRA;
                 printf(ARANCIONE);
                 break;
             case tetramino_o:
-                tetramino[j][0][0] = BLOCCO;
-                tetramino[j][0][1] = BLOCCO;
-                tetramino[j][1][0] = BLOCCO;
-                tetramino[j][1][1] = BLOCCO;
+                tetramino[j][0][0] = BLOCCO_SINISTRA;
+                tetramino[j][0][2] = BLOCCO_SINISTRA;
+                tetramino[j][1][0] = BLOCCO_SINISTRA;
+                tetramino[j][1][2] = BLOCCO_SINISTRA;
+                tetramino[j][0][1] = BLOCCO_DESTRA;
+                tetramino[j][0][3] = BLOCCO_DESTRA;
+                tetramino[j][1][1] = BLOCCO_DESTRA;
+                tetramino[j][1][3] = BLOCCO_DESTRA;
                 printf(GIALLO_CHIARO);
                 break;
-            case tetramino_s:
-                tetramino[j][0][0] = BLOCCO;
-                tetramino[j][0][1] = BLOCCO;
-                tetramino[j][1][1] = BLOCCO;
-                tetramino[j][1][2] = BLOCCO;
-                printf(VERDE_CHIARO);
-                break;
             case tetramino_z:
-                tetramino[j][0][1] = BLOCCO;
-                tetramino[j][0][2] = BLOCCO;
-                tetramino[j][1][0] = BLOCCO;
-                tetramino[j][1][1] = BLOCCO;
+                tetramino[j][0][0] = BLOCCO_SINISTRA;
+                tetramino[j][0][2] = BLOCCO_SINISTRA;
+                tetramino[j][1][2] = BLOCCO_SINISTRA;
+                tetramino[j][1][4] = BLOCCO_SINISTRA;
+                tetramino[j][0][1] = BLOCCO_DESTRA;
+                tetramino[j][0][3] = BLOCCO_DESTRA;
+                tetramino[j][1][3] = BLOCCO_DESTRA;
+                tetramino[j][1][5] = BLOCCO_DESTRA;
                 printf(ROSSO_CHIARO);
                 break;
+            case tetramino_s:
+                tetramino[j][0][2] = BLOCCO_SINISTRA;
+                tetramino[j][0][4] = BLOCCO_SINISTRA;
+                tetramino[j][1][0] = BLOCCO_SINISTRA;
+                tetramino[j][1][2] = BLOCCO_SINISTRA;
+                tetramino[j][0][3] = BLOCCO_DESTRA;
+                tetramino[j][0][5] = BLOCCO_DESTRA;
+                tetramino[j][1][1] = BLOCCO_DESTRA;
+                tetramino[j][1][3] = BLOCCO_DESTRA;
+                printf(VERDE_CHIARO);
+                break;
             case tetramino_t:
-                tetramino[j][0][0] = BLOCCO;
-                tetramino[j][0][1] = BLOCCO;
-                tetramino[j][0][2] = BLOCCO;
-                tetramino[j][1][1] = BLOCCO;
+                tetramino[j][0][0] = BLOCCO_SINISTRA;
+                tetramino[j][0][2] = BLOCCO_SINISTRA;
+                tetramino[j][0][4] = BLOCCO_SINISTRA;
+                tetramino[j][1][2] = BLOCCO_SINISTRA;
+                tetramino[j][0][1] = BLOCCO_DESTRA;
+                tetramino[j][0][3] = BLOCCO_DESTRA;
+                tetramino[j][0][5] = BLOCCO_DESTRA;
+                tetramino[j][1][3] = BLOCCO_DESTRA;
                 printf(MAGENTA_CHIARO);
                 break;
             }
 
                 
         // Stampa i tetramini usando le matrici
-        for(short i = 0; i < 4; i++) {
+        for(short i = 0; i < 8; i++) {
             posizione_cursore({coord_futuro[j].X, (short)(coord_futuro[j].Y + i)});
-            for(short k = 0; k < 4; k++) {
+            for(short k = 0; k < 8; k++) {
                 printf("%c", tetramino[j][i][k] ? tetramino[j][i][k] : ' ');
             }
         }
@@ -714,7 +1270,7 @@ void inizializza_campo(){
         for(short j = 0; j < CAMPO_LUNGHEZZA - 2; j++){
 
             campo[i][j].id = 32;
-            campo[i][j].blocco = 'a';
+            campo[i][j].blocco = 32;
             campo[i][j].colore = bianco;
             
         }
@@ -725,7 +1281,7 @@ void inizializza_campo(){
 
 void pulisci_tetramino(COORD posizione_tetramino[]){
 
-    for(short i = 0; i < 4; i++){
+    for(short i = 0; i < 8; i++){
 
         cursore_manuale(posizione_tetramino[i].X + 1, posizione_tetramino[i].Y + 1);
         printf("%c", 32);
@@ -738,42 +1294,49 @@ short controllo_punti(){
 
     bool linea_riempita;
     short linee_riempite = 0;
+    short posizione_riga = 0;
 
-    for(short i = CAMPO_ALTEZZA - 2; i >= 0; i--){
+    for(short i = CAMPO_ALTEZZA - 2 - 1; i >= 0; i--){
 
         linea_riempita = true;
 
-        for(short j = 0; j < CAMPO_LUNGHEZZA - 2; j++){ // volendo potrei lavorare con le stringhe
+        for(short j = 0; j < CAMPO_LUNGHEZZA - 2; j++){
 
-            if(campo[i][j].id == 0){
+            if(campo[i][j].id == 32){
                 linea_riempita = false;
             }
 
         }
 
         if(linea_riempita){
+            if(posizione_riga == 0)
+                posizione_riga = i;
             linee_riempite++;
-        }else{
-            break;
         }
 
+    }
+
+    if(linee_riempite != 0){
+        scesa_campo(linee_riempite, posizione_riga);
     }
 
     return linee_riempite;
 
 }
 
-void scesa_campo(short linee_riempite){
+void scesa_campo(short linee_riempite, short posizione_riga){
 
-    for(short i = CAMPO_ALTEZZA - 2; i >= CAMPO_ALTEZZA - 2 - linee_riempite; i--){
+    if(linee_riempite == 0) return;
 
-        for(short j = 0; j < CAMPO_ALTEZZA - 2 - 1; j++){
+    for(short i = 0; i < linee_riempite; i++){
+
+        for(short j = posizione_riga; j >= 1; j--){
 
             for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++){
 
-                campo[j + 1][k].id = campo[j][k].id;
-                campo[j + 1][k].blocco = campo[j][k].blocco;
-                campo[j + 1][k].colore = campo[j][k].colore;
+                campo[j][k].id = campo[j - 1][k].id;
+                campo[j][k].blocco = campo[j - 1][k].blocco;
+                campo[j][k].colore = campo[j - 1][k].colore;
 
             }
 
@@ -781,15 +1344,64 @@ void scesa_campo(short linee_riempite){
 
     }
 
+    
+
+    stampa_campo_totale();
+
 }
 
 void sparisci_tetramino(COORD posizione_tetramino[]){
 
-    for(short i = 0; i < 4; i++){
+    for(short i = 0; i < 8; i++){
 			  
-        campo[posizione_tetramino[i].Y][posizione_tetramino[i].X].id = 0;
+        campo[posizione_tetramino[i].Y][posizione_tetramino[i].X].id = 32;
         campo[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco = 32;
         campo[posizione_tetramino[i].Y][posizione_tetramino[i].X].colore = bianco;
+
+    }
+
+}
+
+void stampa_campo_totale(){ //da ottimizzare in qualche modo? il problema è lo switch
+
+    for(short i = 0; i < CAMPO_ALTEZZA - 2; i++){
+
+        cursore_manuale(1, i + 1);
+
+        for(short j = 0; j < CAMPO_LUNGHEZZA - 2; j++){
+
+            switch(campo[i][j].colore){
+				
+                case bianco : 
+                    printf(BIANCO);
+                    break;
+                case rosso : 
+                    printf(ROSSO_CHIARO);
+                    break;
+                case ciano : 
+                    printf(CIANO);
+                    break;
+                case blu : 
+                    printf(BLU_CHIARO);
+                    break;
+                case arancione : 
+                    printf(ARANCIONE);
+                    break;
+                case giallo : 
+                    printf(GIALLO_CHIARO);
+                    break;
+                case verde : 
+                    printf(VERDE_CHIARO);
+                    break;
+                case magenta : 
+                    printf(MAGENTA_CHIARO);
+                    break;
+                
+            }
+
+            printf("%c", campo[i][j].blocco);
+
+        }
 
     }
 
@@ -798,7 +1410,7 @@ void sparisci_tetramino(COORD posizione_tetramino[]){
 //Funzione che stampa la matrice campo
 void stampa_campo(COORD posizione_tetramino[], COORD backup_posizione_tetramino[], COORD posizione_ghost_block[], bool in_movimento){
 
-    for(short i = 0; i < 4; i++){
+    for(short i = 0; i < 8; i++){
         cursore_manuale(backup_posizione_tetramino[i].X + 1, backup_posizione_tetramino[i].Y + 1);
         printf("%c", 32);
     }
@@ -806,7 +1418,7 @@ void stampa_campo(COORD posizione_tetramino[], COORD backup_posizione_tetramino[
     if(in_movimento){
 
         printf(GRIGIO);
-        for(short i = 0; i < 4; i++){
+        for(short i = 0; i < 8; i++){
             cursore_manuale(posizione_ghost_block[i].X + 1, posizione_ghost_block[i].Y + 1);
             printf("%c", BLOCCO);
         }
@@ -842,9 +1454,9 @@ void stampa_campo(COORD posizione_tetramino[], COORD backup_posizione_tetramino[
         
     }
 
-    for(short i = 0; i < 4; i++){
+    for(short i = 0; i < 8; i++){
         cursore_manuale(posizione_tetramino[i].X + 1, posizione_tetramino[i].Y + 1);
-        printf("%c", campo[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco);
+        printf("%c", campo[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco);//printf("%c", campo[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco);
     }
     
     posizione_cursore(coord_fine);
@@ -890,63 +1502,71 @@ void cornice(short margine_sinistro, short margine_superiore, short margine_dest
 
 }
 
-void cursore_manuale(short x, short y){
-    HANDLE hConsole;
-    CONSOLE_SCREEN_BUFFER_INFO csbi;
-    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    COORD coord_posizione = {x, y};
-    posizione_cursore(coord_posizione);
+
+COORD posizione_attuale() {
+    struct termios original, raw;
+    COORD coord = {0, 0};
+
+    // Salva le impostazioni correnti
+    tcgetattr(STDIN_FILENO, &original);
+    raw = original;
+
+    // Disattiva l'echo e l'input canonico
+    raw.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &raw);
+
+    // Chiedi la posizione del cursore al terminale
+    printf("\033[6n");
+    fflush(stdout);
+
+    // Leggi la risposta: "\033[row;colR"
+    if (scanf("\033[%d;%dR", &coord.Y, &coord.X) != 2) {
+        coord.X = -1;
+        coord.Y = -1;
+    }
+
+    // Ripristina le impostazioni originali
+    tcsetattr(STDIN_FILENO, TCSANOW, &original);
+
+    return coord;
 }
 
 void pulisci(){
-    system("cls");
+    system("clear");
 }
 
-COORD posizione_attuale() {
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    CONSOLE_SCREEN_BUFFER_INFO csbi;
-    GetConsoleScreenBufferInfo(hConsole, &csbi);
-    return csbi.dwCursorPosition;
+// Posiziona il cursore nel terminale
+void posizione_cursore(COORD coord_posizione) {
+    printf("\033[%d;%dH", coord_posizione.Y + 1, coord_posizione.X + 1);
+    fflush(stdout);
 }
 
-void cursore_alto(COORD* coord_posizione, short delta){
-    HANDLE hConsole;
-    CONSOLE_SCREEN_BUFFER_INFO csbi;
-    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+// Muove il cursore verso l'alto
+void cursore_alto(COORD* coord_posizione, int delta) {
     coord_posizione->Y -= delta;
+    if (coord_posizione->Y < 0) coord_posizione->Y = 0;
     posizione_cursore(*coord_posizione);
 }
 
-void cursore_basso(COORD* coord_posizione, short delta){
-    HANDLE hConsole;
-    CONSOLE_SCREEN_BUFFER_INFO csbi;
-    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+// Muove il cursore verso il basso
+void cursore_basso(COORD* coord_posizione, int delta) {
     coord_posizione->Y += delta;
     posizione_cursore(*coord_posizione);
 }
 
-void cursore_sinistra(COORD* coord_posizione, short delta){
-    HANDLE hConsole;
-    CONSOLE_SCREEN_BUFFER_INFO csbi;
-    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+// Muove il cursore a sinistra
+void cursore_sinistra(COORD* coord_posizione, int delta) {
     coord_posizione->X -= delta;
+    if (coord_posizione->X < 0) coord_posizione->X = 0;
     posizione_cursore(*coord_posizione);
 }
 
-void cursore_destra(COORD* coord_posizione, short delta){
-    HANDLE hConsole;
-    CONSOLE_SCREEN_BUFFER_INFO csbi;
-    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+// Muove il cursore a destra
+void cursore_destra(COORD* coord_posizione, int delta) {
     coord_posizione->X += delta;
     posizione_cursore(*coord_posizione);
 }
 
-void posizione_cursore(COORD coord_posizione){
-    HANDLE hConsole;
-    CONSOLE_SCREEN_BUFFER_INFO csbi;
-    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleCursorPosition(hConsole, coord_posizione);
-}
 
 void nascondi_cursore(){
 

@@ -1,15 +1,14 @@
 /*
-HO MESSO CHE LE P SONO 8 LE PARI SONO [ MENTRE LE DISPARI SONO ], HO CAMBIATO A MANNO TUTTE LE POSIZIONI DELLE CORDINATE
-E HO CAMBIATO ALCUNI COLORI E NOMI, PER QUESTO NELLA STAMPA DEI FUTURI E RISERVE HANNO COLORI DIVERSI O ALTRO, (J L Z S), DEVI 
+OTTIMIZZARE STAMPA_CODA_TETRAMINI E STAMPA_RISERVA_TETRAMINO PER LE CORDINATE
 -------RISOLVI GIRA E CADUTA VELOCE E GHOST BLOCK, HO CAMBIATO 0 CON 32 
-controllare la tonalit�  dei colori
-controllare le posizioni di tutti i p[] nella funzione inizializza mettendo p[0] come centro per il giramento dei tetramini
+controllare la tonalità  dei colori
+-------controllare le posizioni di tutti i p[] nella funzione inizializza mettendo p[0] come centro per il giramento dei tetramini
 modificare la funzione gira e aggiungere delle cordinate p[] perchè la lunghezza dovrebbe raddoppiarsi
 rivedere le funzioni di controllo di spostamento per i bordi, e giro per eventuali bug(forse sono dovuti a stampa_campo)
 -------ottimizzare la funzione stampa_campo() : non fargli stampare tutto il campo ogni volta, ma solo quando serve, e solo le parti modificate
 togliere lo sleep e utilizzare i thread per la stampa, e l'input e i controlli di collisione, probebilmente ne servono 3
 creare una coda di generazione dei tetramini per vedere i prossimi tetramini richiamando/modificando random_tetramino()
-s*/
+*/
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -32,30 +31,24 @@ s*/
 // COSTANTI
 
 #define CAMPO_ALTEZZA 25
-#define CAMPO_LUNGHEZZA 40
+#define CAMPO_LUNGHEZZA 20
 #define CAMPO_CENTRO CAMPO_LUNGHEZZA / 2
 #define FUTURI_ALTEZZA 10
 #define FUTURI_LUNGHEZZA 20
 #define FUTURI_SECONDO (FUTURI_LUNGHEZZA - (CAMPO_LUNGHEZZA + 4) / 3)
 #define FUTURI_CENTRO CAMPO_LUNGHEZZA + 4 + ((FUTURI_LUNGHEZZA - (CAMPO_LUNGHEZZA + 4)) / 2)
-#define BLOCCO 219 //blocco intero usato dai ghost block per il momento
-#define BLOCCO_SINISTRA '[' 
-#define BLOCCO_DESTRA   ']'
+#define BLOCCO 219 //blocco intero usato dai ghost block per il ghostblock
+#define BLOCCO_SINISTRA '[' //metà blocco usato per la parte sinistra
+#define BLOCCO_DESTRA   ']' //metà blocco usato per la parte destra
 
 // INPUT
 
-#define ROTAZIONE 'w' 
-#define CADUTA_VELOCE 'q'
-#define CADUTA_ISTANTANEA 's'
-
-/* non so perchè ma lagga se si usano questo comandi
-#define ROTAZIONE 72 // freccia in alto
-#define CADUTA_VELOCE 80 // freccia giù
-#define CADUTA_ISTANTANEA 32 // barra spaziatrice
-#define SINISTRA 75 //freccia sinistra
-#define DESTRA 77 // freccia destra 
-#define CAMBIO 'c' // per il tetramino di riserva
-*/
+char ROTAZIONE[4] = {'W', 'w', 72};// freccia su
+char SINISTRA[4] = {'A', 'a', 75};//freccia sinistra
+char DESTRA[4] = {'D', 'd', 77};// freccia destra 
+char CADUTA_VELOCE[4] = {'Q', 'q', 80};// freccia giù
+char CADUTA_ISTANTANEA[4] = {'S', 's', 32};// barra spaziatrice
+char CAMBIO[3] = {'C', 'c'};
 
 // CURSORE
 
@@ -166,10 +159,98 @@ void nascondi_cursore();
 void mostra_cursore();
 void cmd_grande();
 
+class Input {
+
+    public : 
+        char input = 0;
+
+        void scan(){
+            input = 0;
+            input =_getch();
+            if(input == 0 || input == 224)  input = _getch();
+            posizione_cursore(coord_fine);
+            printf("\ninput : %d ", input);
+        }
+    
+        bool rotazione(){
+            for(short i = 0; i < strlen(ROTAZIONE); i++){
+                if(input == ROTAZIONE[i]){
+                    posizione_cursore(coord_fine);
+                    printf("    %d , %hd  ", ROTAZIONE[i], i);
+                    printf("gira");
+                    return true;
+                }
+                    
+            }
+            return false;
+        }
+
+        bool destra(){
+            for(short i = 0; i < strlen(DESTRA); i++){
+                if(input == DESTRA[i]){
+                    posizione_cursore(coord_fine);
+                    printf("destra");
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        bool sinistra(){
+            for(short i = 0; i < strlen(SINISTRA); i++){
+                if(input == SINISTRA[i]){
+                    posizione_cursore(coord_fine);
+                    printf("    %d  ", SINISTRA[i]);
+                    printf("sinistra");
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        bool cadutaVeloce(){
+            for(short i = 0; i < strlen(CADUTA_VELOCE); i++){
+                if(input == CADUTA_VELOCE[i]){
+                    posizione_cursore(coord_fine);
+                    printf("    %d  ", CADUTA_VELOCE[i]);
+                    printf("veloce");
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        bool cadutaIstantanea(){
+            for(short i = 0; i < strlen(CADUTA_ISTANTANEA); i++){
+                if(input == CADUTA_ISTANTANEA[i]){
+                    posizione_cursore(coord_fine);
+                    printf("    %d  ", CADUTA_ISTANTANEA[i]);
+                    printf("istantanea");
+                    return true;
+                }
+                    
+            }
+            return false;
+        }
+
+        bool cambio(){
+            for(short i = 0; i < strlen(CAMBIO); i++){
+                if(input == CAMBIO[i]){
+                    posizione_cursore(coord_fine);
+                    printf("%d  ", CAMBIO[i]);
+                    printf("cambio");
+                    return true;
+                }
+            }
+            return false;
+        }
+
+};
+
 //Classe tetramino generale
 class Tetramino {
     
-    	private :
+    private :
     	
     	//Variabili
         
@@ -177,7 +258,7 @@ class Tetramino {
         char colore = 0;
 	    static int id_tetramini;
     	
-		public :
+	public :
 
         short sleep;
         int id_tetramino = 0;
@@ -911,10 +992,9 @@ int main(void){
     // disegno la cornice del tetramino di riserva
     cornice(CAMPO_LUNGHEZZA + 4, FUTURI_ALTEZZA + 2, FUTURI_LUNGHEZZA, CAMPO_ALTEZZA - FUTURI_ALTEZZA - 2); 
 
-    char input;
     COORD backup_tetramino[8] = {0, 0};
     
-
+    Input input;
 
     Tetramino* CodaTetramini[4] = {NULL};
     Tetramino* RiservaTetramino[2] = {NULL};
@@ -943,10 +1023,9 @@ int main(void){
 
             pulisci_tetramino(CodaTetramini[0]->ghost_block());
 
-	        input = 0;
+            input.input = 0;
 	        if(_kbhit()){
-	            input =_getch();
-	            input = tolower(input);
+	            input.scan();
 	        }
 
             //salvo le cordinate in dei backup
@@ -961,7 +1040,7 @@ int main(void){
 	        if(CodaTetramini[0]->in_movimento){
 	            CodaTetramini[0]->stampa_id(); 
 	            
-                if(input == 'c' && puo_sostituire){
+                if(input.cambio() && puo_sostituire){
 
                     puo_sostituire = false; //in questo modo posso effettuare una sostituzione per tetramino
                     sostituzioni++;
@@ -992,34 +1071,34 @@ int main(void){
 
                 INPUT:
                 
-                if(input == 'd' && CodaTetramini[0]->puo_destra()){
+                if(input.destra() && CodaTetramini[0]->puo_destra()){
 	                CodaTetramini[0]->sposta_destra();
 	            }else
 
-	            if(input == 'a' && CodaTetramini[0]->puo_sinistra()){
+	            if(input.sinistra() && CodaTetramini[0]->puo_sinistra()){
 	                CodaTetramini[0]->sposta_sinistra();
 	            }
 
-                if(input == ROTAZIONE && CodaTetramini[0]->puo_girare() == 1) {
+                if(input.rotazione() && CodaTetramini[0]->puo_girare() == 1) {
 	                CodaTetramini[0]->gira();
 	            }
 
-                if(input == CADUTA_ISTANTANEA){
+                if(input.cadutaIstantanea()){
                     pulisci_tetramino(CodaTetramini[0]->p);
                     CodaTetramini[0]->caduta_istantanea();
                 }
-                
+                /*
                 if(_kbhit()){
                     input =_getch();
                     input = tolower(input);
                     goto INPUT;
                 }  
-
+                */
 
 
                 if(CodaTetramini[0]->puo_cadere()) {
 
-                    if(input == CADUTA_VELOCE){
+                    if(input.cadutaVeloce()){
                         CodaTetramini[0]->caduta_veloce();
                     }else{
                         CodaTetramini[0]->caduta_lenta();

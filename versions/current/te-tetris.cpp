@@ -37,7 +37,7 @@ creare una coda di generazione dei tetramini per vedere i prossimi tetramini ric
 #define FUTURI_LUNGHEZZA 20
 #define FUTURI_SECONDO (FUTURI_LUNGHEZZA - (CAMPO_LUNGHEZZA + 4) / 3)
 #define FUTURI_CENTRO CAMPO_LUNGHEZZA + 4 + ((FUTURI_LUNGHEZZA - (CAMPO_LUNGHEZZA + 4)) / 2)
-#define BLOCCO 219 //blocco intero usato dai ghost block per il ghostblock
+#define BLOCCO 219 //blocco intero usato dai ghost block
 #define BLOCCO_SINISTRA '[' //metà blocco usato per la parte sinistra
 #define BLOCCO_DESTRA   ']' //metà blocco usato per la parte destra
 

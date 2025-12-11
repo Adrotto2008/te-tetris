@@ -26,6 +26,7 @@ int main(void){
     COORD backup_tetramino[8] = {0, 0};
     
     Input input;
+    campo.inizializza();
 
     Tetramino* CodaTetramini[4] = {NULL};
     Tetramino* RiservaTetramino[2] = {NULL};

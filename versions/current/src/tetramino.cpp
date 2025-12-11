@@ -110,6 +110,7 @@ void Tetramino::controllo_colore(){
 
 //Metodo che assegna il valore del tetramino corrente
 bool Tetramino::inizializza(){
+    this->in_movimento = true;
     this->id_tetramini++;	
     this->tipo = this->random_tetramino();// da ristrutturare facendo la funzione che genera la coda di tetramini nel futuro, probabilmente anche da un'altra parte
     //tipo = tetramino_i;
@@ -491,8 +492,6 @@ void Tetramino::gira(){
 
 }
 
-
-
 //Metodo che imposta gli id del tetramino corrente sul campo
 void Tetramino::stampa_id(){
     
@@ -515,6 +514,8 @@ bool Tetramino::puo_cadere(){
 
         if(campo.casella[p[i].Y+1][p[i].X].id != 32 && campo.casella[p[i].Y+1][p[i].X].id != id_tetramino){
             in_movimento = false;
+            posizione_cursore(coord_fine);
+            printf("  : %d", campo.casella[p[i].Y+1][p[i].X].id);
             return false;
         }
             

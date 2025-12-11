@@ -17,7 +17,7 @@ private:
     char colore = 0;
     static int id_tetramini;
 
-    
+    bool inizializza();
     short random_tetramino();
     void controllo_colore();
 
@@ -33,7 +33,6 @@ public:
     Tetramino(int id_definito, short tipo_definito);
     ~Tetramino();
 
-    bool inizializza();
     bool puo_girare();
     void gira();
     void stampa();

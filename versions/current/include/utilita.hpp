@@ -5,14 +5,16 @@
 #include "grafica.hpp"
 #include <windows.h>
 #include <cstdio>
+#include <thread>
+#include <chrono>
 
 // variabili globali per i thread
-extern short timer_input;
-extern short timer_caduta;
+extern int timer_input;
+extern int timer_caduta;
 
 //funzioni thread
-void countdown_input(short seconds);
-void countdown_caduta(short seconds);
+void countdown_input(int seconds);
+void countdown_caduta(int seconds);
 
 // Funzioni cursore
 void cursore_manuale(short x, short y);

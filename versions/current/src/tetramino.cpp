@@ -124,6 +124,25 @@ bool Tetramino::inizializza(){
 
 }
 
+bool Tetramino::perdita(){
+    
+    for(short i = 0; i < 8; i++){
+
+        if(p[i].Y < 1){
+            return true;
+        }
+
+        if(campo.casella[p[i].Y][p[i].X].id != 32 && campo.casella[p[i].Y][p[i].X].id != id_tetramino){
+            return true;
+        }
+
+
+    }
+
+    return false;
+
+}
+
 //Metodo che crea un tipo casuale di tetramino da 1 a 7 
 short Tetramino::random_tetramino(){
         

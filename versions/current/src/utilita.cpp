@@ -5,22 +5,20 @@
 
 using namespace std;
 using namespace chrono;
+using namespace chrono_literals;
 
-short timer_input;
-short timer_caduta;
+int timer_input;
+int timer_caduta;
 
 
-void countdown_input(short seconds){
+void countdown_input(int tempo){
 
-    for(short i = seconds - 1; i >= 0; i--){
-
-        this_thread::sleep_for(milliseconds(1000));
-        timer_input = i;
-    }
+    this_thread::sleep_for(milliseconds(tempo));
+    timer_input = 0;
 
 }
 
-void countdown_caduta(short seconds){
+void countdown_caduta(int seconds){
 
     for(short i = seconds - 1; i >= 0; i--){
 

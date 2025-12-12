@@ -14,7 +14,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj: \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/excpt.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/crtdefs.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/corecrt.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/stdarg.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/stdarg.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/stdarg.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/_mingw_stdarg.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/windef.h \
@@ -27,104 +27,148 @@ CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj: \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/winnt.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/_mingw_unicode.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/ctype.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/corecrt_wctype.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/apiset.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/basetsd.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/guiddef.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/string.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/sec_api/string_s.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/x86intrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/ia32intrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/immintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/mmintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/xmmintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/mm_malloc.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/stdlib.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cstdlib \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/cpu_defines.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/x86intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/x86gprintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/ia32intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/stddef.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/stddef.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/adxintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/bmiintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/bmi2intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/cetintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/cldemoteintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/clflushoptintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/clwbintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/clzerointrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/cmpccxaddintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/enqcmdintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/fxsrintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/lzcntintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/lwpintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/movdirintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/mwaitintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/mwaitxintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/pconfigintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/popcntintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/pkuintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/prfchiintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/raointintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/rdseedintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/rtmintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/serializeintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/sgxintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/tbmintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/tsxldtrkintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/uintrintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/waitpkgintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/wbnoinvdintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/xsaveintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/xsavecintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/xsaveoptintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/xsavesintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/xtestintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/hresetintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/usermsrintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/immintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/mmintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/xmmintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/mm_malloc.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/stdlib.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/cstdlib \
+ C:/TDM-GCC-64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/x86_64-w64-mingw32/bits/os_defines.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/x86_64-w64-mingw32/bits/cpu_defines.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/pstl/pstl_config.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/stdlib.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/corecrt_wstdlib.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/syslimits.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/limits.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/syslimits.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/limits.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/malloc.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/std_abs.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/std_abs.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/errno.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/emmintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/pmmintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/tmmintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/smmintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/popcntintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/wmmintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/fxsrintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/xsaveintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/xsaveoptintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/xsavesintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/xsavecintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avxintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx2intrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512fintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512erintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512pfintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512cdintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512vlintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512bwintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512dqintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512vlbwintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512vldqintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512ifmaintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512ifmavlintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512vbmiintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512vbmivlintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx5124fmapsintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx5124vnniwintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512vpopcntdqintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512vbmi2intrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512vbmi2vlintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512vnniintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512vnnivlintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512vpopcntdqvlintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512bitalgintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512vp2intersectintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512vp2intersectvlintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/shaintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/lzcntintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/bmiintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/bmi2intrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/fmaintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/f16cintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/rtmintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/xtestintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/cetintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/gfniintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/vaesintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/vpclmulqdqintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/movdirintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/sgxintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/pconfigintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/waitpkgintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/cldemoteintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512bf16vlintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/avx512bf16intrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/enqcmdintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/rdseedintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/prfchwintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/adxintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/clwbintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/clflushoptintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/wbnoinvdintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/pkuintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/mm3dnow.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/fma4intrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/ammintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/xopintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/lwpintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/tbmintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/mwaitxintrin.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/clzerointrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/emmintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/pmmintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/tmmintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/smmintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/wmmintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avxintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avxvnniintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avxifmaintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avxvnniint8intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avxvnniint16intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx2intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512fintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512cdintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512vlintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512bwintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512dqintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512vlbwintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512vldqintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512ifmaintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512ifmavlintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512vbmiintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512vbmivlintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512vpopcntdqintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512vbmi2intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512vbmi2vlintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512vnniintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512vnnivlintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512vpopcntdqvlintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512bitalgintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512bitalgvlintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512vp2intersectintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512vp2intersectvlintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512fp16intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512fp16vlintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/shaintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/sm3intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/sha512intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/sm4intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/fmaintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/f16cintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/gfniintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/vaesintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/vpclmulqdqintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512bf16vlintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512bf16intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avxneconvertintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/amxtileintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/amxint8intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/amxbf16intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/amxcomplexintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/amxavx512intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/amxtf32intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/amxtransposeintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/amxfp8intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/prfchwintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/keylockerintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/amxfp16intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx10_2mediaintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx10_2-512mediaintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx10_2convertintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx10_2-512convertintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx10_2bf16intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx10_2-512bf16intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx10_2satcvtintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx10_2-512satcvtintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx10_2minmaxintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx10_2-512minmaxintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx10_2copyintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/movrsintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/amxmovrsintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/mm3dnow.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/fma4intrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/ammintrin.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/xopintrin.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/pshpack4.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/poppack.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/pshpack4.h \
@@ -176,6 +220,10 @@ CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj: \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/datetimeapi.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/stringapiset.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/wincon.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/wincontypes.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/consoleapi.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/consoleapi2.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/consoleapi3.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/winver.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/winreg.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/reason.h \
@@ -188,6 +236,14 @@ CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj: \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/dlgs.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/lzexpand.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/mmsystem.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/mmsyscom.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/mciapi.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/mmiscapi.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/mmiscapi2.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/playsoundapi.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/mmeapi.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/timeapi.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/joystickapi.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/nb30.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/rpc.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/rpcdce.h \
@@ -244,9 +300,64 @@ CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj: \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/winsvc.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/mcx.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/imm.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cstdio \
+ C:/TDM-GCC-64/include/c++/15.2.0/cstdio \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/stdio.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/corecrt_stdio_config.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/_mingw_off_t.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/swprintf.inl \
- C:/TDM-GCC-64/x86_64-w64-mingw32/include/sec_api/stdio_s.h
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/thread \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/requires_hosted.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/std_thread.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/iosfwd \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/stringfwd.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/memoryfwd.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/postypes.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/cwchar \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/wchar.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/_mingw_stat64.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/sec_api/wchar_s.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/tuple \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/stl_pair.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/type_traits \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/version.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/move.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/utility.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/uses_allocator.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/invoke.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/functional_hash.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/hash_bytes.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/refwrap.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/stl_function.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/backward/binders.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/unique_ptr.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/debug/assertions.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/x86_64-w64-mingw32/bits/gthr.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/x86_64-w64-mingw32/bits/gthr-default.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/pthread.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/sys/types.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/process.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/corecrt_startup.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/signal.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/pthread_signal.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/time.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/sys/timeb.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/pthread_time.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/pthread_compat.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/sched.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/pthread_unistd.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/this_thread_sleep.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/chrono.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/ratio \
+ C:/TDM-GCC-64/include/c++/15.2.0/cstdint \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/stdint.h \
+ C:/TDM-GCC-64/x86_64-w64-mingw32/include/stdint.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/limits \
+ C:/TDM-GCC-64/include/c++/15.2.0/ctime \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/parse_numbers.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/ext/numeric_traits.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/cpp_type_traits.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/ext/type_traits.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/cerrno \
+ C:/TDM-GCC-64/include/c++/15.2.0/chrono

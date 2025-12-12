@@ -1,34 +1,35 @@
 CMakeFiles/te_tetris.dir/versions/current/src/input.cpp.obj: \
  C:\Users\adria\Dropbox\minecraft\adri\c++\te-tetris\te-tetris\versions\current\src\input.cpp \
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/input.hpp \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/array \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/utility \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/cpu_defines.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_relops.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_pair.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/move.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/type_traits \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/initializer_list \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/functexcept.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/exception_defines.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_algobase.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/cpp_type_traits.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/type_traits.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/numeric_traits.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_iterator_base_types.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_iterator_base_funcs.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/concept_check.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/debug/assertions.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_iterator.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ptr_traits.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/debug/debug.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/predefined_ops.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/range_access.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/iterator_concepts.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/concepts \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/range_cmp.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/array \
+ C:/TDM-GCC-64/include/c++/15.2.0/compare \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/version.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/x86_64-w64-mingw32/bits/os_defines.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/x86_64-w64-mingw32/bits/cpu_defines.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/pstl/pstl_config.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/initializer_list \
+ C:/TDM-GCC-64/include/c++/15.2.0/type_traits \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/functexcept.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/exception_defines.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/stl_algobase.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/cpp_type_traits.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/ext/type_traits.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/ext/numeric_traits.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/stl_pair.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/move.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/utility.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/stl_iterator_base_types.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/stl_iterator_base_funcs.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/concept_check.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/debug/assertions.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/stl_iterator.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/ptr_traits.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/debug/debug.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/predefined_ops.h \
+ C:/TDM-GCC-64/include/c++/15.2.0/bit \
+ C:/TDM-GCC-64/include/c++/15.2.0/concepts \
+ C:/TDM-GCC-64/include/c++/15.2.0/bits/range_access.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/conio.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/crtdefs.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/corecrt.h \
@@ -38,6 +39,6 @@ CMakeFiles/te_tetris.dir/versions/current/src/input.cpp.obj: \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/vadefs.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/corecrt_stdio_config.h \
- C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/stddef.h \
+ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/stddef.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/stddef.h \
  C:/TDM-GCC-64/x86_64-w64-mingw32/include/sec_api/conio_s.h

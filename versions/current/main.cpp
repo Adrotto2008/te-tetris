@@ -47,9 +47,18 @@ int main(void){
         CodaTetramini[i] = new Tetramino();
     }
 
-	for(short j = 0; j < 50; j++){ // numero tetramini totali
+    /*------------------CONTROLLO PERDITA--------------------*/ // continua fino a quando non perdi
+	for(short j = 0; !CodaTetramini[0]->perdita(); j++){
+
+
+        
+
+        
+        /*------------------GENERAZIONE TETRAMINO FUTURO--------------------*/
 
         CodaTetramini[3] = new Tetramino();
+
+        /*------------------STAMPA TETRAMINI FUTURI--------------------*/
 
         stampa_coda_tetramini(CodaTetramini[1]->tipo, CodaTetramini[2]->tipo, CodaTetramini[3]->tipo);
 
@@ -61,7 +70,7 @@ int main(void){
         if(linee_riempite > 0)      punteggio += linee_riempite * 100;
         printf("punteggio : %3d", punteggio);
         
-        /*-----------------------------------------------*/
+        
 
 		bool puo_sostituire = true;
 
@@ -78,7 +87,7 @@ int main(void){
 
             /*-----------GESTIONE DELL'INPUT-----------------*/
 
-            timer_input = 1;
+            timer_input = 500;
             thread countdownInput(countdown_input, timer_input);
 
             while(1){
@@ -223,10 +232,11 @@ int main(void){
 
 	}
 
-    
-
+    campo.stampa(CodaTetramini[0]->p, backup_tetramino, CodaTetramini[0]->ghost_block(), CodaTetramini[0]->in_movimento);
     posizione_cursore(coord_fine);
+    printf("hai perso");
     printf(BIANCO);
+
     return 0;
 
 }

@@ -36,6 +36,7 @@ public:
     bool puo_girare(short tipo_rotazione);
     void gira(short tipo_rotazione);
     void stampa();
+    bool perdita();
     void stampa_colore();
     void stampa_id();
     bool puo_cadere();

@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 3.10)
 project(te_tetris)
 
+# Forza uso di librerie statiche
+set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
+set(BUILD_SHARED_LIBS OFF)
+set(CMAKE_EXE_LINKER_FLAGS "-static")
+
 # Cartelle
 set(SRC_DIR "versions/current/src")
 set(INCLUDE_DIR "versions/current/include")
@@ -19,3 +24,6 @@ add_executable(te_tetris ${MAIN_FILE} ${SRC_FILES})
 set_target_properties(te_tetris PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin
 )
+
+# Se devi linkare librerie statiche specifiche, aggiungile qui:
+# target_link_libraries(te_tetris PRIVATE m pthread)

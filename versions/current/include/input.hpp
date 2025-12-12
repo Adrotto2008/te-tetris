@@ -6,6 +6,8 @@
 
 /*------------INPUT-------------*/
 extern std::array<char, 3> ROTAZIONE;        // freccia su
+extern std::array<char, 2> ROTAZIONE_ANTIORARIA;        
+extern std::array<char, 2> ROTAZIONE_DOPPIA;        
 extern std::array<char, 3> SINISTRA;        // freccia sinistra
 extern std::array<char, 3> DESTRA;          // freccia destra
 extern std::array<char, 3> CADUTA_VELOCE;   // freccia giù
@@ -18,8 +20,10 @@ class Input {
 public:
     char input = 0;
 
-    void scan();             
-    bool rotazione();        
+    void scan();      
+    bool rotazione();   
+    bool rotazioneDoppia();  
+    bool rotazioneAntiOraria();       
     bool destra();
     bool sinistra();
     bool cadutaVeloce();

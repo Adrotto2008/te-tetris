@@ -22,7 +22,7 @@ class Campo {
 
         void inizializza();
         void stampa(COORD posizione_tetramino[], COORD backup_posizione_tetramino[], COORD posizione_ghost_block[], bool in_movimento);
-        void stampaTotale();
+        void stampaTotale(short posizione_riga);
         void scesa(short linee_riempite, short posizione_riga);
         short controlloPunti();
 

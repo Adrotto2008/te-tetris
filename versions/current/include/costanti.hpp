@@ -7,7 +7,7 @@
 /*-----------COSTANTI----------------*/
 
 /*------------CORDINATE---------*/
-#define CAMPO_ALTEZZA 25
+#define CAMPO_ALTEZZA 27
 #define CAMPO_LUNGHEZZA 20
 #define CAMPO_CENTRO CAMPO_LUNGHEZZA / 2
 
@@ -80,7 +80,7 @@ enum TetraminoTipo {
 };
 
 /*------------COLORI------------*/
-enum  Colori {
+enum Colori {
     rosso = -1,
     ciano = -2,
     blu = -3,

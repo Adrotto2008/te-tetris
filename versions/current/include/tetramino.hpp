@@ -33,8 +33,8 @@ public:
     Tetramino(int id_definito, short tipo_definito);
     ~Tetramino();
 
-    bool puo_girare();
-    void gira();
+    bool puo_girare(short tipo_rotazione);
+    void gira(short tipo_rotazione);
     void stampa();
     void stampa_colore();
     void stampa_id();
@@ -42,7 +42,7 @@ public:
     bool puo_destra();
     bool puo_sinistra();
     void caduta_lenta();
-    void caduta_veloce();
+    void cadutaVeloce();
     void caduta_istantanea();
     COORD* ghost_block();
     void sposta_destra();

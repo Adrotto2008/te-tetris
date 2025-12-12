@@ -13,6 +13,10 @@ extern COORD coord_posizione_campo;
 extern COORD coord_punteggio;
 extern COORD coord_fine;
 
+// Funzioni di stampa tetramino
+void stampa_riserva_tetramino(short tipo);
+void stampa_coda_tetramini(short tipo1, short tipo2, short tipo3);
+
 void cornice(short margine_sinistro, short margine_superiore, short margine_destro, short margine_inferiore);
 
 #endif

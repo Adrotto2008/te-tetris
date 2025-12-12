@@ -141,9 +141,17 @@ void Tetramino::stampa_colore(){
 }
 
 //Metodo che controlla se il tetramino puo girare
-bool Tetramino::puo_girare() {
+bool Tetramino::puo_girare(short tipo_rotazione) {
 
     COORD temp[8];
+    
+    short rotazione_ipotetica = rotazione;
+
+    if(tipo_rotazione == 1) //antioraria
+        rotazione_ipotetica+= 2;
+
+    if(tipo_rotazione == 2) //doppia
+        rotazione_ipotetica+=1;
 
     for(short i = 0; i < 8; i++){
         if(i % 2 == 0){
@@ -154,7 +162,7 @@ bool Tetramino::puo_girare() {
 
     if(tipo == tetramino_i){
 
-        if(rotazione % 2 == 0){
+        if(rotazione_ipotetica % 2 == 0){
 
             temp[2]={(short)(temp[0].X + 2), temp[0].Y};
             temp[4]={(short)(temp[0].X - 2), temp[0].Y};
@@ -172,19 +180,21 @@ bool Tetramino::puo_girare() {
 
     } else if(tipo == tetramino_t){
         
-        if(rotazione == 0){
+        
+
+        if(rotazione_ipotetica == 0){
 
             temp[2]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
             temp[4]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
             temp[6]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
 
-        } else if(rotazione == 1){
+        } else if(rotazione_ipotetica == 1){
 
             temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
             temp[4]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
             temp[6]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
 
-        } else if(rotazione == 2){
+        } else if(rotazione_ipotetica == 2){
 
             temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
             temp[4]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
@@ -200,19 +210,19 @@ bool Tetramino::puo_girare() {
 
     } else if(tipo == tetramino_l){
 
-        if(rotazione == 0){
+        if(rotazione_ipotetica == 0){
 
             temp[2]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
             temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
             temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
 
-        } else if(rotazione == 1){
+        } else if(rotazione_ipotetica == 1){
 
             temp[2]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
             temp[4]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
             temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
 
-        } else if(rotazione == 2){
+        } else if(rotazione_ipotetica == 2){
 
             temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
             temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
@@ -228,19 +238,19 @@ bool Tetramino::puo_girare() {
 
     } else if(tipo == tetramino_j){
 
-        if(rotazione == 0){
+        if(rotazione_ipotetica == 0){
 
             temp[2]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
             temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
             temp[6]={(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
 
-        } else if(rotazione == 1){
+        } else if(rotazione_ipotetica == 1){
 
             temp[2]={(short)(temp[0].X), (short)(temp[0].Y + 1)};
             temp[4]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
             temp[6]={(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
 
-        } else if(rotazione == 2){
+        } else if(rotazione_ipotetica == 2){
 
             temp[2]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
             temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
@@ -256,7 +266,7 @@ bool Tetramino::puo_girare() {
 
     } else if(tipo == tetramino_z){
 
-        if(rotazione % 2 == 0){
+        if(rotazione_ipotetica % 2 == 0){
 
             temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
             temp[4]={(short)(temp[0].X - 2), (short)(temp[0].Y)};
@@ -272,7 +282,7 @@ bool Tetramino::puo_girare() {
 
     } else if(tipo == tetramino_s){
 
-        if(rotazione % 2 == 0){
+        if(rotazione_ipotetica % 2 == 0){
 
             temp[2]={(short)(temp[0].X), (short)(temp[0].Y - 1)};
             temp[4]={(short)(temp[0].X + 2), (short)(temp[0].Y)};
@@ -313,14 +323,21 @@ bool Tetramino::puo_girare() {
 
     }
 
-
     return 1;
 }
 
 //Metodo che effettua il giramento del tetramino
-void Tetramino::gira(){
+void Tetramino::gira(short tipo_rotazione){
 
     COORD temp[8];
+
+    short rotazione_ipotetica = rotazione;
+
+    if(tipo_rotazione == 1) //antioraria
+        rotazione+= 2;
+
+    if(tipo_rotazione == 2) //doppia
+        rotazione+=1;
 
     for(short i = 0; i < 8; i++){
         if(i % 2 == 0){
@@ -471,7 +488,7 @@ void Tetramino::gira(){
     
 
     rotazione++;
-    if(rotazione == 5) rotazione = 0;      
+    if(rotazione >= 5) rotazione = 0;      
 
     for(short i = 0; i < 8; i++){
 
@@ -514,8 +531,6 @@ bool Tetramino::puo_cadere(){
 
         if(campo.casella[p[i].Y+1][p[i].X].id != 32 && campo.casella[p[i].Y+1][p[i].X].id != id_tetramino){
             in_movimento = false;
-            posizione_cursore(coord_fine);
-            printf("  : %d", campo.casella[p[i].Y+1][p[i].X].id);
             return false;
         }
             
@@ -604,7 +619,7 @@ void Tetramino::caduta_lenta(){
 }
 
 //Metodo che effettua la caduta veloce del tetramino
-void Tetramino::caduta_veloce(){
+void Tetramino::cadutaVeloce(){
     
     for(short i = 0; i < 8; i++){
         campo.casella[p[i].Y][p[i].X].id = 32;

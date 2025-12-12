@@ -6,9 +6,13 @@
 #include <windows.h>
 #include <cstdio>
 
-// Funzioni di stampa tetramino
-void stampa_riserva_tetramino(short tipo);
-void stampa_coda_tetramini(short tipo1, short tipo2, short tipo3);
+// variabili globali per i thread
+extern short timer_input;
+extern short timer_caduta;
+
+//funzioni thread
+void countdown_input(short seconds);
+void countdown_caduta(short seconds);
 
 // Funzioni cursore
 void cursore_manuale(short x, short y);

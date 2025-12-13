@@ -8,12 +8,12 @@ COORD coord_posizione_campo = {1, 1};
 COORD coord_punteggio = {CAMPO_LUNGHEZZA + FUTURI_LUNGHEZZA + 7, FUTURI_ALTEZZA + 5};
 COORD coord_fine = {0, CAMPO_ALTEZZA + 10};
 
-void stampa_riserva_tetramino(short tipo){
+void stampa_riserva_tetramino(TipoTetramino tipo){
 
     char tetramino[8][8] = {0};
 
     switch(tipo){ 
-        case tetramino_i:
+        case TipoTetramino::I:
             tetramino[2][1] = BLOCCO_SINISTRA;
             tetramino[3][1] = BLOCCO_SINISTRA;
             tetramino[4][1] = BLOCCO_SINISTRA;
@@ -24,7 +24,7 @@ void stampa_riserva_tetramino(short tipo){
             tetramino[5][2] = BLOCCO_DESTRA;
             printf(CIANO);
             break;
-        case tetramino_j:
+        case TipoTetramino::J:
             tetramino[0][2] = BLOCCO_SINISTRA;
             tetramino[1][2] = BLOCCO_SINISTRA;
             tetramino[2][0] = BLOCCO_SINISTRA;
@@ -35,7 +35,7 @@ void stampa_riserva_tetramino(short tipo){
             tetramino[2][3] = BLOCCO_DESTRA;
             printf(BLU_CHIARO);
             break;
-        case tetramino_l:
+        case TipoTetramino::L:
             tetramino[0][1] = BLOCCO_SINISTRA;
             tetramino[1][1] = BLOCCO_SINISTRA;
             tetramino[2][1] = BLOCCO_SINISTRA;
@@ -46,7 +46,7 @@ void stampa_riserva_tetramino(short tipo){
             tetramino[2][4] = BLOCCO_DESTRA;
             printf(ARANCIONE);
             break;
-        case tetramino_o:
+        case TipoTetramino::O:
             tetramino[0][0] = BLOCCO_SINISTRA;
             tetramino[0][2] = BLOCCO_SINISTRA;
             tetramino[1][0] = BLOCCO_SINISTRA;
@@ -57,7 +57,7 @@ void stampa_riserva_tetramino(short tipo){
             tetramino[1][3] = BLOCCO_DESTRA;
             printf(GIALLO_CHIARO);
             break;
-        case tetramino_z:
+        case TipoTetramino::Z:
             tetramino[0][0] = BLOCCO_SINISTRA;
             tetramino[0][2] = BLOCCO_SINISTRA;
             tetramino[1][2] = BLOCCO_SINISTRA;
@@ -68,7 +68,7 @@ void stampa_riserva_tetramino(short tipo){
             tetramino[1][5] = BLOCCO_DESTRA;
             printf(ROSSO_CHIARO);
             break;
-        case tetramino_s:
+        case TipoTetramino::S:
             tetramino[0][2] = BLOCCO_SINISTRA;
             tetramino[0][4] = BLOCCO_SINISTRA;
             tetramino[1][0] = BLOCCO_SINISTRA;
@@ -79,7 +79,7 @@ void stampa_riserva_tetramino(short tipo){
             tetramino[1][3] = BLOCCO_DESTRA;
             printf(VERDE_CHIARO);
             break;
-        case tetramino_t:
+        case TipoTetramino::T:
             tetramino[0][0] = BLOCCO_SINISTRA;
             tetramino[0][2] = BLOCCO_SINISTRA;
             tetramino[0][4] = BLOCCO_SINISTRA;
@@ -102,17 +102,17 @@ void stampa_riserva_tetramino(short tipo){
 
 }
 
-void stampa_coda_tetramini(short tipo1, short tipo2, short tipo3){    //non avevo sbatti
+void stampa_coda_tetramini(TipoTetramino tipo1, TipoTetramino tipo2, TipoTetramino tipo3){    //non avevo sbatti
 
     char tetramino[3][8][8] = {0};
 
     COORD coord_futuro[3] = {coord_tetramino_futuro, coord_secondo_tetramino_futuro, coord_terzo_tetramino_futuro};
-    short tipo[3] = {tipo1, tipo2, tipo3};
+    TipoTetramino tipo[3] = {tipo1, tipo2, tipo3};
 
     for(short j = 0; j < 3; j++){
 
         switch(tipo[j]){ 
-            case tetramino_i:
+            case TipoTetramino::I:
                 tetramino[j][2][1] = BLOCCO_SINISTRA;
                 tetramino[j][3][1] = BLOCCO_SINISTRA;
                 tetramino[j][4][1] = BLOCCO_SINISTRA;
@@ -123,7 +123,7 @@ void stampa_coda_tetramini(short tipo1, short tipo2, short tipo3){    //non avev
                 tetramino[j][5][2] = BLOCCO_DESTRA;
                 printf(CIANO);
                 break;
-            case tetramino_j:
+            case TipoTetramino::J:
                 tetramino[j][0][2] = BLOCCO_SINISTRA;
                 tetramino[j][1][2] = BLOCCO_SINISTRA;
                 tetramino[j][2][0] = BLOCCO_SINISTRA;
@@ -134,7 +134,7 @@ void stampa_coda_tetramini(short tipo1, short tipo2, short tipo3){    //non avev
                 tetramino[j][2][3] = BLOCCO_DESTRA;
                 printf(BLU_CHIARO);
                 break;
-            case tetramino_l:
+            case TipoTetramino::L:
                 tetramino[j][0][1] = BLOCCO_SINISTRA;
                 tetramino[j][1][1] = BLOCCO_SINISTRA;
                 tetramino[j][2][1] = BLOCCO_SINISTRA;
@@ -145,7 +145,7 @@ void stampa_coda_tetramini(short tipo1, short tipo2, short tipo3){    //non avev
                 tetramino[j][2][4] = BLOCCO_DESTRA;
                 printf(ARANCIONE);
                 break;
-            case tetramino_o:
+            case TipoTetramino::O:
                 tetramino[j][0][0] = BLOCCO_SINISTRA;
                 tetramino[j][0][2] = BLOCCO_SINISTRA;
                 tetramino[j][1][0] = BLOCCO_SINISTRA;
@@ -156,7 +156,7 @@ void stampa_coda_tetramini(short tipo1, short tipo2, short tipo3){    //non avev
                 tetramino[j][1][3] = BLOCCO_DESTRA;
                 printf(GIALLO_CHIARO);
                 break;
-            case tetramino_z:
+            case TipoTetramino::Z:
                 tetramino[j][0][0] = BLOCCO_SINISTRA;
                 tetramino[j][0][2] = BLOCCO_SINISTRA;
                 tetramino[j][1][2] = BLOCCO_SINISTRA;
@@ -167,7 +167,7 @@ void stampa_coda_tetramini(short tipo1, short tipo2, short tipo3){    //non avev
                 tetramino[j][1][5] = BLOCCO_DESTRA;
                 printf(ROSSO_CHIARO);
                 break;
-            case tetramino_s:
+            case TipoTetramino::S:
                 tetramino[j][0][2] = BLOCCO_SINISTRA;
                 tetramino[j][0][4] = BLOCCO_SINISTRA;
                 tetramino[j][1][0] = BLOCCO_SINISTRA;
@@ -178,7 +178,7 @@ void stampa_coda_tetramini(short tipo1, short tipo2, short tipo3){    //non avev
                 tetramino[j][1][3] = BLOCCO_DESTRA;
                 printf(VERDE_CHIARO);
                 break;
-            case tetramino_t:
+            case TipoTetramino::T:
                 tetramino[j][0][0] = BLOCCO_SINISTRA;
                 tetramino[j][0][2] = BLOCCO_SINISTRA;
                 tetramino[j][0][4] = BLOCCO_SINISTRA;

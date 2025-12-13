@@ -4,6 +4,7 @@
 #include "input.hpp"
 #include "tetramino.hpp"
 #include "utilita.hpp"
+#include "punteggio.hpp"
 #include <iostream>
 #include <chrono>
 #include <thread>
@@ -20,8 +21,6 @@ int main(void){
     printf(BIANCO);
     cmd_grande();
     nascondi_cursore();
-   
-    srand(time(NULL));
     pulisci();
 
     // disegno la cornice del campo
@@ -41,7 +40,6 @@ int main(void){
     Tetramino* CodaTetramini[4] = {NULL};
     Tetramino* RiservaTetramino[2] = {NULL};
     short sostituzioni = 0;
-    int punteggio = 0;
 
     for(short i = 0; i < 3; i++){
         CodaTetramini[i] = new Tetramino();
@@ -62,13 +60,16 @@ int main(void){
 
         stampa_coda_tetramini(CodaTetramini[1]->tipo, CodaTetramini[2]->tipo, CodaTetramini[3]->tipo);
 
-        /*------------------PUNTEGGIO--------------------*/
+        /*------------------PUNTEGGIO--------------------*/        
 
-        short linee_riempite = campo.controlloPunti();
+        if(campo.controlloPrimaLinea()){
+            punteggio.tetrisCompleto();
+        }
+
+        punteggio.comboAttuale(punteggio.lineeRiempite(campo.controlloPunti()));
 
         posizione_cursore(coord_punteggio);
-        if(linee_riempite > 0)      punteggio += linee_riempite * 100;
-        printf("punteggio : %3d", punteggio);
+        printf("punteggio : %.0f", punteggio.punti);
         
         
 
@@ -90,99 +91,93 @@ int main(void){
             timer_input = 500;
             thread countdownInput(countdown_input, timer_input);
 
-            while(1){
-
-                if(!timer_input){
-                    break;
-                }
+            while(timer_input){
 
                 input.input = 0;
                 if(_kbhit()){    
 
                     input.scan();
-                
 
+                    if(input.cambio() && puo_sostituire){
 
-                        if(input.cambio() && puo_sostituire){
+                        puo_sostituire = false; //in questo modo posso effettuare una sostituzione per tetramino
+                        sostituzioni++;
 
-                            puo_sostituire = false; //in questo modo posso effettuare una sostituzione per tetramino
-                            sostituzioni++;
+                        if(sostituzioni != 2){ // != 2 perchè la prima volta lo puoi fare 2 volte quindi è un modo rozzo per evitare il bug                    
 
-                            if(sostituzioni != 2){ // != 2 perchè la prima volta lo puoi fare 2 volte quindi è un modo rozzo per evitare il bug                    
+                            
+                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
+                            CodaTetramini[0]->in_movimento = false;
+                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
+                            CodaTetramini[0]->sparisci();
 
-                                
-                                CodaTetramini[0]->pulisci(0);
-                                CodaTetramini[0]->in_movimento = false;
-                                CodaTetramini[0]->pulisci(1);
-                                CodaTetramini[0]->sparisci();
-
-                                if(sostituzioni == 1){
-                                    RiservaTetramino[0] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo);
-                                    stampa_riserva_tetramino(RiservaTetramino[0]->tipo);
-                                    countdownInput.join();
-                                    goto PRIMO_CAMBIO;
-                                } else {
-                                    RiservaTetramino[1] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo);
-                                    delete(CodaTetramini[0]);
-                                    CodaTetramini[0] = new Tetramino(RiservaTetramino[0]->id_tetramino, RiservaTetramino[0]->tipo);
-                                    delete(RiservaTetramino[0]);
-                                    RiservaTetramino[0] = new Tetramino(RiservaTetramino[1]->id_tetramino, RiservaTetramino[1]->tipo);
-                                    delete(RiservaTetramino[1]);
-                                }
-                                
+                            if(sostituzioni == 1){
+                                RiservaTetramino[0] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo);
                                 stampa_riserva_tetramino(RiservaTetramino[0]->tipo);
-
-                            }
-
-                        }else{
-
-                            if(input.cadutaVeloce() && CodaTetramini[0]->puo_cadere()){
-                                CodaTetramini[0]->pulisci(0);
-                                CodaTetramini[0]->cadutaVeloce();
-                            }
-
-                            if(input.destra() && CodaTetramini[0]->puo_destra()){
-                                CodaTetramini[0]->pulisci(0);
-                                CodaTetramini[0]->pulisci(1);
-                                CodaTetramini[0]->sposta_destra();
-                            }
-
-                            if(input.sinistra() && CodaTetramini[0]->puo_sinistra()){
-                                CodaTetramini[0]->pulisci(0);
-                                CodaTetramini[0]->pulisci(1);
-                                CodaTetramini[0]->sposta_sinistra();
-                            }
-
-                            if(input.rotazione() && CodaTetramini[0]->puo_girare(0)) {
-                                CodaTetramini[0]->pulisci(0);
-                                CodaTetramini[0]->pulisci(1);
-                                CodaTetramini[0]->gira(0);
-                            }else 
-                            
-                            if(input.rotazioneAntiOraria() && CodaTetramini[0]->puo_girare(1)) { // antioraria
-                                CodaTetramini[0]->pulisci(0);
-                                CodaTetramini[0]->pulisci(1);
-                                CodaTetramini[0]->gira(1);
-                            }else
-
-                            if(input.rotazioneDoppia() && CodaTetramini[0]->puo_girare(2)) { // doppia
-                                CodaTetramini[0]->pulisci(0);
-                                CodaTetramini[0]->pulisci(1);
-                                CodaTetramini[0]->gira(2);
-                            }
-
-
-
-                            if(input.cadutaIstantanea()){
-                                CodaTetramini[0]->pulisci(0);
-                                CodaTetramini[0]->pulisci(1);
-                                CodaTetramini[0]->caduta_istantanea();
+                                countdownInput.join();
+                                goto PRIMO_CAMBIO;
+                            } else {
+                                RiservaTetramino[1] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo);
+                                delete(CodaTetramini[0]);
+                                CodaTetramini[0] = new Tetramino(RiservaTetramino[0]->id_tetramino, RiservaTetramino[0]->tipo);
+                                delete(RiservaTetramino[0]);
+                                RiservaTetramino[0] = new Tetramino(RiservaTetramino[1]->id_tetramino, RiservaTetramino[1]->tipo);
+                                delete(RiservaTetramino[1]);
                             }
                             
+                            stampa_riserva_tetramino(RiservaTetramino[0]->tipo);
+
                         }
 
-                        CodaTetramini[0]->stampa();
-                        campo.stampa(CodaTetramini[0]->p, backup_tetramino, CodaTetramini[0]->ghost_block(), CodaTetramini[0]->in_movimento);
+                    }else{
+
+                        if(input.cadutaVeloce() && CodaTetramini[0]->puo_cadere() == Collisioni::LIBERO){
+                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
+                            punteggio.cadutaVeloce(CodaTetramini[0]->cadutaVeloce());
+                        }
+
+                        if(input.destra() && CodaTetramini[0]->puo_destra() == Collisioni::LIBERO){
+                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
+                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
+                            CodaTetramini[0]->sposta_destra();
+                        }
+
+                        if(input.sinistra() && CodaTetramini[0]->puo_sinistra() == Collisioni::LIBERO){
+                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
+                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
+                            CodaTetramini[0]->sposta_sinistra();
+                        }
+
+                        if(input.rotazione() == TipoGiro::ORARIA && CodaTetramini[0]->puo_girare(TipoGiro::ORARIA) == Collisioni::LIBERO) {
+                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
+                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
+                            CodaTetramini[0]->gira(TipoGiro::ORARIA);
+                        }else 
+                        
+                        if(input.rotazione() == TipoGiro::ANTIORARIA && CodaTetramini[0]->puo_girare(TipoGiro::ANTIORARIA) == Collisioni::LIBERO) { 
+                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
+                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
+                            CodaTetramini[0]->gira(TipoGiro::ANTIORARIA);
+                        }else
+
+                        if(input.rotazione() == TipoGiro::DOPPIA && CodaTetramini[0]->puo_girare(TipoGiro::DOPPIA) == Collisioni::LIBERO) { 
+                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
+                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
+                            CodaTetramini[0]->gira(TipoGiro::DOPPIA);
+                        }
+
+
+
+                        if(input.cadutaIstantanea()){
+                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
+                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
+                            punteggio.cadutaIstantanea(CodaTetramini[0]->caduta_istantanea());
+                        }
+                        
+                    }
+
+                    CodaTetramini[0]->stampa();
+                    campo.stampa(CodaTetramini[0]->p, backup_tetramino, CodaTetramini[0]->ghost_block(), CodaTetramini[0]->in_movimento);
 
                     
                 }
@@ -192,31 +187,21 @@ int main(void){
 
             countdownInput.join();
 
-            /*-----------------------------------------------*/
-
             /*---------------------CADUTA--------------------*/
 
-            if(CodaTetramini[0]->puo_cadere()) {
+            if(CodaTetramini[0]->puo_cadere() == Collisioni::LIBERO) {
 
-                CodaTetramini[0]->pulisci(0);
+                CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
 
-                CodaTetramini[0]->caduta_lenta();
+                punteggio.cadutaLenta(CodaTetramini[0]->caduta_lenta());
                                 
-            }
-
-            /*-----------------------------------------------*/
-            
-        
+            }        
         
             /*---------------STAMPA DEL TETRAMINO------------*/ /*--------------STAMPA DEL GHOSTBLOCK------------*/
-
-        
 
 	        CodaTetramini[0]->stampa();           
 
 	        campo.stampa(CodaTetramini[0]->p, backup_tetramino, CodaTetramini[0]->ghost_block(), CodaTetramini[0]->in_movimento);
-            /*----------------------SLEEP--------------------*/
-	        //this_thread::sleep_for(milliseconds(CodaTetramini[0]->sleep));
             
 	    }
 		PRIMO_CAMBIO:
@@ -236,6 +221,8 @@ int main(void){
     posizione_cursore(coord_fine);
     printf("hai perso");
     printf(BIANCO);
+    getchar();
+    getchar();
 
     return 0;
 

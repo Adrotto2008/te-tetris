@@ -10,7 +10,7 @@ Tetramino::Tetramino(){
 }
 
 //Constructor per creare un tetramino con delle caratteristiche predefinite, senza generare un nuovo id e tipo
-Tetramino::Tetramino(int id_definito, short tipo_definito){
+Tetramino::Tetramino(int id_definito, TipoTetramino tipo_definito){
     this->in_movimento = true;
     this->id_tetramino = id_definito;
     this->tipo = tipo_definito;
@@ -20,7 +20,7 @@ Tetramino::Tetramino(int id_definito, short tipo_definito){
 //Metodo che assegna il colore del tetramino in base al tipo
 void Tetramino::controllo_colore(){
     switch(tipo){ //tutti gli indici pari indicano [ mentre quelli dispari ]
-    case tetramino_i:
+    case TipoTetramino::I:
         colore = ciano; 
         p[0] = {CAMPO_CENTRO, 2};
         p[1] = {CAMPO_CENTRO + 1, 2};
@@ -31,7 +31,7 @@ void Tetramino::controllo_colore(){
         p[6] = {CAMPO_CENTRO, 4};
         p[7] = {CAMPO_CENTRO + 1, 4};
         break;
-    case tetramino_j:
+    case TipoTetramino::J:
         colore = blu; 
         p[0] = {CAMPO_CENTRO, 2};
         p[1] = {CAMPO_CENTRO + 1, 2};
@@ -43,7 +43,7 @@ void Tetramino::controllo_colore(){
         p[7] = {CAMPO_CENTRO - 1, 3};
         
         break;
-    case tetramino_l:
+    case TipoTetramino::L:
         colore = arancione;
         p[0] = {CAMPO_CENTRO, 2};
         p[1] = {CAMPO_CENTRO + 1, 2};
@@ -55,7 +55,7 @@ void Tetramino::controllo_colore(){
         p[7] = {CAMPO_CENTRO + 3, 3};
         
         break;
-    case tetramino_o:
+    case TipoTetramino::O:
         colore = giallo; 
         p[0] = {CAMPO_CENTRO, 1};
         p[1] = {CAMPO_CENTRO + 1, 1};
@@ -67,7 +67,7 @@ void Tetramino::controllo_colore(){
         p[7] = {CAMPO_CENTRO + 3, 2};
     
         break;
-    case tetramino_z:
+    case TipoTetramino::Z:
         colore = rosso;
         p[0] = {CAMPO_CENTRO, 1};
         p[1] = {CAMPO_CENTRO + 1, 1};
@@ -79,7 +79,7 @@ void Tetramino::controllo_colore(){
         p[7] = {CAMPO_CENTRO + 3, 2};
 
         break;
-    case tetramino_s:
+    case TipoTetramino::S:
         colore = verde; 
         p[0] = {CAMPO_CENTRO, 1};
         p[1] = {CAMPO_CENTRO + 1, 1};
@@ -90,7 +90,7 @@ void Tetramino::controllo_colore(){
         p[6] = {CAMPO_CENTRO - 2, 2};
         p[7] = {CAMPO_CENTRO - 1, 2};
         break;
-    case tetramino_t:
+    case TipoTetramino::T:
         colore = magenta;
         p[0] = {CAMPO_CENTRO, 1};
         p[1] = {CAMPO_CENTRO + 1, 1};
@@ -113,7 +113,7 @@ bool Tetramino::inizializza(){
     this->in_movimento = true;
     this->id_tetramini++;	
     this->tipo = this->random_tetramino();// da ristrutturare facendo la funzione che genera la coda di tetramini nel futuro, probabilmente anche da un'altra parte
-    //tipo = tetramino_i;
+    //tipo = TipoTetramino::I;
     //Controllo che tipo di tetramino è tramite l'enum TetraminoTipo e gli assegno il colore e le cordinate
     
 
@@ -144,9 +144,16 @@ bool Tetramino::perdita(){
 }
 
 //Metodo che crea un tipo casuale di tetramino da 1 a 7 
-short Tetramino::random_tetramino(){
+TipoTetramino Tetramino::random_tetramino(){
         
-    return 1 + rand() % (7 - 1 + 1);//min + rand()%(max - min + 1)
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+    static std::uniform_int_distribution<int> dist(1, 7);
+
+    return static_cast<TipoTetramino>(dist(gen));
+
+    // prima era così però in teoria dovrebbe essere meglio adesso
+    // return static_cast<TipoTetramino>(1 + rand() % (7 - 1 + 1));//min + rand()%(max - min + 1)
     
 }
 
@@ -160,16 +167,19 @@ void Tetramino::stampa_colore(){
 }
 
 //Metodo che controlla se il tetramino puo girare
-bool Tetramino::puo_girare(short tipo_rotazione) {
+Collisioni Tetramino::puo_girare(TipoGiro tipo_rotazione) {
 
     COORD temp[8];
     
-    short rotazione_ipotetica = rotazione;
+    short rotazione_ipotetica;
 
-    if(tipo_rotazione == 1) //antioraria
+    if(tipo_rotazione == TipoGiro::ORARIA) //antioraria
+        rotazione_ipotetica = rotazione;
+    else
+    if(tipo_rotazione == TipoGiro::ANTIORARIA) //antioraria
         rotazione_ipotetica+= 2;
-
-    if(tipo_rotazione == 2) //doppia
+    else
+    if(tipo_rotazione == TipoGiro::DOPPIA) //doppia
         rotazione_ipotetica+=1;
 
     for(short i = 0; i < 8; i++){
@@ -179,7 +189,7 @@ bool Tetramino::puo_girare(short tipo_rotazione) {
 
     }
 
-    if(tipo == tetramino_i){
+    if(tipo == TipoTetramino::I){
 
         if(rotazione_ipotetica % 2 == 0){
 
@@ -197,7 +207,7 @@ bool Tetramino::puo_girare(short tipo_rotazione) {
 
         
 
-    } else if(tipo == tetramino_t){
+    } else if(tipo == TipoTetramino::T){
         
         
 
@@ -227,7 +237,7 @@ bool Tetramino::puo_girare(short tipo_rotazione) {
 
         }
 
-    } else if(tipo == tetramino_l){
+    } else if(tipo == TipoTetramino::L){
 
         if(rotazione_ipotetica == 0){
 
@@ -255,7 +265,7 @@ bool Tetramino::puo_girare(short tipo_rotazione) {
 
         }
 
-    } else if(tipo == tetramino_j){
+    } else if(tipo == TipoTetramino::J){
 
         if(rotazione_ipotetica == 0){
 
@@ -283,7 +293,7 @@ bool Tetramino::puo_girare(short tipo_rotazione) {
 
         }
 
-    } else if(tipo == tetramino_z){
+    } else if(tipo == TipoTetramino::Z){
 
         if(rotazione_ipotetica % 2 == 0){
 
@@ -299,7 +309,7 @@ bool Tetramino::puo_girare(short tipo_rotazione) {
 
         }
 
-    } else if(tipo == tetramino_s){
+    } else if(tipo == TipoTetramino::S){
 
         if(rotazione_ipotetica % 2 == 0){
 
@@ -329,34 +339,39 @@ bool Tetramino::puo_girare(short tipo_rotazione) {
     for(short i = 0; i < 8; i++){
 
         if(temp[i].X <= -1 || temp[i].X >= CAMPO_LUNGHEZZA - 2){
-            return 0;
+            return Collisioni::FUORI;
         }
 
         if(temp[i].Y <= 0 || temp[i].Y >= CAMPO_ALTEZZA - 2){
-            return 0;
+            return Collisioni::FUORI;
         }
 
         if(campo.casella[temp[i].Y][temp[i].X].id != 32 && campo.casella[temp[i].Y][temp[i].X].id != id_tetramino){
-            return 0;
+            return Collisioni::COLLISIONE;
         }
 
     }
 
-    return 1;
+    return Collisioni::LIBERO;
 }
 
 //Metodo che effettua il giramento del tetramino
-void Tetramino::gira(short tipo_rotazione){
+void Tetramino::gira(TipoGiro tipo_rotazione){
 
     COORD temp[8];
 
-    short rotazione_ipotetica = rotazione;
+    //if(tipo_rotazione == TipoGiro::ORARIA) 
+        //rotazione = rotazione;
+    //else
+    if(tipo_rotazione == TipoGiro::ANTIORARIA) 
+        rotazione -= 2;
+    else
+    if(tipo_rotazione == TipoGiro::DOPPIA)
+        rotazione++;
 
-    if(tipo_rotazione == 1) //antioraria
-        rotazione+= 2;
 
-    if(tipo_rotazione == 2) //doppia
-        rotazione+=1;
+    if(rotazione < 0) rotazione += 4;
+    if(rotazione >= 4) rotazione -= 4; 
 
     for(short i = 0; i < 8; i++){
         if(i % 2 == 0){
@@ -367,7 +382,7 @@ void Tetramino::gira(short tipo_rotazione){
         campo.casella[p[i].Y][p[i].X].blocco = 32;
     }
 
-    if(tipo == tetramino_i){
+    if(tipo == TipoTetramino::I){
 
         if(rotazione % 2 == 0){
 
@@ -385,7 +400,7 @@ void Tetramino::gira(short tipo_rotazione){
 
         
 
-    } else if(tipo == tetramino_t){
+    } else if(tipo == TipoTetramino::T){
         
         if(rotazione == 0){
 
@@ -413,7 +428,7 @@ void Tetramino::gira(short tipo_rotazione){
 
         }
 
-    } else if(tipo == tetramino_l){
+    } else if(tipo == TipoTetramino::L){
 
         if(rotazione == 0){
 
@@ -441,7 +456,7 @@ void Tetramino::gira(short tipo_rotazione){
 
         }
 
-    } else if(tipo == tetramino_j){
+    } else if(tipo == TipoTetramino::J){
 
         if(rotazione == 0){
 
@@ -469,7 +484,7 @@ void Tetramino::gira(short tipo_rotazione){
 
         }
 
-    } else if(tipo == tetramino_z){
+    } else if(tipo == TipoTetramino::Z){
 
         if(rotazione % 2 == 0){
 
@@ -485,7 +500,7 @@ void Tetramino::gira(short tipo_rotazione){
 
         }
 
-    } else if(tipo == tetramino_s){
+    } else if(tipo == TipoTetramino::S){
 
         if(rotazione % 2 == 0){
 
@@ -507,7 +522,8 @@ void Tetramino::gira(short tipo_rotazione){
     
 
     rotazione++;
-    if(rotazione >= 5) rotazione = 0;      
+    if(rotazione < 0) rotazione += 4;
+    if(rotazione >= 4) rotazione -= 4;      
 
     for(short i = 0; i < 8; i++){
 
@@ -538,74 +554,72 @@ void Tetramino::stampa_id(){
 }
 
 //Metodo che controlla se c'è un tetramino sotto quello corrente ---COLLISIONI---
-bool Tetramino::puo_cadere(){
+Collisioni Tetramino::puo_cadere(){
 
     for(short i = 0; i < 8; i++) {
 
         if(p[i].Y + 1  >= CAMPO_ALTEZZA - 2){
             in_movimento = false;
-            return false;
+            return Collisioni::FUORI;
         }
             
 
         if(campo.casella[p[i].Y+1][p[i].X].id != 32 && campo.casella[p[i].Y+1][p[i].X].id != id_tetramino){
             in_movimento = false;
-            return false;
+            return Collisioni::COLLISIONE;
         }
             
         
     }
 
     in_movimento = true;
-    return true;
+    return Collisioni::LIBERO;
 
 }
 
 //Metodo che controlla se c'è un tetramino o altro a destra di quello corrente ---COLLISIONI---
-bool Tetramino::puo_destra(){
+Collisioni Tetramino::puo_destra(){
 
     for(short i = 0; i < 8; i++) {
 
         if(p[i].X + 1  >= CAMPO_LUNGHEZZA - 2){
-            //in_movimento = false; in teoria dovrebbe ancora poter cadere
-            return false;
+            return Collisioni::FUORI;
         }
             
 
         if(campo.casella[p[i].Y][p[i].X + 1].id != 32 && campo.casella[p[i].Y][p[i].X + 1].id != id_tetramino){
-            //in_movimento = false; in teoria dovrebbe ancora poter cadere
-            return false; 
+            return Collisioni::COLLISIONE; 
         }
             
         
     }
 
     this->in_movimento = true;
-    return true;
+    return Collisioni::LIBERO;
 
 }
 
 //Metodo che controlla se c'è un tetramino o altro a sinistra di quello corrente ---COLLISIONI---
-bool Tetramino::puo_sinistra(){
+Collisioni Tetramino::puo_sinistra(){
 
     for(short i = 0; i < 8; i++) {
 
         if(p[i].X - 1  <= -1){
             //in_movimento = false; in teoria dovrebbe ancora poter cadere
-            return false;
+            return Collisioni::FUORI;
         }
             
 
         if(campo.casella[p[i].Y][p[i].X - 1].id != 32 && campo.casella[p[i].Y][p[i].X - 1].id != id_tetramino){
             //in_movimento = false; in teoria dovrebbe ancora poter cadere
-            return false; 
+            return Collisioni::COLLISIONE; 
         }
             
         
     }
 
     this->in_movimento = true;
-    return true;
+    return Collisioni::LIBERO;
 
 }
 
@@ -624,8 +638,10 @@ void Tetramino::stampa(){
 }
 
 //Metodo che effettua la caduta lenta del tetramino
-void Tetramino::caduta_lenta(){
+short Tetramino::caduta_lenta(){
     
+    short linee_percorse = 0;
+
     for(short i = 0; i < 8; i++){
         campo.casella[p[i].Y][p[i].X].id = 32;
         campo.casella[p[i].Y][p[i].X].blocco = 32;
@@ -633,13 +649,18 @@ void Tetramino::caduta_lenta(){
         p[i].Y+= 1;
     }
 
+    linee_percorse++;
     this->sleep = 300;
+
+    return linee_percorse;
 
 }
 
 //Metodo che effettua la caduta veloce del tetramino
-void Tetramino::cadutaVeloce(){
+short Tetramino::cadutaVeloce(){
     
+    short linee_percorse = 0;
+
     for(short i = 0; i < 8; i++){
         campo.casella[p[i].Y][p[i].X].id = 32;
         campo.casella[p[i].Y][p[i].X].blocco = 32;
@@ -647,11 +668,16 @@ void Tetramino::cadutaVeloce(){
         p[i].Y+= 1;
     }
 
+    linee_percorse++;
     this->sleep = 50;
+
+    return linee_percorse;
 
 }
 
-void Tetramino::caduta_istantanea(){
+short Tetramino::caduta_istantanea(){
+
+    short linee_percorse = 0;
 
     for(short i = 0; i < 8; i++){
         campo.casella[p[i].Y][p[i].X].id = 32;
@@ -665,16 +691,20 @@ void Tetramino::caduta_istantanea(){
             
             if(campo.casella[p[i].Y + 1][p[i].X].id != 32 && campo.casella[p[i].Y + 1][p[i].X].id != id_tetramino || p[i].Y + 1 >= CAMPO_ALTEZZA - 2){
                 this->in_movimento = false;
-                return;
+                return linee_percorse;
             }
 
         }
 
         for(short i = 0; i < 8; i++){
             this->p[i].Y+=1;
+            
         }
 
+        linee_percorse++;
     }
+
+    return linee_percorse;
 
 }
 
@@ -736,11 +766,11 @@ void Tetramino::sposta_sinistra(){
 
 }
 
-void Tetramino::pulisci(bool is_ghost_block ){
+void Tetramino::pulisci(TipoTetramino is_ghost_block ){
 
     COORD* posizione_tetramino;
 
-    if(is_ghost_block){
+    if(is_ghost_block == TipoTetramino::GHOST){
         
         posizione_tetramino = this->ghost_block();
         

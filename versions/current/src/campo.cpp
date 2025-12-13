@@ -109,3 +109,12 @@ short Campo::controlloPunti() {
 
     return linee_riempite;
 }
+
+bool Campo::controlloPrimaLinea(){
+    for(short i = 0; i < CAMPO_LUNGHEZZA - 2; i++){
+        if(campo.casella[CAMPO_ALTEZZA - 2][i].id != 32){
+            return false;
+        }
+    }
+    return true;
+}

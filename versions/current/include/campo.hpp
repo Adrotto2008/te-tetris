@@ -4,6 +4,7 @@
 #include "costanti.hpp"
 #include "utilita.hpp"
 #include "grafica.hpp"
+#include "punteggio.hpp"
 #include <stdio.h>
 
 typedef struct{
@@ -25,6 +26,7 @@ class Campo {
         void stampaTotale(short posizione_riga);
         void scesa(short linee_riempite, short posizione_riga);
         short controlloPunti();
+        bool controlloPrimaLinea();
 
 };
 

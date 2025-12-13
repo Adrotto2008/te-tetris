@@ -1,12 +1,14 @@
 #ifndef TETRAMINO_HPP
 #define TETRAMINO_HPP
 
+#include "punteggio.hpp"
 #include "costanti.hpp"
 #include "grafica.hpp"
 #include "campo.hpp"
 #include <cstdlib>
 #include <ctime>
 #include <stdio.h>
+#include <random>
 
 
 class Tetramino {
@@ -18,37 +20,37 @@ private:
     static int id_tetramini;
 
     bool inizializza();
-    short random_tetramino();
+    TipoTetramino random_tetramino();
     void controllo_colore();
 
 public:
 
     short sleep;
     int id_tetramino;
-    short tipo = 0;
+    TipoTetramino tipo;
     COORD p[8];
     bool in_movimento = true;
 
     Tetramino();
-    Tetramino(int id_definito, short tipo_definito);
+    Tetramino(int id_definito, TipoTetramino tipo_definito);
     ~Tetramino();
 
-    bool puo_girare(short tipo_rotazione);
-    void gira(short tipo_rotazione);
+    Collisioni puo_girare(TipoGiro tipo_rotazione);
+    void gira(TipoGiro tipo_rotazione);
     void stampa();
     bool perdita();
     void stampa_colore();
     void stampa_id();
-    bool puo_cadere();
-    bool puo_destra();
-    bool puo_sinistra();
-    void caduta_lenta();
-    void cadutaVeloce();
-    void caduta_istantanea();
+    Collisioni puo_cadere();
+    Collisioni puo_destra();
+    Collisioni puo_sinistra();
+    short caduta_lenta();
+    short cadutaVeloce();
+    short caduta_istantanea();
     COORD* ghost_block();
     void sposta_destra();
     void sposta_sinistra();
-    void pulisci(bool is_ghost_block);
+    void pulisci(TipoTetramino is_ghost_block);
     void sparisci();
 
 };

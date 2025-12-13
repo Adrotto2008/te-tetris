@@ -18,13 +18,10 @@ void countdown_input(int tempo){
 
 }
 
-void countdown_caduta(int seconds){
+void countdown_caduta(int tempo){
 
-    for(short i = seconds - 1; i >= 0; i--){
-
-        this_thread::sleep_for(milliseconds(1000));
-        timer_caduta = i;
-    }
+    this_thread::sleep_for(milliseconds(tempo));
+    timer_caduta = 0;
 
 }
 

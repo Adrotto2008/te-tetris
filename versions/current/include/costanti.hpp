@@ -68,16 +68,19 @@
 
 /*--------------ENUMS----------------*/
 
-/*-------------TIPI-------------*/
-enum TetraminoTipo {
-    tetramino_i = 1,
-    tetramino_j = 2,
-    tetramino_l = 3,
-    tetramino_o = 4,
-    tetramino_s = 5,
-    tetramino_z = 6,
-    tetramino_t = 7
+/*-------------TIPI-------------*/ // gli ultimi 2 sono usati per la pulizia, non sono dei tipi di tetramini ma se è vero o ghostblock
+enum class TipoTetramino {
+    I = 1,
+    J = 2,
+    L = 3,
+    O = 4,
+    S = 5,
+    Z = 6,
+    T = 7,
+    NORMALE = 8,
+    GHOST
 };
+
 
 /*------------COLORI------------*/
 enum Colori {
@@ -91,7 +94,21 @@ enum Colori {
     bianco = -8
 };
 
-/*-----------------------------------*/
+/*------------GIRI--------------*/ // usato anche per l'input, l'ultima è dedicata a quello
 
+enum class TipoGiro{
+    ORARIA,
+    ANTIORARIA,
+    DOPPIA,
+    NULLA
+};
+
+/*----------COLLISIONI----------*/
+
+enum class Collisioni{
+    FUORI,
+    COLLISIONE,
+    LIBERO
+};
 
 #endif

@@ -19,34 +19,26 @@ void Input::scan(){
     if(input == 0 || input == 224)  input = _getch();
 }
 
-bool Input::rotazione(){
+TipoGiro Input::rotazione(){
     for(char c : ROTAZIONE){
         if(input == c){
-            return true;
+            return TipoGiro::ORARIA;
         }
             
     }
-    return false;
-}
-
-bool Input::rotazioneDoppia(){
-    for(char c : ROTAZIONE_DOPPIA){
-        if(input == c){
-            return true;
-        }
-            
-    }
-    return false;
-}
-
-bool Input::rotazioneAntiOraria(){
     for(char c : ROTAZIONE_ANTIORARIA){
         if(input == c){
-            return true;
+            return TipoGiro::ANTIORARIA;
         }
             
     }
-    return false;
+    for(char c : ROTAZIONE_DOPPIA){
+        if(input == c){
+            return TipoGiro::DOPPIA;
+        }
+            
+    }
+    return TipoGiro::NULLA;
 }
 
 bool Input::destra(){

@@ -1,6 +1,7 @@
 #ifndef INPUT_HPP
 #define INPUT_HPP
 
+#include "costanti.hpp"
 #include <array>
 #include <conio.h>
 
@@ -21,9 +22,7 @@ public:
     char input = 0;
 
     void scan();      
-    bool rotazione();   
-    bool rotazioneDoppia();  
-    bool rotazioneAntiOraria();       
+    TipoGiro rotazione();         
     bool destra();
     bool sinistra();
     bool cadutaVeloce();

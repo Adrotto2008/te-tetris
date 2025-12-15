@@ -2,7 +2,6 @@
 #define CAMPO_HPP
 
 #include "costanti.hpp"
-#include "utilita.hpp"
 #include "grafica.hpp"
 #include "punteggio.hpp"
 #include <stdio.h>

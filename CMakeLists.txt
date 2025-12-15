@@ -1,31 +1,86 @@
-cmake_minimum_required(VERSION 3.10)
-project(te_tetris)
+cmake_minimum_required(VERSION 3.25)
+project(te_tetris LANGUAGES CXX)
 
-# Forza uso di librerie statiche
-set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 set(BUILD_SHARED_LIBS OFF)
 
-# Flags per static linking completo (MinGW)
-set(CMAKE_EXE_LINKER_FLAGS "-static -static-libgcc -static-libstdc++")
+include(FetchContent)
 
-# Cartelle
-set(SRC_DIR "versions/current/src")
-set(INCLUDE_DIR "versions/current/include")
-set(MAIN_FILE "versions/current/main.cpp")
+# ================== JSON ==================
+FetchContent_Declare(
+    nlohmann_json
+    GIT_REPOSITORY https://github.com/nlohmann/json.git
+    GIT_TAG v3.11.3
+    GIT_SHALLOW TRUE
+)
+FetchContent_MakeAvailable(nlohmann_json)
 
-# Aggiunge tutti i .cpp in src/
-file(GLOB SRC_FILES "${SRC_DIR}/*.cpp")
+# ================== IXWEBSOCKET ==================
+set(USE_ZLIB OFF CACHE BOOL "" FORCE)
+set(USE_TLS OFF CACHE BOOL "" FORCE)
 
-# Include
-include_directories(${INCLUDE_DIR})
+FetchContent_Declare(
+    ixwebsocket
+    GIT_REPOSITORY https://github.com/machinezone/IXWebSocket.git
+    GIT_TAG v11.4.5
+    GIT_SHALLOW TRUE
+)
+FetchContent_MakeAvailable(ixwebsocket)
 
-# Crea eseguibile
-add_executable(te_tetris ${MAIN_FILE} ${SRC_FILES})
+add_library(ixwebsocket_internal STATIC
+    ${ixwebsocket_SOURCE_DIR}/ixwebsocket/IXWebSocket.cpp
+    ${ixwebsocket_SOURCE_DIR}/ixwebsocket/IXWebSocketTransport.cpp
+    ${ixwebsocket_SOURCE_DIR}/ixwebsocket/IXSocket.cpp
+    ${ixwebsocket_SOURCE_DIR}/ixwebsocket/IXNetSystem.cpp
+    ${ixwebsocket_SOURCE_DIR}/ixwebsocket/IXDNSLookup.cpp
+    ${ixwebsocket_SOURCE_DIR}/ixwebsocket/IXHttp.cpp
+    ${ixwebsocket_SOURCE_DIR}/ixwebsocket/IXWebSocketServer.cpp
+)
 
-# Dove mettere l'eseguibile
+target_include_directories(ixwebsocket_internal PUBLIC
+    ${ixwebsocket_SOURCE_DIR}
+    ${ixwebsocket_SOURCE_DIR}/ixwebsocket
+)
+
+target_compile_definitions(ixwebsocket_internal PUBLIC
+    IXWEBSOCKET_USE_ZLIB=0
+    IXWEBSOCKET_USE_TLS=0
+)
+
+# ================== EXECUTABLE ==================
+file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS
+    versions/current/src/*.cpp
+)
+
+add_executable(te_tetris
+    versions/current/main.cpp
+    ${SRC_FILES}
+)
+
+target_include_directories(te_tetris PRIVATE
+    versions/current/include
+)
+
+target_link_libraries(te_tetris PRIVATE
+    nlohmann_json::nlohmann_json
+    ixwebsocket_internal
+)
+
+# 🔥 STATICO VERO (SOLO QUI)
+if (MINGW)
+    target_link_options(te_tetris PRIVATE
+        -static
+        -static-libgcc
+        -static-libstdc++
+        -Wl,--whole-archive
+        -lwinpthread
+        -Wl,--no-whole-archive
+    )
+endif()
+
 set_target_properties(te_tetris PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin
 )
-
-# Se serve linkare librerie statiche aggiuntive:
-# target_link_libraries(te_tetris PRIVATE m pthread)

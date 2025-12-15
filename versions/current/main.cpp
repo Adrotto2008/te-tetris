@@ -5,7 +5,9 @@
 #include "tetramino.hpp"
 #include "utilita.hpp"
 #include "punteggio.hpp"
+#include "gioco.hpp"
 #include <iostream>
+#include <string>
 #include <chrono>
 #include <thread>
 
@@ -13,217 +15,145 @@
     creare un timer per l'input che entro quei secondi puoi muoverti
     creare un timer quando richiami può cadere, nel main controlli se ritorna false e fai ripartire il ciclo dell'input, all'inizio dell'input devi controllare entrambi i cicli
 */
-using namespace std;
-using namespace chrono;
+
+void menu();
 
 int main(void){
 
-    printf(BIANCO);
     cmd_grande();
-    nascondi_cursore();
-    pulisci();
-
-    // disegno la cornice del campo
-    cornice(0, 0, CAMPO_LUNGHEZZA, CAMPO_ALTEZZA);
-    // disegno la cornice dei tetramini futuri
-    cornice(CAMPO_LUNGHEZZA + 4, 0, FUTURI_LUNGHEZZA, FUTURI_ALTEZZA + 1); 
-    cornice(CAMPO_LUNGHEZZA + 4 + FUTURI_LUNGHEZZA - 1, 0, FUTURI_LUNGHEZZA, FUTURI_ALTEZZA + 1);
-    cornice(CAMPO_LUNGHEZZA + 4 + FUTURI_LUNGHEZZA + - 1 + FUTURI_LUNGHEZZA - 1, 0, FUTURI_LUNGHEZZA, FUTURI_ALTEZZA + 1);
-    // disegno la cornice del tetramino di riserva
-    cornice(CAMPO_LUNGHEZZA + 4, FUTURI_ALTEZZA + 2, FUTURI_LUNGHEZZA, CAMPO_ALTEZZA - FUTURI_ALTEZZA - 2); 
-
-    COORD backup_tetramino[8] = {0, 0};
-    
     Input input;
-    campo.inizializza(); 
+    std::string nome;
 
-    Tetramino* CodaTetramini[4] = {NULL};
-    Tetramino* RiservaTetramino[2] = {NULL};
-    short sostituzioni = 0;
+    printf(CURSORE_INVISIBILE);
+    system("chcp 65001");
+    pulisci();
+    scritta(100, "hey player, come ti chiami?\n");
+    std::getline(std::cin, nome);
 
-    for(short i = 0; i < 3; i++){
-        CodaTetramini[i] = new Tetramino();
-    }
+    short i;
+    bool uscita = false;
+    bool uscita_menu = false;
 
-    /*------------------CONTROLLO PERDITA--------------------*/ // continua fino a quando non perdi
-	for(short j = 0; !CodaTetramini[0]->perdita(); j++){
+    do{
 
+        uscita = false;
+        uscita_menu = false;
 
+        menu();
         
+        i = static_cast<short>(CordinateOpzioni::SINGLEPLAYER);
 
-        
-        /*------------------GENERAZIONE TETRAMINO FUTURO--------------------*/
+        cursore_manuale(PADDING + 13, i);
+        printf(">");
 
-        CodaTetramini[3] = new Tetramino();
+        do{
 
-        /*------------------STAMPA TETRAMINI FUTURI--------------------*/
+            if(kbhit()){
 
-        stampa_coda_tetramini(CodaTetramini[1]->tipo, CodaTetramini[2]->tipo, CodaTetramini[3]->tipo);
+                input.scan();
 
-        /*------------------PUNTEGGIO--------------------*/        
+                if(input.azione() == TipoInput::GIROORARIO){// freccia in alto
+                    
+                    cursore_manuale(PADDING + 13, i);
+                    printf(" ");
 
-        if(campo.controlloPrimaLinea()){
-            punteggio.tetrisCompleto();
-        }
+                    i -= 2;
 
-        punteggio.comboAttuale(punteggio.lineeRiempite(campo.controlloPunti()));
+                    if(i < static_cast<short>(CordinateOpzioni::SINGLEPLAYER)) i = static_cast<short>(CordinateOpzioni::ESCI);
+                }
 
-        posizione_cursore(coord_punteggio);
-        printf("punteggio : %.0f", punteggio.punti);
-        
-        
+                if(input.azione() == TipoInput::CADUTAVELOCE){// freccia in basso
+                    
+                    cursore_manuale(PADDING + 13, i);
+                    printf(" ");
 
-		bool puo_sostituire = true;
+                    i += 2;
 
-		while(CodaTetramini[0]->in_movimento){//FARE in_movimento
+                    if(i > static_cast<short>(CordinateOpzioni::ESCI)) i = static_cast<short>(CordinateOpzioni::SINGLEPLAYER);
+                }
 
-            //salvo le cordinate nei backup
-            for(short k = 0; k < 8; k++){
-                backup_tetramino[k] = CodaTetramini[0]->p[k];
-            }
+                cursore_manuale(PADDING + 13, i);
+                printf(">");
 
-            CodaTetramini[0]->stampa_id(); 
-            CodaTetramini[0]->stampa();
-            campo.stampa(CodaTetramini[0]->p, backup_tetramino, CodaTetramini[0]->ghost_block(), CodaTetramini[0]->in_movimento);
+                if(input.azione() == TipoInput::CADUTAISTANTANEA){ //spazio o invio
+                    
+                    switch(i){
 
-            /*-----------GESTIONE DELL'INPUT-----------------*/
+                        case static_cast<short>(CordinateOpzioni::SINGLEPLAYER):
+                            gioco.partitaSinglePlayer();
+                            uscita_menu = true;
+                            break;
 
-            timer_input = 500;
-            thread countdownInput(countdown_input, timer_input);
+                        case static_cast<short>(CordinateOpzioni::MULTIPLAYER):
+                            break;
 
-            while(timer_input){
+                        case static_cast<short>(CordinateOpzioni::OPZIONI):
+                            gioco.opzioni();
+                            break;
 
-                input.input = 0;
-                if(_kbhit()){    
+                        case static_cast<short>(CordinateOpzioni::COMANDI):
+                            gioco.comandi();
+                            break;
 
-                    input.scan();
+                        case static_cast<short>(CordinateOpzioni::CREDITI):
+                            break;
 
-                    if(input.cambio() && puo_sostituire){
+                        case static_cast<short>(CordinateOpzioni::ESCI):
+                            uscita_menu = true;
+                            uscita = true;
+                            break;
 
-                        puo_sostituire = false; //in questo modo posso effettuare una sostituzione per tetramino
-                        sostituzioni++;
-
-                        if(sostituzioni != 2){ // != 2 perchè la prima volta lo puoi fare 2 volte quindi è un modo rozzo per evitare il bug                    
-
-                            
-                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
-                            CodaTetramini[0]->in_movimento = false;
-                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
-                            CodaTetramini[0]->sparisci();
-
-                            if(sostituzioni == 1){
-                                RiservaTetramino[0] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo);
-                                stampa_riserva_tetramino(RiservaTetramino[0]->tipo);
-                                countdownInput.join();
-                                goto PRIMO_CAMBIO;
-                            } else {
-                                RiservaTetramino[1] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo);
-                                delete(CodaTetramini[0]);
-                                CodaTetramini[0] = new Tetramino(RiservaTetramino[0]->id_tetramino, RiservaTetramino[0]->tipo);
-                                delete(RiservaTetramino[0]);
-                                RiservaTetramino[0] = new Tetramino(RiservaTetramino[1]->id_tetramino, RiservaTetramino[1]->tipo);
-                                delete(RiservaTetramino[1]);
-                            }
-                            
-                            stampa_riserva_tetramino(RiservaTetramino[0]->tipo);
-
-                        }
-
-                    }else{
-
-                        if(input.cadutaVeloce() && CodaTetramini[0]->puo_cadere() == Collisioni::LIBERO){
-                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
-                            punteggio.cadutaVeloce(CodaTetramini[0]->cadutaVeloce());
-                        }
-
-                        if(input.destra() && CodaTetramini[0]->puo_destra() == Collisioni::LIBERO){
-                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
-                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
-                            CodaTetramini[0]->sposta_destra();
-                        }
-
-                        if(input.sinistra() && CodaTetramini[0]->puo_sinistra() == Collisioni::LIBERO){
-                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
-                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
-                            CodaTetramini[0]->sposta_sinistra();
-                        }
-
-                        if(input.rotazione() == TipoGiro::ORARIA && CodaTetramini[0]->puo_girare(TipoGiro::ORARIA) == Collisioni::LIBERO) {
-                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
-                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
-                            CodaTetramini[0]->gira(TipoGiro::ORARIA);
-                        }else 
-                        
-                        if(input.rotazione() == TipoGiro::ANTIORARIA && CodaTetramini[0]->puo_girare(TipoGiro::ANTIORARIA) == Collisioni::LIBERO) { 
-                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
-                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
-                            CodaTetramini[0]->gira(TipoGiro::ANTIORARIA);
-                        }else
-
-                        if(input.rotazione() == TipoGiro::DOPPIA && CodaTetramini[0]->puo_girare(TipoGiro::DOPPIA) == Collisioni::LIBERO) { 
-                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
-                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
-                            CodaTetramini[0]->gira(TipoGiro::DOPPIA);
-                        }
-
-
-
-                        if(input.cadutaIstantanea()){
-                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
-                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
-                            punteggio.cadutaIstantanea(CodaTetramini[0]->caduta_istantanea());
-                        }
-                        
                     }
 
-                    CodaTetramini[0]->stampa();
-                    campo.stampa(CodaTetramini[0]->p, backup_tetramino, CodaTetramini[0]->ghost_block(), CodaTetramini[0]->in_movimento);
-
-                    
                 }
+
             }
-
-            
-
-            countdownInput.join();
-
-            /*---------------------CADUTA--------------------*/
-
-            if(CodaTetramini[0]->puo_cadere() == Collisioni::LIBERO) {
-
-                CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
-
-                punteggio.cadutaLenta(CodaTetramini[0]->caduta_lenta());
-                                
-            }        
         
-            /*---------------STAMPA DEL TETRAMINO------------*/ /*--------------STAMPA DEL GHOSTBLOCK------------*/
+        }while(!uscita_menu);
 
-	        CodaTetramini[0]->stampa();           
+        
 
-	        campo.stampa(CodaTetramini[0]->p, backup_tetramino, CodaTetramini[0]->ghost_block(), CodaTetramini[0]->in_movimento);
-            
-	    }
-		PRIMO_CAMBIO:
-        /*---------ELIMINAZIONE DALLA MEMORIA------------*/
+    }while(!uscita);
 
-		delete(CodaTetramini[0]);
 
-        /*--------GIRO DELLA CODA CON I FUTURI-----------*/
-
-        for(short i = 0; i < 3; i++){
-            CodaTetramini[i] = CodaTetramini[i+1];
-        }
-
-	}
-
-    campo.stampa(CodaTetramini[0]->p, backup_tetramino, CodaTetramini[0]->ghost_block(), CodaTetramini[0]->in_movimento);
     posizione_cursore(coord_fine);
-    printf("hai perso");
-    printf(BIANCO);
-    getchar();
-    getchar();
 
     return 0;
+
+}
+
+void menu(){
+    
+    printf(VERDE);
+    pulisci();
+
+    cornice(0, 0, 67, 25);
+
+    short i = 3;
+    cursore_manuale(PADDING, i++);
+    scritta(5, " _____ _____     _____ _____ ___________ _____ _____ ");
+    cursore_manuale(PADDING, i++);
+    scritta(5, "|_   _|  ___|   |_   _|  ___|_   _| ___ \\_   _/  ___|");
+    cursore_manuale(PADDING, i++);
+    scritta(5, "  | | | |__ ______| | | |__   | | | |_/ / | | \\ `--. ");
+    cursore_manuale(PADDING, i++);
+    scritta(5, "  | | |  __|______| | |  __|  | | |    /  | |  `--. \\");
+    cursore_manuale(PADDING, i++);
+    scritta(5, "  | | | |___      | | | |___  | | | |\\ \\ _| |_/\\__/ /");
+    cursore_manuale(PADDING, i++);
+    scritta(5, "  \\_/ \\____/      \\_/ \\____/  \\_/ \\_| \\_|\\___/\\____/ ");
+
+    cursore_manuale(PADDING + 15, static_cast<short>(CordinateOpzioni::SINGLEPLAYER));
+    printf("singleplayer");
+    cursore_manuale(PADDING + 15, static_cast<short>(CordinateOpzioni::MULTIPLAYER));
+    printf("multiplayer");
+    cursore_manuale(PADDING + 15, static_cast<short>(CordinateOpzioni::OPZIONI));
+    printf("opzioni");
+    cursore_manuale(PADDING + 15, static_cast<short>(CordinateOpzioni::COMANDI));
+    printf("comandi");
+    cursore_manuale(PADDING + 15, static_cast<short>(CordinateOpzioni::CREDITI));
+    printf("crediti");
+    cursore_manuale(PADDING + 15, static_cast<short>(CordinateOpzioni::ESCI));
+    printf("esci");
 
 }

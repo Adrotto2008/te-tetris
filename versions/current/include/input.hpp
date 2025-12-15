@@ -12,7 +12,7 @@ extern std::array<char, 2> ROTAZIONE_DOPPIA;
 extern std::array<char, 3> SINISTRA;        // freccia sinistra
 extern std::array<char, 3> DESTRA;          // freccia destra
 extern std::array<char, 3> CADUTA_VELOCE;   // freccia giù
-extern std::array<char, 3> CADUTA_ISTANTANEA; // barra spaziatrice
+extern std::array<char, 4> CADUTA_ISTANTANEA; // barra spaziatrice
 extern std::array<char, 2> CAMBIO;          // tasto cambio
 /*------------------------------*/
 
@@ -22,12 +22,13 @@ public:
     char input = 0;
 
     void scan();      
-    TipoGiro rotazione();         
-    bool destra();
-    bool sinistra();
-    bool cadutaVeloce();
-    bool cadutaIstantanea();
-    bool cambio();
+    TipoInput azione();
+    TipoInput rotazione();       
+    TipoInput destra();
+    TipoInput sinistra();
+    TipoInput cadutaVeloce();
+    TipoInput cadutaIstantanea();
+    TipoInput cambio();
 };
 /*------------------------------*/
 

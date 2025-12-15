@@ -1,7 +1,6 @@
 #include "utilita.hpp"
-#include <iostream>
-#include <thread>
-#include <chrono>
+#include "input.hpp"
+
 
 using namespace std;
 using namespace chrono;
@@ -22,6 +21,84 @@ void countdown_caduta(int tempo){
 
     this_thread::sleep_for(milliseconds(tempo));
     timer_caduta = 0;
+
+}
+
+CasellaDTO casellaFromJson(const nlohmann::json& j) {
+    CasellaDTO c;
+    c.id = j.at("id").get<int>();
+    c.colore = j.at("colore").get<char>();
+    c.blocco = j.at("blocco").get<char>();
+    return c;
+}
+
+MessageDTO messageFromJson(const nlohmann::json& j) {
+    MessageDTO m;
+
+    m.from = j.at("from").get<std::string>();
+    m.seed = j.at("seed").get<int>();
+    m.GameOver = j.at("GameOver").get<bool>();
+    m.score = j.at("score").get<int>();
+    m.to = j.at("to").get<std::string>();
+
+    // parsing array 2D
+
+    const auto& jCaselle = j.at("caselle");
+
+    for (size_t i = 0; i < CAMPO_ALTEZZA - 2; ++i) {
+        const auto& riga = jCaselle[i];
+        for (size_t j = 0; j < CAMPO_LUNGHEZZA - 2; ++j) {
+            m.caselle[i][j] = casellaFromJson(riga[j]);
+        }
+    }
+
+    return m;
+}
+
+nlohmann::json casellaToJson(const CasellaDTO& c) {
+    nlohmann::json j;
+    j["id"] = c.id;
+    j["colore"] = c.colore;
+    j["blocco"] = c.blocco;
+    return j;
+}
+
+nlohmann::json messageToJson(const MessageDTO& m) {
+    nlohmann::json j;
+    j["from"] = m.from;
+    j["GameOver"] = m.GameOver;
+    j["score"] = m.score;
+    j["to"] = m.to;
+
+    nlohmann::json jCaselle = nlohmann::json::array();
+
+    for (size_t i = 0; i < CAMPO_ALTEZZA - 2; ++i) {
+        nlohmann::json jRiga = nlohmann::json::array();
+        for (size_t j = 0; j < CAMPO_LUNGHEZZA - 2; ++j) {
+            jRiga.push_back(casellaToJson(m.caselle[i][j]));
+        }
+        jCaselle.push_back(jRiga);
+    }
+
+    j["caselle"] = jCaselle;
+    return j;
+}
+
+void scritta(int dormi, std::string stringa){
+
+    Input input;
+
+    for(short i = 0; i < stringa.length(); i++){
+        putchar(stringa[i]);
+        Sleep(dormi);
+        if(kbhit()){
+            input.scan();
+            if(input.azione() == TipoInput::CADUTAISTANTANEA){
+                dormi = 0;
+            }
+        }
+        
+    }
 
 }
 

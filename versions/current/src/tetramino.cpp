@@ -1,5 +1,6 @@
 #include "tetramino.hpp"
 
+#include <iostream>
 using namespace std;
 
 int Tetramino::id_tetramini = '0' - 1;
@@ -147,7 +148,8 @@ bool Tetramino::perdita(){
 TipoTetramino Tetramino::random_tetramino(){
         
     static std::random_device rd;
-    static std::mt19937 gen(rd());
+    static std::mt19937::result_type seed = rd();
+    static std::mt19937 gen(seed);
     static std::uniform_int_distribution<int> dist(1, 7);
 
     return static_cast<TipoTetramino>(dist(gen));
@@ -167,19 +169,19 @@ void Tetramino::stampa_colore(){
 }
 
 //Metodo che controlla se il tetramino puo girare
-Collisioni Tetramino::puo_girare(TipoGiro tipo_rotazione) {
+Collisioni Tetramino::puo_girare(TipoInput tipo_rotazione) {
 
     COORD temp[8];
     
     short rotazione_ipotetica;
 
-    if(tipo_rotazione == TipoGiro::ORARIA) //antioraria
+    if(tipo_rotazione == TipoInput::GIROORARIO) //antioraria
         rotazione_ipotetica = rotazione;
     else
-    if(tipo_rotazione == TipoGiro::ANTIORARIA) //antioraria
+    if(tipo_rotazione == TipoInput::GIROANTIORARIO) //antioraria
         rotazione_ipotetica+= 2;
     else
-    if(tipo_rotazione == TipoGiro::DOPPIA) //doppia
+    if(tipo_rotazione == TipoInput::GIRODOPPIO) //doppia
         rotazione_ipotetica+=1;
 
     for(short i = 0; i < 8; i++){
@@ -356,17 +358,17 @@ Collisioni Tetramino::puo_girare(TipoGiro tipo_rotazione) {
 }
 
 //Metodo che effettua il giramento del tetramino
-void Tetramino::gira(TipoGiro tipo_rotazione){
+void Tetramino::gira(TipoInput tipo_rotazione){
 
     COORD temp[8];
 
     //if(tipo_rotazione == TipoGiro::ORARIA) 
         //rotazione = rotazione;
     //else
-    if(tipo_rotazione == TipoGiro::ANTIORARIA) 
+    if(tipo_rotazione == TipoInput::GIROANTIORARIO) 
         rotazione -= 2;
     else
-    if(tipo_rotazione == TipoGiro::DOPPIA)
+    if(tipo_rotazione == TipoInput::GIRODOPPIO)
         rotazione++;
 
 
@@ -559,13 +561,13 @@ Collisioni Tetramino::puo_cadere(){
     for(short i = 0; i < 8; i++) {
 
         if(p[i].Y + 1  >= CAMPO_ALTEZZA - 2){
-            in_movimento = false;
+            //in_movimento = false;
             return Collisioni::FUORI;
         }
             
 
         if(campo.casella[p[i].Y+1][p[i].X].id != 32 && campo.casella[p[i].Y+1][p[i].X].id != id_tetramino){
-            in_movimento = false;
+            //in_movimento = false;
             return Collisioni::COLLISIONE;
         }
             

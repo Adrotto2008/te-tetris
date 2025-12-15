@@ -4,17 +4,48 @@
 #include "costanti.hpp"
 #include "grafica.hpp"
 #include <windows.h>
-#include <cstdio>
+#include "campo.hpp"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <nlohmann/json.hpp>
+#include <iostream>
 #include <thread>
 #include <chrono>
+#include <conio.h>
+
+typedef struct{
+
+    char colore;
+    char blocco;
+    int id;
+
+} CasellaDTO;
+
+struct MessageDTO {
+    std::string from;
+    CasellaDTO caselle[CAMPO_ALTEZZA - 2][CAMPO_ALTEZZA - 2];
+    int seed;
+    bool GameOver;
+    int score;
+    std::string to;
+};
 
 // variabili globali per i thread
 extern int timer_input;
 extern int timer_caduta;
 
+nlohmann::json messageToJson(const MessageDTO& m);
+nlohmann::json casellaToJson(const CasellaDTO& c);
+CasellaDTO casellaFromJson(const nlohmann::json& j);
+MessageDTO messageFromJson(const nlohmann::json& j);
+
 //funzioni thread
 void countdown_input(int seconds);
 void countdown_caduta(int seconds);
+
+// funzione per mostrare la scritta piano per estetica o skipparla
+void scritta(int dormi, std::string stringa);
 
 // Funzioni cursore
 void cursore_manuale(short x, short y);

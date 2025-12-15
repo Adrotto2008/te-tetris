@@ -7,9 +7,12 @@
 /*-----------COSTANTI----------------*/
 
 /*------------CORDINATE---------*/
-#define CAMPO_ALTEZZA 27
-#define CAMPO_LUNGHEZZA 20
+#define CAMPO_ALTEZZA 27 // 27
+#define CAMPO_LUNGHEZZA 20 // 20
 #define CAMPO_CENTRO CAMPO_LUNGHEZZA / 2
+
+#define PADDING 7
+#define PADDING_COMANDI 3
 
 #define FUTURI_ALTEZZA 10
 #define FUTURI_LUNGHEZZA 20
@@ -68,6 +71,27 @@
 
 /*--------------ENUMS----------------*/
 
+/*----------CORDINATE------------*/
+enum class CordinateOpzioni{
+    SINGLEPLAYER = 12,
+    MULTIPLAYER = 14,
+    OPZIONI = 16,
+    COMANDI = 18,
+    CREDITI = 20,
+    ESCI = 22
+};
+
+enum class CordinateComandi{
+    DESTRA = 11,
+    SINISTRA = 13,
+    GIROORARIO = 15,
+    GIROANTIORARIO = 17,
+    GIRODOPPIO = 11,
+    CADUTAVELOCE = 13,
+    CADUTAISTANTANEA = 15,
+    CAMBIO = 17,
+    ESCI = 19
+};
 /*-------------TIPI-------------*/ // gli ultimi 2 sono usati per la pulizia, non sono dei tipi di tetramini ma se è vero o ghostblock
 enum class TipoTetramino {
     I = 1,
@@ -81,7 +105,6 @@ enum class TipoTetramino {
     GHOST
 };
 
-
 /*------------COLORI------------*/
 enum Colori {
     rosso = -1,
@@ -94,21 +117,26 @@ enum Colori {
     bianco = -8
 };
 
-/*------------GIRI--------------*/ // usato anche per l'input, l'ultima è dedicata a quello
-
-enum class TipoGiro{
-    ORARIA,
-    ANTIORARIA,
-    DOPPIA,
-    NULLA
-};
-
 /*----------COLLISIONI----------*/
 
 enum class Collisioni{
     FUORI,
     COLLISIONE,
     LIBERO
+};
+
+/*------------INPUT------------*/
+
+enum class TipoInput{
+    DESTRA,
+    SINISTRA,
+    GIROORARIO,
+    GIROANTIORARIO,
+    GIRODOPPIO,
+    CADUTAVELOCE,
+    CADUTAISTANTANEA,
+    CAMBIO,
+    NULLA
 };
 
 #endif

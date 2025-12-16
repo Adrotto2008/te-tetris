@@ -10,6 +10,7 @@ std::array<char, 3> DESTRA = {'D', 'd', 77};
 std::array<char, 3> CADUTA_VELOCE = {'S', 's', 80};
 std::array<char, 4> CADUTA_ISTANTANEA = {'Q', 'q', 32, 13};
 std::array<char, 2> CAMBIO = {'C', 'c'};
+std::array<char, 1> ESCI = {27};
 
 // classe dell'input 
 
@@ -43,6 +44,10 @@ TipoInput Input::azione(){
 
     if(rotazione() != TipoInput::NULLA){
         return rotazione();
+    }
+
+    if(uscita() != TipoInput::NULLA){
+        return uscita();
     }
 
     return TipoInput::NULLA;
@@ -112,6 +117,15 @@ TipoInput Input::cambio(){
     for(char c : CAMBIO){
         if(input == c){
             return TipoInput::CAMBIO;
+        }
+    }
+    return TipoInput::NULLA;
+}
+
+TipoInput Input::uscita(){
+    for(char c : ESCI){
+        if(input == c){
+            return TipoInput::ESCI;
         }
     }
     return TipoInput::NULLA;

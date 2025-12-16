@@ -17,16 +17,17 @@
 */
 
 void menu();
+44T578O+'
+'Ù
+in4DE2t main(void){
 
-int main(void){
 
     cmd_grande();
     Input input;
     std::string nome;
 
-    printf(CURSORE_INVISIBILE);
-    system("chcp 65001");
     pulisci();
+    printf(CURSORE_INVISIBILE);
     scritta(100, "hey player, come ti chiami?\n");
     std::getline(std::cin, nome);
 
@@ -93,6 +94,7 @@ int main(void){
 
                         case static_cast<short>(CordinateOpzioni::COMANDI):
                             gioco.comandi();
+                            uscita_menu = true;
                             break;
 
                         case static_cast<short>(CordinateOpzioni::CREDITI):

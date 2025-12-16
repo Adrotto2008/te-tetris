@@ -14,6 +14,7 @@ extern std::array<char, 3> DESTRA;          // freccia destra
 extern std::array<char, 3> CADUTA_VELOCE;   // freccia giù
 extern std::array<char, 4> CADUTA_ISTANTANEA; // barra spaziatrice
 extern std::array<char, 2> CAMBIO;          // tasto cambio
+extern std::array<char, 1> ESCI;  
 /*------------------------------*/
 
 /*------------CLASSE------------*/
@@ -29,6 +30,7 @@ public:
     TipoInput cadutaVeloce();
     TipoInput cadutaIstantanea();
     TipoInput cambio();
+    TipoInput uscita();
 };
 /*------------------------------*/
 

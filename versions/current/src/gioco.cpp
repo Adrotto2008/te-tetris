@@ -167,7 +167,10 @@ void Gioco::partitaSinglePlayer(){
                             CodaTetramini[0]->gira(TipoInput::GIRODOPPIO);
                         }
 
-
+                        if(input.uscita() == TipoInput::ESCI){
+                            countdownInput.join();
+                            return;
+                        }
 
                         if(input.cadutaIstantanea() == TipoInput::CADUTAISTANTANEA){
                             CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
@@ -286,7 +289,9 @@ void Gioco::opzioni(){
 }
 
 void Gioco::comandi(){
-
+    system("chcp 65001");
+    printf(CURSORE_INVISIBILE);
+    pulisci();
     COORD posizione_att;
     Input input;
     bool esci = false;
@@ -446,6 +451,263 @@ void Gioco::comandi(){
 
             }
 
+            if(input.azione() == TipoInput::CADUTAISTANTANEA){ //spazio o invio
+                    short h = 0;
+                    bool esci_piccolo = false;
+                    char nuovo = 0;
+                switch(i){
+
+                    case static_cast<short>(CordinateComandi::DESTRA):
+                        printf(CURSORE_VISIBILE);
+
+                        if(j == 2){
+                            h = 39;
+                            
+                            do{
+                                cursore_manuale(h, static_cast<short>(CordinateComandi::DESTRA));
+                                
+                                if(kbhit()){
+                                    input.scan();
+
+                                    if(input.azione() == TipoInput::DESTRA){
+                                        h += 2;
+                                        if(h > 41) h = 39;
+                                    } else if (input.azione() == TipoInput::SINISTRA){
+                                        h -= 2;
+                                        if(h < 39) h = 41;
+                                    } else if (input.azione() == TipoInput::ESCI){
+                                        esci_piccolo = true;
+                                    } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
+                                        nuovo = _getch();
+                                        printf("%c", nuovo);
+                                        if(h == 39) DESTRA[0] = nuovo; else DESTRA[1] = nuovo;
+                                    }
+                                    
+                                }
+                            }while(!esci_piccolo);
+                                
+                            printf(CURSORE_INVISIBILE);
+
+
+                        }else if (j == 62){
+                            h = 99;
+
+                            do{
+                                cursore_manuale(h, static_cast<short>(CordinateComandi::DESTRA));
+                                
+                                if(kbhit()){
+                                    input.scan();
+
+                                    if(input.azione() == TipoInput::DESTRA){
+                                        h += 2;
+                                        if(h > 101) h = 99;
+                                    } else if (input.azione() == TipoInput::SINISTRA){
+                                        h -= 2;
+                                        if(h < 99) h = 101;
+                                    } else if (input.azione() == TipoInput::ESCI){
+                                        esci_piccolo = true;
+                                    } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
+                                        nuovo = _getch();
+                                        printf("%c", nuovo);
+                                        if(h == 39) ROTAZIONE[0] = nuovo; else ROTAZIONE[1] = nuovo;
+                                    }
+                                    
+                                }
+                            }while(!esci_piccolo);
+                        }
+                        break;
+
+                    case static_cast<short>(CordinateComandi::SINISTRA):
+
+                        printf(CURSORE_VISIBILE);
+
+                        if(j == 2){
+                            h = 39;
+                            
+                            do{
+                                cursore_manuale(h, static_cast<short>(CordinateComandi::SINISTRA));
+                                
+                                if(kbhit()){
+                                    input.scan();
+
+                                    if(input.azione() == TipoInput::DESTRA){
+                                        h += 2;
+                                        if(h > 41) h = 39;
+                                    } else if (input.azione() == TipoInput::SINISTRA){
+                                        h -= 2;
+                                        if(h < 39) h = 41;
+                                    } else if (input.azione() == TipoInput::ESCI){
+                                        esci_piccolo = true;
+                                    } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
+                                        nuovo = _getch();
+                                        printf("%c", nuovo);
+                                        if(h == 39) SINISTRA[0] = nuovo; else SINISTRA[1] = nuovo;
+                                    }
+                                    
+                                }
+                            }while(!esci_piccolo);
+                                
+                            printf(CURSORE_INVISIBILE);
+
+
+                        }else if (j == 62){
+                            h = 99;
+
+                            do{
+                                cursore_manuale(h, static_cast<short>(CordinateComandi::SINISTRA));
+                                
+                                if(kbhit()){
+                                    input.scan();
+
+                                    if(input.azione() == TipoInput::DESTRA){
+                                        h += 2;
+                                        if(h > 101) h = 99;
+                                    } else if (input.azione() == TipoInput::SINISTRA){
+                                        h -= 2;
+                                        if(h < 99) h = 101;
+                                    } else if (input.azione() == TipoInput::ESCI){
+                                        esci_piccolo = true;
+                                    } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
+                                        nuovo = _getch();
+                                        printf("%c", nuovo);
+                                        if(h == 39) ROTAZIONE_ANTIORARIA[0] = nuovo; else ROTAZIONE_ANTIORARIA[1] = nuovo;
+                                    }
+                                    
+                                }
+                            }while(!esci_piccolo);
+                        }                        
+                        break;
+
+                    case static_cast<short>(CordinateComandi::CADUTAVELOCE):
+                        printf(CURSORE_VISIBILE);
+
+                        if(j == 2){
+                            h = 39;
+                            
+                            do{
+                                cursore_manuale(h, static_cast<short>(CordinateComandi::CADUTAVELOCE));
+                                
+                                if(kbhit()){
+                                    input.scan();
+
+                                    if(input.azione() == TipoInput::CADUTAVELOCE){
+                                        h += 2;
+                                        if(h > 41) h = 39;
+                                    } else if (input.azione() == TipoInput::SINISTRA){
+                                        h -= 2;
+                                        if(h < 39) h = 41;
+                                    } else if (input.azione() == TipoInput::ESCI){
+                                        esci_piccolo = true;
+                                    } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
+                                        nuovo = _getch();
+                                        printf("%c", nuovo);
+                                        if(h == 39) CADUTA_VELOCE[0] = nuovo; else CADUTA_VELOCE[1] = nuovo;
+                                    }
+                                    
+                                }
+                            }while(!esci_piccolo);
+                                
+                            printf(CURSORE_INVISIBILE);
+
+
+                        }else if (j == 62){
+                            h = 99;
+
+                            do{
+                                cursore_manuale(h, static_cast<short>(CordinateComandi::CADUTAVELOCE));
+                                
+                                if(kbhit()){
+                                    input.scan();
+
+                                    if(input.azione() == TipoInput::CADUTAVELOCE){
+                                        h += 2;
+                                        if(h > 101) h = 99;
+                                    } else if (input.azione() == TipoInput::SINISTRA){
+                                        h -= 2;
+                                        if(h < 99) h = 101;
+                                    } else if (input.azione() == TipoInput::ESCI){
+                                        esci_piccolo = true;
+                                    } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
+                                        nuovo = _getch();
+                                        printf("%c", nuovo);
+                                        if(h == 39) ROTAZIONE_DOPPIA[0] = nuovo; else ROTAZIONE_DOPPIA[1] = nuovo;
+                                    }
+                                    
+                                }
+                            }while(!esci_piccolo);
+                        }
+                        break;
+
+                    case static_cast<short>(CordinateComandi::CADUTAISTANTANEA):
+                        printf(CURSORE_VISIBILE);
+
+                        if(j == 2){
+                            h = 39;
+                            
+                            do{
+                                cursore_manuale(h, static_cast<short>(CordinateComandi::CADUTAISTANTANEA));
+                                
+                                if(kbhit()){
+                                    input.scan();
+
+                                    if(input.azione() == TipoInput::DESTRA){
+                                        h += 2;
+                                        if(h > 41) h = 39;
+                                    } else if (input.azione() == TipoInput::SINISTRA){
+                                        h -= 2;
+                                        if(h < 39) h = 41;
+                                    } else if (input.azione() == TipoInput::ESCI){
+                                        esci_piccolo = true;
+                                    } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
+                                        nuovo = _getch();
+                                        printf("%c", nuovo);
+                                        if(h == 39) CADUTA_ISTANTANEA[0] = nuovo; else CADUTA_ISTANTANEA[1] = nuovo;
+                                    }
+                                    
+                                }
+                            }while(!esci_piccolo);
+                                
+                            printf(CURSORE_INVISIBILE);
+
+
+                        }else if (j == 62){
+                            h = 99;
+
+                            do{
+                                cursore_manuale(h, static_cast<short>(CordinateComandi::CADUTAISTANTANEA));
+                                
+                                if(kbhit()){
+                                    input.scan();
+
+                                    if(input.azione() == TipoInput::DESTRA){
+                                        h += 2;
+                                        if(h > 101) h = 99;
+                                    } else if (input.azione() == TipoInput::SINISTRA){
+                                        h -= 2;
+                                        if(h < 99) h = 101;
+                                    } else if (input.azione() == TipoInput::ESCI){
+                                        esci_piccolo = true;
+                                    } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
+                                        nuovo = _getch();
+                                        printf("%c", nuovo);
+                                        if(h == 39) CAMBIO[0] = nuovo; else CAMBIO[1] = nuovo;
+                                    }
+                                    
+                                }
+                            }while(!esci_piccolo);
+                        }
+                        break;
+
+                    case static_cast<short>(CordinateComandi::ESCI):
+                        esci = true;
+                        
+                        break;
+
+                }
+
+            }
+
+
         cursore_manuale(j, i);
         printf(">");
         }
@@ -454,5 +716,6 @@ void Gioco::comandi(){
 
     }while(!esci);
 
+    system("chcp 850");
 
 }

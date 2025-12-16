@@ -84,11 +84,11 @@ enum class CordinateOpzioni{
 enum class CordinateComandi{
     DESTRA = 11,
     SINISTRA = 13,
-    GIROORARIO = 15,
-    GIROANTIORARIO = 17,
-    GIRODOPPIO = 11,
-    CADUTAVELOCE = 13,
-    CADUTAISTANTANEA = 15,
+    CADUTAVELOCE = 15,
+    CADUTAISTANTANEA = 17,
+    GIROORARIO = 11,
+    GIROANTIORARIO = 13,
+    GIRODOPPIO = 15,
     CAMBIO = 17,
     ESCI = 19
 };
@@ -136,6 +136,7 @@ enum class TipoInput{
     CADUTAVELOCE,
     CADUTAISTANTANEA,
     CAMBIO,
+    ESCI,
     NULLA
 };
 

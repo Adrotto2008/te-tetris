@@ -91,6 +91,7 @@ CMakeFiles/te_tetris.dir/versions/current/main.cpp.obj: C:/Users/adria/Dropbox/m
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_fwd.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_ops.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_path.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fstream.tcc \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/functexcept.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/functional_hash.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/gslice.h \
@@ -205,6 +206,7 @@ CMakeFiles/te_tetris.dir/versions/current/main.cpp.obj: C:/Users/adria/Dropbox/m
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/ext/type_traits.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/filesystem \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/forward_list \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/fstream \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/functional \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/initializer_list \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/iomanip \
@@ -256,8 +258,10 @@ CMakeFiles/te_tetris.dir/versions/current/main.cpp.obj: C:/Users/adria/Dropbox/m
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/vector \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/version \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/atomic_word.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/basic_file.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++allocator.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++io.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++locale.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/cpu_defines.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/ctype_base.h \
@@ -671,6 +675,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/campo.cpp.obj: C:/Users/adria/Drop
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_fwd.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_ops.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_path.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fstream.tcc \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/functexcept.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/functional_hash.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/gslice.h \
@@ -783,6 +788,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/campo.cpp.obj: C:/Users/adria/Drop
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/ext/type_traits.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/filesystem \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/forward_list \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/fstream \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/functional \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/initializer_list \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/iomanip \
@@ -833,8 +839,10 @@ CMakeFiles/te_tetris.dir/versions/current/src/campo.cpp.obj: C:/Users/adria/Drop
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/vector \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/version \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/atomic_word.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/basic_file.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++allocator.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++io.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++locale.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/cpu_defines.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/ctype_base.h \
@@ -1250,6 +1258,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/gioco.cpp.obj: C:/Users/adria/Drop
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_fwd.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_ops.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_path.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fstream.tcc \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/functexcept.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/functional_hash.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/gslice.h \
@@ -1364,6 +1373,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/gioco.cpp.obj: C:/Users/adria/Drop
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/ext/type_traits.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/filesystem \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/forward_list \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/fstream \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/functional \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/initializer_list \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/iomanip \
@@ -1415,8 +1425,10 @@ CMakeFiles/te_tetris.dir/versions/current/src/gioco.cpp.obj: C:/Users/adria/Drop
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/vector \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/version \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/atomic_word.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/basic_file.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++allocator.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++io.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++locale.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/cpu_defines.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/ctype_base.h \
@@ -1830,6 +1842,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj: C:/Users/adria/Dr
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_fwd.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_ops.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_path.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fstream.tcc \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/functexcept.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/functional_hash.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/gslice.h \
@@ -1942,6 +1955,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj: C:/Users/adria/Dr
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/ext/type_traits.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/filesystem \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/forward_list \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/fstream \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/functional \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/initializer_list \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/iomanip \
@@ -1992,8 +2006,10 @@ CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj: C:/Users/adria/Dr
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/vector \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/version \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/atomic_word.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/basic_file.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++allocator.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++io.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++locale.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/cpu_defines.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/ctype_base.h \
@@ -2451,6 +2467,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/punteggio.cpp.obj: C:/Users/adria/
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_fwd.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_ops.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_path.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fstream.tcc \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/functexcept.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/functional_hash.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/gslice.h \
@@ -2563,6 +2580,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/punteggio.cpp.obj: C:/Users/adria/
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/ext/type_traits.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/filesystem \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/forward_list \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/fstream \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/functional \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/initializer_list \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/iomanip \
@@ -2613,8 +2631,10 @@ CMakeFiles/te_tetris.dir/versions/current/src/punteggio.cpp.obj: C:/Users/adria/
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/vector \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/version \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/atomic_word.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/basic_file.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++allocator.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++io.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++locale.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/cpu_defines.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/ctype_base.h \
@@ -3028,6 +3048,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/tetramino.cpp.obj: C:/Users/adria/
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_fwd.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_ops.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_path.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fstream.tcc \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/functexcept.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/functional_hash.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/gslice.h \
@@ -3142,6 +3163,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/tetramino.cpp.obj: C:/Users/adria/
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/ext/type_traits.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/filesystem \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/forward_list \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/fstream \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/functional \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/initializer_list \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/iomanip \
@@ -3193,8 +3215,10 @@ CMakeFiles/te_tetris.dir/versions/current/src/tetramino.cpp.obj: C:/Users/adria/
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/vector \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/version \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/atomic_word.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/basic_file.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++allocator.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++io.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++locale.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/cpu_defines.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/ctype_base.h \
@@ -3609,6 +3633,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/utilita.cpp.obj: C:/Users/adria/Dr
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_fwd.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_ops.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fs_path.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fstream.tcc \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/functexcept.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/functional_hash.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/gslice.h \
@@ -3721,6 +3746,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/utilita.cpp.obj: C:/Users/adria/Dr
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/ext/type_traits.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/filesystem \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/forward_list \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/fstream \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/functional \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/initializer_list \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/iomanip \
@@ -3771,8 +3797,10 @@ CMakeFiles/te_tetris.dir/versions/current/src/utilita.cpp.obj: C:/Users/adria/Dr
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/vector \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/version \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/atomic_word.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/basic_file.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++allocator.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h \
+  C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++io.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++locale.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/cpu_defines.h \
   C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/ctype_base.h \
@@ -4159,7 +4187,11 @@ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/time.h:
 
 C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/threadpoolapiset.h:
 
-C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h:
+C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/systemtopologyapi.h:
+
+C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/sysinfoapi.h:
+
+C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/sys/timeb.h:
 
 C:/mingw-w64-v13.0.0/include/c++/15.2.0/version:
 
@@ -4185,10 +4217,6 @@ C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/atomic_word.h:
 
 C:/mingw-w64-v13.0.0/include/c++/15.2.0/ext/numeric_traits.h:
 
-C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/debugapi.h:
-
-C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pshpack4.h:
-
 C:/mingw-w64-v13.0.0/include/c++/15.2.0/tr1/poly_laguerre.tcc:
 
 C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/punteggio.hpp:
@@ -4208,10 +4236,6 @@ C:/mingw-w64-v13.0.0/include/c++/15.2.0/streambuf:
 C:/mingw-w64-v13.0.0/lib/gcc/x86_64-w64-mingw32/15.2.0/include/limits.h:
 
 C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/bcrypt.h:
-
-C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/src/tetramino.cpp:
-
-C:/mingw-w64-v13.0.0/include/c++/15.2.0/clocale:
 
 C:/mingw-w64-v13.0.0/include/c++/15.2.0/sstream:
 
@@ -4245,6 +4269,14 @@ C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/ctype_base.h:
 
 C:/mingw-w64-v13.0.0/include/c++/15.2.0/functional:
 
+C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/src/tetramino.cpp:
+
+C:/mingw-w64-v13.0.0/include/c++/15.2.0/clocale:
+
+C:/mingw-w64-v13.0.0/include/c++/15.2.0/fstream:
+
+_deps/nlohmann_json-src/include/nlohmann/detail/input/lexer.hpp:
+
 C:/mingw-w64-v13.0.0/include/c++/15.2.0/forward_list:
 
 C:/mingw-w64-v13.0.0/include/c++/15.2.0/ext/string_conversions.h:
@@ -4260,8 +4292,6 @@ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/ostream_insert.h:
 C:/mingw-w64-v13.0.0/include/c++/15.2.0/debug/assertions.h:
 
 _deps/nlohmann_json-src/include/nlohmann/thirdparty/hedley/hedley.hpp:
-
-C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/systemtopologyapi.h:
 
 _deps/nlohmann_json-src/include/nlohmann/detail/string_concat.hpp:
 
@@ -4375,6 +4405,8 @@ _deps/nlohmann_json-src/include/nlohmann/detail/output/serializer.hpp:
 
 C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pshpack2.h:
 
+C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/range_access.h:
+
 C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_heap.h:
 
 C:/mingw-w64-v13.0.0/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512vpopcntdqintrin.h:
@@ -4475,10 +4507,6 @@ _deps/nlohmann_json-src/include/nlohmann/detail/json_pointer.hpp:
 
 C:/mingw-w64-v13.0.0/lib/gcc/x86_64-w64-mingw32/15.2.0/include/fma4intrin.h:
 
-C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++allocator.h:
-
-C:/mingw-w64-v13.0.0/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avxvnniint8intrin.h:
-
 C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_raw_storage_iter.h:
 
 C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_xmitfile.h:
@@ -4500,8 +4528,6 @@ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/indirect_array.h:
 _deps/nlohmann_json-src/include/nlohmann/detail/iterators/internal_iterator.hpp:
 
 _deps/nlohmann_json-src/include/nlohmann/detail/input/input_adapters.hpp:
-
-C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/ios_base.h:
 
 _deps/nlohmann_json-src/include/nlohmann/detail/conversions/from_json.hpp:
 
@@ -4769,6 +4795,10 @@ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/hash_bytes.h:
 
 C:/mingw-w64-v13.0.0/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512dqintrin.h:
 
+C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/ios_base.h:
+
+C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fstream.tcc:
+
 C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/sstream.tcc:
 
 C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/utilita.hpp:
@@ -4819,6 +4849,10 @@ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/move.h:
 
 C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/new_allocator.h:
 
+C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/sys/types.h:
+
+C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/ioapiset.h:
+
 C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h:
 
 C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wincrypt.h:
@@ -4829,9 +4863,15 @@ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/forward_list.tcc:
 
 C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/ostream.h:
 
-_deps/nlohmann_json-src/include/nlohmann/detail/input/lexer.hpp:
+C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++allocator.h:
 
-C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/range_access.h:
+C:/mingw-w64-v13.0.0/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avxvnniint8intrin.h:
+
+C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h:
+
+C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pshpack4.h:
+
+C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/debugapi.h:
 
 C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/enable_special_members.h:
 
@@ -4928,6 +4968,8 @@ C:/mingw-w64-v13.0.0/include/c++/15.2.0/pstl/pstl_config.h:
 C:/mingw-w64-v13.0.0/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512vbmiintrin.h:
 
 C:/mingw-w64-v13.0.0/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx512vbmivlintrin.h:
+
+C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/basic_file.h:
 
 C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/corecrt.h:
 
@@ -5197,15 +5239,13 @@ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/oleauto.h:
 
 C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/oleidl.h:
 
+C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++io.h:
+
 C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/process.h:
 
 C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/processenv.h:
 
 C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ip_types.h:
-
-C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/ioapiset.h:
-
-C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/sys/types.h:
 
 C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/heapapi.h:
 
@@ -5272,7 +5312,3 @@ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/stringapiset.h:
 C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/hashtable.h:
 
 C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/synchapi.h:
-
-C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/sys/timeb.h:
-
-C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/sysinfoapi.h:

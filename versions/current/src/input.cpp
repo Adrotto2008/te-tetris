@@ -16,7 +16,7 @@ std::array<char, 1> ESCI = {27};
 
 void Input::scan(){
     input = 0;
-    input =_getch();
+    input = _getch();
     if(input == 0 || input == 224)  input = _getch();
 }
 

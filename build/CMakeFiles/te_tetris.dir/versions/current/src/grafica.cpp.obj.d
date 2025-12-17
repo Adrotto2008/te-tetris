@@ -573,6 +573,10 @@ CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj: \
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/any \
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/detail/macro_unscope.hpp \
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/fstream \
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/basic_file.h \
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++io.h \
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/fstream.tcc \
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/thread \
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_thread.h \
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/this_thread_sleep.h \

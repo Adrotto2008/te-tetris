@@ -17,10 +17,8 @@
 */
 
 void menu();
-44T578O+'
-'Ù
-in4DE2t main(void){
 
+int main(void){
 
     cmd_grande();
     Input input;
@@ -30,6 +28,8 @@ in4DE2t main(void){
     printf(CURSORE_INVISIBILE);
     scritta(100, "hey player, come ti chiami?\n");
     std::getline(std::cin, nome);
+
+    nome = inizializza_config(nome);
 
     short i;
     bool uscita = false;

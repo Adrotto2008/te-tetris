@@ -379,6 +379,9 @@ void Gioco::comandi(){
         printf("%2c", c);
     }
 
+    cursore_manuale(65, i+=2);
+    printf("reset");
+
     i = static_cast<short>(CordinateComandi::DESTRA);
     short j = 2;
     
@@ -387,9 +390,6 @@ void Gioco::comandi(){
 
 
     do{  
-        
-        
-
 
         if(kbhit()){
 
@@ -402,10 +402,6 @@ void Gioco::comandi(){
 
                 i -= 2;
 
-                if(j == 62){
-                    if(i < static_cast<short>(CordinateComandi::DESTRA)) i = static_cast<short>(CordinateComandi::CAMBIO);
-                }else
-
                 if(i < static_cast<short>(CordinateComandi::DESTRA)) i = static_cast<short>(CordinateComandi::ESCI);
             }
 
@@ -416,10 +412,6 @@ void Gioco::comandi(){
 
                 i += 2;
 
-                if(j == 62){
-                    if(i > static_cast<short>(CordinateComandi::CAMBIO)) i = static_cast<short>(CordinateComandi::DESTRA);
-                }else
-
                 if(i > static_cast<short>(CordinateComandi::ESCI)) i = static_cast<short>(CordinateComandi::DESTRA);
         
 
@@ -427,27 +419,25 @@ void Gioco::comandi(){
 
             if(input.azione() == TipoInput::SINISTRA){// freccia in alto
                     
-                if(i != static_cast<short>(CordinateComandi::ESCI)){
-                    cursore_manuale(j, i);
-                    printf(" ");
+                cursore_manuale(j, i);
+                printf(" ");
 
-                    j -= 60;
+                j -= 60;
 
-                    if(j < 2) j = 62;
-                }
+                if(j < 2) j = 62;
+            
                 
             }
 
             if(input.azione() == TipoInput::DESTRA){// freccia in alto
                     
-                if(i != static_cast<short>(CordinateComandi::ESCI)){
-                    cursore_manuale(j, i);
-                    printf(" ");
+                cursore_manuale(j, i);
+                printf(" ");
 
-                    j += 60;
+                j += 60;
 
-                    if(j > 65) j = 2;                    
-                }
+                if(j > 65) j = 2;                    
+                
 
             }
 
@@ -478,7 +468,9 @@ void Gioco::comandi(){
                                     } else if (input.azione() == TipoInput::ESCI){
                                         esci_piccolo = true;
                                     } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
-                                        nuovo = _getch();
+                                        do{
+                                            nuovo = _getch();
+                                        }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
                                         printf("%c", nuovo);
                                         if(h == 39) DESTRA[0] = nuovo; else DESTRA[1] = nuovo;
                                     }
@@ -507,7 +499,9 @@ void Gioco::comandi(){
                                     } else if (input.azione() == TipoInput::ESCI){
                                         esci_piccolo = true;
                                     } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
-                                        nuovo = _getch();
+                                        do{
+                                            nuovo = _getch();
+                                        }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
                                         printf("%c", nuovo);
                                         if(h == 39) ROTAZIONE[0] = nuovo; else ROTAZIONE[1] = nuovo;
                                     }
@@ -539,7 +533,9 @@ void Gioco::comandi(){
                                     } else if (input.azione() == TipoInput::ESCI){
                                         esci_piccolo = true;
                                     } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
-                                        nuovo = _getch();
+                                        do{
+                                            nuovo = _getch();
+                                        }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
                                         printf("%c", nuovo);
                                         if(h == 39) SINISTRA[0] = nuovo; else SINISTRA[1] = nuovo;
                                     }
@@ -568,7 +564,9 @@ void Gioco::comandi(){
                                     } else if (input.azione() == TipoInput::ESCI){
                                         esci_piccolo = true;
                                     } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
-                                        nuovo = _getch();
+                                        do{
+                                            nuovo = _getch();
+                                        }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
                                         printf("%c", nuovo);
                                         if(h == 39) ROTAZIONE_ANTIORARIA[0] = nuovo; else ROTAZIONE_ANTIORARIA[1] = nuovo;
                                     }
@@ -599,7 +597,9 @@ void Gioco::comandi(){
                                     } else if (input.azione() == TipoInput::ESCI){
                                         esci_piccolo = true;
                                     } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
-                                        nuovo = _getch();
+                                        do{
+                                            nuovo = _getch();
+                                        }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
                                         printf("%c", nuovo);
                                         if(h == 39) CADUTA_VELOCE[0] = nuovo; else CADUTA_VELOCE[1] = nuovo;
                                     }
@@ -628,7 +628,9 @@ void Gioco::comandi(){
                                     } else if (input.azione() == TipoInput::ESCI){
                                         esci_piccolo = true;
                                     } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
-                                        nuovo = _getch();
+                                        do{
+                                            nuovo = _getch();
+                                        }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
                                         printf("%c", nuovo);
                                         if(h == 39) ROTAZIONE_DOPPIA[0] = nuovo; else ROTAZIONE_DOPPIA[1] = nuovo;
                                     }
@@ -659,7 +661,9 @@ void Gioco::comandi(){
                                     } else if (input.azione() == TipoInput::ESCI){
                                         esci_piccolo = true;
                                     } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
-                                        nuovo = _getch();
+                                        do{
+                                            nuovo = _getch();
+                                        }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
                                         printf("%c", nuovo);
                                         if(h == 39) CADUTA_ISTANTANEA[0] = nuovo; else CADUTA_ISTANTANEA[1] = nuovo;
                                     }
@@ -688,7 +692,9 @@ void Gioco::comandi(){
                                     } else if (input.azione() == TipoInput::ESCI){
                                         esci_piccolo = true;
                                     } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
-                                        nuovo = _getch();
+                                        do{
+                                            nuovo = _getch();
+                                        }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
                                         printf("%c", nuovo);
                                         if(h == 39) CAMBIO[0] = nuovo; else CAMBIO[1] = nuovo;
                                     }
@@ -699,8 +705,15 @@ void Gioco::comandi(){
                         break;
 
                     case static_cast<short>(CordinateComandi::ESCI):
-                        esci = true;
+
                         
+                        
+                        if(j == 62){
+                            inizializza_config();
+                            apri_config();
+                        }
+
+                        esci = true;
                         break;
 
                 }
@@ -717,5 +730,5 @@ void Gioco::comandi(){
     }while(!esci);
 
     system("chcp 850");
-
+    salva_config();
 }

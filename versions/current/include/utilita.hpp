@@ -9,6 +9,8 @@
 #include <string>
 #include <vector>
 #include <nlohmann/json.hpp>
+#include <fstream>
+#include <sstream>
 #include <iostream>
 #include <thread>
 #include <chrono>
@@ -34,6 +36,12 @@ struct MessageDTO {
 // variabili globali per i thread
 extern int timer_input;
 extern int timer_caduta;
+
+std::string apri_config();
+std::string inizializza_config(std::string nome = "");
+void salva_config();
+void scrivi_due_tasti(nlohmann::json_abi_v3_11_3::json& config, const char* chiave, const char& a, const char& b);
+void carica_due_tasti(const nlohmann::json_abi_v3_11_3::json& config, const char* chiave, char& a, char& b);
 
 nlohmann::json messageToJson(const MessageDTO& m);
 nlohmann::json casellaToJson(const CasellaDTO& c);

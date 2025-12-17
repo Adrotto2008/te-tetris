@@ -38,10 +38,10 @@ extern int timer_input;
 extern int timer_caduta;
 
 std::string apri_config();
-std::string inizializza_config(std::string nome = "");
+std::string inizializza_config(bool esiste);
 void salva_config();
-void scrivi_due_tasti(nlohmann::json_abi_v3_11_3::json& config, const char* chiave, const char& a, const char& b);
-void carica_due_tasti(const nlohmann::json_abi_v3_11_3::json& config, const char* chiave, char& a, char& b);
+void scrivi_due_tasti(nlohmann::json_abi_v3_11_3::ordered_json& config, const char* chiave, const char& a, const char& b);
+void carica_due_tasti(const nlohmann::json_abi_v3_11_3::ordered_json& config, const char* chiave, char& a, char& b);
 
 nlohmann::json messageToJson(const MessageDTO& m);
 nlohmann::json casellaToJson(const CasellaDTO& c);

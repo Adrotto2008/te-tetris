@@ -26,10 +26,9 @@ int main(void){
 
     pulisci();
     printf(CURSORE_INVISIBILE);
-    scritta(100, "hey player, come ti chiami?\n");
-    std::getline(std::cin, nome);
 
-    nome = inizializza_config(nome);
+
+    nome = apri_config();
 
     short i;
     bool uscita = false;

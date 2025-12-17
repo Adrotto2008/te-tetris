@@ -709,7 +709,7 @@ void Gioco::comandi(){
                         
                         
                         if(j == 62){
-                            inizializza_config();
+                            inizializza_config(true);
                             apri_config();
                         }
 

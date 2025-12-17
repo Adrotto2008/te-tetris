@@ -5,12 +5,12 @@
 using namespace std;
 using namespace chrono;
 using namespace chrono_literals;
-using json = nlohmann::json;
+using ordered_json = nlohmann::ordered_json;
 
 int timer_input;
 int timer_caduta;
 
-nlohmann::json_abi_v3_11_3::json config;
+nlohmann::json_abi_v3_11_3::ordered_json config;
 
 
 void countdown_input(int tempo){
@@ -30,14 +30,14 @@ void countdown_caduta(int tempo){
 std::string apri_config() {
     std::ifstream file("config.json");
     if (!file) {
-        // Il file non esiste → crea il file usando i valori già presenti nelle variabili globali
-        return inizializza_config();  // salva_config() leggerà dalle variabili globali e scriverà il JSON
+        
+        return inizializza_config(false);  
     }
 
     // Il file esiste → leggilo
     std::stringstream buffer;
     buffer << file.rdbuf();
-    config = json::parse(buffer.str());
+    config = ordered_json::parse(buffer.str());
 
     // Assegna valori dagli array
     carica_due_tasti(config, "rotazione", ROTAZIONE[0], ROTAZIONE[1]);
@@ -49,17 +49,19 @@ std::string apri_config() {
     carica_due_tasti(config, "caduta_istantanea", CADUTA_ISTANTANEA[0], CADUTA_ISTANTANEA[1]);
     carica_due_tasti(config, "cambio", CAMBIO[0], CAMBIO[1]);
 
-    return config["nome"];
+    return config["nome"].get<std::string>();
 
 }
 
-std::string inizializza_config(std::string nome){
-    if(!nome.empty()){
-        config["nome"] = {nome};
-    } else {
-        config["nome"] = {"nessuno"};
+std::string inizializza_config(bool esiste){
+
+    std::string nome;
+
+    if(!esiste){
+        scritta(100, "hey player, come ti chiami?\n");
+        std::getline(std::cin, nome);           
+        config["nome"] = nome;
     }
-    
     config["rotazione"] = { "W", "w" };
     config["rotazione_doppia"] = { "Z", "z" };
     config["rotazione_antioraria"] = { "R", "r" };
@@ -90,11 +92,11 @@ void salva_config() {
     file << config.dump(4); // indentazione per leggibilità
 }
 
-void scrivi_due_tasti(nlohmann::json_abi_v3_11_3::json& config, const char* chiave, const char& a, const char& b){
+void scrivi_due_tasti(nlohmann::json_abi_v3_11_3::ordered_json& config, const char* chiave, const char& a, const char& b){
     config[chiave] = { std::string(1, a), std::string(1, b) };
 }
 
-void carica_due_tasti(const nlohmann::json_abi_v3_11_3::json& config, const char* chiave, char& a, char& b){
+void carica_due_tasti(const nlohmann::json_abi_v3_11_3::ordered_json& config, const char* chiave, char& a, char& b){
     a = config.at(chiave)[0].get<std::string>()[0];
     b = config.at(chiave)[1].get<std::string>()[0];
 }

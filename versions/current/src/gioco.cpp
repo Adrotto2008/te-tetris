@@ -34,6 +34,7 @@ void Gioco::partitaSinglePlayer(){
     Tetramino* CodaTetramini[4] = {NULL};
     Tetramino* RiservaTetramino[2] = {NULL};
     short sostituzioni = 0;
+    TipoInput ultima_azione = TipoInput::NULLA;
 
     for(short i = 0; i < 3; i++){
         CodaTetramini[i] = new Tetramino();
@@ -60,11 +61,7 @@ void Gioco::partitaSinglePlayer(){
             punteggio.tetrisCompleto();
         }
 
-        punteggio.comboAttuale(punteggio.lineeRiempite(campo.controlloPunti()));
-
-        posizione_cursore(coord_punteggio);
-        printf("punteggio : %.0f", punteggio.punti);
-        
+        punteggio.comboAttuale(punteggio.lineeRiempite(campo.controlloPunti()));        
         
 
 		bool puo_sostituire = true;
@@ -101,6 +98,7 @@ void Gioco::partitaSinglePlayer(){
 
                     if(input.cambio() == TipoInput::CAMBIO && puo_sostituire){
 
+                        ultima_azione == TipoInput::CAMBIO;
                         puo_sostituire = false; //in questo modo posso effettuare una sostituzione per tetramino
                         sostituzioni++;
 
@@ -133,35 +131,41 @@ void Gioco::partitaSinglePlayer(){
                     }else{
 
                         if(input.cadutaVeloce() == TipoInput::CADUTAVELOCE && CodaTetramini[0]->puo_cadere() == Collisioni::LIBERO){
+                            ultima_azione = TipoInput::CADUTAVELOCE;
                             CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
                             punteggio.cadutaVeloce(CodaTetramini[0]->cadutaVeloce());
                         }
 
                         if(input.destra() == TipoInput::DESTRA && CodaTetramini[0]->puo_destra() == Collisioni::LIBERO){
+                            ultima_azione = TipoInput::DESTRA;
                             CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
                             CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
                             CodaTetramini[0]->sposta_destra();
                         }
 
                         if(input.sinistra() == TipoInput::SINISTRA && CodaTetramini[0]->puo_sinistra() == Collisioni::LIBERO){
+                            ultima_azione = TipoInput::SINISTRA;
                             CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
                             CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
                             CodaTetramini[0]->sposta_sinistra();
                         }
 
                         if(input.rotazione() == TipoInput::GIROORARIO && CodaTetramini[0]->puo_girare(TipoInput::GIROORARIO) == Collisioni::LIBERO) {
+                            ultima_azione = TipoInput::GIROORARIO;
                             CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
                             CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
                             CodaTetramini[0]->gira(TipoInput::GIROORARIO);
                         }else 
                         
                         if(input.rotazione() == TipoInput::GIROANTIORARIO && CodaTetramini[0]->puo_girare(TipoInput::GIROANTIORARIO) == Collisioni::LIBERO) { 
+                            ultima_azione = TipoInput::GIROANTIORARIO;
                             CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
                             CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
                             CodaTetramini[0]->gira(TipoInput::GIROANTIORARIO);
                         }else
 
                         if(input.rotazione() == TipoInput::GIRODOPPIO && CodaTetramini[0]->puo_girare(TipoInput::GIRODOPPIO) == Collisioni::LIBERO) { 
+                            ultima_azione = TipoInput::GIRODOPPIO;
                             CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
                             CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
                             CodaTetramini[0]->gira(TipoInput::GIRODOPPIO);
@@ -173,12 +177,15 @@ void Gioco::partitaSinglePlayer(){
                         }
 
                         if(input.cadutaIstantanea() == TipoInput::CADUTAISTANTANEA){
+                            ultima_azione = TipoInput::CADUTAISTANTANEA;
                             CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
                             CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
                             timer_input = 0;
                             punteggio.cadutaIstantanea(CodaTetramini[0]->caduta_istantanea());
                             
                         }
+
+                        
                         
                     }
 
@@ -186,7 +193,13 @@ void Gioco::partitaSinglePlayer(){
                     campo.stampa(CodaTetramini[0]->p, backup_tetramino, CodaTetramini[0]->ghost_block(), CodaTetramini[0]->in_movimento);
 
                     
+
+                    
+
                 }
+
+                posizione_cursore(coord_punteggio);
+                printf("punteggio : %.0f", punteggio.punti);
 
             }
 
@@ -241,6 +254,7 @@ void Gioco::partitaSinglePlayer(){
 	        campo.stampa(CodaTetramini[0]->p, backup_tetramino, CodaTetramini[0]->ghost_block(), CodaTetramini[0]->in_movimento);
             
 	    }
+        punteggio.spin(CodaTetramini[0]->tipo, CodaTetramini[0]->p[0], ultima_azione);
 		PRIMO_CAMBIO:
         /*---------ELIMINAZIONE DALLA MEMORIA------------*/
 

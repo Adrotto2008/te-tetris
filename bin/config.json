@@ -1,0 +1,35 @@
+{
+    "nome": "adrotto",
+    "rotazione": [
+        "W",
+        "w"
+    ],
+    "rotazione_doppia": [
+        "Z",
+        "z"
+    ],
+    "rotazione_antioraria": [
+        "R",
+        "r"
+    ],
+    "sinistra": [
+        "A",
+        "a"
+    ],
+    "destra": [
+        "D",
+        "d"
+    ],
+    "caduta_veloce": [
+        "S",
+        "s"
+    ],
+    "caduta_istantanea": [
+        "Q",
+        "q"
+    ],
+    "cambio": [
+        "C",
+        "c"
+    ]
+}

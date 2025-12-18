@@ -1,0 +1,181 @@
+cmake_minimum_required(VERSION 3.25)
+project(te_tetris LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+set(BUILD_SHARED_LIBS OFF)
+
+include(FetchContent)
+include(FindPackageHandleStandardArgs)
+
+# ================== CERCA OPENSSL STATICO ==================
+# Prima cerca OpenSSL, importante per httplib e IXWebSocket
+find_package(OpenSSL REQUIRED)
+
+if(OPENSSL_FOUND)
+    message(STATUS "✅ OpenSSL trovato:")
+    message(STATUS "   Include: ${OPENSSL_INCLUDE_DIR}")
+    message(STATUS "   Libraries: ${OPENSSL_LIBRARIES}")
+    message(STATUS "   Version: ${OPENSSL_VERSION}")
+else()
+    message(FATAL_ERROR "❌ OpenSSL non trovato! Installa OpenSSL per Windows")
+endif()
+
+# ================== JSON ==================
+FetchContent_Declare(
+    nlohmann_json
+    GIT_REPOSITORY https://github.com/nlohmann/json.git
+    GIT_TAG v3.11.3
+    GIT_SHALLOW TRUE
+)
+FetchContent_MakeAvailable(nlohmann_json)
+
+# ================== HTTPLIB CON SSL ==================
+FetchContent_Declare(
+    cpp-httplib
+    GIT_REPOSITORY https://github.com/yhirose/cpp-httplib.git
+    GIT_TAG v0.15.3
+    GIT_SHALLOW TRUE
+)
+FetchContent_MakeAvailable(cpp-httplib)
+
+# ================== IXWEBSOCKET CON TLS ==================
+# Ora abilitiamo TLS per WebSocket sicuri (wss://)
+set(USE_ZLIB OFF CACHE BOOL "" FORCE)
+set(USE_TLS ON CACHE BOOL "" FORCE)  # CAMBIA: OFF → ON
+
+FetchContent_Declare(
+    ixwebsocket
+    GIT_REPOSITORY https://github.com/machinezone/IXWebSocket.git
+    GIT_TAG v11.4.5
+    GIT_SHALLOW TRUE
+)
+FetchContent_MakeAvailable(ixwebsocket)
+
+# Dobbiamo includere i file TLS di IXWebSocket
+add_library(ixwebsocket_internal STATIC
+    ${ixwebsocket_SOURCE_DIR}/ixwebsocket/IXWebSocket.cpp
+    ${ixwebsocket_SOURCE_DIR}/ixwebsocket/IXWebSocketTransport.cpp
+    ${ixwebsocket_SOURCE_DIR}/ixwebsocket/IXSocket.cpp
+    ${ixwebsocket_SOURCE_DIR}/ixwebsocket/IXSocketFactory.cpp  # IMPORTANTE per TLS
+    ${ixwebsocket_SOURCE_DIR}/ixwebsocket/IXNetSystem.cpp
+    ${ixwebsocket_SOURCE_DIR}/ixwebsocket/IXDNSLookup.cpp
+    ${ixwebsocket_SOURCE_DIR}/ixwebsocket/IXHttp.cpp
+    ${ixwebsocket_SOURCE_DIR}/ixwebsocket/IXWebSocketServer.cpp
+    # Aggiungi file TLS se esistono
+    ${ixwebsocket_SOURCE_DIR}/ixwebsocket/IXSocketOpenSSL.cpp
+    ${ixwebsocket_SOURCE_DIR}/ixwebsocket/IXSocketTLSOptions.cpp
+)
+
+target_include_directories(ixwebsocket_internal PUBLIC
+    ${ixwebsocket_SOURCE_DIR}
+    ${ixwebsocket_SOURCE_DIR}/ixwebsocket
+    ${OPENSSL_INCLUDE_DIR}  # Aggiungi include OpenSSL
+)
+
+# ABILITA TLS
+target_compile_definitions(ixwebsocket_internal PUBLIC
+    IXWEBSOCKET_USE_ZLIB=0
+    IXWEBSOCKET_USE_TLS=1        # CAMBIA: 0 → 1
+    IXWEBSOCKET_USE_OPEN_SSL=1   # AGGIUNGI
+)
+
+# Linka OpenSSL alla libreria IXWebSocket
+target_link_libraries(ixwebsocket_internal PRIVATE
+    OpenSSL::SSL
+    OpenSSL::Crypto
+)
+
+# ================== EXECUTABLE ==================
+file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS
+    versions/current/src/*.cpp
+)
+
+add_executable(te_tetris
+    versions/current/main.cpp
+    ${SRC_FILES}
+)
+
+# 🔥 ABILITA SSL IN HTTPLIB E IXWEBSOCKET
+target_compile_definitions(te_tetris PRIVATE
+    # ABILITA SSL in httplib
+    CPPHTTPLIB_OPENSSL_SUPPORT=1      # CAMBIA: 0 → 1
+    
+    # Disabilita compressione se non ti serve
+    CPPHTTPLIB_ZLIB_SUPPORT=0
+    CPPHTTPLIB_BROTLI_SUPPORT=0
+    
+    # Conferma TLS per IXWebSocket
+    IXWEBSOCKET_USE_TLS=1
+)
+
+target_include_directories(te_tetris PRIVATE
+    versions/current/include
+    ${cpp-httplib_SOURCE_DIR}
+    ${OPENSSL_INCLUDE_DIR}  # Per httplib SSL
+)
+
+target_link_libraries(te_tetris PRIVATE
+    nlohmann_json::nlohmann_json
+    ixwebsocket_internal
+    # httplib userà OpenSSL tramite le macro
+)
+
+# 🔥 LINKING STATICO COMPLETO CON OPENSSL
+if (MINGW)
+    # 1. Trova librerie OpenSSL statiche
+    find_library(OPENSSL_SSL_STATIC libssl.a ssl libssl)
+    find_library(OPENSSL_CRYPTO_STATIC libcrypto.a crypto libcrypto)
+    
+    if(OPENSSL_SSL_STATIC AND OPENSSL_CRYPTO_STATIC)
+        message(STATUS "✅ Trovate OpenSSL statiche: ${OPENSSL_SSL_STATIC}, ${OPENSSL_CRYPTO_STATIC}")
+        
+        target_link_libraries(te_tetris PRIVATE
+            ${OPENSSL_SSL_STATIC}
+            ${OPENSSL_CRYPTO_STATIC}
+        )
+    else()
+        # Fallback: prova con le normali
+        target_link_libraries(te_tetris PRIVATE
+            OpenSSL::SSL
+            OpenSSL::Crypto
+        )
+        message(WARNING "⚠️  Usando OpenSSL dinamico. Per statiche, installa libssl.a e libcrypto.a")
+    endif()
+    
+    # 2. Statico per runtime C++
+    target_link_options(te_tetris PRIVATE
+        -static
+        -static-libgcc
+        -static-libstdc++
+    )
+    
+    # 3. Altre librerie sistema
+    target_link_libraries(te_tetris PRIVATE ws2_32 crypt32)
+    
+    target_link_options(te_tetris PRIVATE
+        -Wl,--whole-archive
+        -lwinpthread
+        -Wl,--no-whole-archive
+    )
+    
+elseif(MSVC)
+    target_link_options(te_tetris PRIVATE /NODEFAULTLIB:MSVCRT)
+    target_link_libraries(te_tetris PRIVATE 
+        ws2_32 
+        crypt32
+        libssl.lib 
+        libcrypto.lib
+    )
+endif()
+
+set_target_properties(te_tetris PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin
+)
+
+message(STATUS "✅ Build STATICA CON SSL/TLS")
+message(STATUS "🔐 OpenSSL: ${OPENSSL_VERSION}")
+message(STATUS "🌐 httplib: HTTPS abilitato")
+message(STATUS "🔗 IXWebSocket: WSS (WebSocket Secure) abilitato")

@@ -17,6 +17,18 @@
 //OFF
 BUILD_DEMO:BOOL=OFF
 
+//The path to Brotli's include directory.
+Brotli_INCLUDE_DIR:PATH=Brotli_INCLUDE_DIR-NOTFOUND
+
+//Path to a library.
+Brotli_common:FILEPATH=Brotli_common-NOTFOUND
+
+//Path to a library.
+Brotli_decoder:FILEPATH=Brotli_decoder-NOTFOUND
+
+//Path to a library.
+Brotli_encoder:FILEPATH=Brotli_encoder-NOTFOUND
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=C:/mingw-w64-v13.0.0/bin/addr2line.exe
 
@@ -319,6 +331,10 @@ FETCHCONTENT_FULLY_DISCONNECTED:BOOL=OFF
 FETCHCONTENT_QUIET:BOOL=ON
 
 //When not empty, overrides where to find pre-populated content
+// for cpp-httplib
+FETCHCONTENT_SOURCE_DIR_CPP-HTTPLIB:PATH=
+
+//When not empty, overrides where to find pre-populated content
 // for ixwebsocket
 FETCHCONTENT_SOURCE_DIR_IXWEBSOCKET:PATH=
 
@@ -329,6 +345,9 @@ FETCHCONTENT_SOURCE_DIR_NLOHMANN_JSON:PATH=
 //Enables UPDATE_DISCONNECTED behavior for all content population
 FETCHCONTENT_UPDATES_DISCONNECTED:BOOL=OFF
 
+//Enables UPDATE_DISCONNECTED behavior just for population of cpp-httplib
+FETCHCONTENT_UPDATES_DISCONNECTED_CPP-HTTPLIB:BOOL=OFF
+
 //Enables UPDATE_DISCONNECTED behavior just for population of ixwebsocket
 FETCHCONTENT_UPDATES_DISCONNECTED_IXWEBSOCKET:BOOL=OFF
 
@@ -337,6 +356,40 @@ FETCHCONTENT_UPDATES_DISCONNECTED_NLOHMANN_JSON:BOOL=OFF
 
 //Git command line client
 GIT_EXECUTABLE:FILEPATH=C:/Program Files/Git/cmd/git.exe
+
+//If ON, uses a Python script to split the header into a compilable
+// header & source file (requires Python v3).
+HTTPLIB_COMPILE:BOOL=OFF
+
+//Enables the installation target
+HTTPLIB_INSTALL:BOOL=ON
+
+//Disable the use of C++ exceptions
+HTTPLIB_NO_EXCEPTIONS:BOOL=OFF
+
+//Requires Brotli to be found & linked, or fails build.
+HTTPLIB_REQUIRE_BROTLI:BOOL=OFF
+
+//Requires OpenSSL to be found & linked, or fails build.
+HTTPLIB_REQUIRE_OPENSSL:BOOL=OFF
+
+//Requires ZLIB to be found & linked, or fails build.
+HTTPLIB_REQUIRE_ZLIB:BOOL=OFF
+
+//Enables testing and builds tests
+HTTPLIB_TEST:BOOL=OFF
+
+//Uses Brotli (if available) to enable Brotli decompression support.
+HTTPLIB_USE_BROTLI_IF_AVAILABLE:BOOL=ON
+
+//Enable feature to load system certs from the Apple Keychain.
+HTTPLIB_USE_CERTS_FROM_MACOSX_KEYCHAIN:BOOL=ON
+
+//Uses OpenSSL (if available) to enable HTTPS support.
+HTTPLIB_USE_OPENSSL_IF_AVAILABLE:BOOL=ON
+
+//Uses ZLIB (if available) to enable Zlib compression support.
+HTTPLIB_USE_ZLIB_IF_AVAILABLE:BOOL=ON
 
 //Install IXWebSocket
 IXWEBSOCKET_INSTALL:BOOL=ON
@@ -371,11 +424,44 @@ JSON_MultipleHeaders:BOOL=ON
 //Include as system headers (skip for clang-tidy).
 JSON_SystemInclude:BOOL=OFF
 
+//Path to a library.
+LIB_EAY:FILEPATH=LIB_EAY-NOTFOUND
+
+//Path to a file.
+OPENSSL_INCLUDE_DIR:PATH=OPENSSL_INCLUDE_DIR-NOTFOUND
+
+//Arguments to supply to pkg-config
+PKG_CONFIG_ARGN:STRING=
+
+//pkg-config executable
+PKG_CONFIG_EXECUTABLE:FILEPATH=C:/mingw-w64-v13.0.0/bin/pkgconf.exe
+
+//Path to a library.
+SSL_EAY:FILEPATH=SSL_EAY-NOTFOUND
+
 //Enable TLS support
 USE_TLS:BOOL=OFF
 
 //Enable zlib support
 USE_ZLIB:BOOL=OFF
+
+//Path to a file.
+ZLIB_INCLUDE_DIR:PATH=ZLIB_INCLUDE_DIR-NOTFOUND
+
+//Path to a library.
+ZLIB_LIBRARY_DEBUG:FILEPATH=ZLIB_LIBRARY_DEBUG-NOTFOUND
+
+//Path to a library.
+ZLIB_LIBRARY_RELEASE:FILEPATH=ZLIB_LIBRARY_RELEASE-NOTFOUND
+
+//Value Computed by CMake
+httplib_BINARY_DIR:STATIC=C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/cpp-httplib-build
+
+//Value Computed by CMake
+httplib_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+httplib_SOURCE_DIR:STATIC=C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/cpp-httplib-src
 
 //Value Computed by CMake
 ixwebsocket_BINARY_DIR:STATIC=C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-build
@@ -409,6 +495,89 @@ te_tetris_SOURCE_DIR:STATIC=C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/
 # INTERNAL cache entries
 ########################
 
+//ADVANCED property for variable: Brotli_INCLUDE_DIR
+Brotli_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Brotli_common
+Brotli_common-ADVANCED:INTERNAL=1
+Brotli_common_CFLAGS:INTERNAL=
+Brotli_common_CFLAGS_I:INTERNAL=
+Brotli_common_CFLAGS_OTHER:INTERNAL=
+Brotli_common_FOUND:INTERNAL=
+Brotli_common_INCLUDEDIR:INTERNAL=
+Brotli_common_LIBDIR:INTERNAL=
+Brotli_common_LIBS:INTERNAL=
+Brotli_common_LIBS_L:INTERNAL=
+Brotli_common_LIBS_OTHER:INTERNAL=
+Brotli_common_LIBS_PATHS:INTERNAL=
+Brotli_common_MODULE_NAME:INTERNAL=
+Brotli_common_PREFIX:INTERNAL=
+Brotli_common_STATIC_CFLAGS:INTERNAL=
+Brotli_common_STATIC_CFLAGS_I:INTERNAL=
+Brotli_common_STATIC_CFLAGS_OTHER:INTERNAL=
+Brotli_common_STATIC_LIBDIR:INTERNAL=
+Brotli_common_STATIC_LIBS:INTERNAL=
+Brotli_common_STATIC_LIBS_L:INTERNAL=
+Brotli_common_STATIC_LIBS_OTHER:INTERNAL=
+Brotli_common_STATIC_LIBS_PATHS:INTERNAL=
+Brotli_common_VERSION:INTERNAL=
+Brotli_common_libbrotlicommon_INCLUDEDIR:INTERNAL=
+Brotli_common_libbrotlicommon_LIBDIR:INTERNAL=
+Brotli_common_libbrotlicommon_PREFIX:INTERNAL=
+Brotli_common_libbrotlicommon_VERSION:INTERNAL=
+//ADVANCED property for variable: Brotli_decoder
+Brotli_decoder-ADVANCED:INTERNAL=1
+Brotli_decoder_CFLAGS:INTERNAL=
+Brotli_decoder_CFLAGS_I:INTERNAL=
+Brotli_decoder_CFLAGS_OTHER:INTERNAL=
+Brotli_decoder_FOUND:INTERNAL=
+Brotli_decoder_INCLUDEDIR:INTERNAL=
+Brotli_decoder_LIBDIR:INTERNAL=
+Brotli_decoder_LIBS:INTERNAL=
+Brotli_decoder_LIBS_L:INTERNAL=
+Brotli_decoder_LIBS_OTHER:INTERNAL=
+Brotli_decoder_LIBS_PATHS:INTERNAL=
+Brotli_decoder_MODULE_NAME:INTERNAL=
+Brotli_decoder_PREFIX:INTERNAL=
+Brotli_decoder_STATIC_CFLAGS:INTERNAL=
+Brotli_decoder_STATIC_CFLAGS_I:INTERNAL=
+Brotli_decoder_STATIC_CFLAGS_OTHER:INTERNAL=
+Brotli_decoder_STATIC_LIBDIR:INTERNAL=
+Brotli_decoder_STATIC_LIBS:INTERNAL=
+Brotli_decoder_STATIC_LIBS_L:INTERNAL=
+Brotli_decoder_STATIC_LIBS_OTHER:INTERNAL=
+Brotli_decoder_STATIC_LIBS_PATHS:INTERNAL=
+Brotli_decoder_VERSION:INTERNAL=
+Brotli_decoder_libbrotlidec_INCLUDEDIR:INTERNAL=
+Brotli_decoder_libbrotlidec_LIBDIR:INTERNAL=
+Brotli_decoder_libbrotlidec_PREFIX:INTERNAL=
+Brotli_decoder_libbrotlidec_VERSION:INTERNAL=
+//ADVANCED property for variable: Brotli_encoder
+Brotli_encoder-ADVANCED:INTERNAL=1
+Brotli_encoder_CFLAGS:INTERNAL=
+Brotli_encoder_CFLAGS_I:INTERNAL=
+Brotli_encoder_CFLAGS_OTHER:INTERNAL=
+Brotli_encoder_FOUND:INTERNAL=
+Brotli_encoder_INCLUDEDIR:INTERNAL=
+Brotli_encoder_LIBDIR:INTERNAL=
+Brotli_encoder_LIBS:INTERNAL=
+Brotli_encoder_LIBS_L:INTERNAL=
+Brotli_encoder_LIBS_OTHER:INTERNAL=
+Brotli_encoder_LIBS_PATHS:INTERNAL=
+Brotli_encoder_MODULE_NAME:INTERNAL=
+Brotli_encoder_PREFIX:INTERNAL=
+Brotli_encoder_STATIC_CFLAGS:INTERNAL=
+Brotli_encoder_STATIC_CFLAGS_I:INTERNAL=
+Brotli_encoder_STATIC_CFLAGS_OTHER:INTERNAL=
+Brotli_encoder_STATIC_LIBDIR:INTERNAL=
+Brotli_encoder_STATIC_LIBS:INTERNAL=
+Brotli_encoder_STATIC_LIBS_L:INTERNAL=
+Brotli_encoder_STATIC_LIBS_OTHER:INTERNAL=
+Brotli_encoder_STATIC_LIBS_PATHS:INTERNAL=
+Brotli_encoder_VERSION:INTERNAL=
+Brotli_encoder_libbrotlienc_INCLUDEDIR:INTERNAL=
+Brotli_encoder_libbrotlienc_LIBDIR:INTERNAL=
+Brotli_encoder_libbrotlienc_PREFIX:INTERNAL=
+Brotli_encoder_libbrotlienc_VERSION:INTERNAL=
 //ADVANCED property for variable: CMAKE_ADDR2LINE
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
@@ -489,6 +658,8 @@ CMAKE_GENERATOR_INSTANCE:INTERNAL=
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
+//Test CMAKE_HAVE_LIBC_PTHREAD
+CMAKE_HAVE_LIBC_PTHREAD:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris
@@ -599,9 +770,30 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_TAPI-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding Threads
+FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //ADVANCED property for variable: GIT_EXECUTABLE
 GIT_EXECUTABLE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: LIB_EAY
+LIB_EAY-ADVANCED:INTERNAL=1
 NLOHMANN_JSON_CONFIG_INSTALL_DIR:INTERNAL=share/cmake/nlohmann_json
+//ADVANCED property for variable: OPENSSL_INCLUDE_DIR
+OPENSSL_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PKG_CONFIG_ARGN
+PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
+PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: SSL_EAY
+SSL_EAY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: ZLIB_INCLUDE_DIR
+ZLIB_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: ZLIB_LIBRARY_DEBUG
+ZLIB_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: ZLIB_LIBRARY_RELEASE
+ZLIB_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Program Files (x86)/te_tetris
+__pkg_config_checked_Brotli_common:INTERNAL=1
+__pkg_config_checked_Brotli_decoder:INTERNAL=1
+__pkg_config_checked_Brotli_encoder:INTERNAL=1
 

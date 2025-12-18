@@ -16,6 +16,8 @@ class Punteggio {
     
         float punti = 0;
         short combo = 0;
+        bool spin(TipoTetramino tipo, COORD p0, TipoInput input);
+        bool t_spin(TipoTetramino tipo, COORD p0, TipoInput input);
         short lineeRiempite(short linee_riempite);
         void comboAttuale(short linee_riempite);
         void cadutaLenta(short linee_percorse);

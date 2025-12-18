@@ -2,18 +2,26 @@
 #define UTILITA_HPP
 
 #include "costanti.hpp"
-#include "grafica.hpp"
+#include "input.hpp"
+#include <winsock2.h>
+#include <ixwebsocket/IXWebSocket.h>
 #include <windows.h>
-#include "campo.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
 #include <nlohmann/json.hpp>
 #include <fstream>
 #include <sstream>
-#include <iostream>
-#include <thread>
+#include <httplib.h>
+#include <algorithm>
+#include <cctype>
 #include <chrono>
+#include <cstdlib>
+#include <functional>
+#include <map>
+#include <optional>
+#include <stdexcept>
+#include <thread>
 #include <conio.h>
 
 typedef struct{

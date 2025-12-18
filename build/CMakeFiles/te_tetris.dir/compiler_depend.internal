@@ -3,6 +3,29 @@
 
 CMakeFiles/te_tetris.dir/versions/current/main.cpp.obj
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/main.cpp
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/cpp-httplib-src/httplib.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXCancellationRequest.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXHttp.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXProgressCallback.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSelectInterrupt.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSocket.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSocketTLSOptions.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXStrCaseCompare.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocket.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketCloseConstants.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketCloseInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketErrorInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketHandshake.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketHttpHeaders.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketInitResult.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketMessage.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketMessageType.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketOpenInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketPerMessageDeflate.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketPerMessageDeflateOptions.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketSendData.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketSendInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketTransport.h
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/adl_serializer.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/byte_container_with_subtype.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/detail/abi_macros.hpp
@@ -59,6 +82,7 @@ CMakeFiles/te_tetris.dir/versions/current/main.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/algorithm
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/any
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/array
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/atomic
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/backward/auto_ptr.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/backward/binders.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bit
@@ -104,6 +128,7 @@ CMakeFiles/te_tetris.dir/versions/current/main.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/invoke.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/ios_base.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/istream.tcc
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/list.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_classes.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_classes.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_conv.h
@@ -140,6 +165,7 @@ CMakeFiles/te_tetris.dir/versions/current/main.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/sstream.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_abs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_function.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_mutex.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_thread.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_algo.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_algobase.h
@@ -150,6 +176,7 @@ CMakeFiles/te_tetris.dir/versions/current/main.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator_base_funcs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator_base_types.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_list.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_map.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_multimap.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_numeric.h
@@ -167,6 +194,7 @@ CMakeFiles/te_tetris.dir/versions/current/main.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stringfwd.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/this_thread_sleep.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/uniform_int_dist.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unique_lock.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unique_ptr.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unordered_map.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/uses_allocator.h
@@ -187,6 +215,7 @@ CMakeFiles/te_tetris.dir/versions/current/main.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/codecvt
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/compare
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/concepts
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/condition_variable
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstddef
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstdint
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstdio
@@ -217,11 +246,14 @@ CMakeFiles/te_tetris.dir/versions/current/main.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/istream
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/iterator
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/limits
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/list
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/locale
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/map
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/memory
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/mutex
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/new
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/numeric
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/optional
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/ostream
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/pstl/execution_defs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/pstl/glue_algorithm_defs.h
@@ -489,12 +521,11 @@ CMakeFiles/te_tetris.dir/versions/current/main.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/propidl.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/prsht.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_fd_types.h
- C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ip_mreq1.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ip_types.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_socket_types.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ws1_undef.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_wsa_errnos.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_wsadata.h
- C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_xmitfile.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pshpack1.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pshpack2.h
@@ -505,6 +536,7 @@ CMakeFiles/te_tetris.dir/versions/current/main.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_signal.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_time.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_unistd.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/qos.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/realtimeapiset.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/reason.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/rpc.h
@@ -580,17 +612,42 @@ CMakeFiles/te_tetris.dir/versions/current/main.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winscard.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsmcrd.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsock.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsock2.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winspool.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsvc.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winuser.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winver.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wnnc.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wow64apiset.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/ws2def.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wtypes.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wtypesbase.h
 
 CMakeFiles/te_tetris.dir/versions/current/src/campo.cpp.obj
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/src/campo.cpp
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/cpp-httplib-src/httplib.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXCancellationRequest.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXHttp.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXProgressCallback.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSelectInterrupt.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSocket.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSocketTLSOptions.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXStrCaseCompare.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocket.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketCloseConstants.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketCloseInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketErrorInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketHandshake.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketHttpHeaders.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketInitResult.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketMessage.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketMessageType.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketOpenInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketPerMessageDeflate.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketPerMessageDeflateOptions.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketSendData.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketSendInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketTransport.h
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/adl_serializer.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/byte_container_with_subtype.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/detail/abi_macros.hpp
@@ -639,11 +696,13 @@ CMakeFiles/te_tetris.dir/versions/current/src/campo.cpp.obj
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/campo.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/costanti.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/grafica.hpp
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/input.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/punteggio.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/utilita.hpp
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/algorithm
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/any
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/array
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/atomic
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/backward/auto_ptr.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/backward/binders.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bit
@@ -689,6 +748,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/campo.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/invoke.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/ios_base.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/istream.tcc
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/list.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_classes.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_classes.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_conv.h
@@ -723,6 +783,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/campo.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/sstream.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_abs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_function.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_mutex.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_thread.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_algo.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_algobase.h
@@ -733,6 +794,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/campo.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator_base_funcs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator_base_types.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_list.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_map.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_multimap.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_numeric.h
@@ -750,6 +812,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/campo.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stringfwd.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/this_thread_sleep.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/uniform_int_dist.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unique_lock.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unique_ptr.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unordered_map.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/uses_allocator.h
@@ -770,6 +833,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/campo.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/codecvt
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/compare
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/concepts
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/condition_variable
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstddef
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstdint
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstdio
@@ -800,11 +864,14 @@ CMakeFiles/te_tetris.dir/versions/current/src/campo.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/istream
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/iterator
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/limits
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/list
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/locale
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/map
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/memory
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/mutex
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/new
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/numeric
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/optional
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/ostream
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/pstl/execution_defs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/pstl/glue_algorithm_defs.h
@@ -1070,12 +1137,11 @@ CMakeFiles/te_tetris.dir/versions/current/src/campo.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/propidl.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/prsht.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_fd_types.h
- C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ip_mreq1.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ip_types.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_socket_types.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ws1_undef.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_wsa_errnos.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_wsadata.h
- C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_xmitfile.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pshpack1.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pshpack2.h
@@ -1086,6 +1152,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/campo.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_signal.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_time.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_unistd.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/qos.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/realtimeapiset.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/reason.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/rpc.h
@@ -1161,17 +1228,42 @@ CMakeFiles/te_tetris.dir/versions/current/src/campo.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winscard.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsmcrd.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsock.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsock2.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winspool.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsvc.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winuser.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winver.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wnnc.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wow64apiset.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/ws2def.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wtypes.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wtypesbase.h
 
 CMakeFiles/te_tetris.dir/versions/current/src/gioco.cpp.obj
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/src/gioco.cpp
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/cpp-httplib-src/httplib.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXCancellationRequest.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXHttp.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXProgressCallback.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSelectInterrupt.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSocket.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSocketTLSOptions.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXStrCaseCompare.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocket.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketCloseConstants.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketCloseInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketErrorInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketHandshake.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketHttpHeaders.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketInitResult.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketMessage.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketMessageType.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketOpenInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketPerMessageDeflate.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketPerMessageDeflateOptions.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketSendData.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketSendInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketTransport.h
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/adl_serializer.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/byte_container_with_subtype.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/detail/abi_macros.hpp
@@ -1228,6 +1320,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/gioco.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/algorithm
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/any
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/array
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/atomic
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/backward/auto_ptr.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/backward/binders.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bit
@@ -1273,6 +1366,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/gioco.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/invoke.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/ios_base.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/istream.tcc
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/list.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_classes.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_classes.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_conv.h
@@ -1309,6 +1403,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/gioco.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/sstream.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_abs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_function.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_mutex.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_thread.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_algo.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_algobase.h
@@ -1319,6 +1414,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/gioco.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator_base_funcs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator_base_types.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_list.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_map.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_multimap.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_numeric.h
@@ -1336,6 +1432,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/gioco.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stringfwd.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/this_thread_sleep.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/uniform_int_dist.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unique_lock.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unique_ptr.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unordered_map.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/uses_allocator.h
@@ -1356,6 +1453,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/gioco.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/codecvt
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/compare
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/concepts
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/condition_variable
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstddef
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstdint
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstdio
@@ -1386,11 +1484,14 @@ CMakeFiles/te_tetris.dir/versions/current/src/gioco.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/istream
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/iterator
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/limits
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/list
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/locale
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/map
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/memory
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/mutex
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/new
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/numeric
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/optional
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/ostream
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/pstl/execution_defs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/pstl/glue_algorithm_defs.h
@@ -1658,12 +1759,11 @@ CMakeFiles/te_tetris.dir/versions/current/src/gioco.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/propidl.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/prsht.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_fd_types.h
- C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ip_mreq1.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ip_types.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_socket_types.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ws1_undef.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_wsa_errnos.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_wsadata.h
- C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_xmitfile.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pshpack1.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pshpack2.h
@@ -1674,6 +1774,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/gioco.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_signal.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_time.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_unistd.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/qos.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/realtimeapiset.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/reason.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/rpc.h
@@ -1749,17 +1850,42 @@ CMakeFiles/te_tetris.dir/versions/current/src/gioco.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winscard.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsmcrd.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsock.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsock2.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winspool.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsvc.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winuser.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winver.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wnnc.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wow64apiset.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/ws2def.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wtypes.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wtypesbase.h
 
 CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/src/grafica.cpp
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/cpp-httplib-src/httplib.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXCancellationRequest.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXHttp.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXProgressCallback.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSelectInterrupt.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSocket.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSocketTLSOptions.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXStrCaseCompare.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocket.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketCloseConstants.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketCloseInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketErrorInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketHandshake.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketHttpHeaders.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketInitResult.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketMessage.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketMessageType.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketOpenInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketPerMessageDeflate.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketPerMessageDeflateOptions.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketSendData.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketSendInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketTransport.h
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/adl_serializer.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/byte_container_with_subtype.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/detail/abi_macros.hpp
@@ -1805,14 +1931,14 @@ CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/ordered_map.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/thirdparty/hedley/hedley.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/thirdparty/hedley/hedley_undef.hpp
- C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/campo.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/costanti.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/grafica.hpp
- C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/punteggio.hpp
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/input.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/utilita.hpp
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/algorithm
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/any
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/array
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/atomic
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/backward/auto_ptr.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/backward/binders.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bit
@@ -1858,6 +1984,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/invoke.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/ios_base.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/istream.tcc
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/list.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_classes.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_classes.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_conv.h
@@ -1892,6 +2019,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/sstream.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_abs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_function.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_mutex.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_thread.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_algo.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_algobase.h
@@ -1902,6 +2030,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator_base_funcs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator_base_types.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_list.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_map.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_multimap.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_numeric.h
@@ -1919,6 +2048,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stringfwd.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/this_thread_sleep.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/uniform_int_dist.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unique_lock.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unique_ptr.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unordered_map.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/uses_allocator.h
@@ -1939,6 +2069,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/codecvt
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/compare
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/concepts
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/condition_variable
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstddef
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstdint
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstdio
@@ -1969,11 +2100,14 @@ CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/istream
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/iterator
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/limits
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/list
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/locale
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/map
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/memory
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/mutex
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/new
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/numeric
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/optional
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/ostream
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/pstl/execution_defs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/pstl/glue_algorithm_defs.h
@@ -2239,12 +2373,11 @@ CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/propidl.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/prsht.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_fd_types.h
- C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ip_mreq1.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ip_types.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_socket_types.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ws1_undef.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_wsa_errnos.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_wsadata.h
- C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_xmitfile.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pshpack1.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pshpack2.h
@@ -2255,6 +2388,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_signal.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_time.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_unistd.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/qos.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/realtimeapiset.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/reason.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/rpc.h
@@ -2330,12 +2464,14 @@ CMakeFiles/te_tetris.dir/versions/current/src/grafica.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winscard.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsmcrd.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsock.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsock2.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winspool.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsvc.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winuser.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winver.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wnnc.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wow64apiset.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/ws2def.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wtypes.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wtypesbase.h
 
@@ -2387,6 +2523,29 @@ CMakeFiles/te_tetris.dir/versions/current/src/input.cpp.obj
 
 CMakeFiles/te_tetris.dir/versions/current/src/punteggio.cpp.obj
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/src/punteggio.cpp
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/cpp-httplib-src/httplib.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXCancellationRequest.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXHttp.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXProgressCallback.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSelectInterrupt.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSocket.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSocketTLSOptions.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXStrCaseCompare.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocket.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketCloseConstants.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketCloseInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketErrorInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketHandshake.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketHttpHeaders.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketInitResult.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketMessage.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketMessageType.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketOpenInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketPerMessageDeflate.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketPerMessageDeflateOptions.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketSendData.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketSendInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketTransport.h
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/adl_serializer.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/byte_container_with_subtype.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/detail/abi_macros.hpp
@@ -2435,11 +2594,13 @@ CMakeFiles/te_tetris.dir/versions/current/src/punteggio.cpp.obj
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/campo.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/costanti.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/grafica.hpp
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/input.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/punteggio.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/utilita.hpp
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/algorithm
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/any
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/array
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/atomic
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/backward/auto_ptr.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/backward/binders.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bit
@@ -2485,6 +2646,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/punteggio.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/invoke.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/ios_base.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/istream.tcc
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/list.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_classes.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_classes.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_conv.h
@@ -2519,6 +2681,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/punteggio.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/sstream.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_abs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_function.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_mutex.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_thread.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_algo.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_algobase.h
@@ -2529,6 +2692,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/punteggio.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator_base_funcs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator_base_types.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_list.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_map.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_multimap.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_numeric.h
@@ -2546,6 +2710,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/punteggio.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stringfwd.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/this_thread_sleep.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/uniform_int_dist.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unique_lock.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unique_ptr.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unordered_map.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/uses_allocator.h
@@ -2566,6 +2731,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/punteggio.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/codecvt
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/compare
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/concepts
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/condition_variable
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstddef
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstdint
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstdio
@@ -2596,11 +2762,14 @@ CMakeFiles/te_tetris.dir/versions/current/src/punteggio.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/istream
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/iterator
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/limits
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/list
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/locale
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/map
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/memory
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/mutex
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/new
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/numeric
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/optional
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/ostream
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/pstl/execution_defs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/pstl/glue_algorithm_defs.h
@@ -2866,12 +3035,11 @@ CMakeFiles/te_tetris.dir/versions/current/src/punteggio.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/propidl.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/prsht.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_fd_types.h
- C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ip_mreq1.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ip_types.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_socket_types.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ws1_undef.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_wsa_errnos.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_wsadata.h
- C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_xmitfile.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pshpack1.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pshpack2.h
@@ -2882,6 +3050,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/punteggio.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_signal.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_time.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_unistd.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/qos.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/realtimeapiset.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/reason.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/rpc.h
@@ -2957,17 +3126,42 @@ CMakeFiles/te_tetris.dir/versions/current/src/punteggio.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winscard.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsmcrd.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsock.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsock2.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winspool.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsvc.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winuser.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winver.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wnnc.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wow64apiset.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/ws2def.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wtypes.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wtypesbase.h
 
 CMakeFiles/te_tetris.dir/versions/current/src/tetramino.cpp.obj
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/src/tetramino.cpp
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/cpp-httplib-src/httplib.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXCancellationRequest.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXHttp.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXProgressCallback.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSelectInterrupt.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSocket.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSocketTLSOptions.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXStrCaseCompare.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocket.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketCloseConstants.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketCloseInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketErrorInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketHandshake.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketHttpHeaders.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketInitResult.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketMessage.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketMessageType.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketOpenInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketPerMessageDeflate.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketPerMessageDeflateOptions.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketSendData.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketSendInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketTransport.h
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/adl_serializer.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/byte_container_with_subtype.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/detail/abi_macros.hpp
@@ -3016,12 +3210,14 @@ CMakeFiles/te_tetris.dir/versions/current/src/tetramino.cpp.obj
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/campo.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/costanti.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/grafica.hpp
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/input.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/punteggio.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/tetramino.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/utilita.hpp
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/algorithm
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/any
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/array
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/atomic
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/backward/auto_ptr.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/backward/binders.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bit
@@ -3067,6 +3263,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/tetramino.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/invoke.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/ios_base.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/istream.tcc
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/list.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_classes.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_classes.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_conv.h
@@ -3103,6 +3300,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/tetramino.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/sstream.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_abs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_function.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_mutex.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_thread.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_algo.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_algobase.h
@@ -3113,6 +3311,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/tetramino.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator_base_funcs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator_base_types.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_list.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_map.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_multimap.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_numeric.h
@@ -3130,6 +3329,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/tetramino.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stringfwd.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/this_thread_sleep.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/uniform_int_dist.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unique_lock.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unique_ptr.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unordered_map.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/uses_allocator.h
@@ -3150,6 +3350,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/tetramino.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/codecvt
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/compare
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/concepts
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/condition_variable
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstddef
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstdint
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstdio
@@ -3180,11 +3381,14 @@ CMakeFiles/te_tetris.dir/versions/current/src/tetramino.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/istream
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/iterator
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/limits
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/list
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/locale
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/map
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/memory
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/mutex
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/new
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/numeric
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/optional
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/ostream
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/pstl/execution_defs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/pstl/glue_algorithm_defs.h
@@ -3452,12 +3656,11 @@ CMakeFiles/te_tetris.dir/versions/current/src/tetramino.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/propidl.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/prsht.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_fd_types.h
- C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ip_mreq1.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ip_types.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_socket_types.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ws1_undef.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_wsa_errnos.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_wsadata.h
- C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_xmitfile.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pshpack1.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pshpack2.h
@@ -3468,6 +3671,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/tetramino.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_signal.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_time.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_unistd.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/qos.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/realtimeapiset.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/reason.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/rpc.h
@@ -3543,17 +3747,42 @@ CMakeFiles/te_tetris.dir/versions/current/src/tetramino.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winscard.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsmcrd.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsock.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsock2.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winspool.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsvc.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winuser.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winver.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wnnc.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wow64apiset.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/ws2def.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wtypes.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wtypesbase.h
 
 CMakeFiles/te_tetris.dir/versions/current/src/utilita.cpp.obj
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/src/utilita.cpp
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/cpp-httplib-src/httplib.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXCancellationRequest.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXHttp.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXProgressCallback.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSelectInterrupt.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSocket.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXSocketTLSOptions.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXStrCaseCompare.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocket.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketCloseConstants.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketCloseInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketErrorInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketHandshake.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketHttpHeaders.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketInitResult.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketMessage.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketMessageType.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketOpenInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketPerMessageDeflate.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketPerMessageDeflateOptions.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketSendData.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketSendInfo.h
+ C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-src/ixwebsocket/IXWebSocketTransport.h
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/adl_serializer.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/byte_container_with_subtype.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/detail/abi_macros.hpp
@@ -3599,15 +3828,13 @@ CMakeFiles/te_tetris.dir/versions/current/src/utilita.cpp.obj
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/ordered_map.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/thirdparty/hedley/hedley.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-src/include/nlohmann/thirdparty/hedley/hedley_undef.hpp
- C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/campo.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/costanti.hpp
- C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/grafica.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/input.hpp
- C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/punteggio.hpp
  C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/versions/current/include/utilita.hpp
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/algorithm
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/any
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/array
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/atomic
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/backward/auto_ptr.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/backward/binders.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bit
@@ -3653,6 +3880,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/utilita.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/invoke.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/ios_base.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/istream.tcc
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/list.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_classes.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_classes.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/locale_conv.h
@@ -3687,6 +3915,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/utilita.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/sstream.tcc
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_abs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_function.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_mutex.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/std_thread.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_algo.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_algobase.h
@@ -3697,6 +3926,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/utilita.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator_base_funcs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_iterator_base_types.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_list.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_map.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_multimap.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stl_numeric.h
@@ -3714,6 +3944,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/utilita.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/stringfwd.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/this_thread_sleep.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/uniform_int_dist.h
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unique_lock.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unique_ptr.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/unordered_map.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/bits/uses_allocator.h
@@ -3734,6 +3965,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/utilita.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/codecvt
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/compare
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/concepts
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/condition_variable
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstddef
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstdint
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/cstdio
@@ -3764,11 +3996,14 @@ CMakeFiles/te_tetris.dir/versions/current/src/utilita.cpp.obj
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/istream
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/iterator
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/limits
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/list
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/locale
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/map
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/memory
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/mutex
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/new
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/numeric
+ C:/mingw-w64-v13.0.0/include/c++/15.2.0/optional
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/ostream
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/pstl/execution_defs.h
  C:/mingw-w64-v13.0.0/include/c++/15.2.0/pstl/glue_algorithm_defs.h
@@ -4034,12 +4269,11 @@ CMakeFiles/te_tetris.dir/versions/current/src/utilita.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/propidl.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/prsht.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_fd_types.h
- C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ip_mreq1.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ip_types.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_socket_types.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_ws1_undef.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_wsa_errnos.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_wsadata.h
- C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/_xmitfile.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pshpack1.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pshpack2.h
@@ -4050,6 +4284,7 @@ CMakeFiles/te_tetris.dir/versions/current/src/utilita.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_signal.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_time.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/pthread_unistd.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/qos.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/realtimeapiset.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/reason.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/rpc.h
@@ -4125,12 +4360,14 @@ CMakeFiles/te_tetris.dir/versions/current/src/utilita.cpp.obj
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winscard.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsmcrd.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsock.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsock2.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winspool.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winsvc.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winuser.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/winver.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wnnc.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wow64apiset.h
+ C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/ws2def.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wtypes.h
  C:/mingw-w64-v13.0.0/x86_64-w64-mingw32/include/wtypesbase.h
 

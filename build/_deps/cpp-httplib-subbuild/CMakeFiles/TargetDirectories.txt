@@ -1,0 +1,3 @@
+C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/cpp-httplib-subbuild/CMakeFiles/cpp-httplib-populate.dir
+C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/cpp-httplib-subbuild/CMakeFiles/edit_cache.dir
+C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/cpp-httplib-subbuild/CMakeFiles/rebuild_cache.dir

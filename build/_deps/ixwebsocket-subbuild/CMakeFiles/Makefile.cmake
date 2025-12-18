@@ -10,10 +10,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/4.1.0/CMakeSystem.cmake"
   "CMakeLists.txt"
   "ixwebsocket-populate-prefix/tmp/ixwebsocket-populate-mkdirs.cmake"
-  "C:/mingw-w64-v13.0.0/share/cmake-4.1/Modules/CMakeDetermineSystem.cmake"
   "C:/mingw-w64-v13.0.0/share/cmake-4.1/Modules/CMakeGenericSystem.cmake"
   "C:/mingw-w64-v13.0.0/share/cmake-4.1/Modules/CMakeInitializeConfigs.cmake"
-  "C:/mingw-w64-v13.0.0/share/cmake-4.1/Modules/CMakeSystem.cmake.in"
   "C:/mingw-w64-v13.0.0/share/cmake-4.1/Modules/CMakeSystemSpecificInformation.cmake"
   "C:/mingw-w64-v13.0.0/share/cmake-4.1/Modules/CMakeSystemSpecificInitialize.cmake"
   "C:/mingw-w64-v13.0.0/share/cmake-4.1/Modules/ExternalProject.cmake"
@@ -38,7 +36,6 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
-  "CMakeFiles/4.1.0/CMakeSystem.cmake"
   "ixwebsocket-populate-prefix/tmp/ixwebsocket-populate-mkdirs.cmake"
   "ixwebsocket-populate-prefix/tmp/ixwebsocket-populate-gitclone.cmake"
   "ixwebsocket-populate-prefix/src/ixwebsocket-populate-stamp/ixwebsocket-populate-gitinfo.txt"

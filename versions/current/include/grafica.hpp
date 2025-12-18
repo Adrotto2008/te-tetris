@@ -3,6 +3,7 @@
 
 #include "costanti.hpp"
 #include "utilita.hpp"
+#include <winsock2.h>
 #include <windows.h>
 
 extern COORD coord_tetramino_futuro;

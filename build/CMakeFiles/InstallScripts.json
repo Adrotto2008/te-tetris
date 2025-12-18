@@ -1,9 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/cmake_install.cmake",
-		"C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/nlohmann_json-build/cmake_install.cmake",
-		"C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-build/cmake_install.cmake"
-	],
-	"Parallel" : false
-}

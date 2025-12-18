@@ -1,3 +1,0 @@
-C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-subbuild/CMakeFiles/ixwebsocket-populate.dir
-C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-subbuild/CMakeFiles/edit_cache.dir
-C:/Users/adria/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/build/_deps/ixwebsocket-subbuild/CMakeFiles/rebuild_cache.dir

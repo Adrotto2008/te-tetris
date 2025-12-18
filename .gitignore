@@ -1,0 +1,11 @@
+# Cartelle di build CMake
+build/
+
+# File temporanei
+*.o
+*.obj
+*.dll
+*.so
+
+# VS Code
+.vscode/

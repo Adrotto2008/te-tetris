@@ -2,6 +2,7 @@
 #define GIOCO_HPP
 
 #include "costanti.hpp"
+#include "online.hpp"
 #include "campo.hpp"
 #include "grafica.hpp"
 #include "input.hpp"
@@ -15,6 +16,9 @@ class Gioco{
 
     public:
         void partitaSinglePlayer();
+        void multiPlayerStanza(std::string& nome);
+        void opzioniStanza(Online* online, RoomDTO stanza, bool owner = false);
+        void listaStanze(Online* online, std::string& nome);
         void partitaMultiPlayer();
         void opzioni();
         void comandi();

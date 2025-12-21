@@ -20,7 +20,8 @@
 #define FUTURI_CENTRO CAMPO_LUNGHEZZA + 4 + ((FUTURI_LUNGHEZZA - (CAMPO_LUNGHEZZA + 4)) / 2)
 
 /*-------------BLOCCHI----------*/
-#define BLOCCO 219 //blocco intero usato dai ghost block
+
+#define BLOCCO "█" //blocco intero usato dai ghost block 219
 #define BLOCCO_SINISTRA '[' //metà blocco usato per la parte sinistra
 #define BLOCCO_DESTRA   ']' //metà blocco usato per la parte destra
 

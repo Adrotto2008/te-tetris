@@ -17,7 +17,44 @@ std::array<char, 1> ESCI = {27};
 void Input::scan(){
     input = 0;
     input = _getch();
+    #ifdef __linux__
+    if (input == 27){
+
+        if (kbhit()){
+        
+            char input_2 = _getch();
+            char input_3 = _getch();
+            if (input_2 == '['){
+                switch (input_3){
+
+                case 'A':
+                    input = 72;
+                    break;
+                case 'B':
+                    input = 80;
+                    break;
+                case 'C':
+                    input = 77;
+                    break;
+                case 'D':
+                    input = 75;
+                    break;
+
+                }
+            }
+
+        }
+        
+    }
+
+    if (input == '\n')  input = 13;
+    
+
+    #else
     if(input == 0 || input == 224)  input = _getch();
+    #endif
+
+    
 }
 
 TipoInput Input::azione(){

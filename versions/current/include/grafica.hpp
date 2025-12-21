@@ -2,9 +2,11 @@
 #define GRAFICA_HPP
 
 #include "costanti.hpp"
+#ifdef __linux__
+#include "utilita_linux.hpp"
+#else
 #include "utilita.hpp"
-#include <winsock2.h>
-#include <windows.h>
+#endif
 
 extern COORD coord_tetramino_futuro;
 extern COORD coord_secondo_tetramino_futuro;

@@ -18,6 +18,61 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(nlohmann_json)
 
+# ================== HTTPLIB (SENZA SSL - APPROCCIO SICURO) ==================
+# Prima scarichiamo
+FetchContent_Declare(
+    cpp-httplib
+    GIT_REPOSITORY https://github.com/yhirose/cpp-httplib.git
+    GIT_TAG v0.15.3
+    GIT_SHALLOW TRUE
+)
+
+FetchContent_GetProperties(cpp-httplib)
+if(NOT cpp-httplib_POPULATED)
+    FetchContent_Populate(cpp-httplib)
+    
+    # 🔥 PATCH MANUALE SEMPLICE
+    message(STATUS "🔧 Rimozione SSL da httplib.h...")
+    
+    # Leggi il file
+    file(READ "${cpp-httplib_SOURCE_DIR}/httplib.h" HTTPLIB_CONTENT)
+    
+    # Sostituzioni SEMPLICI (una per una)
+    string(REPLACE "#include <openssl/ssl.h>"
+           "// #include <openssl/ssl.h> // REMOVED" 
+           HTTPLIB_CONTENT "${HTTPLIB_CONTENT}")
+           
+    string(REPLACE "#include <openssl/err.h>"
+           "// #include <openssl/err.h> // REMOVED" 
+           HTTPLIB_CONTENT "${HTTPLIB_CONTENT}")
+           
+    string(REPLACE "#include <openssl/x509.h>"
+           "// #include <openssl/x509.h> // REMOVED" 
+           HTTPLIB_CONTENT "${HTTPLIB_CONTENT}")
+           
+    string(REPLACE "#include <openssl/crypto.h>"
+           "// #include <openssl/crypto.h> // REMOVED" 
+           HTTPLIB_CONTENT "${HTTPLIB_CONTENT}")
+           
+    string(REPLACE "#include <openssl/bio.h>"
+           "// #include <openssl/bio.h> // REMOVED" 
+           HTTPLIB_CONTENT "${HTTPLIB_CONTENT}")
+    
+    # Disabilita le sezioni SSL
+    string(REPLACE "#ifdef CPPHTTPLIB_OPENSSL_SUPPORT"
+           "#if 0 // CPPHTTPLIB_OPENSSL_SUPPORT DISABLED" 
+           HTTPLIB_CONTENT "${HTTPLIB_CONTENT}")
+           
+    string(REPLACE "#if defined(CPPHTTPLIB_OPENSSL_SUPPORT)"
+           "#if 0 // CPPHTTPLIB_OPENSSL_SUPPORT DISABLED" 
+           HTTPLIB_CONTENT "${HTTPLIB_CONTENT}")
+    
+    # Scrivi il file patchato
+    file(WRITE "${cpp-httplib_SOURCE_DIR}/httplib.h" "${HTTPLIB_CONTENT}")
+    
+    message(STATUS "✅ httplib.h patchato - SSL rimosso")
+endif()
+
 # ================== IXWEBSOCKET ==================
 set(USE_ZLIB OFF CACHE BOOL "" FORCE)
 set(USE_TLS OFF CACHE BOOL "" FORCE)
@@ -60,8 +115,16 @@ add_executable(te_tetris
     ${SRC_FILES}
 )
 
+# Definisci macro per disabilitare SSL
+target_compile_definitions(te_tetris PRIVATE
+    CPPHTTPLIB_OPENSSL_SUPPORT=0
+    CPPHTTPLIB_ZLIB_SUPPORT=0
+    CPPHTTPLIB_BROTLI_SUPPORT=0
+)
+
 target_include_directories(te_tetris PRIVATE
     versions/current/include
+    ${cpp-httplib_SOURCE_DIR}
 )
 
 target_link_libraries(te_tetris PRIVATE
@@ -69,7 +132,7 @@ target_link_libraries(te_tetris PRIVATE
     ixwebsocket_internal
 )
 
-# 🔥 STATICO VERO (SOLO QUI)
+# 🔥 STATICO COMPLETO
 if (MINGW)
     target_link_options(te_tetris PRIVATE
         -static
@@ -79,8 +142,12 @@ if (MINGW)
         -lwinpthread
         -Wl,--no-whole-archive
     )
+    
+    target_link_libraries(te_tetris PRIVATE ws2_32)
 endif()
 
 set_target_properties(te_tetris PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin
 )
+
+message(STATUS "✅ Build SENZA SSL - httplib patchato")

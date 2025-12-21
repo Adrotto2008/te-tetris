@@ -1,9 +1,13 @@
+#ifdef __linux__
+#include "utilita_linux.hpp"
+#else
+#include "utilita.hpp"
+#endif
 #include "costanti.hpp"
 #include "campo.hpp"
 #include "grafica.hpp"
 #include "input.hpp"
 #include "tetramino.hpp"
-#include "utilita.hpp"
 #include "punteggio.hpp"
 #include "gioco.hpp"
 #include <iostream>
@@ -26,10 +30,8 @@ int main(void){
 
     pulisci();
     printf(CURSORE_INVISIBILE);
-
-
     nome = apri_config();
-
+    
     short i;
     bool uscita = false;
     bool uscita_menu = false;
@@ -85,6 +87,8 @@ int main(void){
                             break;
 
                         case static_cast<short>(CordinateOpzioni::MULTIPLAYER):
+                            gioco.multiPlayerStanza(nome);
+                            uscita_menu = true;
                             break;
 
                         case static_cast<short>(CordinateOpzioni::OPZIONI):
@@ -118,7 +122,7 @@ int main(void){
 
 
     posizione_cursore(coord_fine);
-
+    ripristina_echo();
     return 0;
 
 }

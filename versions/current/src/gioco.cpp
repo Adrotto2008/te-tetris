@@ -1,10 +1,5 @@
 #include "gioco.hpp"
 
-/*
-    creare un timer per l'input che entro quei secondi puoi muoverti
-    creare un timer quando richiami può cadere, nel main controlli se ritorna false e fai ripartire il ciclo dell'input, all'inizio dell'input devi controllare entrambi i cicli
-*/
-
 using namespace std;
 using namespace chrono;
 
@@ -87,7 +82,7 @@ void Gioco::partitaSinglePlayer(){
             while(timer_input){
 
                 
-                if(_kbhit() || azione_ultima_speranza != TipoInput::NULLA){    
+                if(kbhit() || azione_ultima_speranza != TipoInput::NULLA){    
 
                     if(azione_ultima_speranza == TipoInput::NULLA){
                         input.input = 0;
@@ -254,7 +249,7 @@ void Gioco::partitaSinglePlayer(){
 	        campo.stampa(CodaTetramini[0]->p, backup_tetramino, CodaTetramini[0]->ghost_block(), CodaTetramini[0]->in_movimento);
             
 	    }
-        punteggio.spin(CodaTetramini[0]->tipo, CodaTetramini[0]->p[0], ultima_azione);
+        punteggio.t_spin(CodaTetramini[0]->tipo, CodaTetramini[0]->p[0], ultima_azione);
 		PRIMO_CAMBIO:
         /*---------ELIMINAZIONE DALLA MEMORIA------------*/
 
@@ -276,6 +271,175 @@ void Gioco::partitaSinglePlayer(){
     getchar();
 
     return;
+
+}
+
+void Gioco::multiPlayerStanza(std::string& nome){
+
+    int scelta;
+
+    enum class STANZA{
+        CREARE = 1,
+        UNIRE = 2,
+        ESCI = 0
+    };
+
+    Online online("100.72.208.113", 8080);
+
+    online.login(nome);
+
+    pulisci();
+    printf("cosa vuoi fare?\n\n");
+
+    printf("1. creare una stanza\n");
+    printf("2. unirti a una stanza\n\n");
+
+    scanf("%d", &scelta);
+
+    if(scelta == static_cast<short>(STANZA::CREARE)){
+
+        std::string nome_stanza;
+        pulisci();
+        getchar(); printf("nome della stanza : "); getline(cin, nome_stanza);
+
+        opzioniStanza(&online, online.createRoom(nome_stanza), true);
+
+    }
+
+    if(scelta == static_cast<short>(STANZA::UNIRE)){
+
+        listaStanze(&online, nome);
+
+    }
+
+    if(scelta == static_cast<short>(STANZA::ESCI)){
+
+        return;
+
+    }
+
+}
+
+void Gioco::opzioniStanza(Online* online, RoomDTO stanza, bool owner){
+
+    pulisci();
+
+    Input input;
+    bool esci = false;
+
+    online->subscribe<MessageDTO>("/user/queue/private",
+        [](const MessageDTO& msg) {
+            printf("negro");
+        }
+    );  
+
+    printf("stanza : %s\n\n", stanza.name);
+    printf("    players : \n");
+    printf("player 1 : %s(owner) player 2 : %s\n",stanza.members[0], stanza.members[1]);
+
+    if(owner)
+        printf("premi invio per iniziare/continuare la partita");
+    else
+        printf("in attesa che %s inizi la partita", stanza.members[0]);
+
+
+    do{
+
+        if(kbhit()){
+            input.scan();
+
+            if(input.azione() == TipoInput::ESCI){
+                esci = true;
+            }
+
+            if(input.azione() == TipoInput::CADUTAISTANTANEA){
+
+                if(owner){
+                    
+                //  do 
+                    
+                }
+
+            }
+
+        }
+
+    }while(!esci);
+
+}
+
+void Gioco::listaStanze(Online* online, std::string& nome){    
+    
+    pulisci();
+    bool esci = false;
+    Input input;
+    cornice(0, 0, 30, 50);
+    short i = 5;
+    COORD posizione;
+    std::vector<RoomDTO> stanze = online->getAvailableRooms();
+    short stanze_massime = 50;
+
+    cursore_manuale(5, 2);
+    
+    printf("stanze : (%d/%hd) ", stanze.size(), stanze_massime);
+
+    for(size_t j = 0; j < stanze.size(); j++, i += 5){
+
+        cursore_manuale(5, i);
+        printf("  %-*s", strlen(stanze[j].name) + 2, stanze[j].name);
+
+    }
+
+    i = 5;
+
+    do{
+
+        if(kbhit()){
+
+            input.scan();
+
+            if(input.azione() == TipoInput::CADUTAVELOCE){
+
+                posizione = posizione_attuale(); posizione.X--;
+                posizione_cursore(posizione);
+                printf(" ");
+                i += 5;
+
+                if(i > 45) i = 5;
+
+                cursore_manuale(5, i);
+
+                printf(">");
+
+            }
+
+            if(input.azione() == TipoInput::GIROORARIO){
+
+                posizione = posizione_attuale(); posizione.X--;
+                posizione_cursore(posizione);
+                printf(" ");
+                i -= 5;
+
+                if(i < 5) i = 45;
+
+                cursore_manuale(5, i);
+
+                printf(">");
+
+            }
+
+            if(input.azione() == TipoInput::ESCI){
+
+                return;
+
+            }
+
+
+
+        }
+
+
+    }while(!esci);
 
 }
 
@@ -304,6 +468,7 @@ void Gioco::opzioni(){
 
 void Gioco::comandi(){
     system("chcp 65001");
+
     printf(CURSORE_INVISIBILE);
     pulisci();
     COORD posizione_att;
@@ -602,7 +767,7 @@ void Gioco::comandi(){
                                 if(kbhit()){
                                     input.scan();
 
-                                    if(input.azione() == TipoInput::CADUTAVELOCE){
+                                    if(input.azione() == TipoInput::DESTRA){
                                         h += 2;
                                         if(h > 41) h = 39;
                                     } else if (input.azione() == TipoInput::SINISTRA){
@@ -633,7 +798,7 @@ void Gioco::comandi(){
                                 if(kbhit()){
                                     input.scan();
 
-                                    if(input.azione() == TipoInput::CADUTAVELOCE){
+                                    if(input.azione() == TipoInput::DESTRA){
                                         h += 2;
                                         if(h > 101) h = 99;
                                     } else if (input.azione() == TipoInput::SINISTRA){
@@ -723,7 +888,15 @@ void Gioco::comandi(){
                         
                         
                         if(j == 62){
-                            inizializza_config(true);
+                            ROTAZIONE[0] = 'W'; ROTAZIONE[1] = 'w';
+                            ROTAZIONE_DOPPIA[0] = 'Z'; ROTAZIONE_DOPPIA[1] = 'z';
+                            ROTAZIONE_ANTIORARIA[0] = 'R'; ROTAZIONE_ANTIORARIA[1] = 'r';
+                            SINISTRA[0] = 'A'; SINISTRA[1] = 'a';
+                            DESTRA[0] = 'D'; DESTRA[1] = 'd';
+                            CADUTA_VELOCE[0] = 'S'; CADUTA_VELOCE[1] = 's';
+                            CADUTA_ISTANTANEA[0] = 'Q'; CADUTA_ISTANTANEA[1] = 'q';
+                            CAMBIO[0] = 'C'; CAMBIO[1] = 'c';
+                            salva_config();
                             apri_config();
                         }
 
@@ -744,5 +917,6 @@ void Gioco::comandi(){
     }while(!esci);
 
     system("chcp 850");
+    setlocale(LC_ALL, "");
     salva_config();
 }

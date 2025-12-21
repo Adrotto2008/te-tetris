@@ -1,35 +1,35 @@
 {
-    "nome": "adrotto",
-    "rotazione": [
-        "W",
-        "w"
-    ],
-    "rotazione_doppia": [
-        "Z",
-        "z"
-    ],
-    "rotazione_antioraria": [
-        "R",
-        "r"
-    ],
-    "sinistra": [
-        "A",
-        "a"
-    ],
-    "destra": [
-        "D",
-        "d"
+    "caduta_istantanea": [
+        "Q",
+        "q"
     ],
     "caduta_veloce": [
         "S",
         "s"
     ],
-    "caduta_istantanea": [
-        "Q",
-        "q"
-    ],
     "cambio": [
         "C",
         "c"
+    ],
+    "destra": [
+        "D",
+        "d"
+    ],
+    "nome": "provissima",
+    "rotazione": [
+        "W",
+        "w"
+    ],
+    "rotazione_antioraria": [
+        "R",
+        "r"
+    ],
+    "rotazione_doppia": [
+        "Z",
+        "z"
+    ],
+    "sinistra": [
+        "h",
+        "a"
     ]
 }

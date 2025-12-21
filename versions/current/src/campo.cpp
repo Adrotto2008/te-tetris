@@ -27,7 +27,7 @@ void Campo::stampa(COORD posizione_tetramino[], COORD backup_posizione_tetramino
         printf(GRIGIO);
         for(short i = 0; i < 8; i++){
             cursore_manuale(posizione_ghost_block[i].X + 1, posizione_ghost_block[i].Y + 1);
-            printf("%c", BLOCCO);
+            printf("%s", BLOCCO);
         }
     }
 

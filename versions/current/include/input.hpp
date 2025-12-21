@@ -2,8 +2,13 @@
 #define INPUT_HPP
 
 #include "costanti.hpp"
+#ifdef __linux__
+#include "utilita_linux.hpp"
+#else
+#include "utilita.hpp"
+#endif
+
 #include <array>
-#include <conio.h>
 
 /*------------INPUT-------------*/
 extern std::array<char, 3> ROTAZIONE;        // freccia su

@@ -1,9 +1,10 @@
+#ifndef __linux__
 #include "utilita.hpp"
 
 
 
 using namespace std;
-using namespace chrono;
+using namespace chrono;#endif
 using namespace chrono_literals;
 using ordered_json = nlohmann::ordered_json;
 
@@ -26,6 +27,126 @@ void countdown_caduta(int tempo){
     timer_caduta = 0;
 
 }
+
+
+
+
+// --- CASELLA ---
+
+nlohmann::json_abi_v3_11_3::ordered_json casellaToJson(const CasellaDTO& c) {
+    return json{
+        {"id", c.id}, 
+        {"colore", std::string(1, c.colore)}, 
+        {"blocco", std::string(1, c.blocco)}
+    };
+}
+
+CasellaDTO casellaFromJson(const nlohmann::json_abi_v3_11_3::ordered_json& j) {
+    CasellaDTO c;
+    c.id = j.at("id").get<int>();
+    std::string col = j.at("colore").get<std::string>();
+    std::string blo = j.at("blocco").get<std::string>();
+    c.colore = col.empty() ? ' ' : col[0];
+    c.blocco = blo.empty() ? ' ' : blo[0];
+    return c;
+}
+
+// --- MESSAGE ---
+
+nlohmann::json_abi_v3_11_3::ordered_json messageToJson(const MessageDTO& m) {
+    json grid = json::array();
+    for (int r = 0; r < GRID_ROWS; r++) {
+        json row = json::array();
+        for (int c = 0; c < GRID_COLS; c++) {
+            row.push_back(casellaToJson(m.caselle[r][c]));
+        }
+        grid.push_back(row);
+    }
+    return json{
+        {"from", std::string(m.from)},
+        {"caselle", grid},
+        {"seed", m.seed},
+        {"GameOver", m.GameOver},
+        {"score", m.score},
+        {"to", std::string(m.to)}
+    };
+}
+
+MessageDTO messageFromJson(const nlohmann::json_abi_v3_11_3::ordered_json& j) {
+    MessageDTO m;
+    
+    // Stringhe
+    std::string f = j.at("from").get<std::string>();
+    strncpy(m.from, f.c_str(), MAX_STR_LEN - 1);
+    m.from[MAX_STR_LEN - 1] = '\0';
+
+    std::string t = j.at("to").get<std::string>();
+    strncpy(m.to, t.c_str(), MAX_STR_LEN - 1);
+    m.to[MAX_STR_LEN - 1] = '\0';
+
+    // Primitivi
+    m.seed = j.at("seed").get<int>();
+    m.GameOver = j.at("GameOver").get<bool>();
+    m.score = j.at("score").get<int>();
+
+    // Griglia
+    auto grid = j.at("caselle");
+    for (int r = 0; r < GRID_ROWS; r++) {
+        if (r < (int)grid.size()) {
+            auto row = grid[r];
+            for (int c = 0; c < GRID_COLS; c++) {
+                if (c < (int)row.size()) {
+                    m.caselle[r][c] = casellaFromJson(row[c]);
+                }
+            }
+        }
+    }
+    return m;
+}
+
+// --- ROOM ---
+
+RoomDTO roomFromJson(const nlohmann::json_abi_v3_11_3::ordered_json& j) {
+    RoomDTO r;
+    r.id = j.at("id").get<int>();
+    
+    std::string o = j.at("owner").get<std::string>();
+    strncpy(r.owner, o.c_str(), MAX_STR_LEN - 1);
+    r.owner[MAX_STR_LEN - 1] = '\0';
+
+    std::string n = j.at("name").get<std::string>();
+    strncpy(r.name, n.c_str(), MAX_STR_LEN - 1);
+    r.name[MAX_STR_LEN - 1] = '\0';
+    
+    auto mems = j.at("members");
+    r.memberCount = std::min((int)mems.size(), MAX_PLAYERS);
+    for (int i = 0; i < r.memberCount; i++) {
+        std::string m = mems[i].get<std::string>();
+        strncpy(r.members[i], m.c_str(), MAX_STR_LEN - 1);
+        r.members[i][MAX_STR_LEN - 1] = '\0';
+    }
+    return r;
+}
+
+// --- GAME STARTED ---
+
+GameStartedDTO gameStartedFromJson(const nlohmann::json_abi_v3_11_3::ordered_json& j) {
+    GameStartedDTO g;
+    g.roomId = j.at("roomId").get<int>();
+    auto pls = j.at("players");
+    g.playerCount = std::min((int)pls.size(), MAX_PLAYERS);
+    for (int i = 0; i < g.playerCount; i++) {
+        std::string p = pls[i].get<std::string>();
+        strncpy(g.players[i], p.c_str(), MAX_STR_LEN - 1);
+        g.players[i][MAX_STR_LEN - 1] = '\0';
+    }
+    return g;
+}
+
+
+
+
+
 
 std::string apri_config() {
     std::ifstream file("config.json");
@@ -99,66 +220,6 @@ void scrivi_due_tasti(nlohmann::json_abi_v3_11_3::ordered_json& config, const ch
 void carica_due_tasti(const nlohmann::json_abi_v3_11_3::ordered_json& config, const char* chiave, char& a, char& b){
     a = config.at(chiave)[0].get<std::string>()[0];
     b = config.at(chiave)[1].get<std::string>()[0];
-}
-
-CasellaDTO casellaFromJson(const nlohmann::json& j) {
-    CasellaDTO c;
-    c.id = j.at("id").get<int>();
-    c.colore = j.at("colore").get<char>();
-    c.blocco = j.at("blocco").get<char>();
-    return c;
-}
-
-MessageDTO messageFromJson(const nlohmann::json& j) {
-    MessageDTO m;
-
-    m.from = j.at("from").get<std::string>();
-    m.seed = j.at("seed").get<int>();
-    m.GameOver = j.at("GameOver").get<bool>();
-    m.score = j.at("score").get<int>();
-    m.to = j.at("to").get<std::string>();
-
-    // parsing array 2D
-
-    const auto& jCaselle = j.at("caselle");
-
-    for (size_t i = 0; i < CAMPO_ALTEZZA - 2; ++i) {
-        const auto& riga = jCaselle[i];
-        for (size_t j = 0; j < CAMPO_LUNGHEZZA - 2; ++j) {
-            m.caselle[i][j] = casellaFromJson(riga[j]);
-        }
-    }
-
-    return m;
-}
-
-nlohmann::json casellaToJson(const CasellaDTO& c) {
-    nlohmann::json j;
-    j["id"] = c.id;
-    j["colore"] = c.colore;
-    j["blocco"] = c.blocco;
-    return j;
-}
-
-nlohmann::json messageToJson(const MessageDTO& m) {
-    nlohmann::json j;
-    j["from"] = m.from;
-    j["GameOver"] = m.GameOver;
-    j["score"] = m.score;
-    j["to"] = m.to;
-
-    nlohmann::json jCaselle = nlohmann::json::array();
-
-    for (size_t i = 0; i < CAMPO_ALTEZZA - 2; ++i) {
-        nlohmann::json jRiga = nlohmann::json::array();
-        for (size_t j = 0; j < CAMPO_LUNGHEZZA - 2; ++j) {
-            jRiga.push_back(casellaToJson(m.caselle[i][j]));
-        }
-        jCaselle.push_back(jRiga);
-    }
-
-    j["caselle"] = jCaselle;
-    return j;
 }
 
 void scritta(int dormi, std::string stringa){
@@ -255,3 +316,4 @@ void cmd_grande(){
     ShowWindow(hwnd, SW_MAXIMIZE);
 
 }
+#endif

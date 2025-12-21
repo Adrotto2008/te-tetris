@@ -1,13 +1,17 @@
 #ifndef GIOCO_HPP
 #define GIOCO_HPP
 
-#include "costanti.hpp"
+#ifdef __linux__
+#include "utilita_linux.hpp"
+#else
+#include "utilita.hpp"
+#endif
+
 #include "online.hpp"
 #include "campo.hpp"
 #include "grafica.hpp"
 #include "input.hpp"
 #include "tetramino.hpp"
-#include "utilita.hpp"
 #include "punteggio.hpp"
 #include <chrono>
 #include <thread>

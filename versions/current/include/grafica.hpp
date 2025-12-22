@@ -2,6 +2,7 @@
 #define GRAFICA_HPP
 
 #include "costanti.hpp"
+#include "gioco.hpp"
 #ifdef __linux__
 #include "utilita_linux.hpp"
 #else

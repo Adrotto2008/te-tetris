@@ -228,7 +228,16 @@ void cursore_alto(COORD* c, short d) { c->Y -= d; posizione_cursore(*c); }
 void cursore_basso(COORD* c, short d) { c->Y += d; posizione_cursore(*c); }
 void cursore_sinistra(COORD* c, short d) { c->X -= d; posizione_cursore(*c); }
 void cursore_destra(COORD* c, short d) { c->X += d; posizione_cursore(*c); }
-COORD posizione_attuale() { return {0,0}; }
+COORD posizione_attuale() { 
+
+    COORD posizione;
+
+//    posizione.X = ;
+//    posizione.Y = ;
+
+    return posizione; 
+
+}
 void nascondi_cursore() { cout << "\033[?25l" << flush; }
 void mostra_cursore()   { cout << "\033[?25h" << flush; }
 void cmd_grande() { /* non esiste su Linux → no-op */ }

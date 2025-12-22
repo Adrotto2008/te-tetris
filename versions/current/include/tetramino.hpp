@@ -4,6 +4,7 @@
 #include "punteggio.hpp"
 #include "costanti.hpp"
 #include "grafica.hpp"
+#include "gioco.hpp"
 #include "campo.hpp"
 #include <cstdlib>
 #include <ctime>

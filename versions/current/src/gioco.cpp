@@ -445,24 +445,482 @@ void Gioco::listaStanze(Online* online, std::string& nome){
 
 void Gioco::opzioni(){
 
-    cornice(0, 0, 67, 25);
+    pulisci();
+    cornice(0, 0, 70, 30);
 
-    short i = 5;
+    Input input;
+    Input input2;
+    bool uscita = false;
+    bool uscita_piccolo = false;
+    char nuovo;
+    char nuovo2;
+
+    COORD pos = {PADDING, 2};
     
-    cursore_manuale(PADDING, i++);
+    cursore_basso(&pos, 1);
     scritta(5, "  ___  _____ _____ ___ ___ ___ _   _ ");
-    cursore_manuale(PADDING, i++);
+    cursore_basso(&pos, 1);
     scritta(5, " / _ \\|  _  |_   _|_ _/ _ \\_ _| \\ | |");
-    cursore_manuale(PADDING, i++);
+    cursore_basso(&pos, 1);
     scritta(5, "| | | | | | | | |  | | | | | ||  \\| |");
-    cursore_manuale(PADDING, i++);
+    cursore_basso(&pos, 1);
     scritta(5, "| |_| | |_| | | |  | | |_| | || |\\  |");
-    cursore_manuale(PADDING, i++);
+    cursore_basso(&pos, 1);
     scritta(5, " \\___/|_____| |_| |___\\___/___|_| \\_|");
 
+    pos.X = 7;
+    pos.Y = 10;
+    
+    posizione_cursore(pos);
+    printf("TIPO PARTITA");
+    cursore_basso(&pos, 2);
+    cursore_sinistra(&pos, 3);
+    printf("NORMALE     ");
+    printf("NORMALE");
+    cursore_basso(&pos, 2);
+    printf("NORMALE     ");
+    printf("NORMALE");
+
+    pos.X = 7;
+    cursore_basso(&pos, 5);
+
+    posizione_cursore(pos);
+    printf("TIPO GHOST BLOCK");
+    cursore_basso(&pos, 2);
+    cursore_destra(&pos, 3);
+    printf("█     ");
+    printf("()");
+    cursore_basso(&pos, 2);
+    printf("[]    ");
+    printf("NO");
+    cursore_basso(&pos, 2);
+    printf("{}    ");
+    printf("x"); // x 10 y 25
     
 
+    pos.Y = 10;
+    pos.X = 40;
 
+    posizione_cursore(pos);
+    printf("TIPO BLOCCHI");
+    cursore_basso(&pos, 2);
+    printf("[]     ");
+    printf("()");
+    cursore_basso(&pos, 2);
+    printf("{}     ");
+    printf("█");
+
+    pos.X = 40;
+    cursore_basso(&pos, 5);
+
+    posizione_cursore(pos);
+    printf("TIPO COLORI");
+    cursore_basso(&pos, 2);
+    cursore_sinistra(&pos, 3);
+    printf("NORMALI     ");
+    printf("ALTERNATIVI");
+    cursore_basso(&pos, 2);
+    printf("CASUALI     ");
+    printf("NORMALI");
+
+    pos.X = 5;
+    pos.Y = 10;
+    posizione_cursore(pos);
+    printf(">");
+
+    do{
+
+        if(kbhit()){
+            input.scan();
+
+            switch (input.azione()){
+                case TipoInput::GIROORARIO:
+                    cursore_manuale(pos.X, pos.Y);
+                    printf(" ");
+                    pos.Y -= 9;
+                    if(pos.Y < 10)   pos.Y = 19;
+                    posizione_cursore(pos);
+                    printf(">");
+                    break;
+                
+                case TipoInput::CADUTAVELOCE:
+                    cursore_manuale(pos.X, pos.Y);
+                    printf(" ");
+                    pos.Y += 9;
+                    if(pos.Y > 19)   pos.Y = 10;
+                    posizione_cursore(pos);
+                    printf(">");
+                    break;
+
+                case TipoInput::SINISTRA:
+                    cursore_manuale(pos.X, pos.Y);
+                    printf(" ");
+                    pos.X -= 33;
+                    if(pos.X < 5)   pos.X = 38;
+                    posizione_cursore(pos);
+                    printf(">");
+                    break;
+
+                case TipoInput::DESTRA:
+                    cursore_manuale(pos.X, pos.Y);
+                    printf(" ");
+                    pos.X += 33;
+                    if(pos.X > 38)   pos.X = 5;
+                    posizione_cursore(pos);
+                    printf(">");
+                    break;
+                
+                case TipoInput::CADUTAISTANTANEA:
+                    cursore_manuale(pos.X, pos.Y);
+                    printf(" ");
+                    if(pos.X == 5 && pos.Y == 10){ //tipo partita
+                        pos.X = 2;
+                        pos.Y = 12;
+                        posizione_cursore(pos);
+                        printf(">");
+                        uscita_piccolo = false;
+                        do{
+                            if(kbhit()){
+                                input2.scan();
+
+                                switch(input2.azione()){
+
+                                    case TipoInput::GIROORARIO:
+                                        cursore_manuale(pos.X, pos.Y);
+                                        printf(" ");
+                                        pos.Y -= 2;
+                                        if(pos.Y < 12)   pos.Y = 14;
+                                        posizione_cursore(pos);
+                                        printf(">");
+                                        break;
+
+                                    case TipoInput::CADUTAVELOCE:
+                                        cursore_manuale(pos.X, pos.Y);
+                                        printf(" ");
+                                        pos.Y += 2;
+                                        if(pos.Y > 14)   pos.Y = 12;
+                                        posizione_cursore(pos);
+                                        printf(">");
+                                        break;
+
+                                    case TipoInput::SINISTRA:
+                                        cursore_manuale(pos.X, pos.Y);
+                                        printf(" ");
+                                        pos.X -= 12;
+                                        if(pos.X < 2)   pos.X = 14;
+                                        posizione_cursore(pos);
+                                        printf(">");
+                                        break;
+
+                                    case TipoInput::DESTRA:
+                                        cursore_manuale(pos.X, pos.Y);
+                                        printf(" ");
+                                        pos.X += 12;
+                                        if(pos.X > 14)   pos.X = 2;
+                                        posizione_cursore(pos);
+                                        printf(">");
+                                        break;
+
+                                    case TipoInput::CADUTAISTANTANEA:
+                                        if(pos.X == 2 && pos.Y == 12){ // tipo partita normale
+                                            TIPO_PARTITA = TipoPartita::NORMALE;
+                                        }
+                                        if(pos.X == 2 && pos.Y == 14){ // tipo partita normale
+                                            TIPO_PARTITA = TipoPartita::NORMALE;
+                                        }
+                                        if(pos.X == 14 && pos.Y == 12){ // tipo partita normale
+                                            TIPO_PARTITA = TipoPartita::NORMALE;
+                                        }
+                                        if(pos.X == 14 && pos.Y == 14){ // tipo partita normale
+                                            TIPO_PARTITA = TipoPartita::NORMALE;
+                                        }
+                                        uscita_piccolo = true;
+                                        break;
+
+                                    case TipoInput::ESCI:
+                                        uscita_piccolo = true;
+                                        break;
+                                }
+
+                            }
+                        }while(!uscita_piccolo);
+
+                        cursore_manuale(pos.X, pos.Y);
+                        printf(" ");
+                        pos.X = 5;
+                        pos.Y = 10;
+                        posizione_cursore(pos);
+                        printf(">");
+
+                    }
+                    if(pos.X == 5 && pos.Y == 19){ //tipo ghost block
+                        pos.X = 7;
+                        pos.Y = 21;
+                        posizione_cursore(pos);
+                        printf(">");
+                        uscita_piccolo = false;
+                        do{
+                            if(kbhit()){
+                                input2.scan();
+
+                                switch(input2.azione()){
+
+                                    case TipoInput::GIROORARIO:
+                                        cursore_manuale(pos.X, pos.Y);
+                                        printf(" ");
+                                        pos.Y -= 2;
+                                        if(pos.Y < 21)   pos.Y = 25;
+                                        posizione_cursore(pos);
+                                        printf(">");
+                                        break;
+
+                                    case TipoInput::CADUTAVELOCE:
+                                        cursore_manuale(pos.X, pos.Y);
+                                        printf(" ");
+                                        pos.Y += 2;
+                                        if(pos.Y > 25)   pos.Y = 21;
+                                        posizione_cursore(pos);
+                                        printf(">");
+                                        break;
+
+                                    case TipoInput::SINISTRA:
+                                        cursore_manuale(pos.X, pos.Y);
+                                        printf(" ");
+                                        pos.X -= 6;
+                                        if(pos.X < 7)   pos.X = 13;
+                                        posizione_cursore(pos);
+                                        printf(">");
+                                        break;
+
+                                    case TipoInput::DESTRA:
+                                        cursore_manuale(pos.X, pos.Y);
+                                        printf(" ");
+                                        pos.X += 6;
+                                        if(pos.X > 13)   pos.X = 7;
+                                        posizione_cursore(pos);
+                                        printf(">");
+                                        break;
+
+                                    case TipoInput::CADUTAISTANTANEA:
+                                        if(pos.X == 7 && pos.Y == 21){ // tipo ghostblock : █
+                                            strcpy(BLOCCO_GHOST_SINISTRA, "█");
+                                            strcpy(BLOCCO_GHOST_DESTRA, "█");
+                                        }
+                                        if(pos.X == 7 && pos.Y == 23){ // tipo ghostblock : []
+                                            strcpy(BLOCCO_GHOST_SINISTRA, "[\0");
+                                            strcpy(BLOCCO_GHOST_DESTRA, "]\0");
+                                        }
+                                        if(pos.X == 13 && pos.Y == 21){ // tipo ghostblock : ()
+                                            strcpy(BLOCCO_GHOST_SINISTRA, "(");
+                                            strcpy(BLOCCO_GHOST_DESTRA, ")");
+                                        }
+                                        if(pos.X == 13 && pos.Y == 23){ // tipo ghostblock : nessuno
+                                            strcpy(BLOCCO_GHOST_SINISTRA, " \0");
+                                            strcpy(BLOCCO_GHOST_DESTRA, " \0");
+                                        }
+                                        if(pos.X == 7 && pos.Y == 25){ // tipo ghostblock : {}
+                                            strcpy(BLOCCO_GHOST_SINISTRA, "{\0");
+                                            strcpy(BLOCCO_GHOST_DESTRA, "}\0");
+                                        }
+                                        if(pos.X == 13 && pos.Y == 25){ // tipo ghostblock : personale
+                                            do{
+                                                nuovo = _getch();
+                                                nuovo2 = _getch();
+                                            }while( ( (nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z') ) && ( (nuovo2 < 'a' || nuovo2 > 'z') && (nuovo2 < 'A' || nuovo2 > 'Z') ));
+                                            cursore_manuale(16, 25); // rifai il controllo con un array di char che crei a mano
+                                            printf("%c%c", nuovo, nuovo2);
+                                            sprintf(BLOCCO_GHOST_SINISTRA, "%c\0",nuovo);
+                                            sprintf(BLOCCO_GHOST_DESTRA, "%c\0",nuovo2);
+                                        }
+                                        uscita_piccolo = true;
+                                        break;
+
+                                    case TipoInput::ESCI:
+                                        uscita_piccolo = true;
+                                        break;
+                                }
+
+                            }
+                        }while(!uscita_piccolo);
+
+                        cursore_manuale(pos.X, pos.Y);
+                        printf(" ");
+                        pos.X = 5;
+                        pos.Y = 19;
+                        posizione_cursore(pos);
+                        printf(">");
+                    }
+                    if(pos.X == 38 && pos.Y == 10){ //tipo blocchi
+                        pos.X = 38;
+                        pos.Y = 12;
+                        posizione_cursore(pos);
+                        printf(">");
+                        uscita_piccolo = false;
+                        do{
+                            if(kbhit()){
+                                input2.scan();
+
+                                switch(input2.azione()){
+
+                                    case TipoInput::GIROORARIO:
+                                        cursore_manuale(pos.X, pos.Y);
+                                        printf(" ");
+                                        pos.Y -= 2;
+                                        if(pos.Y < 12)   pos.Y = 14;
+                                        posizione_cursore(pos);
+                                        printf(">");
+                                        break;
+
+                                    case TipoInput::CADUTAVELOCE:
+                                        cursore_manuale(pos.X, pos.Y);
+                                        printf(" ");
+                                        pos.Y += 2;
+                                        if(pos.Y > 14)   pos.Y = 12;
+                                        posizione_cursore(pos);
+                                        printf(">");
+                                        break;
+
+                                    case TipoInput::SINISTRA:
+                                        cursore_manuale(pos.X, pos.Y);
+                                        printf(" ");
+                                        pos.X -= 7;
+                                        if(pos.X < 38)   pos.X = 45;
+                                        posizione_cursore(pos);
+                                        printf(">");
+                                        break;
+
+                                    case TipoInput::DESTRA:
+                                        cursore_manuale(pos.X, pos.Y);
+                                        printf(" ");
+                                        pos.X += 7;
+                                        if(pos.X > 45)   pos.X = 38;
+                                        posizione_cursore(pos);
+                                        printf(">");
+                                        break;
+
+                                    case TipoInput::CADUTAISTANTANEA:
+                                        if(pos.X == 38 && pos.Y == 12){ // tipo blocchi : []
+                                            BLOCCO_SINISTRA[0] = '['; BLOCCO_SINISTRA[1] = '\0';
+                                            BLOCCO_DESTRA[0]   = ']'; BLOCCO_DESTRA[1]   = '\0';
+                                        }
+                                        if(pos.X == 45 && pos.Y == 12){ // tipo blocchi : ()
+                                            BLOCCO_SINISTRA[0] = '('; BLOCCO_SINISTRA[1] = '\0';
+                                            BLOCCO_DESTRA[0]   = ')'; BLOCCO_DESTRA[1]   = '\0';
+                                        }
+                                        if(pos.X == 38 && pos.Y == 14){ // tipo blocchi : {}
+                                            BLOCCO_SINISTRA[0] = '{'; BLOCCO_SINISTRA[1] = '\0';
+                                            BLOCCO_DESTRA[0]   = '}'; BLOCCO_DESTRA[1]   = '\0';
+                                        }
+                                        if(pos.X == 45 && pos.Y == 14){ // tipo blocchi : █
+                                            strcpy(BLOCCO_SINISTRA, "█");
+                                            strcpy(BLOCCO_DESTRA, "█");
+                                        }
+                                        uscita_piccolo = true;
+                                        break;
+
+                                    case TipoInput::ESCI:
+                                        uscita_piccolo = true;
+                                        break;
+                                }
+
+                            }
+                        }while(!uscita_piccolo);
+
+                        cursore_manuale(pos.X, pos.Y);
+                        printf(" ");
+                        pos.X = 38;
+                        pos.Y = 10;
+                        posizione_cursore(pos);
+                        printf(">");
+                    }
+                    if(pos.X == 38 && pos.Y == 19){ //tipo colori
+                        pos.X = 34; // 34 47
+                        pos.Y = 21; // 21 23
+                        posizione_cursore(pos);
+                        printf(">");
+                        uscita_piccolo = false;
+                        do{
+                            if(kbhit()){
+                                input2.scan();
+
+                                switch(input2.azione()){
+
+                                    case TipoInput::GIROORARIO:
+                                        cursore_manuale(pos.X, pos.Y);
+                                        printf(" ");
+                                        pos.Y -= 2;
+                                        if(pos.Y < 21)   pos.Y = 23;
+                                        posizione_cursore(pos);
+                                        printf(">");
+                                        break;
+
+                                    case TipoInput::CADUTAVELOCE:
+                                        cursore_manuale(pos.X, pos.Y);
+                                        printf(" ");
+                                        pos.Y += 2;
+                                        if(pos.Y > 23)   pos.Y = 21;
+                                        posizione_cursore(pos);
+                                        printf(">");
+                                        break;
+
+                                    case TipoInput::SINISTRA:
+                                        cursore_manuale(pos.X, pos.Y);
+                                        printf(" ");
+                                        pos.X -= 13;
+                                        if(pos.X < 34)   pos.X = 47;
+                                        posizione_cursore(pos);
+                                        printf(">");
+                                        break;
+
+                                    case TipoInput::DESTRA:
+                                        cursore_manuale(pos.X, pos.Y);
+                                        printf(" ");
+                                        pos.X += 13;
+                                        if(pos.X > 47)   pos.X = 34;
+                                        posizione_cursore(pos);
+                                        printf(">");
+                                        break;
+
+                                    case TipoInput::CADUTAISTANTANEA:
+                                        if(pos.X == 34 && pos.Y == 21){ // tipo colori : normale
+                                            TIPO_COLORI = TipoColori::NORMALE;
+                                        }
+                                        if(pos.X == 34 && pos.Y == 23){ // tipo colori :casuali
+                                            TIPO_COLORI = TipoColori::CASUALE;
+                                        }
+                                        if(pos.X == 47 && pos.Y == 21){ // tipo colori : alternativi
+                                            TIPO_COLORI = TipoColori::ALTERNATIVO;
+                                        }
+                                        if(pos.X == 1473 && pos.Y == 23){ // tipo colori : nessuno
+                                            TIPO_COLORI = TipoColori::NESSUNO;
+                                        }
+                                        uscita_piccolo = true;
+                                        break;
+
+                                    case TipoInput::ESCI:
+                                        uscita_piccolo = true;
+                                        break;
+                                }
+
+                            }
+                        }while(!uscita_piccolo);
+                        cursore_manuale(pos.X, pos.Y);
+                        printf(" ");
+                        pos.X = 38;
+                        pos.Y = 19;
+                        posizione_cursore(pos);
+                        printf(">");
+                    }
+                    break;
+
+                case TipoInput::ESCI:
+                    uscita = true;
+                    break;
+            }
+
+        }
+
+    }while(!uscita);
 
 }
 

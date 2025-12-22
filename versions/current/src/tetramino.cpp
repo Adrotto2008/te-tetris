@@ -381,7 +381,7 @@ void Tetramino::gira(TipoInput tipo_rotazione){
         }
 
         campo.casella[p[i].Y][p[i].X].id = 32;
-        campo.casella[p[i].Y][p[i].X].blocco = 32;
+        campo.casella[p[i].Y][p[i].X].blocco[0] = 32; campo.casella[p[i].Y][p[i].X].blocco[1] ='\0';
     }
 
     if(tipo == TipoTetramino::I){
@@ -630,9 +630,9 @@ void Tetramino::stampa(){
 
     for(short i = 0; i < 8; i++){
         if(i % 2 == 0){
-            campo.casella[p[i].Y][p[i].X].blocco = BLOCCO_SINISTRA;
+            strcpy(campo.casella[p[i].Y][p[i].X].blocco, gioco.BLOCCO_SINISTRA);
         } else {
-            campo.casella[p[i].Y][p[i].X].blocco = BLOCCO_DESTRA;
+            strcpy(campo.casella[p[i].Y][p[i].X].blocco, gioco.BLOCCO_DESTRA);
         }
     }
     this->stampa_colore();
@@ -646,7 +646,7 @@ short Tetramino::caduta_lenta(){
 
     for(short i = 0; i < 8; i++){
         campo.casella[p[i].Y][p[i].X].id = 32;
-        campo.casella[p[i].Y][p[i].X].blocco = 32;
+        campo.casella[p[i].Y][p[i].X].blocco[0] = 32; campo.casella[p[i].Y][p[i].X].blocco[1] ='\0';
         campo.casella[p[i].Y][p[i].X].colore = bianco;
         p[i].Y+= 1;
     }
@@ -665,7 +665,7 @@ short Tetramino::cadutaVeloce(){
 
     for(short i = 0; i < 8; i++){
         campo.casella[p[i].Y][p[i].X].id = 32;
-        campo.casella[p[i].Y][p[i].X].blocco = 32;
+        campo.casella[p[i].Y][p[i].X].blocco[0] = 32; campo.casella[p[i].Y][p[i].X].blocco[1] ='\0';
         campo.casella[p[i].Y][p[i].X].colore = bianco;
         p[i].Y+= 1;
     }
@@ -683,7 +683,7 @@ short Tetramino::caduta_istantanea(){
 
     for(short i = 0; i < 8; i++){
         campo.casella[p[i].Y][p[i].X].id = 32;
-        campo.casella[p[i].Y][p[i].X].blocco = 32;
+        campo.casella[p[i].Y][p[i].X].blocco[0] = 32; campo.casella[p[i].Y][p[i].X].blocco[1] ='\0';
         campo.casella[p[i].Y][p[i].X].colore = bianco;
     }
 
@@ -749,7 +749,7 @@ void Tetramino::sposta_destra(){
     
     for(short i = 0; i < 8; i++){
         campo.casella[p[i].Y][p[i].X].id = 32;
-        campo.casella[p[i].Y][p[i].X].blocco = 32;
+        campo.casella[p[i].Y][p[i].X].blocco[0] = 32; campo.casella[p[i].Y][p[i].X].blocco[1] ='\0';
         campo.casella[p[i].Y][p[i].X].colore = bianco;
         p[i].X+= 2;
     }
@@ -761,7 +761,7 @@ void Tetramino::sposta_sinistra(){
 
     for(short i = 0; i < 8; i++){
         campo.casella[p[i].Y][p[i].X].id = 32;
-        campo.casella[p[i].Y][p[i].X].blocco = 32;
+        campo.casella[p[i].Y][p[i].X].blocco[0] = 32; campo.casella[p[i].Y][p[i].X].blocco[1] ='\0';
         campo.casella[p[i].Y][p[i].X].colore = bianco;
         p[i].X-= 2;
     }
@@ -796,7 +796,7 @@ void Tetramino::sparisci(){
     for(short i = 0; i < 8; i++){
             
         campo.casella[p[i].Y][p[i].X].id = 32;
-        campo.casella[p[i].Y][p[i].X].blocco = 32;
+        campo.casella[p[i].Y][p[i].X].blocco[0] = 32; campo.casella[p[i].Y][p[i].X].blocco[1] ='\0';
         campo.casella[p[i].Y][p[i].X].colore = bianco;
 
     }

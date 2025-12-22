@@ -15,10 +15,6 @@
 #include <chrono>
 #include <thread>
 
-/*
-    creare un timer per l'input che entro quei secondi puoi muoverti
-    creare un timer quando richiami può cadere, nel main controlli se ritorna false e fai ripartire il ciclo dell'input, all'inizio dell'input devi controllare entrambi i cicli
-*/
 
 void menu();
 
@@ -35,6 +31,8 @@ int main(void){
     short i;
     bool uscita = false;
     bool uscita_menu = false;
+
+
 
     do{
 
@@ -93,6 +91,7 @@ int main(void){
 
                         case static_cast<short>(CordinateOpzioni::OPZIONI):
                             gioco.opzioni();
+                            uscita_menu = true;
                             break;
 
                         case static_cast<short>(CordinateOpzioni::COMANDI):

@@ -3,13 +3,14 @@
 
 #include "costanti.hpp"
 #include "grafica.hpp"
+#include "gioco.hpp"
 #include "punteggio.hpp"
 #include <stdio.h>
 
 typedef struct{
 
     char colore;
-    char blocco;
+    char blocco[4];
     int id;
 
 } Casella;

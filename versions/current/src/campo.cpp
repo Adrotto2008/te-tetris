@@ -8,7 +8,7 @@ void Campo::inizializza() {
     for(short i = 0; i < CAMPO_ALTEZZA - 2; i++){
         for(short j = 0; j < CAMPO_LUNGHEZZA - 2; j++){
             casella[i][j].id = 32;
-            casella[i][j].blocco = 32;
+            casella[i][j].blocco[0] = ' '; casella[i][j].blocco[1] = '\0';
             casella[i][j].colore = bianco;
         }
     }
@@ -27,8 +27,11 @@ void Campo::stampa(COORD posizione_tetramino[], COORD backup_posizione_tetramino
         printf(GRIGIO);
         for(short i = 0; i < 8; i++){
             cursore_manuale(posizione_ghost_block[i].X + 1, posizione_ghost_block[i].Y + 1);
-            printf("%s", BLOCCO);
-        }
+            if(i%2==0)
+                printf("%s", gioco.BLOCCO_GHOST_SINISTRA);
+            else 
+                printf("%s", gioco.BLOCCO_GHOST_DESTRA);
+            }
     }
 
     /*-----------CONTROLLO COLORI TETRAMINO----------------------*/
@@ -46,7 +49,7 @@ void Campo::stampa(COORD posizione_tetramino[], COORD backup_posizione_tetramino
     /*-----------STAMPA TETRAMINO----------------------*/
     for(short i = 0; i < 8; i++){
         cursore_manuale(posizione_tetramino[i].X + 1, posizione_tetramino[i].Y + 1);
-        printf("%c", casella[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco);
+        printf("%s", casella[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco);
     }
     
     posizione_cursore(coord_fine);
@@ -69,7 +72,7 @@ void Campo::stampaTotale(short posizione_riga) {
                 case verde : printf(VERDE_CHIARO); break;
                 case magenta : printf(MAGENTA_CHIARO); break;
             }
-            printf("%c", casella[i][j].blocco);
+            printf("%s", casella[i][j].blocco);
         }
     }
 }

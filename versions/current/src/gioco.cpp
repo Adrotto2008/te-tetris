@@ -921,7 +921,7 @@ void Gioco::opzioni(){
         }
 
     }while(!uscita);
-
+    salva_config();
 }
 
 void Gioco::comandi(){

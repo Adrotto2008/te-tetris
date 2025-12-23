@@ -1,16 +1,6 @@
 #include "input.hpp"
 
-// inizializzo gli array contenenti gli input
 
-std::array<char, 3> ROTAZIONE = {'W', 'w', 72};
-std::array<char, 2> ROTAZIONE_DOPPIA = {'Z', 'z'};
-std::array<char, 2> ROTAZIONE_ANTIORARIA = {'R', 'r'};
-std::array<char, 3> SINISTRA = {'A', 'a', 75};
-std::array<char, 3> DESTRA = {'D', 'd', 77};
-std::array<char, 3> CADUTA_VELOCE = {'S', 's', 80};
-std::array<char, 4> CADUTA_ISTANTANEA = {'Q', 'q', 32, 13};
-std::array<char, 2> CAMBIO = {'C', 'c'};
-std::array<char, 1> ESCI = {27};
 
 // classe dell'input 
 

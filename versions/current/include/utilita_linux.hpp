@@ -2,7 +2,6 @@
 #define UTILITA_LINUX_HPP
 
 #include "costanti.hpp"
-#include "input.hpp"
 
 #include <iostream>
 #include <string>
@@ -39,12 +38,6 @@ using ordered_json = nlohmann::ordered_json;
 #define GRID_COLS (CAMPO_LUNGHEZZA - 2)
 #define MAX_PLAYERS 2
 #define MAX_STR_LEN 64
-
-// ---- Struct compatibile con COORD ----
-struct COORD {
-    short X;
-    short Y;
-};
 
 // ---- DTO ----
 struct CasellaDTO {
@@ -103,7 +96,7 @@ extern int timer_caduta;
 // ---- Config ----
 std::string apri_config();
 std::string inizializza_config();
-void salva_config();
+void salva_config(std::string nome = "");
 void scrivi_due_tasti(ordered_json& config, const char* chiave, const char& a, const char& b);
 void carica_due_tasti(const ordered_json& config, const char* chiave, char& a, char& b);
 

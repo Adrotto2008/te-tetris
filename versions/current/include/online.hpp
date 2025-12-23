@@ -1,6 +1,7 @@
 #ifndef ONLINE_HPP
 #define ONLINE_HPP
 
+#include "costanti.hpp"
 #ifdef __linux__
 #include "utilita_linux.hpp"
 #else

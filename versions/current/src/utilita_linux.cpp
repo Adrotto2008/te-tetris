@@ -133,7 +133,7 @@ string apri_config() {
     
     stringstream ss;
     ss << file.rdbuf();
-    config = json::parse(ss.str());
+    config = ordered_json::parse(ss.str());
 
     // assegna valori agli array
     carica_due_tasti(config, "rotazione", ROTAZIONE[0], ROTAZIONE[1]);
@@ -144,35 +144,39 @@ string apri_config() {
     carica_due_tasti(config, "caduta_veloce", CADUTA_VELOCE[0], CADUTA_VELOCE[1]);
     carica_due_tasti(config, "caduta_istantanea", CADUTA_ISTANTANEA[0], CADUTA_ISTANTANEA[1]);
     carica_due_tasti(config, "cambio", CAMBIO[0], CAMBIO[1]);
+    strcpy(BLOCCO_SINISTRA, config.at("blocco_sinistra").get<std::string>().c_str());
+    strcpy(BLOCCO_DESTRA, config.at("blocco_destra").get<std::string>().c_str());
+    strcpy(BLOCCO_GHOST_SINISTRA, config.at("ghost_block_sinistra").get<std::string>().c_str());
+    strcpy(BLOCCO_GHOST_DESTRA, config.at("ghost_block_destra").get<std::string>().c_str());
 
+    std::string nome = config["nome"];
     file.close();
-    return config["nome"];
-}
-
-string inizializza_config() {
-    string nome = "Player";
-
-    scritta(50, "hey player, come ti chiami?");
-    getline(cin, nome);
-    config["nome"] = nome;
-    
-    scrivi_due_tasti(config, "rotazione", 'W', 'w');
-    scrivi_due_tasti(config, "rotazione_doppia", 'Z', 'z');
-    scrivi_due_tasti(config, "rotazione_antioraria", 'R', 'r');
-    scrivi_due_tasti(config, "sinistra", 'A', 'a');
-    scrivi_due_tasti(config, "destra", 'D', 'd');
-    scrivi_due_tasti(config, "caduta_veloce", 'S', 's');
-    scrivi_due_tasti(config, "caduta_istantanea", 'Q', 'q');
-    scrivi_due_tasti(config, "cambio", 'C', 'c');
-
-    disabilita_echo();
-    setlocale(LC_ALL, "");
     return nome;
 }
 
-void salva_config() {
+string inizializza_config() {
+    string nome;
+
+    scritta(50, "hey player, come ti chiami?");
+    getline(cin, nome);
     
-    config["nome"] = config.value("nome", "Player");
+    salva_config(nome);
+
+    disabilita_echo();
+    setlocale(LC_ALL, "");
+
+    if(nome == "")
+        nome = "player";
+    return nome;
+}
+
+void salva_config(std::string nome) {
+
+    if (config.is_null())
+        config = ordered_json::object();
+    
+    if(nome != "")
+        config["nome"] = nome;
 
     scrivi_due_tasti(config, "rotazione", ROTAZIONE[0], ROTAZIONE[1]);
     scrivi_due_tasti(config, "rotazione_doppia", ROTAZIONE_DOPPIA[0], ROTAZIONE_DOPPIA[1]);
@@ -182,6 +186,11 @@ void salva_config() {
     scrivi_due_tasti(config, "caduta_veloce", CADUTA_VELOCE[0], CADUTA_VELOCE[1]);
     scrivi_due_tasti(config, "caduta_istantanea", CADUTA_ISTANTANEA[0], CADUTA_ISTANTANEA[1]);
     scrivi_due_tasti(config, "cambio", CAMBIO[0], CAMBIO[1]);
+    config["blocco_sinistra"]       = std::string(BLOCCO_SINISTRA);
+    config["blocco_destra"]        = std::string(BLOCCO_DESTRA);
+    config["ghost_block_sinistra"] = std::string(BLOCCO_GHOST_SINISTRA);
+    config["ghost_block_destra"]   = std::string(BLOCCO_GHOST_DESTRA);
+    
 
     ofstream file("config.json");
     file << config.dump(4);

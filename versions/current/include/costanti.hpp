@@ -1,7 +1,8 @@
 #ifndef COSTANTI_HPP
 #define COSTANTI_HPP
 
-
+#include <iostream>
+#include <array>
 
 
 /*-----------COSTANTI----------------*/
@@ -18,14 +19,6 @@
 #define FUTURI_LUNGHEZZA 20
 #define FUTURI_SECONDO (FUTURI_LUNGHEZZA - (CAMPO_LUNGHEZZA + 4) / 3)
 #define FUTURI_CENTRO CAMPO_LUNGHEZZA + 4 + ((FUTURI_LUNGHEZZA - (CAMPO_LUNGHEZZA + 4)) / 2)
-
-/*-------------BLOCCHI----------
-
-#define BLOCCO_GHOST "█" //blocco intero usato dai ghost block 219
-#define BLOCCO_SINISTRA '[' //metà blocco usato per la parte sinistra
-#define BLOCCO_DESTRA   ']' //metà blocco usato per la parte destra
-
------------------------------------*/
 
 
 /*------------COLORI------------*/
@@ -63,12 +56,23 @@
 #define DARK_GRAY "\033[38;5;8m"
 /*------------------------------*/
 
+#ifdef __linux__
+// ---- Struct compatibile con COORD ----
+struct COORD {
+    short X;
+    short Y;
+};
+
+#else
+
+#include <windows.h>
+
+#endif
 
 /*-----------CURSORE-------------*/
 #define CURSORE_INVISIBILE "\033[?25l"
 #define CURSORE_VISIBILE "\033[?25h"
 /*------------------------------*/
-
 
 /*--------------ENUMS----------------*/
 
@@ -153,5 +157,36 @@ enum class TipoColori{
     CASUALE,
     NESSUNO
 };
+/*-------------VARIABILI GLOBALI DI IMPOSTAZIONI-----------*/
+
+/*------------INPUT-------------*/
+extern std::array<char, 3> ROTAZIONE;        // freccia su
+extern std::array<char, 2> ROTAZIONE_ANTIORARIA;        
+extern std::array<char, 2> ROTAZIONE_DOPPIA;        
+extern std::array<char, 3> SINISTRA;        // freccia sinistra
+extern std::array<char, 3> DESTRA;          // freccia destra
+extern std::array<char, 3> CADUTA_VELOCE;   // freccia giù
+extern std::array<char, 4> CADUTA_ISTANTANEA; // barra spaziatrice
+extern std::array<char, 2> CAMBIO;          // tasto cambio
+extern std::array<char, 1> ESCI;  
+
+/*-------------IMPOSTAZIONI-----------*/
+
+extern TipoPartita TIPO_PARTITA;
+extern TipoColori TIPO_COLORI ;
+extern char BLOCCO_GHOST_SINISTRA[4]; //blocco intero usato dai ghost block 219
+extern char BLOCCO_GHOST_DESTRA[4]; //blocco intero usato dai ghost block 219
+extern char BLOCCO_SINISTRA[4]; //metà blocco usato per la parte sinistra
+extern char BLOCCO_DESTRA[4]; //metà blocco usato per la parte destra
+
+/*--------------CORDINATE GLOBALI----------------------*/
+
+extern COORD coord_tetramino_futuro;
+extern COORD coord_secondo_tetramino_futuro;
+extern COORD coord_terzo_tetramino_futuro;
+extern COORD coord_tetramino_riserva;
+extern COORD coord_posizione_campo;
+extern COORD coord_punteggio;
+extern COORD coord_fine;
 
 #endif

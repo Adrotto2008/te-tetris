@@ -630,9 +630,9 @@ void Tetramino::stampa(){
 
     for(short i = 0; i < 8; i++){
         if(i % 2 == 0){
-            strcpy(campo.casella[p[i].Y][p[i].X].blocco, gioco.BLOCCO_SINISTRA);
+            strcpy(campo.casella[p[i].Y][p[i].X].blocco, BLOCCO_SINISTRA);
         } else {
-            strcpy(campo.casella[p[i].Y][p[i].X].blocco, gioco.BLOCCO_DESTRA);
+            strcpy(campo.casella[p[i].Y][p[i].X].blocco, BLOCCO_DESTRA);
         }
     }
     this->stampa_colore();

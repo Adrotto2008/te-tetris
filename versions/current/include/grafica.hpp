@@ -9,14 +9,6 @@
 #include "utilita.hpp"
 #endif
 
-extern COORD coord_tetramino_futuro;
-extern COORD coord_secondo_tetramino_futuro;
-extern COORD coord_terzo_tetramino_futuro;
-extern COORD coord_tetramino_riserva;
-extern COORD coord_posizione_campo;
-extern COORD coord_punteggio;
-extern COORD coord_fine;
-
 // Funzioni di stampa tetramino
 void stampa_riserva_tetramino(TipoTetramino tipo);
 void stampa_coda_tetramini(TipoTetramino tipo1, TipoTetramino tipo2, TipoTetramino tipo3);

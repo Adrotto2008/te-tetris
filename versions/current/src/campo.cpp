@@ -28,9 +28,9 @@ void Campo::stampa(COORD posizione_tetramino[], COORD backup_posizione_tetramino
         for(short i = 0; i < 8; i++){
             cursore_manuale(posizione_ghost_block[i].X + 1, posizione_ghost_block[i].Y + 1);
             if(i%2==0)
-                printf("%s", gioco.BLOCCO_GHOST_SINISTRA);
+                printf("%s", BLOCCO_GHOST_SINISTRA);
             else 
-                printf("%s", gioco.BLOCCO_GHOST_DESTRA);
+                printf("%s", BLOCCO_GHOST_DESTRA);
             }
     }
 

@@ -1,12 +1,6 @@
 #include "grafica.hpp"
 
-COORD coord_tetramino_futuro = {CAMPO_LUNGHEZZA + 13, 2};
-COORD coord_secondo_tetramino_futuro = {CAMPO_LUNGHEZZA + 13 + 18, 2};
-COORD coord_terzo_tetramino_futuro = {CAMPO_LUNGHEZZA + 13 + 18 + 19, 2};
-COORD coord_tetramino_riserva = {CAMPO_LUNGHEZZA + 13, FUTURI_ALTEZZA + 4};
-COORD coord_posizione_campo = {1, 1};
-COORD coord_punteggio = {CAMPO_LUNGHEZZA + FUTURI_LUNGHEZZA + 7, FUTURI_ALTEZZA + 5};
-COORD coord_fine = {0, CAMPO_ALTEZZA + 10};
+
 
 void stampa_riserva_tetramino(TipoTetramino tipo){
 
@@ -14,80 +8,80 @@ void stampa_riserva_tetramino(TipoTetramino tipo){
 
     switch(tipo){ 
         case TipoTetramino::I:
-            strcpy(tetramino[2][1], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[3][1], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[4][1], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[5][1], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[2][2], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[3][2], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[4][2], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[5][2], gioco.BLOCCO_DESTRA);
+            strcpy(tetramino[2][1], BLOCCO_SINISTRA);
+            strcpy(tetramino[3][1], BLOCCO_SINISTRA);
+            strcpy(tetramino[4][1], BLOCCO_SINISTRA);
+            strcpy(tetramino[5][1], BLOCCO_SINISTRA);
+            strcpy(tetramino[2][2], BLOCCO_DESTRA);
+            strcpy(tetramino[3][2], BLOCCO_DESTRA);
+            strcpy(tetramino[4][2], BLOCCO_DESTRA);
+            strcpy(tetramino[5][2], BLOCCO_DESTRA);
             printf(CIANO);
             break;
         case TipoTetramino::J:
-            strcpy(tetramino[0][2], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[1][2], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[2][0], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[2][2], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[0][3], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[1][3], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[2][1], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[2][3], gioco.BLOCCO_DESTRA);
+            strcpy(tetramino[0][2], BLOCCO_SINISTRA);
+            strcpy(tetramino[1][2], BLOCCO_SINISTRA);
+            strcpy(tetramino[2][0], BLOCCO_SINISTRA);
+            strcpy(tetramino[2][2], BLOCCO_SINISTRA);
+            strcpy(tetramino[0][3], BLOCCO_DESTRA);
+            strcpy(tetramino[1][3], BLOCCO_DESTRA);
+            strcpy(tetramino[2][1], BLOCCO_DESTRA);
+            strcpy(tetramino[2][3], BLOCCO_DESTRA);
             printf(BLU_CHIARO);
             break;
         case TipoTetramino::L:
-            strcpy(tetramino[0][1], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[1][1], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[2][1], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[2][3], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[0][2], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[1][2], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[2][2], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[2][4], gioco.BLOCCO_DESTRA);
+            strcpy(tetramino[0][1], BLOCCO_SINISTRA);
+            strcpy(tetramino[1][1], BLOCCO_SINISTRA);
+            strcpy(tetramino[2][1], BLOCCO_SINISTRA);
+            strcpy(tetramino[2][3], BLOCCO_SINISTRA);
+            strcpy(tetramino[0][2], BLOCCO_DESTRA);
+            strcpy(tetramino[1][2], BLOCCO_DESTRA);
+            strcpy(tetramino[2][2], BLOCCO_DESTRA);
+            strcpy(tetramino[2][4], BLOCCO_DESTRA);
             printf(ARANCIONE);
             break;
         case TipoTetramino::O:
-            strcpy(tetramino[0][0], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[0][2], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[1][0], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[1][2], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[0][1], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[0][3], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[1][1], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[1][3], gioco.BLOCCO_DESTRA);
+            strcpy(tetramino[0][0], BLOCCO_SINISTRA);
+            strcpy(tetramino[0][2], BLOCCO_SINISTRA);
+            strcpy(tetramino[1][0], BLOCCO_SINISTRA);
+            strcpy(tetramino[1][2], BLOCCO_SINISTRA);
+            strcpy(tetramino[0][1], BLOCCO_DESTRA);
+            strcpy(tetramino[0][3], BLOCCO_DESTRA);
+            strcpy(tetramino[1][1], BLOCCO_DESTRA);
+            strcpy(tetramino[1][3], BLOCCO_DESTRA);
             printf(GIALLO_CHIARO);
             break;
         case TipoTetramino::Z:
-            strcpy(tetramino[0][0], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[0][2], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[1][2], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[1][4], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[0][1], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[0][3], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[1][3], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[1][5], gioco.BLOCCO_DESTRA);
+            strcpy(tetramino[0][0], BLOCCO_SINISTRA);
+            strcpy(tetramino[0][2], BLOCCO_SINISTRA);
+            strcpy(tetramino[1][2], BLOCCO_SINISTRA);
+            strcpy(tetramino[1][4], BLOCCO_SINISTRA);
+            strcpy(tetramino[0][1], BLOCCO_DESTRA);
+            strcpy(tetramino[0][3], BLOCCO_DESTRA);
+            strcpy(tetramino[1][3], BLOCCO_DESTRA);
+            strcpy(tetramino[1][5], BLOCCO_DESTRA);
             printf(ROSSO_CHIARO);
             break;
         case TipoTetramino::S:
-            strcpy(tetramino[0][2], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[0][4], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[1][0], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[1][2], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[0][3], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[0][5], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[1][1], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[1][3], gioco.BLOCCO_DESTRA);
+            strcpy(tetramino[0][2], BLOCCO_SINISTRA);
+            strcpy(tetramino[0][4], BLOCCO_SINISTRA);
+            strcpy(tetramino[1][0], BLOCCO_SINISTRA);
+            strcpy(tetramino[1][2], BLOCCO_SINISTRA);
+            strcpy(tetramino[0][3], BLOCCO_DESTRA);
+            strcpy(tetramino[0][5], BLOCCO_DESTRA);
+            strcpy(tetramino[1][1], BLOCCO_DESTRA);
+            strcpy(tetramino[1][3], BLOCCO_DESTRA);
             printf(VERDE_CHIARO);
             break;
         case TipoTetramino::T:
-            strcpy(tetramino[0][0], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[0][2], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[0][4], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[1][2], gioco.BLOCCO_SINISTRA);
-            strcpy(tetramino[0][1], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[0][3], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[0][5], gioco.BLOCCO_DESTRA);
-            strcpy(tetramino[1][3], gioco.BLOCCO_DESTRA);
+            strcpy(tetramino[0][0], BLOCCO_SINISTRA);
+            strcpy(tetramino[0][2], BLOCCO_SINISTRA);
+            strcpy(tetramino[0][4], BLOCCO_SINISTRA);
+            strcpy(tetramino[1][2], BLOCCO_SINISTRA);
+            strcpy(tetramino[0][1], BLOCCO_DESTRA);
+            strcpy(tetramino[0][3], BLOCCO_DESTRA);
+            strcpy(tetramino[0][5], BLOCCO_DESTRA);
+            strcpy(tetramino[1][3], BLOCCO_DESTRA);
             printf(MAGENTA_CHIARO);
             break;
     }
@@ -113,80 +107,80 @@ void stampa_coda_tetramini(TipoTetramino tipo1, TipoTetramino tipo2, TipoTetrami
 
         switch(tipo[j]){ 
             case TipoTetramino::I:
-                strcpy(tetramino[j][2][1], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][3][1], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][4][1], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][5][1], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][2][2], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][3][2], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][4][2], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][5][2], gioco.BLOCCO_DESTRA);
+                strcpy(tetramino[j][2][1], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][3][1], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][4][1], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][5][1], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][2][2], BLOCCO_DESTRA);
+                strcpy(tetramino[j][3][2], BLOCCO_DESTRA);
+                strcpy(tetramino[j][4][2], BLOCCO_DESTRA);
+                strcpy(tetramino[j][5][2], BLOCCO_DESTRA);
                 printf(CIANO);
                 break;
             case TipoTetramino::J:
-                strcpy(tetramino[j][0][2], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][1][2], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][2][0], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][2][2], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][0][3], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][1][3], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][2][1], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][2][3], gioco.BLOCCO_DESTRA);
+                strcpy(tetramino[j][0][2], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][1][2], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][2][0], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][2][2], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][0][3], BLOCCO_DESTRA);
+                strcpy(tetramino[j][1][3], BLOCCO_DESTRA);
+                strcpy(tetramino[j][2][1], BLOCCO_DESTRA);
+                strcpy(tetramino[j][2][3], BLOCCO_DESTRA);
                 printf(BLU_CHIARO);
                 break;
             case TipoTetramino::L:
-                strcpy(tetramino[j][0][1], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][1][1], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][2][1], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][2][3], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][0][2], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][1][2], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][2][2], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][2][4], gioco.BLOCCO_DESTRA);
+                strcpy(tetramino[j][0][1], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][1][1], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][2][1], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][2][3], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][0][2], BLOCCO_DESTRA);
+                strcpy(tetramino[j][1][2], BLOCCO_DESTRA);
+                strcpy(tetramino[j][2][2], BLOCCO_DESTRA);
+                strcpy(tetramino[j][2][4], BLOCCO_DESTRA);
                 printf(ARANCIONE);
                 break;
             case TipoTetramino::O:
-                strcpy(tetramino[j][0][0], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][0][2], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][1][0], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][1][2], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][0][1], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][0][3], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][1][1], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][1][3], gioco.BLOCCO_DESTRA);
+                strcpy(tetramino[j][0][0], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][0][2], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][1][0], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][1][2], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][0][1], BLOCCO_DESTRA);
+                strcpy(tetramino[j][0][3], BLOCCO_DESTRA);
+                strcpy(tetramino[j][1][1], BLOCCO_DESTRA);
+                strcpy(tetramino[j][1][3], BLOCCO_DESTRA);
                 printf(GIALLO_CHIARO);
                 break;
             case TipoTetramino::Z:
-                strcpy(tetramino[j][0][0], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][0][2], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][1][2], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][1][4], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][0][1], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][0][3], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][1][3], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][1][5], gioco.BLOCCO_DESTRA);
+                strcpy(tetramino[j][0][0], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][0][2], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][1][2], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][1][4], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][0][1], BLOCCO_DESTRA);
+                strcpy(tetramino[j][0][3], BLOCCO_DESTRA);
+                strcpy(tetramino[j][1][3], BLOCCO_DESTRA);
+                strcpy(tetramino[j][1][5], BLOCCO_DESTRA);
                 printf(ROSSO_CHIARO);
                 break;
             case TipoTetramino::S:
-                strcpy(tetramino[j][0][2], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][0][4], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][1][0], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][1][2], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][0][3], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][0][5], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][1][1], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][1][3], gioco.BLOCCO_DESTRA);
+                strcpy(tetramino[j][0][2], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][0][4], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][1][0], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][1][2], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][0][3], BLOCCO_DESTRA);
+                strcpy(tetramino[j][0][5], BLOCCO_DESTRA);
+                strcpy(tetramino[j][1][1], BLOCCO_DESTRA);
+                strcpy(tetramino[j][1][3], BLOCCO_DESTRA);
                 printf(VERDE_CHIARO);
                 break;
             case TipoTetramino::T:
-                strcpy(tetramino[j][0][0], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][0][2], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][0][4], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][1][2], gioco.BLOCCO_SINISTRA);
-                strcpy(tetramino[j][0][1], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][0][3], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][0][5], gioco.BLOCCO_DESTRA);
-                strcpy(tetramino[j][1][3], gioco.BLOCCO_DESTRA);
+                strcpy(tetramino[j][0][0], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][0][2], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][0][4], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][1][2], BLOCCO_SINISTRA);
+                strcpy(tetramino[j][0][1], BLOCCO_DESTRA);
+                strcpy(tetramino[j][0][3], BLOCCO_DESTRA);
+                strcpy(tetramino[j][0][5], BLOCCO_DESTRA);
+                strcpy(tetramino[j][1][3], BLOCCO_DESTRA);
                 printf(MAGENTA_CHIARO);
                 break;
             }

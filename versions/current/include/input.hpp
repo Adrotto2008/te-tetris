@@ -16,6 +16,7 @@ public:
     char input = 0;
 
     void scan();      
+    bool valido();
     TipoInput azione();
     TipoInput rotazione();       
     TipoInput destra();

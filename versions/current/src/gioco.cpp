@@ -30,6 +30,8 @@ void Gioco::partitaSinglePlayer(){
     Tetramino* RiservaTetramino[2] = {NULL};
     short sostituzioni = 0;
     TipoInput ultima_azione = TipoInput::NULLA;
+    TipoInput azione_ultima_speranza;
+    short posizione_linee_liberate;
 
     for(short i = 0; i < 3; i++){
         CodaTetramini[i] = new Tetramino();
@@ -56,8 +58,13 @@ void Gioco::partitaSinglePlayer(){
             punteggio.tetrisCompleto();
         }
 
-        punteggio.comboAttuale(punteggio.lineeRiempite(campo.controlloPunti()));        
+        campo.controlloPunti();
+        punteggio.lineeRiempite();
+        punteggio.comboAttuale();        
         
+        if(punteggio.n_linee_completate > 0){
+            
+        }
 
 		bool puo_sostituire = true;
 
@@ -74,9 +81,9 @@ void Gioco::partitaSinglePlayer(){
 
             /*-----------GESTIONE DELL'INPUT-----------------*/
             
-            TipoInput azione_ultima_speranza = TipoInput::NULLA;
+            azione_ultima_speranza = TipoInput::NULLA;
             prova:
-            timer_input = 500;
+            timer_input = timer_input_origine;
             thread countdownInput(countdown_input, timer_input);
 
             while(timer_input){
@@ -85,7 +92,7 @@ void Gioco::partitaSinglePlayer(){
                 if(kbhit() || azione_ultima_speranza != TipoInput::NULLA){    
 
                     if(azione_ultima_speranza == TipoInput::NULLA){
-                        input.input = 0;
+                        
                         input.scan();
                     }else{
                         azione_ultima_speranza = TipoInput::NULLA;
@@ -195,6 +202,10 @@ void Gioco::partitaSinglePlayer(){
 
                 posizione_cursore(coord_punteggio);
                 printf("punteggio : %.0f", punteggio.punti);
+                posizione_cursore(coord_linee);
+                printf("linee completate : %d", punteggio.n_linee_completate);
+                posizione_cursore(coord_livello);
+                printf("livello : %hd", punteggio.livello);
 
             }
 
@@ -212,12 +223,12 @@ void Gioco::partitaSinglePlayer(){
 
                 if(CodaTetramini[0]->in_movimento){
     
-                    timer_caduta = 500;
+                    timer_caduta = timer_caduta_origine;
                     thread countdownCaduta(countdown_caduta, timer_caduta);
 
                     while(timer_caduta){
 
-                        input.input = 0;
+                        
                         if(kbhit()){
                             
                             input.scan();
@@ -452,8 +463,8 @@ void Gioco::opzioni(){
     Input input2;
     bool uscita = false;
     bool uscita_piccolo = false;
-    char nuovo;
-    char nuovo2;
+    Input input_sinistra;
+    Input input_destra;
 
     COORD pos = {PADDING, 2};
     
@@ -723,14 +734,17 @@ void Gioco::opzioni(){
                                             strcpy(BLOCCO_GHOST_DESTRA, "}\0");
                                         }
                                         if(pos.X == 13 && pos.Y == 25){ // tipo ghostblock : personale
+                                            cursore_manuale(16, 25);
                                             do{
-                                                nuovo = _getch();
-                                                nuovo2 = _getch();
-                                            }while( ( (nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z') ) && ( (nuovo2 < 'a' || nuovo2 > 'z') && (nuovo2 < 'A' || nuovo2 > 'Z') ));
-                                            cursore_manuale(16, 25); // rifai il controllo con un array di char che crei a mano
-                                            printf("%c%c", nuovo, nuovo2);
-                                            sprintf(BLOCCO_GHOST_SINISTRA, "%c\0",nuovo);
-                                            sprintf(BLOCCO_GHOST_DESTRA, "%c\0",nuovo2);
+                                                input_sinistra.scan();
+                                            }while(!input_sinistra.valido());
+                                            printf("%c", input_sinistra.input);
+                                            sprintf(BLOCCO_GHOST_SINISTRA, "%c\0",input_sinistra.input);
+                                            do{
+                                                input_destra.scan();
+                                            }while (!input_destra.valido());
+                                            printf("%c", input_destra.input);
+                                            sprintf(BLOCCO_GHOST_DESTRA, "%c\0",input_destra.input);
                                         }
                                         uscita_piccolo = true;
                                         break;

@@ -91,7 +91,9 @@ void from_json(const json& j, GameStartedDTO& g);
 
 // ---- Variabili globali ----
 extern int timer_input;
+extern int timer_input_origine;
 extern int timer_caduta;
+extern int timer_caduta_origine;
 
 // ---- Config ----
 std::string apri_config();

@@ -47,6 +47,17 @@ void Input::scan(){
     
 }
 
+bool Input::valido(){
+    
+    for (char c: CARATTERI_POSSIBILI){
+        if(c == input)
+            return true;
+    }
+    
+    return false;
+
+}
+
 TipoInput Input::azione(){
 
     if(destra() == TipoInput::DESTRA){

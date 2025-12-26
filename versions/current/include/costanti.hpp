@@ -160,6 +160,7 @@ enum class TipoColori{
 /*-------------VARIABILI GLOBALI DI IMPOSTAZIONI-----------*/
 
 /*------------INPUT-------------*/
+extern std::array<char, 80> CARATTERI_POSSIBILI;
 extern std::array<char, 3> ROTAZIONE;        // freccia su
 extern std::array<char, 2> ROTAZIONE_ANTIORARIA;        
 extern std::array<char, 2> ROTAZIONE_DOPPIA;        
@@ -187,6 +188,8 @@ extern COORD coord_terzo_tetramino_futuro;
 extern COORD coord_tetramino_riserva;
 extern COORD coord_posizione_campo;
 extern COORD coord_punteggio;
+extern COORD coord_linee;
+extern COORD coord_livello;
 extern COORD coord_fine;
 
 #endif

@@ -36,10 +36,10 @@ bool Punteggio::t_spin(TipoTetramino tipo, COORD p0, TipoInput input){
 
 }
 
-short Punteggio::lineeRiempite(short linee_riempite){
+void Punteggio::lineeRiempite(){
 
         /*---------------------LINEE---------------------*/
-        switch(linee_riempite){
+        switch(campo.linee_riempite){
 
             case 1 :
                 punti += 100;
@@ -60,13 +60,20 @@ short Punteggio::lineeRiempite(short linee_riempite){
 
         }
 
-        return linee_riempite;
+        n_linee_completate += campo.linee_riempite;
+
+        if(n_linee_completate - livello * 10 >= 0){
+            
+            if(livello < 25)
+                nuovo_livello();
+        
+        }
 
 }
 
-void Punteggio::comboAttuale(short linee_riempite){
+void Punteggio::comboAttuale(){
 
-    if(!linee_riempite){
+    if(!campo.linee_riempite){
         combo = 0;
     } else {
         combo++;
@@ -93,4 +100,12 @@ void Punteggio::cadutaIstantanea(short linee_percorse){
 
 void Punteggio::tetrisCompleto(){
     punti += 7777;
+}
+
+void Punteggio::nuovo_livello(){
+
+    timer_input_origine = std::round(1000 / (1 + 0.18 * pow((livello), 1.6)));
+    printf("%d", timer_input_origine);
+    livello++;
+
 }

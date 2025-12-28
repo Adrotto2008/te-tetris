@@ -14,6 +14,7 @@
 #include "input.hpp"
 #include "tetramino.hpp"
 #include "punteggio.hpp"
+#include "audio.hpp"
 #include <chrono>
 #include <thread>
 
@@ -22,7 +23,7 @@ class Gioco{
     public:
 
         /*-------------METODI----------------*/
-        void partitaSinglePlayer();
+        void partitaSinglePlayer(float volumi_musica, float volumi_suoni);
         void multiPlayerStanza(std::string& nome);
         void opzioniStanza(Online* online, RoomDTO stanza, bool owner = false);
         void listaStanze(Online* online, std::string& nome);

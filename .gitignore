@@ -9,3 +9,6 @@ build/
 
 # VS Code
 .vscode/
+
+# file di configurazione
+config.json

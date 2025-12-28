@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-Online::Online(const std::string& serverIp, int port)
-    : _serverIp(serverIp), _port(port)
+Online::Online(const std::string& serverIp)
+    : _serverIp(serverIp)
 {
     _ws.setOnMessageCallback([this](const ix::WebSocketMessagePtr& msg) {
         _handleIncomingMessage(msg);
@@ -18,7 +18,7 @@ void Online::login(const std::string& username) {
     _username = username;
 
     std::string url =
-        "ws://" + _serverIp + ":" + std::to_string(_port) +
+        "ws://" + _serverIp +
         "/ws?username=" + _username;
 
     _ws.setUrl(url);
@@ -34,7 +34,7 @@ void Online::disconnect() {
 }
 
 std::vector<RoomDTO> Online::getAvailableRooms() {
-    httplib::Client cli(_serverIp, _port);
+    httplib::Client cli(_serverIp, 80);
     auto res = cli.Get("/room/getAll", headers);
 
     std::vector<RoomDTO> rooms;
@@ -55,7 +55,7 @@ std::vector<RoomDTO> Online::getAvailableRooms() {
 }
 
 RoomDTO Online::createRoom(const std::string& roomName) {
-    httplib::Client cli(_serverIp, _port);
+    httplib::Client cli(_serverIp, 80);
     auto res = cli.Post(
         ("/room/create/" + roomName).c_str(),
         headers,
@@ -67,7 +67,7 @@ RoomDTO Online::createRoom(const std::string& roomName) {
 }
 
 bool Online::joinRoom(int roomId) {
-    httplib::Client cli(_serverIp, _port);
+    httplib::Client cli(_serverIp, 80);
     auto res = cli.Post(
         ("/room/join/" + std::to_string(roomId)).c_str(),
         headers,

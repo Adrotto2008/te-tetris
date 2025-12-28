@@ -28,9 +28,9 @@ void Campo::stampa(COORD posizione_tetramino[], COORD backup_posizione_tetramino
         for(short i = 0; i < 8; i++){
             cursore_manuale(posizione_ghost_block[i].X + 1, posizione_ghost_block[i].Y + 1);
             if(i%2==0)
-                printf("%s", BLOCCO_GHOST_SINISTRA);
+                fwrite(BLOCCO_GHOST_SINISTRA, 1, strlen(BLOCCO_GHOST_SINISTRA), stdout);
             else 
-                printf("%s", BLOCCO_GHOST_DESTRA);
+                fwrite(BLOCCO_GHOST_DESTRA, 1, strlen(BLOCCO_GHOST_DESTRA), stdout);
             }
     }
 
@@ -49,7 +49,8 @@ void Campo::stampa(COORD posizione_tetramino[], COORD backup_posizione_tetramino
     /*-----------STAMPA TETRAMINO----------------------*/
     for(short i = 0; i < 8; i++){
         cursore_manuale(posizione_tetramino[i].X + 1, posizione_tetramino[i].Y + 1);
-        printf("%s", casella[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco);
+        fwrite(casella[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco, 1, strlen(casella[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco), stdout);
+        //printf("%hd", casella[posizione_tetramino[i].Y][posizione_tetramino[i].X].id % 10);
     }
     
     posizione_cursore(coord_fine);
@@ -73,7 +74,7 @@ void Campo::stampaTotale() {
                 case magenta : printf(MAGENTA_CHIARO); break;
             }            
 
-            printf("%s", casella[i][j].blocco);
+            fwrite(casella[i][j].blocco, 1, strlen(casella[i][j].blocco), stdout);
         }
     }
 }
@@ -81,8 +82,8 @@ void Campo::stampaTotale() {
 void Campo::scesa() {
     if(linee_riempite == 0) return;
 
-    for(short i = 0; i < linee_riempite; i++){
-        for(short j = posizione_riga; j >= 1; j--){
+    for(short i = linee_riempite; i >= 0; i--){
+        for(short j = posizione_riga[i]; j >= 1; j--){
             for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++){
                 casella[j][k] = casella[j-1][k];
             }
@@ -97,7 +98,7 @@ void Campo::scesa() {
 void Campo::controlloPunti() {
     bool linea_riempita;
     linee_riempite = 0;
-    posizione_riga = 0;
+    for(short i = 0; i < 4; i++) posizione_riga[i] = 0;
 
     for(short i = CAMPO_ALTEZZA - 3; i >= 0; i--){
         linea_riempita = true;
@@ -106,12 +107,14 @@ void Campo::controlloPunti() {
                 linea_riempita = false;
         }
         if(linea_riempita){
-            if(posizione_riga == 0) posizione_riga = i;
+            if(posizione_riga[linee_riempite] == 0) posizione_riga[linee_riempite] = i;
             linee_riempite++;
         }
     }
 
     if(linee_riempite != 0){
+        //for(short i = 0; i < linee_riempite; i++)   printf("n linee : %hd, riga %hd : %hd  ", linee_riempite, i + 1, posizione_riga[i]);
+        //std::this_thread::sleep_for(1000ms);
         animazione_linea_liberata();
         scesa();
     }
@@ -130,38 +133,59 @@ bool Campo::controlloPrimaLinea(){
 }
 
 void Campo::animazione_linea_liberata(){
-    cursore_manuale(1, posizione_riga + 1 - linee_riempite + 1);
 
-    printf(GRIGIO);
-    for(short i = 0; i < linee_riempite; i++){
-        cursore_manuale(1, posizione_riga + 1 - linee_riempite + 1 + i);
-        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga - linee_riempite + 1][k].blocco);
-        cursore_manuale(1, posizione_riga + 1 - linee_riempite + 1 + i);
-        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga - linee_riempite + 1][k].blocco);
-    }
+    AudioManager audio;
+
+    audio.caricaSuono("linea_singola", "linea_singola");
+
+    for(short j = 0; j < linee_riempite; j++){
+
+        cursore_manuale(1, posizione_riga[j] + 1);
+
+        printf(GRIGIO);
+
+        cursore_manuale(1, posizione_riga[j] + 1);
+        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga[j]][k].blocco);
+        cursore_manuale(1, posizione_riga[j] + 1);
+        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga[j]][k].blocco);
         
-    std::this_thread::sleep_for(200ms);
+    }
 
-    printf(BIANCO);
-    for(short i = 0; i < linee_riempite; i++){
-        cursore_manuale(1, posizione_riga + 1 - linee_riempite + 1 + i);
-        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga - linee_riempite + 1][k].blocco);
-        cursore_manuale(1, posizione_riga + 1 - linee_riempite + 1 + i);
-        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga - linee_riempite + 1][k].blocco);
-    }   
-    std::this_thread::sleep_for(200ms);
-
-    printf(GRIGIO);
-    for(short i = 0; i < linee_riempite; i++){
-        cursore_manuale(1, posizione_riga + 1 - linee_riempite + 1 + i);
-        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga - linee_riempite + 1][k].blocco);
-        cursore_manuale(1, posizione_riga + 1 - linee_riempite + 1 + i);
-        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga - linee_riempite + 1][k].blocco);
-    }    
-    std::this_thread::sleep_for(200ms);
+    std::this_thread::sleep_for(20ms);
     
-    cursore_manuale(1, posizione_riga + 1 - linee_riempite + 1);
+    for(short j = 0; j < linee_riempite; j++){
+
+        std::this_thread::sleep_for(200ms);
+
+        printf(BIANCO);
+        
+        cursore_manuale(1, posizione_riga[j] + 1);
+        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga[j] ][k].blocco);
+        cursore_manuale(1, posizione_riga[j] + 1);
+        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga[j]][k].blocco);
+
+    }
+
+    std::this_thread::sleep_for(200ms);
+
+    for(short j = 0; j < linee_riempite; j++){
+        
+        std::this_thread::sleep_for(200ms);
+
+        printf(GRIGIO);
+
+        cursore_manuale(1, posizione_riga[j] + 1);
+        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga[j] ][k].blocco);
+        cursore_manuale(1, posizione_riga[j] + 1);
+        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga[j] ][k].blocco);
+
+    }
+
+    std::this_thread::sleep_for(50ms);
+    
     printf(BIANCO);
-    for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga - linee_riempite + 1][k].blocco);  
+
+    
+
 
 }

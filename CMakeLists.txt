@@ -50,6 +50,29 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(cpp_httplib)
 
 # ============================================================
+# SFML (FetchContent)
+# ============================================================
+
+# Disabilita tutto ciò che non serve e il supporto OGG/Vorbis
+set(SFML_BUILD_AUDIO ON CACHE BOOL "" FORCE)
+set(SFML_BUILD_SYSTEM ON CACHE BOOL "" FORCE)
+set(SFML_BUILD_WINDOW OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_GRAPHICS OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_NETWORK OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(SFML_INSTALL OFF CACHE BOOL "" FORCE)
+set(SFML_USE_VORBIS OFF CACHE BOOL "" FORCE)
+set(SFML_USE_OGG OFF CACHE BOOL "" FORCE)
+
+FetchContent_Declare(
+    sfml
+    GIT_REPOSITORY https://github.com/SFML/SFML.git
+    GIT_TAG 2.5.1
+)
+FetchContent_MakeAvailable(sfml)
+
+# ============================================================
 # IXWebSocket (subproject, NO install, NO TLS)
 # ============================================================
 set(IXWEBSOCKET_BUILD_TESTS OFF CACHE BOOL "" FORCE)
@@ -91,6 +114,14 @@ target_link_libraries(te_tetris PRIVATE
     ixwebsocket
     nlohmann_json::nlohmann_json
     ZLIB::ZLIB
+)
+
+# ============================================================
+# LINK SFML AL PROGETTO
+# ============================================================
+target_link_libraries(te_tetris PRIVATE
+    sfml-audio
+    sfml-system
 )
 
 # ============================================================

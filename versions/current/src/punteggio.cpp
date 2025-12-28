@@ -104,8 +104,11 @@ void Punteggio::tetrisCompleto(){
 
 void Punteggio::nuovo_livello(){
 
-    timer_input_origine = std::round(1000 / (1 + 0.18 * pow((livello), 1.6)));
-    printf("%d", timer_input_origine);
-    livello++;
+    if(livello < 25){
+        timer_input_origine = std::round(1000 / (1 + 0.18 * pow((livello), 1.6)));
+        livello++;
+    }
+    else timer_input_origine = 1;
+
 
 }

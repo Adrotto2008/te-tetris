@@ -3,6 +3,7 @@
 
 #include "costanti.hpp"
 #include "grafica.hpp"
+#include "audio.hpp"
 #include "gioco.hpp"
 #include "punteggio.hpp"
 #include <stdio.h>
@@ -20,7 +21,7 @@ class Campo {
     public:
     
         short linee_riempite = 0;
-        short posizione_riga = 0;
+        short posizione_riga[4] = {0};
         Casella casella[CAMPO_ALTEZZA - 2][CAMPO_LUNGHEZZA - 2];
 
         void inizializza();

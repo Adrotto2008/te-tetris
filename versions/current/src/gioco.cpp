@@ -5,12 +5,22 @@ using namespace chrono;
 
 Gioco gioco;
 
-void Gioco::partitaSinglePlayer(){
+void Gioco::partitaSinglePlayer(float volume_musica, float volume_suoni){
 
     printf(BIANCO);
     cmd_grande();
     nascondi_cursore();
     pulisci();
+
+    AudioManager audio;
+    audio.caricaMusiche("../sounds/music/gioco");
+    audio.avviaMusicaCasuale();
+    audio.setVolumeMusica(volume_musica);
+
+    audio.caricaSuono("movimento", "movimento");
+    audio.caricaSuono("linea_singola", "linea_singola");
+    audio.caricaSuono("rotazione", "rotazione");
+    audio.setVolumeSuoni(volume_suoni);
 
     // disegno la cornice del campo
     cornice(0, 0, CAMPO_LUNGHEZZA, CAMPO_ALTEZZA);
@@ -61,14 +71,14 @@ void Gioco::partitaSinglePlayer(){
         campo.controlloPunti();
         punteggio.lineeRiempite();
         punteggio.comboAttuale();        
-        
-        if(punteggio.n_linee_completate > 0){
-            
-        }
 
 		bool puo_sostituire = true;
 
 		while(CodaTetramini[0]->in_movimento){//FARE in_movimento
+
+
+            /*---------------CONTROLLO MUSICA------------------*/
+            audio.aggiornaMusica();
 
             //salvo le cordinate nei backup
             for(short k = 0; k < 8; k++){
@@ -143,6 +153,7 @@ void Gioco::partitaSinglePlayer(){
                             CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
                             CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
                             CodaTetramini[0]->sposta_destra();
+                            audio.suona("movimento");
                         }
 
                         if(input.sinistra() == TipoInput::SINISTRA && CodaTetramini[0]->puo_sinistra() == Collisioni::LIBERO){
@@ -150,6 +161,7 @@ void Gioco::partitaSinglePlayer(){
                             CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
                             CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
                             CodaTetramini[0]->sposta_sinistra();
+                            audio.suona("movimento");
                         }
 
                         if(input.rotazione() == TipoInput::GIROORARIO && CodaTetramini[0]->puo_girare(TipoInput::GIROORARIO) == Collisioni::LIBERO) {
@@ -157,6 +169,7 @@ void Gioco::partitaSinglePlayer(){
                             CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
                             CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
                             CodaTetramini[0]->gira(TipoInput::GIROORARIO);
+                            audio.suona("rotazione");
                         }else 
                         
                         if(input.rotazione() == TipoInput::GIROANTIORARIO && CodaTetramini[0]->puo_girare(TipoInput::GIROANTIORARIO) == Collisioni::LIBERO) { 
@@ -164,6 +177,7 @@ void Gioco::partitaSinglePlayer(){
                             CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
                             CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
                             CodaTetramini[0]->gira(TipoInput::GIROANTIORARIO);
+                            audio.suona("rotazione");
                         }else
 
                         if(input.rotazione() == TipoInput::GIRODOPPIO && CodaTetramini[0]->puo_girare(TipoInput::GIRODOPPIO) == Collisioni::LIBERO) { 
@@ -171,6 +185,7 @@ void Gioco::partitaSinglePlayer(){
                             CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
                             CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
                             CodaTetramini[0]->gira(TipoInput::GIRODOPPIO);
+                            audio.suona("rotazione");
                         }
 
                         if(input.uscita() == TipoInput::ESCI){
@@ -274,6 +289,7 @@ void Gioco::partitaSinglePlayer(){
 
 	}
 
+    audio.fermaMusica();
     campo.stampa(CodaTetramini[0]->p, backup_tetramino, CodaTetramini[0]->ghost_block(), CodaTetramini[0]->in_movimento);
     posizione_cursore(coord_fine);
     printf("hai perso");
@@ -295,7 +311,7 @@ void Gioco::multiPlayerStanza(std::string& nome){
         ESCI = 0
     };
 
-    Online online("100.72.208.113", 8080);
+    Online online("tetrisserver-l6m2.onrender.com");
 
     online.login(nome);
 
@@ -457,6 +473,8 @@ void Gioco::listaStanze(Online* online, std::string& nome){
 void Gioco::opzioni(){
 
     pulisci();
+    AudioManager audio;
+    audio.caricaMusiche("../sounds/music/opzioni");
     cornice(0, 0, 70, 30);
 
     Input input;
@@ -540,6 +558,8 @@ void Gioco::opzioni(){
     printf(">");
 
     do{
+
+        audio.aggiornaMusica();
 
         if(kbhit()){
             input.scan();
@@ -935,6 +955,8 @@ void Gioco::opzioni(){
         }
 
     }while(!uscita);
+
+    audio.fermaMusica();
     salva_config();
 }
 
@@ -946,6 +968,8 @@ void Gioco::comandi(){
     COORD posizione_att;
     Input input;
     bool esci = false;
+    AudioManager audio;
+    audio.caricaMusiche("../sounds/music/opzioni");
 
     cornice(0, 0, 120, 25);
 
@@ -986,7 +1010,6 @@ void Gioco::comandi(){
         c = CADUTA_VELOCE[i];
         printf("%2c", c);
     }
-    posizione_cursore(posizione_att);
     printf(" ↓");
 
     cursore_manuale(5, i+=2);
@@ -1042,7 +1065,11 @@ void Gioco::comandi(){
 
     do{  
 
+    audio.aggiornaMusica();
+
         if(kbhit()){
+
+            
 
             input.scan();
 
@@ -1388,6 +1415,7 @@ void Gioco::comandi(){
 
     }while(!esci);
 
+    audio.fermaMusica();
     system("chcp 850");
     setlocale(LC_ALL, "");
     salva_config();

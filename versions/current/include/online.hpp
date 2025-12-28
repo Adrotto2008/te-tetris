@@ -22,7 +22,7 @@
 
 class Online {
 public:
-    Online(const std::string& serverIp, int port);
+    Online(const std::string& serverIp);
     ~Online();
 
     void login(const std::string& username);
@@ -41,7 +41,6 @@ public:
 
 private:
     std::string _serverIp;
-    int _port;
     std::string _username;
 
     ix::WebSocket _ws;

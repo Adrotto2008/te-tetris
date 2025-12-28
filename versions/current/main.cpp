@@ -7,6 +7,7 @@
 #include "campo.hpp"
 #include "grafica.hpp"
 #include "input.hpp"
+#include "audio.hpp"
 #include "tetramino.hpp"
 #include "punteggio.hpp"
 #include "gioco.hpp"
@@ -23,7 +24,10 @@ int main(void){
     cmd_grande();
     Input input;
     std::string nome;
+    AudioManager audio;
+    audio.caricaMusiche("../sounds/music/menu");
 
+    audio.setVolumeMusica(40);
     pulisci();
     printf(CURSORE_INVISIBILE);
     nome = apri_config();
@@ -47,6 +51,8 @@ int main(void){
         printf(">");
 
         do{
+
+            audio.aggiornaMusica();
 
             if(kbhit()){
 
@@ -80,7 +86,8 @@ int main(void){
                     switch(i){
 
                         case static_cast<short>(CordinateOpzioni::SINGLEPLAYER):
-                            gioco.partitaSinglePlayer();
+                            audio.fermaMusica();
+                            gioco.partitaSinglePlayer(70, 50);
                             uscita_menu = true;
                             break;
 
@@ -90,16 +97,20 @@ int main(void){
                             break;
 
                         case static_cast<short>(CordinateOpzioni::OPZIONI):
+                            audio.fermaMusica();
                             gioco.opzioni();
                             uscita_menu = true;
                             break;
 
                         case static_cast<short>(CordinateOpzioni::COMANDI):
+                            audio.fermaMusica();
                             gioco.comandi();
+                            
                             uscita_menu = true;
                             break;
 
                         case static_cast<short>(CordinateOpzioni::CREDITI):
+                            audio.fermaMusica();
                             break;
 
                         case static_cast<short>(CordinateOpzioni::ESCI):
@@ -119,7 +130,7 @@ int main(void){
 
     }while(!uscita);
 
-
+    audio.fermaMusica();
     posizione_cursore(coord_fine);
     ripristina_echo();
     return 0;

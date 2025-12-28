@@ -4,6 +4,7 @@
 using namespace std;
 
 int Tetramino::id_tetramini = '0' - 1;
+//int Tetramino::id_tetramini = 0;
 
 Tetramino::Tetramino(){
     this->inizializza();

@@ -2,7 +2,6 @@
 
 using namespace std;
 using namespace chrono;
-using cronometro = std::chrono::steady_clock;
 
 Gioco gioco;
 
@@ -36,9 +35,6 @@ void Gioco::partitaSinglePlayer(float volume_musica, float volume_suoni){
     
     Input input;
     campo.inizializza(); 
-
-    cronometro::time_point inizio;
-    cronometro::time_point attuale;
 
     Tetramino* CodaTetramini[4] = {NULL};
     Tetramino* RiservaTetramino[2] = {NULL};
@@ -98,10 +94,10 @@ void Gioco::partitaSinglePlayer(float volume_musica, float volume_suoni){
             azione_ultima_speranza = TipoInput::NULLA;
             prova:
             timer_input = timer_input_origine;
+            thread countdownInput(countdown_input, timer_input);
 
-            inizio = cronometro::now();
+            while(timer_input){
 
-            do{
                 
                 if(kbhit() || azione_ultima_speranza != TipoInput::NULLA){    
 
@@ -129,7 +125,7 @@ void Gioco::partitaSinglePlayer(float volume_musica, float volume_suoni){
                             if(sostituzioni == 1){
                                 RiservaTetramino[0] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo);
                                 stampa_riserva_tetramino(RiservaTetramino[0]->tipo);
-                                //
+                                countdownInput.join();
                                 goto PRIMO_CAMBIO;
                             } else {
                                 RiservaTetramino[1] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo);
@@ -193,7 +189,7 @@ void Gioco::partitaSinglePlayer(float volume_musica, float volume_suoni){
                         }
 
                         if(input.uscita() == TipoInput::ESCI){
-                            //
+                            countdownInput.join();
                             return;
                         }
 
@@ -226,12 +222,9 @@ void Gioco::partitaSinglePlayer(float volume_musica, float volume_suoni){
                 posizione_cursore(coord_livello);
                 printf("livello : %hd", punteggio.livello);
 
-                std::this_thread::sleep_for(std::chrono::milliseconds(5));
-                attuale = cronometro::now();
+            }
 
-            }while(std::chrono::duration_cast<std::chrono::milliseconds>(attuale - inizio).count() < timer_input_origine);
-
-            
+            countdownInput.join();
 
             /*---------------------CADUTA--------------------*/
 
@@ -245,9 +238,10 @@ void Gioco::partitaSinglePlayer(float volume_musica, float volume_suoni){
 
                 if(CodaTetramini[0]->in_movimento){
     
-                    inizio = cronometro::now();
+                    timer_caduta = timer_caduta_origine;
+                    thread countdownCaduta(countdown_caduta, timer_caduta);
 
-                    do{
+                    while(timer_caduta){
 
                         
                         if(kbhit()){
@@ -259,17 +253,14 @@ void Gioco::partitaSinglePlayer(float volume_musica, float volume_suoni){
 
                             if(azione_ultima_speranza != TipoInput::NULLA && ultima_speranza < 4){
                                 ultima_speranza++;
-                                //
+                                countdownCaduta.join();
                                 goto prova;
                             }
                         }
 
-                        std::this_thread::sleep_for(std::chrono::milliseconds(5));
-                        attuale = cronometro::now();
+                    }
 
-                    }while(std::chrono::duration_cast<std::chrono::milliseconds>(attuale - inizio).count() < timer_caduta_origine);
-
-                    
+                    countdownCaduta.join();
                     
                     
                     CodaTetramini[0]->in_movimento = false;

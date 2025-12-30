@@ -122,6 +122,11 @@ void from_json(const json& j, GameStartedDTO& g) {
         strncpy(g.players[i], pls[i].get<string>().c_str(), MAX_STR_LEN-1);
 }
 
+// ---------------- Timer ----------------
+
+void countdown_input(int ms) { this_thread::sleep_for(milliseconds(ms)); timer_input = 0; }
+void countdown_caduta(int ms) { this_thread::sleep_for(milliseconds(ms)); timer_caduta = 0; }
+
 // ---------------- Config ----------------
 
 string apri_config() {

@@ -23,12 +23,13 @@ class Gioco{
     public:
 
         /*-------------METODI----------------*/
-        void partitaSinglePlayer(float volumi_musica, float volumi_suoni);
+        void partitaSinglePlayer();
         void multiPlayerStanza(std::string& nome);
         void opzioniStanza(Online* online, RoomDTO stanza, bool owner = false);
         void listaStanze(Online* online, std::string& nome);
         void partitaMultiPlayer();
         void opzioni();
+        void stampaSuoni(bool is_suoni);
         void comandi();
 
 };

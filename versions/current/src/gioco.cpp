@@ -6,7 +6,7 @@ using cronometro = std::chrono::steady_clock;
 
 Gioco gioco;
 
-void Gioco::partitaSinglePlayer(float volume_musica, float volume_suoni){
+void Gioco::partitaSinglePlayer(){
 
     printf(BIANCO);
     cmd_grande();
@@ -16,12 +16,12 @@ void Gioco::partitaSinglePlayer(float volume_musica, float volume_suoni){
     AudioManager audio;
     audio.caricaMusiche("../sounds/music/gioco");
     audio.avviaMusicaCasuale();
-    audio.setVolumeMusica(volume_musica);
+    audio.setVolumeMusica(AUDIO_MUSICA);
 
     audio.caricaSuono("movimento", "movimento");
     audio.caricaSuono("linea_singola", "linea_singola");
     audio.caricaSuono("rotazione", "rotazione");
-    audio.setVolumeSuoni(volume_suoni);
+    audio.setVolumeSuoni(AUDIO_SUONI);
 
     // disegno la cornice del campo
     cornice(0, 0, CAMPO_LUNGHEZZA, CAMPO_ALTEZZA);
@@ -111,6 +111,10 @@ void Gioco::partitaSinglePlayer(float volume_musica, float volume_suoni){
                     }else{
                         azione_ultima_speranza = TipoInput::NULLA;
                     }
+
+		    cursore_manuale(70, 20);
+		    printf("stato cambio : %d", puo_sostituire);
+
 
                     if(input.cambio() == TipoInput::CAMBIO && puo_sostituire){
 
@@ -484,7 +488,8 @@ void Gioco::opzioni(){
     pulisci();
     AudioManager audio;
     audio.caricaMusiche("../sounds/music/opzioni");
-    cornice(0, 0, 70, 30);
+    audio.setVolumeMusica(AUDIO_MUSICA);
+    cornice(0, 0, 100, 30);
 
     Input input;
     Input input2;
@@ -561,6 +566,21 @@ void Gioco::opzioni(){
     printf("CASUALI     ");
     printf("NORMALI");
 
+    pos.Y = 10;
+    pos.X = 73;
+    posizione_cursore(pos);
+    printf("AUDIO MUSICA");
+
+    stampaSuoni(false);
+
+    pos.Y = 19;
+    pos.X = 73;
+    posizione_cursore(pos);
+    printf("AUDIO SUONI");
+
+    stampaSuoni(true);
+
+
     pos.X = 5;
     pos.Y = 10;
     posizione_cursore(pos);
@@ -596,7 +616,7 @@ void Gioco::opzioni(){
                     cursore_manuale(pos.X, pos.Y);
                     printf(" ");
                     pos.X -= 33;
-                    if(pos.X < 5)   pos.X = 38;
+                    if(pos.X < 5)   pos.X = 71;
                     posizione_cursore(pos);
                     printf(">");
                     break;
@@ -605,7 +625,7 @@ void Gioco::opzioni(){
                     cursore_manuale(pos.X, pos.Y);
                     printf(" ");
                     pos.X += 33;
-                    if(pos.X > 38)   pos.X = 5;
+                    if(pos.X > 71)   pos.X = 5;
                     posizione_cursore(pos);
                     printf(">");
                     break;
@@ -934,7 +954,7 @@ void Gioco::opzioni(){
                                         if(pos.X == 47 && pos.Y == 21){ // tipo colori : alternativi
                                             TIPO_COLORI = TipoColori::ALTERNATIVO;
                                         }
-                                        if(pos.X == 1473 && pos.Y == 23){ // tipo colori : nessuno
+                                        if(pos.X == 47 && pos.Y == 23){ // tipo colori : nessuno
                                             TIPO_COLORI = TipoColori::NESSUNO;
                                         }
                                         uscita_piccolo = true;
@@ -954,6 +974,93 @@ void Gioco::opzioni(){
                         posizione_cursore(pos);
                         printf(">");
                     }
+
+                    if(pos.X == 71 && pos.Y == 10){
+
+                        uscita_piccolo = false;
+
+                        do{
+
+                            if(kbhit()){
+
+                                input2.scan();
+
+                                switch (input2.azione()){
+                                
+                                    case TipoInput::SINISTRA :
+                                        if(AUDIO_MUSICA > 0) AUDIO_MUSICA -= 10;
+                                        audio.setVolumeMusica(AUDIO_MUSICA);
+                                        stampaSuoni(false);
+                                        break;
+
+                                    case TipoInput::DESTRA :
+                                        if(AUDIO_MUSICA < 100) AUDIO_MUSICA += 10;
+                                        audio.setVolumeMusica(AUDIO_MUSICA);
+                                        stampaSuoni(false);
+                                        break;
+
+                                    case TipoInput::ESCI :
+                                        uscita_piccolo = true;
+                                        break;
+                                
+                                }
+
+                            }
+
+                        }while(!uscita_piccolo);
+
+                        cursore_manuale(pos.X, pos.Y);
+                        printf(" ");
+                        pos.X = 71;
+                        pos.Y = 10;
+                        posizione_cursore(pos);
+                        printf(">");
+
+                    }
+
+                    if(pos.X == 71 && pos.Y == 19){
+
+                        uscita_piccolo = false;
+
+                        do{
+
+                            if(kbhit()){
+
+                                input2.scan();
+
+                                switch (input2.azione()){
+                                
+                                    case TipoInput::SINISTRA :
+                                        if(AUDIO_SUONI > 0) AUDIO_SUONI -= 10;
+                                        audio.setVolumeSuoni(AUDIO_SUONI);
+                                        stampaSuoni(true);
+                                        break;
+
+                                    case TipoInput::DESTRA :
+                                        if(AUDIO_SUONI < 100) AUDIO_SUONI += 10;
+                                        audio.setVolumeSuoni(AUDIO_SUONI);
+                                        stampaSuoni(true);
+                                        break;
+
+                                    case TipoInput::ESCI :
+                                        uscita_piccolo = true;
+                                        break;
+                                
+                                }
+
+                            }
+
+                        }while(!uscita_piccolo);
+
+                        cursore_manuale(pos.X, pos.Y);
+                        printf(" ");
+                        pos.X = 71;
+                        pos.Y = 19;
+                        posizione_cursore(pos);
+                        printf(">");
+
+                    }
+
                     break;
 
                 case TipoInput::ESCI:
@@ -967,6 +1074,31 @@ void Gioco::opzioni(){
 
     audio.fermaMusica();
     salva_config();
+}
+
+void Gioco::stampaSuoni(bool is_suoni){
+
+    COORD coord_pos = {74, 12};
+    float audio = AUDIO_MUSICA;
+
+    if(is_suoni){
+        coord_pos.Y = 21;
+        audio = AUDIO_SUONI;
+    }
+
+    posizione_cursore(coord_pos);
+
+    for(short i = 0; i < 10; i++){
+        printf(" ");
+    }
+
+    posizione_cursore(coord_pos);
+
+    for(short i = 0; i < audio / 10; i++){
+        printf("█");
+    }
+
+
 }
 
 void Gioco::comandi(){
@@ -1391,9 +1523,7 @@ void Gioco::comandi(){
                         }
                         break;
 
-                    case static_cast<short>(CordinateComandi::ESCI):
-
-                        
+                    case static_cast<short>(CordinateComandi::ESCI):                        
                         
                         if(j == 62){
                             ROTAZIONE[0] = 'W'; ROTAZIONE[1] = 'w';

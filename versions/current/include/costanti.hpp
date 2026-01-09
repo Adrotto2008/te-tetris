@@ -173,6 +173,8 @@ extern std::array<char, 1> ESCI;
 
 /*-------------IMPOSTAZIONI-----------*/
 
+extern float AUDIO_MUSICA;
+extern float AUDIO_SUONI;
 extern TipoPartita TIPO_PARTITA;
 extern TipoColori TIPO_COLORI ;
 extern char BLOCCO_GHOST_SINISTRA[4]; //blocco intero usato dai ghost block 219

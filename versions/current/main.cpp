@@ -24,14 +24,15 @@ int main(void){
     cmd_grande();
     Input input;
     std::string nome;
-    AudioManager audio;
-    audio.caricaMusiche("../sounds/music/menu");
-
-    audio.setVolumeMusica(40);
+    
     pulisci();
     printf(CURSORE_INVISIBILE);
     nome = apri_config();
-    
+
+    AudioManager audio;
+    audio.caricaMusiche("../sounds/music/menu");
+    audio.setVolumeMusica(AUDIO_MUSICA);
+
     short i;
     bool uscita = false;
     bool uscita_menu = false;
@@ -87,7 +88,7 @@ int main(void){
 
                         case static_cast<short>(CordinateOpzioni::SINGLEPLAYER):
                             audio.fermaMusica();
-                            gioco.partitaSinglePlayer(70, 50);
+                            gioco.partitaSinglePlayer();
                             uscita_menu = true;
                             break;
 
@@ -105,7 +106,6 @@ int main(void){
                         case static_cast<short>(CordinateOpzioni::COMANDI):
                             audio.fermaMusica();
                             gioco.comandi();
-                            
                             uscita_menu = true;
                             break;
 
@@ -119,6 +119,8 @@ int main(void){
                             break;
 
                     }
+
+                    audio.setVolumeMusica(AUDIO_MUSICA);
 
                 }
 

@@ -1,5 +1,5 @@
 {
-    "nome": "pippo",
+    "nome": "arklight",
     "rotazione": [
         "W",
         "w"
@@ -10,7 +10,7 @@
     ],
     "rotazione_antioraria": [
         "R",
-        "R"
+        "r"
     ],
     "sinistra": [
         "A",
@@ -32,8 +32,10 @@
         "C",
         "c"
     ],
-    "blocco_sinistra": "[",
-    "blocco_destra": "]",
-    "ghost_block_sinistra": "{",
-    "ghost_block_destra": "]"
+    "blocco_sinistra": "█",
+    "blocco_destra": "█",
+    "ghost_block_sinistra": "█",
+    "ghost_block_destra": "█",
+    "musica": 10.0,
+    "suoni": 20.0
 }

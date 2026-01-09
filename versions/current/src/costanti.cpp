@@ -25,6 +25,8 @@ std::array<char, 1> ESCI = {27};
 
 /*-------------VARIABILI GLOBALI DI IMPOSTAZIONI-----------*/
 
+float AUDIO_MUSICA = 40;
+float AUDIO_SUONI = 50;
 TipoPartita TIPO_PARTITA = TipoPartita::NORMALE;
 TipoColori TIPO_COLORI = TipoColori::NORMALE;
 char BLOCCO_GHOST_SINISTRA[4] = "█"; //blocco intero usato dai ghost block 219

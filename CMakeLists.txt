@@ -18,13 +18,10 @@ FetchContent_Declare(
     GIT_REPOSITORY https://github.com/madler/zlib.git
     GIT_TAG v1.3.1
 )
-
 set(ZLIB_BUILD_SHARED OFF CACHE BOOL "" FORCE)
 set(ZLIB_BUILD_STATIC ON  CACHE BOOL "" FORCE)
-
 FetchContent_MakeAvailable(zlib)
 
-# Espone ZLIB::ZLIB come si aspetta FindZLIB / IXWebSocket
 if(NOT TARGET ZLIB::ZLIB)
     add_library(ZLIB::ZLIB ALIAS zlibstatic)
 endif()
@@ -48,29 +45,6 @@ FetchContent_Declare(
     GIT_TAG v0.15.3
 )
 FetchContent_MakeAvailable(cpp_httplib)
-
-# ============================================================
-# SFML (FetchContent)
-# ============================================================
-
-# Disabilita tutto ciò che non serve e il supporto OGG/Vorbis
-set(SFML_BUILD_AUDIO ON CACHE BOOL "" FORCE)
-set(SFML_BUILD_SYSTEM ON CACHE BOOL "" FORCE)
-set(SFML_BUILD_WINDOW OFF CACHE BOOL "" FORCE)
-set(SFML_BUILD_GRAPHICS OFF CACHE BOOL "" FORCE)
-set(SFML_BUILD_NETWORK OFF CACHE BOOL "" FORCE)
-set(SFML_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-set(SFML_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-set(SFML_INSTALL OFF CACHE BOOL "" FORCE)
-set(SFML_USE_VORBIS OFF CACHE BOOL "" FORCE)
-set(SFML_USE_OGG OFF CACHE BOOL "" FORCE)
-
-FetchContent_Declare(
-    sfml
-    GIT_REPOSITORY https://github.com/SFML/SFML.git
-    GIT_TAG 2.5.1
-)
-FetchContent_MakeAvailable(sfml)
 
 # ============================================================
 # IXWebSocket (subproject, NO install, NO TLS)
@@ -105,6 +79,22 @@ add_executable(te_tetris
 target_include_directories(te_tetris PRIVATE
     versions/current/include
     ${cpp_httplib_SOURCE_DIR}
+    /home/arklight/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/coso/SFML/include
+)
+
+# ============================================================
+# STATIC SFML + AUDIO LIBS
+# ============================================================
+set(SFML_STATIC_LIB_DIR "/home/arklight/Dropbox/minecraft/adri/c++/te-tetris/te-tetris/coso/SFML/build/lib")
+
+set(AUDIO_STATIC_LIBS
+    "${SFML_STATIC_LIB_DIR}/libsfml-audio-s.a"
+    "${SFML_STATIC_LIB_DIR}/libsfml-system-s.a"
+    /usr/lib/x86_64-linux-gnu/libFLAC.a
+    /usr/lib/x86_64-linux-gnu/libvorbisfile.a
+    /usr/lib/x86_64-linux-gnu/libvorbis.a
+    /usr/lib/x86_64-linux-gnu/libvorbisenc.a
+    /usr/lib/x86_64-linux-gnu/libogg.a
 )
 
 # ============================================================
@@ -114,19 +104,21 @@ target_link_libraries(te_tetris PRIVATE
     ixwebsocket
     nlohmann_json::nlohmann_json
     ZLIB::ZLIB
+    ${AUDIO_STATIC_LIBS}
 )
 
 # ============================================================
-# LINK SFML AL PROGETTO
+# STATIC LINKING GENERALE
 # ============================================================
-target_link_libraries(te_tetris PRIVATE
-    sfml-audio
-    sfml-system
-)
+if(UNIX AND NOT APPLE)
+    target_link_libraries(te_tetris PRIVATE
+        pthread
+        dl
+        m
+        rt
+    )
+endif()
 
-# ============================================================
-# STATIC LINKING SOLO SU MinGW
-# ============================================================
 if(MINGW)
     target_link_options(te_tetris PRIVATE
         -static
@@ -157,4 +149,5 @@ message(STATUS "✔ ZLIB via FetchContent (ZLIB::ZLIB)")
 message(STATUS "✔ IXWebSocket (no TLS, no install)")
 message(STATUS "✔ nlohmann/json")
 message(STATUS "✔ cpp-httplib")
+message(STATUS "✔ SFML statico + librerie audio statiche (FLAC, OGG, Vorbis)")
 message(STATUS "===================================")

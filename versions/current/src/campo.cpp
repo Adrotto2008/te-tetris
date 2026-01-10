@@ -135,8 +135,15 @@ bool Campo::controlloPrimaLinea(){
 void Campo::animazione_linea_liberata(){
 
     AudioManager audio;
+    audio.setVolumeSuoni(AUDIO_SUONI);
 
     audio.caricaSuono("linea_singola", "linea_singola");
+    audio.caricaSuono("linee_multiple", "linee_multiple");
+    audio.caricaSuono("4_linee", "4_linee");
+
+    if(linee_riempite == 1)  audio.suona("linea_singola");
+    else if(linee_riempite == 4) audio.suona("4_linee");
+    else audio.suona("linee_multiple");
 
     for(short j = 0; j < linee_riempite; j++){
 

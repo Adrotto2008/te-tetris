@@ -20,7 +20,11 @@ void Gioco::partitaSinglePlayer(){
 
     audio.caricaSuono("movimento", "movimento");
     audio.caricaSuono("linea_singola", "linea_singola");
+    audio.caricaSuono("linee_multiple", "linee_multiple");
     audio.caricaSuono("rotazione", "rotazione");
+    audio.caricaSuono("hold", "hold");
+    audio.caricaSuono("softdrop", "softdrop");
+    audio.caricaSuono("harddrop", "harddrop");
     audio.setVolumeSuoni(AUDIO_SUONI);
 
     // disegno la cornice del campo
@@ -112,12 +116,10 @@ void Gioco::partitaSinglePlayer(){
                         azione_ultima_speranza = TipoInput::NULLA;
                     }
 
-		    cursore_manuale(70, 20);
-		    printf("stato cambio : %d", puo_sostituire);
-
 
                     if(input.cambio() == TipoInput::CAMBIO && puo_sostituire){
 
+                        audio.suona("hold");
                         ultima_azione == TipoInput::CAMBIO;
                         puo_sostituire = false; //in questo modo posso effettuare una sostituzione per tetramino
                         sostituzioni++;
@@ -154,6 +156,7 @@ void Gioco::partitaSinglePlayer(){
                             ultima_azione = TipoInput::CADUTAVELOCE;
                             CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
                             punteggio.cadutaVeloce(CodaTetramini[0]->cadutaVeloce());
+                            audio.suona("softdrop");
                         }
 
                         if(input.destra() == TipoInput::DESTRA && CodaTetramini[0]->puo_destra() == Collisioni::LIBERO){
@@ -207,7 +210,7 @@ void Gioco::partitaSinglePlayer(){
                             CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
                             timer_input = 0;
                             punteggio.cadutaIstantanea(CodaTetramini[0]->caduta_istantanea());
-                            
+                            audio.suona("harddrop");
                         }
 
                         
@@ -499,18 +502,21 @@ void Gioco::opzioni(){
     Input input_destra;
 
     COORD pos = {PADDING, 2};
-    
-    cursore_basso(&pos, 1);
-    scritta(5, "  ___  _____ _____ ___ ___ ___ _   _ ");
-    cursore_basso(&pos, 1);
-    scritta(5, " / _ \\|  _  |_   _|_ _/ _ \\_ _| \\ | |");
-    cursore_basso(&pos, 1);
-    scritta(5, "| | | | | | | | |  | | | | | ||  \\| |");
-    cursore_basso(&pos, 1);
-    scritta(5, "| |_| | |_| | | |  | | |_| | || |\\  |");
-    cursore_basso(&pos, 1);
-    scritta(5, " \\___/|_____| |_| |___\\___/___|_| \\_|");
 
+    posizione_cursore(pos);
+        
+    scritta(5, " ▒█████   ██▓███  ▄▄▄█████▓ ██▓ ▒█████   ███▄    █   ██████ "); cursore_basso(&pos, 1);
+    scritta(5, "▒██▒  ██▒▓██░  ██▒▓  ██▒ ▓▒▓██▒▒██▒  ██▒ ██ ▀█   █ ▒██    ▒ "); cursore_basso(&pos, 1);
+    scritta(5, "▒██░  ██▒▓██░ ██▓▒▒ ▓██░ ▒░▒██▒▒██░  ██▒▓██  ▀█ ██▒░ ▓██▄   "); cursore_basso(&pos, 1);
+    scritta(5, "▒██   ██░▒██▄█▓▒ ▒░ ▓██▓ ░ ░██░▒██   ██░▓██▒  ▐▌██▒  ▒   ██▒"); cursore_basso(&pos, 1);
+    scritta(5, "░ ████▓▒░▒██▒ ░  ░  ▒██▒ ░ ░██░░ ████▓▒░▒██░   ▓██░▒██████▒▒"); cursore_basso(&pos, 1);
+    scritta(5, "░ ▒░▒░▒░ ▒▓▒░ ░  ░  ▒ ░░   ░▓  ░ ▒░▒░▒░ ░ ▒░   ▒ ▒ ▒ ▒▓▒ ▒ ░"); cursore_basso(&pos, 1);
+    scritta(5, "  ░ ▒ ▒░ ░▒ ░         ░     ▒ ░  ░ ▒ ▒░ ░ ░░   ░ ▒░░ ░▒  ░ ░"); cursore_basso(&pos, 1);
+    scritta(5, "░ ░ ░ ▒  ░░         ░       ▒ ░░ ░ ░ ▒     ░   ░ ░ ░  ░  ░  "); cursore_basso(&pos, 1);
+    scritta(5, "    ░ ░                     ░      ░ ░           ░       ░  "); cursore_basso(&pos, 1);
+
+
+    
     pos.X = 7;
     pos.Y = 10;
     
@@ -1111,21 +1117,21 @@ void Gioco::comandi(){
     bool esci = false;
     AudioManager audio;
     audio.caricaMusiche("../sounds/music/opzioni");
+    audio.setVolumeMusica(AUDIO_MUSICA);
 
     cornice(0, 0, 120, 25);
 
     short i = 3;
-    
-    cursore_manuale(PADDING, i++);
-    scritta(5, "  ___  _____ _____ ___ ___ ___ _   _ ");
-    cursore_manuale(PADDING, i++);
-    scritta(5, " / _ \\|  _  |_   _|_ _/ _ \\_ _| \\ | |");
-    cursore_manuale(PADDING, i++);
-    scritta(5, "| | | | | | | | |  | | | | | ||  \\| |");
-    cursore_manuale(PADDING, i++);
-    scritta(5, "| |_| | |_| | | |  | | |_| | || |\\  |");
-    cursore_manuale(PADDING, i++);
-    scritta(5, " \\___/|_____| |_| |___\\___/___|_| \\_|");
+        
+    scritta(5, "                                                                                 "); cursore_manuale(PADDING, i++);
+    scritta(5, "    ▄▄▄▄             ▄▄▄  ▄▄▄               ▄▄               ▄▄▄▄▄              "); cursore_manuale(PADDING, i++);
+    scritta(5, "  ██▀▀▀▀█            ███  ███              ████              ██▀▀▀██            "); cursore_manuale(PADDING, i++);
+    scritta(5, " ██▀        ▄████▄   ████████  ████▄██▄    ████    ██▄████▄  ██    ██  ▄▄█████▄ "); cursore_manuale(PADDING, i++);
+    scritta(5, " ██        ██▀  ▀██  ██ ██ ██  ██ ██ ██   ██  ██   ██▀   ██  ██    ██  ██▄▄▄▄ ▀ "); cursore_manuale(PADDING, i++);
+    scritta(5, " ██▄       ██    ██  ██ ▀▀ ██  ██ ██ ██   ██████   ██    ██  ██    ██   ▀▀▀▀██▄ "); cursore_manuale(PADDING, i++);
+    scritta(5, "  ██▄▄▄▄█  ▀██▄▄██▀  ██    ██  ██ ██ ██  ▄██  ██▄  ██    ██  ██▄▄▄██   █▄▄▄▄▄██ "); cursore_manuale(PADDING, i++);
+    scritta(5, "    ▀▀▀▀     ▀▀▀▀    ▀▀    ▀▀  ▀▀ ▀▀ ▀▀  ▀▀    ▀▀  ▀▀    ▀▀  ▀▀▀▀▀      ▀▀▀▀▀▀  "); cursore_manuale(PADDING, i++);
+
 
     i = 11;
 

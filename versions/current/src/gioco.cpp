@@ -19,8 +19,6 @@ void Gioco::partitaSinglePlayer(){
     audio.setVolumeMusica(AUDIO_MUSICA);
 
     audio.caricaSuono("movimento", "movimento");
-    audio.caricaSuono("linea_singola", "linea_singola");
-    audio.caricaSuono("linee_multiple", "linee_multiple");
     audio.caricaSuono("rotazione", "rotazione");
     audio.caricaSuono("hold", "hold");
     audio.caricaSuono("softdrop", "softdrop");
@@ -51,6 +49,10 @@ void Gioco::partitaSinglePlayer(){
     TipoInput azione_ultima_speranza;
     short posizione_linee_liberate;
 
+    punteggio.punti = 0;
+    punteggio.n_linee_completate = 0;
+    punteggio.livello = 0;
+
     for(short i = 0; i < 3; i++){
         CodaTetramini[i] = new Tetramino();
     }
@@ -68,7 +70,7 @@ void Gioco::partitaSinglePlayer(){
 
         /*------------------STAMPA TETRAMINI FUTURI--------------------*/
 
-        stampa_coda_tetramini(CodaTetramini[1]->tipo, CodaTetramini[2]->tipo, CodaTetramini[3]->tipo);
+        stampa_coda_tetramini(CodaTetramini[1]->tipo, CodaTetramini[2]->tipo, CodaTetramini[3]->tipo, CodaTetramini[1]->colore, CodaTetramini[2]->colore, CodaTetramini[3]->colore);
 
         /*------------------PUNTEGGIO--------------------*/        
 
@@ -133,20 +135,20 @@ void Gioco::partitaSinglePlayer(){
                             CodaTetramini[0]->sparisci();
 
                             if(sostituzioni == 1){
-                                RiservaTetramino[0] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo);
-                                stampa_riserva_tetramino(RiservaTetramino[0]->tipo);
+                                RiservaTetramino[0] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo, CodaTetramini[0]->colore);
+                                stampa_riserva_tetramino(RiservaTetramino[0]->tipo, RiservaTetramino[0]->colore);
                                 //
                                 goto PRIMO_CAMBIO;
                             } else {
-                                RiservaTetramino[1] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo);
+                                RiservaTetramino[1] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo, CodaTetramini[0]->colore);
                                 delete(CodaTetramini[0]);
-                                CodaTetramini[0] = new Tetramino(RiservaTetramino[0]->id_tetramino, RiservaTetramino[0]->tipo);
+                                CodaTetramini[0] = new Tetramino(RiservaTetramino[0]->id_tetramino, RiservaTetramino[0]->tipo, RiservaTetramino[0]->colore);
                                 delete(RiservaTetramino[0]);
-                                RiservaTetramino[0] = new Tetramino(RiservaTetramino[1]->id_tetramino, RiservaTetramino[1]->tipo);
+                                RiservaTetramino[0] = new Tetramino(RiservaTetramino[1]->id_tetramino, RiservaTetramino[1]->tipo, RiservaTetramino[1]->colore);
                                 delete(RiservaTetramino[1]);
                             }
                             
-                            stampa_riserva_tetramino(RiservaTetramino[0]->tipo);
+                            stampa_riserva_tetramino(RiservaTetramino[0]->tipo, RiservaTetramino[0]->colore);
 
                         }
 
@@ -570,7 +572,7 @@ void Gioco::opzioni(){
     printf("ALTERNATIVI");
     cursore_basso(&pos, 2);
     printf("CASUALI     ");
-    printf("NORMALI");
+    printf("NESSUNO");
 
     pos.Y = 10;
     pos.X = 73;

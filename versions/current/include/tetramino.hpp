@@ -16,16 +16,17 @@ class Tetramino {
 
 private:
 
-    short rotazione = 0;
-    char colore = 0;
+    short rotazione = 0;    
     static int id_tetramini;
 
     bool inizializza();
     TipoTetramino random_tetramino();
     void controllo_colore();
+    void controllo_tipo();
 
 public:
 
+    int colore = 0;
     short sleep;
     int id_tetramino;
     TipoTetramino tipo;
@@ -33,7 +34,7 @@ public:
     bool in_movimento = true;
 
     Tetramino();
-    Tetramino(int id_definito, TipoTetramino tipo_definito);
+    Tetramino(int id_definito, TipoTetramino tipo_definito, int colore);
     ~Tetramino();
 
     Collisioni puo_girare(TipoInput tipo_rotazione);

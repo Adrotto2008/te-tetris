@@ -2,9 +2,21 @@
 
 
 
-void stampa_riserva_tetramino(TipoTetramino tipo){
+void stampa_riserva_tetramino(TipoTetramino tipo, int colore){
 
     char tetramino[8][8][4] = {0};
+
+    // Stampa il colore prima della stampa
+    switch(colore) {
+        case static_cast<int>(rosso): printf(ROSSO_CHIARO); break;
+        case static_cast<int>(ciano): printf(CIANO); break;
+        case static_cast<int>(blu): printf(BLU_CHIARO); break;
+        case static_cast<int>(arancione): printf(ARANCIONE); break;
+        case static_cast<int>(giallo): printf(GIALLO_CHIARO); break;
+        case static_cast<int>(verde): printf(VERDE_CHIARO); break;
+        case static_cast<int>(magenta): printf(MAGENTA_CHIARO); break;
+        case static_cast<int>(bianco): printf(BIANCO); break;
+    }
 
     switch(tipo){ 
         case TipoTetramino::I:
@@ -16,7 +28,6 @@ void stampa_riserva_tetramino(TipoTetramino tipo){
             strcpy(tetramino[3][2], BLOCCO_DESTRA);
             strcpy(tetramino[4][2], BLOCCO_DESTRA);
             strcpy(tetramino[5][2], BLOCCO_DESTRA);
-            printf(CIANO);
             break;
         case TipoTetramino::J:
             strcpy(tetramino[0][2], BLOCCO_SINISTRA);
@@ -27,7 +38,6 @@ void stampa_riserva_tetramino(TipoTetramino tipo){
             strcpy(tetramino[1][3], BLOCCO_DESTRA);
             strcpy(tetramino[2][1], BLOCCO_DESTRA);
             strcpy(tetramino[2][3], BLOCCO_DESTRA);
-            printf(BLU_CHIARO);
             break;
         case TipoTetramino::L:
             strcpy(tetramino[0][1], BLOCCO_SINISTRA);
@@ -38,7 +48,6 @@ void stampa_riserva_tetramino(TipoTetramino tipo){
             strcpy(tetramino[1][2], BLOCCO_DESTRA);
             strcpy(tetramino[2][2], BLOCCO_DESTRA);
             strcpy(tetramino[2][4], BLOCCO_DESTRA);
-            printf(ARANCIONE);
             break;
         case TipoTetramino::O:
             strcpy(tetramino[0][0], BLOCCO_SINISTRA);
@@ -49,7 +58,6 @@ void stampa_riserva_tetramino(TipoTetramino tipo){
             strcpy(tetramino[0][3], BLOCCO_DESTRA);
             strcpy(tetramino[1][1], BLOCCO_DESTRA);
             strcpy(tetramino[1][3], BLOCCO_DESTRA);
-            printf(GIALLO_CHIARO);
             break;
         case TipoTetramino::Z:
             strcpy(tetramino[0][0], BLOCCO_SINISTRA);
@@ -60,7 +68,6 @@ void stampa_riserva_tetramino(TipoTetramino tipo){
             strcpy(tetramino[0][3], BLOCCO_DESTRA);
             strcpy(tetramino[1][3], BLOCCO_DESTRA);
             strcpy(tetramino[1][5], BLOCCO_DESTRA);
-            printf(ROSSO_CHIARO);
             break;
         case TipoTetramino::S:
             strcpy(tetramino[0][2], BLOCCO_SINISTRA);
@@ -71,7 +78,6 @@ void stampa_riserva_tetramino(TipoTetramino tipo){
             strcpy(tetramino[0][5], BLOCCO_DESTRA);
             strcpy(tetramino[1][1], BLOCCO_DESTRA);
             strcpy(tetramino[1][3], BLOCCO_DESTRA);
-            printf(VERDE_CHIARO);
             break;
         case TipoTetramino::T:
             strcpy(tetramino[0][0], BLOCCO_SINISTRA);
@@ -82,7 +88,6 @@ void stampa_riserva_tetramino(TipoTetramino tipo){
             strcpy(tetramino[0][3], BLOCCO_DESTRA);
             strcpy(tetramino[0][5], BLOCCO_DESTRA);
             strcpy(tetramino[1][3], BLOCCO_DESTRA);
-            printf(MAGENTA_CHIARO);
             break;
     }
 
@@ -96,16 +101,29 @@ void stampa_riserva_tetramino(TipoTetramino tipo){
 
 }
 
-void stampa_coda_tetramini(TipoTetramino tipo1, TipoTetramino tipo2, TipoTetramino tipo3){    //non avevo sbatti
+void stampa_coda_tetramini(TipoTetramino tipo1, TipoTetramino tipo2, TipoTetramino tipo3, int colore1, int colore2, int colore3) {
 
     char tetramino[3][8][8][4] = {0};
-
     COORD coord_futuro[3] = {coord_tetramino_futuro, coord_secondo_tetramino_futuro, coord_terzo_tetramino_futuro};
     TipoTetramino tipo[3] = {tipo1, tipo2, tipo3};
+    int colori[3] = {colore1, colore2, colore3};
 
-    for(short j = 0; j < 3; j++){
+    for(short j = 0; j < 3; j++) {
 
-        switch(tipo[j]){ 
+        // Stampa il colore prima della stampa
+        switch(colori[j]) {
+            case static_cast<int>(rosso): printf(ROSSO_CHIARO); break;
+            case static_cast<int>(ciano): printf(CIANO); break;
+            case static_cast<int>(blu): printf(BLU_CHIARO); break;
+            case static_cast<int>(arancione): printf(ARANCIONE); break;
+            case static_cast<int>(giallo): printf(GIALLO_CHIARO); break;
+            case static_cast<int>(verde): printf(VERDE_CHIARO); break;
+            case static_cast<int>(magenta): printf(MAGENTA_CHIARO); break;
+            case static_cast<int>(bianco): printf(BIANCO); break;
+        }
+
+        // Imposta la forma del tetramino senza printf di colore
+        switch(tipo[j]) { 
             case TipoTetramino::I:
                 strcpy(tetramino[j][2][1], BLOCCO_SINISTRA);
                 strcpy(tetramino[j][3][1], BLOCCO_SINISTRA);
@@ -115,8 +133,8 @@ void stampa_coda_tetramini(TipoTetramino tipo1, TipoTetramino tipo2, TipoTetrami
                 strcpy(tetramino[j][3][2], BLOCCO_DESTRA);
                 strcpy(tetramino[j][4][2], BLOCCO_DESTRA);
                 strcpy(tetramino[j][5][2], BLOCCO_DESTRA);
-                printf(CIANO);
                 break;
+
             case TipoTetramino::J:
                 strcpy(tetramino[j][0][2], BLOCCO_SINISTRA);
                 strcpy(tetramino[j][1][2], BLOCCO_SINISTRA);
@@ -126,8 +144,8 @@ void stampa_coda_tetramini(TipoTetramino tipo1, TipoTetramino tipo2, TipoTetrami
                 strcpy(tetramino[j][1][3], BLOCCO_DESTRA);
                 strcpy(tetramino[j][2][1], BLOCCO_DESTRA);
                 strcpy(tetramino[j][2][3], BLOCCO_DESTRA);
-                printf(BLU_CHIARO);
                 break;
+
             case TipoTetramino::L:
                 strcpy(tetramino[j][0][1], BLOCCO_SINISTRA);
                 strcpy(tetramino[j][1][1], BLOCCO_SINISTRA);
@@ -137,8 +155,8 @@ void stampa_coda_tetramini(TipoTetramino tipo1, TipoTetramino tipo2, TipoTetrami
                 strcpy(tetramino[j][1][2], BLOCCO_DESTRA);
                 strcpy(tetramino[j][2][2], BLOCCO_DESTRA);
                 strcpy(tetramino[j][2][4], BLOCCO_DESTRA);
-                printf(ARANCIONE);
                 break;
+
             case TipoTetramino::O:
                 strcpy(tetramino[j][0][0], BLOCCO_SINISTRA);
                 strcpy(tetramino[j][0][2], BLOCCO_SINISTRA);
@@ -148,8 +166,8 @@ void stampa_coda_tetramini(TipoTetramino tipo1, TipoTetramino tipo2, TipoTetrami
                 strcpy(tetramino[j][0][3], BLOCCO_DESTRA);
                 strcpy(tetramino[j][1][1], BLOCCO_DESTRA);
                 strcpy(tetramino[j][1][3], BLOCCO_DESTRA);
-                printf(GIALLO_CHIARO);
                 break;
+
             case TipoTetramino::Z:
                 strcpy(tetramino[j][0][0], BLOCCO_SINISTRA);
                 strcpy(tetramino[j][0][2], BLOCCO_SINISTRA);
@@ -159,8 +177,8 @@ void stampa_coda_tetramini(TipoTetramino tipo1, TipoTetramino tipo2, TipoTetrami
                 strcpy(tetramino[j][0][3], BLOCCO_DESTRA);
                 strcpy(tetramino[j][1][3], BLOCCO_DESTRA);
                 strcpy(tetramino[j][1][5], BLOCCO_DESTRA);
-                printf(ROSSO_CHIARO);
                 break;
+
             case TipoTetramino::S:
                 strcpy(tetramino[j][0][2], BLOCCO_SINISTRA);
                 strcpy(tetramino[j][0][4], BLOCCO_SINISTRA);
@@ -170,8 +188,8 @@ void stampa_coda_tetramini(TipoTetramino tipo1, TipoTetramino tipo2, TipoTetrami
                 strcpy(tetramino[j][0][5], BLOCCO_DESTRA);
                 strcpy(tetramino[j][1][1], BLOCCO_DESTRA);
                 strcpy(tetramino[j][1][3], BLOCCO_DESTRA);
-                printf(VERDE_CHIARO);
                 break;
+
             case TipoTetramino::T:
                 strcpy(tetramino[j][0][0], BLOCCO_SINISTRA);
                 strcpy(tetramino[j][0][2], BLOCCO_SINISTRA);
@@ -181,11 +199,9 @@ void stampa_coda_tetramini(TipoTetramino tipo1, TipoTetramino tipo2, TipoTetrami
                 strcpy(tetramino[j][0][3], BLOCCO_DESTRA);
                 strcpy(tetramino[j][0][5], BLOCCO_DESTRA);
                 strcpy(tetramino[j][1][3], BLOCCO_DESTRA);
-                printf(MAGENTA_CHIARO);
                 break;
-            }
+        }
 
-                
         // Stampa i tetramini usando le matrici
         for(short i = 0; i < 8; i++) {
             posizione_cursore({coord_futuro[j].X, (short)(coord_futuro[j].Y + i)});
@@ -193,9 +209,7 @@ void stampa_coda_tetramini(TipoTetramino tipo1, TipoTetramino tipo2, TipoTetrami
                 printf("%s", tetramino[j][i][k][0] != '\0' ? tetramino[j][i][k] : " ");
             }
         }
-
     }
-
 }
 
 void cornice(short margine_sinistro, short margine_superiore, short margine_destro, short margine_inferiore){

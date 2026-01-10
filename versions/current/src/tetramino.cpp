@@ -9,105 +9,146 @@ int Tetramino::id_tetramini = '0' - 1;
 Tetramino::Tetramino(){
     this->inizializza();
     this->controllo_colore();
+    this->controllo_tipo();
 }
 
 //Constructor per creare un tetramino con delle caratteristiche predefinite, senza generare un nuovo id e tipo
-Tetramino::Tetramino(int id_definito, TipoTetramino tipo_definito){
+Tetramino::Tetramino(int id_definito, TipoTetramino tipo_definito, int colore){
     this->in_movimento = true;
     this->id_tetramino = id_definito;
+    this->colore = colore;
     this->tipo = tipo_definito;
-    this->controllo_colore();
+    this->controllo_tipo();
 }
 
 //Metodo che assegna il colore del tetramino in base al tipo
 void Tetramino::controllo_colore(){
-    switch(tipo){ //tutti gli indici pari indicano [ mentre quelli dispari ]
-    case TipoTetramino::I:
-        colore = ciano; 
-        p[0] = {CAMPO_CENTRO, 2};
-        p[1] = {CAMPO_CENTRO + 1, 2};
-        p[2] = {CAMPO_CENTRO, 1};
-        p[3] = {CAMPO_CENTRO + 1, 1};
-        p[4] = {CAMPO_CENTRO, 3};
-        p[5] = {CAMPO_CENTRO + 1, 3};
-        p[6] = {CAMPO_CENTRO, 4};
-        p[7] = {CAMPO_CENTRO + 1, 4};
-        break;
-    case TipoTetramino::J:
-        colore = blu; 
-        p[0] = {CAMPO_CENTRO, 2};
-        p[1] = {CAMPO_CENTRO + 1, 2};
-        p[2] = {CAMPO_CENTRO, 1};
-        p[3] = {CAMPO_CENTRO + 1, 1};
-        p[4] = {CAMPO_CENTRO, 3};
-        p[5] = {CAMPO_CENTRO + 1, 3};
-        p[6] = {CAMPO_CENTRO - 2, 3};
-        p[7] = {CAMPO_CENTRO - 1, 3};
-        
-        break;
-    case TipoTetramino::L:
-        colore = arancione;
-        p[0] = {CAMPO_CENTRO, 2};
-        p[1] = {CAMPO_CENTRO + 1, 2};
-        p[2] = {CAMPO_CENTRO, 1};
-        p[3] = {CAMPO_CENTRO + 1, 1};
-        p[4] = {CAMPO_CENTRO, 3};
-        p[5] = {CAMPO_CENTRO + 1, 3};
-        p[6] = {CAMPO_CENTRO + 2, 3};
-        p[7] = {CAMPO_CENTRO + 3, 3};
-        
-        break;
-    case TipoTetramino::O:
-        colore = giallo; 
-        p[0] = {CAMPO_CENTRO, 1};
-        p[1] = {CAMPO_CENTRO + 1, 1};
-        p[2] = {CAMPO_CENTRO + 2, 1};
-        p[3] = {CAMPO_CENTRO + 3, 1};
-        p[4] = {CAMPO_CENTRO, 2};
-        p[5] = {CAMPO_CENTRO + 1, 2};
-        p[6] = {CAMPO_CENTRO + 2, 2};
-        p[7] = {CAMPO_CENTRO + 3, 2};
-    
-        break;
-    case TipoTetramino::Z:
-        colore = rosso;
-        p[0] = {CAMPO_CENTRO, 1};
-        p[1] = {CAMPO_CENTRO + 1, 1};
-        p[2] = {CAMPO_CENTRO - 2, 1};
-        p[3] = {CAMPO_CENTRO - 1, 1};
-        p[4] = {CAMPO_CENTRO, 2};
-        p[5] = {CAMPO_CENTRO + 1, 2};
-        p[6] = {CAMPO_CENTRO + 2, 2};
-        p[7] = {CAMPO_CENTRO + 3, 2};
+    switch (tipo) {
+        case TipoTetramino::I: colore = ciano;     break;
+        case TipoTetramino::J: colore = blu;       break;
+        case TipoTetramino::L: colore = arancione; break;
+        case TipoTetramino::O: colore = giallo;    break;
+        case TipoTetramino::Z: colore = rosso;     break;
+        case TipoTetramino::S: colore = verde;     break;
+        case TipoTetramino::T: colore = magenta;   break;
 
-        break;
-    case TipoTetramino::S:
-        colore = verde; 
-        p[0] = {CAMPO_CENTRO, 1};
-        p[1] = {CAMPO_CENTRO + 1, 1};
-        p[2] = {CAMPO_CENTRO + 2, 1};
-        p[3] = {CAMPO_CENTRO + 3, 1};
-        p[4] = {CAMPO_CENTRO, 2};
-        p[5] = {CAMPO_CENTRO + 1, 2};
-        p[6] = {CAMPO_CENTRO - 2, 2};
-        p[7] = {CAMPO_CENTRO - 1, 2};
-        break;
-    case TipoTetramino::T:
-        colore = magenta;
-        p[0] = {CAMPO_CENTRO, 1};
-        p[1] = {CAMPO_CENTRO + 1, 1};
-        p[2] = {CAMPO_CENTRO - 2, 1};
-        p[3] = {CAMPO_CENTRO - 1, 1};
-        p[4] = {CAMPO_CENTRO + 2, 1};
-        p[5] = {CAMPO_CENTRO + 3, 1};
-        p[6] = {CAMPO_CENTRO, 2};
-        p[7] = {CAMPO_CENTRO + 1, 2};
-        break;
-    //Se non è nessuno è bianco ma in teoria non dovrebbe mai esserlo
-    default:
-        this->colore = 32;
-        return;
+        default:
+            colore = bianco; // non dovrebbe mai succedere
+            return;
     }
+
+
+    if(TIPO_COLORI == TipoColori::CASUALE){
+
+        std::random_device rd;
+        std::mt19937 gen(rd()); // generatore
+        std::uniform_int_distribution<int> dis(-8, -1); // range incluso
+
+        colore = dis(gen);
+
+    }
+
+    if(TIPO_COLORI == TipoColori::ALTERNATIVO){
+
+        colore -=2;
+
+        if(colore < -8) colore += 8;
+
+    }
+
+    if (TIPO_COLORI == TipoColori::NESSUNO){
+        colore = bianco;
+    }
+    
+
+}
+
+void Tetramino::controllo_tipo(){
+
+    switch (tipo) {
+
+        case TipoTetramino::I:
+            p[0] = {CAMPO_CENTRO,     2};
+            p[1] = {CAMPO_CENTRO + 1, 2};
+            p[2] = {CAMPO_CENTRO,     1};
+            p[3] = {CAMPO_CENTRO + 1, 1};
+            p[4] = {CAMPO_CENTRO,     3};
+            p[5] = {CAMPO_CENTRO + 1, 3};
+            p[6] = {CAMPO_CENTRO,     4};
+            p[7] = {CAMPO_CENTRO + 1, 4};
+            break;
+
+        case TipoTetramino::J:
+            p[0] = {CAMPO_CENTRO,     2};
+            p[1] = {CAMPO_CENTRO + 1, 2};
+            p[2] = {CAMPO_CENTRO,     1};
+            p[3] = {CAMPO_CENTRO + 1, 1};
+            p[4] = {CAMPO_CENTRO,     3};
+            p[5] = {CAMPO_CENTRO + 1, 3};
+            p[6] = {CAMPO_CENTRO - 2, 3};
+            p[7] = {CAMPO_CENTRO - 1, 3};
+            break;
+
+        case TipoTetramino::L:
+            p[0] = {CAMPO_CENTRO,     2};
+            p[1] = {CAMPO_CENTRO + 1, 2};
+            p[2] = {CAMPO_CENTRO,     1};
+            p[3] = {CAMPO_CENTRO + 1, 1};
+            p[4] = {CAMPO_CENTRO,     3};
+            p[5] = {CAMPO_CENTRO + 1, 3};
+            p[6] = {CAMPO_CENTRO + 2, 3};
+            p[7] = {CAMPO_CENTRO + 3, 3};
+            break;
+
+        case TipoTetramino::O:
+            p[0] = {CAMPO_CENTRO,     1};
+            p[1] = {CAMPO_CENTRO + 1, 1};
+            p[2] = {CAMPO_CENTRO + 2, 1};
+            p[3] = {CAMPO_CENTRO + 3, 1};
+            p[4] = {CAMPO_CENTRO,     2};
+            p[5] = {CAMPO_CENTRO + 1, 2};
+            p[6] = {CAMPO_CENTRO + 2, 2};
+            p[7] = {CAMPO_CENTRO + 3, 2};
+            break;
+
+        case TipoTetramino::Z:
+            p[0] = {CAMPO_CENTRO,     1};
+            p[1] = {CAMPO_CENTRO + 1, 1};
+            p[2] = {CAMPO_CENTRO - 2, 1};
+            p[3] = {CAMPO_CENTRO - 1, 1};
+            p[4] = {CAMPO_CENTRO,     2};
+            p[5] = {CAMPO_CENTRO + 1, 2};
+            p[6] = {CAMPO_CENTRO + 2, 2};
+            p[7] = {CAMPO_CENTRO + 3, 2};
+            break;
+
+        case TipoTetramino::S:
+            p[0] = {CAMPO_CENTRO,     1};
+            p[1] = {CAMPO_CENTRO + 1, 1};
+            p[2] = {CAMPO_CENTRO + 2, 1};
+            p[3] = {CAMPO_CENTRO + 3, 1};
+            p[4] = {CAMPO_CENTRO,     2};
+            p[5] = {CAMPO_CENTRO + 1, 2};
+            p[6] = {CAMPO_CENTRO - 2, 2};
+            p[7] = {CAMPO_CENTRO - 1, 2};
+            break;
+
+        case TipoTetramino::T:
+            p[0] = {CAMPO_CENTRO,     1};
+            p[1] = {CAMPO_CENTRO + 1, 1};
+            p[2] = {CAMPO_CENTRO - 2, 1};
+            p[3] = {CAMPO_CENTRO - 1, 1};
+            p[4] = {CAMPO_CENTRO + 2, 1};
+            p[5] = {CAMPO_CENTRO + 3, 1};
+            p[6] = {CAMPO_CENTRO,     2};
+            p[7] = {CAMPO_CENTRO + 1, 2};
+            break;
+
+        default:
+            return;
+    }
+
+
 }
 
 //Metodo che assegna il valore del tetramino corrente

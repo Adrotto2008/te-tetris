@@ -22,18 +22,18 @@
 
 
 /*------------COLORI------------*/
-#define RESET   "\033[0m"
-#define NERO    "\033[30m"
-#define ROSSO   "\033[31m"
-#define VERDE   "\033[32m"
-#define GIALLO  "\033[33m"
-#define BLU     "\033[34m"
-#define MAGENTA "\033[35m"
-#define CIANO   "\033[36m"
-#define BIANCO  "\033[37m"
+#define RESET   "\033[0m" //
+#define NERO    "\033[30m" //
+#define ROSSO   "\033[31m" //
+#define VERDE   "\033[32m" //
+#define GIALLO  "\033[33m" //
+#define BLU     "\033[34m" //
+#define MAGENTA "\033[35m" //
+#define CIANO   "\033[36m" //
+#define BIANCO  "\033[37m" //
 #define ARANCIONE "\033[38;5;208m"
 #define VIOLA "\033[38;5;129m"
-#define GRIGIO "\033[38;5;245m"
+#define GRIGIO "\033[38;5;245m" //
 #define MARRONE "\033[38;5;94m"
 
 #define BLU_CHIARO "\033[38;5;123m"
@@ -106,20 +106,36 @@ enum class TipoTetramino {
     S = 5,
     Z = 6,
     T = 7,
-    NORMALE = 8,
-    GHOST
+
+    SL = 8,
+    BSL = 9,
+    Y = 10,
+    P = 11,
+    V = 12,
+    M = 13,
+    C = 14,
+
+    NORMALE = 15,
+    GHOST = 16
 };
 
 /*------------COLORI------------*/
 enum Colori {
-    rosso = -1,
-    ciano = -2,
-    blu = -3,
-    arancione = -4,
-    giallo = -5,
-    verde = -6,
-    magenta = -7,
-    bianco = -8
+    rosso        = -1,
+    ciano        = -2,
+    blu          = -3,
+    arancione    = -4,
+    giallo       = -5,
+    verde        = -6,
+    magenta_chiaro = -7,
+    
+    marrone      = -8,
+    light_green  = -9,
+    blu_scuro    = -10,
+    ciano_chiaro = -11,
+    light_yellow = -12,
+    magenta      = -13,
+    bianco       = -14
 };
 
 /*----------COLLISIONI----------*/
@@ -148,7 +164,10 @@ enum class TipoInput{
 /*-----------VARIABILI DI IMPOSTAZIONI------------*/
 
 enum class TipoPartita{
-    NORMALE
+    NORMALE,
+    FACILE,
+    DIFFICILE,
+    AVANZATA
 };
 
 enum class TipoColori{

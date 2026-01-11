@@ -32,10 +32,10 @@
         "C",
         "c"
     ],
-    "blocco_sinistra": "[",
-    "blocco_destra": "]",
+    "blocco_sinistra": "(",
+    "blocco_destra": ")",
     "ghost_block_sinistra": "{",
-    "ghost_block_destra": "]",
-    "musica": 0.0,
-    "suoni": 40.0
+    "ghost_block_destra": "p",
+    "musica": 10.0,
+    "suoni": 30.0
 }

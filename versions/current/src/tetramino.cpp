@@ -24,17 +24,21 @@ Tetramino::Tetramino(int id_definito, TipoTetramino tipo_definito, int colore){
 //Metodo che assegna il colore del tetramino in base al tipo
 void Tetramino::controllo_colore(){
     switch (tipo) {
-        case TipoTetramino::I: colore = ciano;     break;
-        case TipoTetramino::J: colore = blu;       break;
-        case TipoTetramino::L: colore = arancione; break;
-        case TipoTetramino::O: colore = giallo;    break;
-        case TipoTetramino::Z: colore = rosso;     break;
-        case TipoTetramino::S: colore = verde;     break;
-        case TipoTetramino::T: colore = magenta;   break;
+        case TipoTetramino::I: colore = ciano;          break;
+        case TipoTetramino::J: colore = blu;            break;
+        case TipoTetramino::L: colore = arancione;      break;
+        case TipoTetramino::O: colore = giallo;         break;
+        case TipoTetramino::Z: colore = rosso;          break;
+        case TipoTetramino::S: colore = verde;          break;
+        case TipoTetramino::T: colore = magenta_chiaro; break;
 
-        default:
-            colore = bianco; // non dovrebbe mai succedere
-            return;
+        case TipoTetramino::SL: colore = marrone;       break;
+        case TipoTetramino::BSL: colore = light_green;  break;
+        case TipoTetramino::Y: colore = blu_scuro;      break;
+        case TipoTetramino::P: colore = ciano_chiaro;   break;
+        case TipoTetramino::V: colore = light_yellow;   break;
+        case TipoTetramino::M: colore = magenta;        break;
+        case TipoTetramino::C: colore = bianco;         break;
     }
 
 
@@ -42,9 +46,11 @@ void Tetramino::controllo_colore(){
 
         std::random_device rd;
         std::mt19937 gen(rd()); // generatore
-        std::uniform_int_distribution<int> dis(-8, -1); // range incluso
+        std::uniform_int_distribution<int> dis(1, 14); // range incluso
 
         colore = dis(gen);
+
+        colore *= -1;
 
     }
 
@@ -52,7 +58,7 @@ void Tetramino::controllo_colore(){
 
         colore -=2;
 
-        if(colore < -8) colore += 8;
+        if(colore < -14) colore += 13;
 
     }
 
@@ -144,8 +150,71 @@ void Tetramino::controllo_tipo(){
             p[7] = {CAMPO_CENTRO + 1, 2};
             break;
 
-        default:
-            return;
+        case TipoTetramino::SL:
+            p[0] = p[4] = {CAMPO_CENTRO,     1};
+            p[1] = p[5] = {CAMPO_CENTRO + 1, 1};
+            p[2] = p[6] = {CAMPO_CENTRO - 2, 2};
+            p[3] = p[7] = {CAMPO_CENTRO - 1, 2};
+            break;
+
+        case TipoTetramino::BSL:
+            p[0] = {CAMPO_CENTRO,     2};
+            p[1] = {CAMPO_CENTRO + 1, 2};
+            p[2] = {CAMPO_CENTRO - 2, 1};
+            p[3] = {CAMPO_CENTRO - 1, 1};
+            p[4] = {CAMPO_CENTRO + 2, 3};
+            p[5] = {CAMPO_CENTRO + 3, 3};
+            p[6] = {CAMPO_CENTRO + 4, 4};
+            p[7] = {CAMPO_CENTRO + 5, 4};
+            break;
+
+        case TipoTetramino::Y:
+            p[0] = {CAMPO_CENTRO, 2};
+            p[1] = {CAMPO_CENTRO + 1, 2};
+            p[2] = {CAMPO_CENTRO - 2, 1};
+            p[3] = {CAMPO_CENTRO - 1, 1};
+            p[4] = {CAMPO_CENTRO + 2, 1};
+            p[5] = {CAMPO_CENTRO + 3, 1};
+            p[6] = {CAMPO_CENTRO, 3};
+            p[7] = {CAMPO_CENTRO + 1, 3};
+            break;
+
+        case TipoTetramino::P:
+            p[0] = p[2] = p[4] = p[6] = {CAMPO_CENTRO,     1};
+            p[1] = p[3] = p[5] = p[7] = {CAMPO_CENTRO + 1, 1};
+            break;
+
+        case TipoTetramino::V:
+            p[0] = p[6] = {CAMPO_CENTRO,     2};
+            p[1] = p[7] = {CAMPO_CENTRO + 1, 2};
+            p[2] = {CAMPO_CENTRO - 2, 1};
+            p[3] = {CAMPO_CENTRO - 1, 1};
+            p[4] = {CAMPO_CENTRO + 2, 1};
+            p[5] = {CAMPO_CENTRO + 3, 1};
+            break;
+
+        case TipoTetramino::M:
+            p[0] = {CAMPO_CENTRO,     3};
+            p[1] = {CAMPO_CENTRO + 1, 3};
+            p[2] = {CAMPO_CENTRO - 2, 2};
+            p[3] = {CAMPO_CENTRO - 1, 2};
+            p[4] = {CAMPO_CENTRO,     1};
+            p[5] = {CAMPO_CENTRO + 1, 1};
+            p[6] = {CAMPO_CENTRO + 2, 2};
+            p[7] = {CAMPO_CENTRO + 3, 2};
+            break;
+
+        case TipoTetramino::C:
+            p[0] = {CAMPO_CENTRO,     2};
+            p[1] = {CAMPO_CENTRO + 1, 2};
+            p[2] = {CAMPO_CENTRO + 2, 1};
+            p[3] = {CAMPO_CENTRO + 3, 1};
+            p[4] = {CAMPO_CENTRO,     3};
+            p[5] = {CAMPO_CENTRO + 1, 3};
+            p[6] = {CAMPO_CENTRO + 2, 4};
+            p[7] = {CAMPO_CENTRO + 3, 4};
+            break;
+
     }
 
 
@@ -192,9 +261,19 @@ TipoTetramino Tetramino::random_tetramino(){
     static std::random_device rd;
     static std::mt19937::result_type seed = rd();
     static std::mt19937 gen(seed);
-    static std::uniform_int_distribution<int> dist(1, 7);
+    std::uniform_int_distribution<int> dist = (TIPO_PARTITA == TipoPartita::AVANZATA) ? std::uniform_int_distribution<int>(1,9) : std::uniform_int_distribution<int>(1,7);
 
-    return static_cast<TipoTetramino>(dist(gen));
+    int random = dist(gen);
+
+    if(random > 7){
+
+        std::uniform_int_distribution<int> dist1 = std::uniform_int_distribution<int>(8, 14);
+
+        random = dist1(gen);
+
+    }
+
+    return static_cast<TipoTetramino>(random);
 
     // prima era così però in teoria dovrebbe essere meglio adesso
     // return static_cast<TipoTetramino>(1 + rand() % (7 - 1 + 1));//min + rand()%(max - min + 1)
@@ -369,7 +448,123 @@ Collisioni Tetramino::puo_girare(TipoInput tipo_rotazione) {
 
         }
 
+    } else if(tipo == TipoTetramino::SL){
+
+        if(rotazione_ipotetica % 2 == 0){
+
+            temp[0] = temp[4] = {(short)(temp[0].X), (short)(temp[0].Y + 1)};
+            temp[2] = temp[6] = {(short)(temp[2].X), (short)(temp[2].Y - 1)};
+
+        } else {
+
+            temp[0] = temp[4] = {(short)(temp[0].X), (short)(temp[0].Y - 1)};
+            temp[2] = temp[6] = {(short)(temp[2].X), (short)(temp[2].Y + 1)};
+
+        }
+
+    } else if(tipo == TipoTetramino::BSL){
+
+        if(rotazione_ipotetica % 2 == 0){
+
+            temp[0] = {(short)(temp[0].X + 2), (short)(temp[0].Y)};
+            temp[2] = {(short)(temp[2].X + 6), (short)(temp[2].Y)};
+            temp[4] = {(short)(temp[4].X - 2), (short)(temp[4].Y)};
+            temp[6] = {(short)(temp[6].X - 6), (short)(temp[6].Y)};
+
+        } else {
+
+            temp[0] = {(short)(temp[0].X - 2), (short)(temp[0].Y)};
+            temp[2] = {(short)(temp[2].X - 6), (short)(temp[2].Y)};
+            temp[4] = {(short)(temp[4].X + 2), (short)(temp[4].Y)};
+            temp[6] = {(short)(temp[6].X + 6), (short)(temp[6].Y)};
+
+        }
+
+    } else if(tipo == TipoTetramino::Y){
+
+        if(rotazione_ipotetica == 0){
+
+            temp[2] = {(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+            temp[4] = {(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+            temp[6] = {(short)(temp[0].X - 2), (short)(temp[0].Y)};
+
+        } else if (rotazione_ipotetica == 1){
+
+            temp[2] = {(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+            temp[4] = {(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+            temp[6] = {(short)(temp[0].X), (short)(temp[0].Y - 1)};
+
+        } else if (rotazione_ipotetica == 2){
+ 
+            temp[2] = {(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+            temp[4] = {(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+            temp[6] = {(short)(temp[0].X + 2), (short)(temp[0].Y)};
+
+        } else {
+
+            temp[2] = {(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+            temp[4] = {(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+            temp[6] = {(short)(temp[0].X), (short)(temp[0].Y + 1)};       
+
+        }
+
+    } else if(tipo == TipoTetramino::V){
+
+        if(rotazione_ipotetica == 0){
+
+            temp[2] = temp[6] = {(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+            temp[4] = {(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+
+        } else if (rotazione_ipotetica == 1){
+
+            temp[2] = temp[6] = {(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+            temp[4] = {(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+
+        } else if (rotazione_ipotetica == 2){
+ 
+            temp[2] = temp[6] = {(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+            temp[4] = {(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+
+        } else {
+
+            temp[2] = temp[6] = {(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+            temp[4] = {(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+
+        }
+
+
+    } else if(tipo == TipoTetramino::C){
+
+        if(rotazione_ipotetica == 0){
+
+            temp[2] = {(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+            temp[4] = {(short)(temp[0].X - 2), (short)(temp[0].Y)};
+            temp[6] = {(short)(temp[0].X - 4), (short)(temp[0].Y + 1)};
+
+        } else if (rotazione_ipotetica == 1){
+
+            temp[2] = {(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+            temp[4] = {(short)(temp[0].X), (short)(temp[0].Y - 1)};
+            temp[6] = {(short)(temp[0].X - 2), (short)(temp[0].Y - 2)};
+
+        } else if (rotazione_ipotetica == 2){
+ 
+            temp[2] = {(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+            temp[4] = {(short)(temp[0].X + 2), (short)(temp[0].Y)};
+            temp[6] = {(short)(temp[0].X + 4), (short)(temp[0].Y - 1)};
+
+        } else {
+
+            temp[2] = {(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+            temp[4] = {(short)(temp[0].X), (short)(temp[0].Y + 1)};
+            temp[6] = {(short)(temp[0].X + 2), (short)(temp[0].Y + 2)};       
+
+        }
+        
     }
+
+
+
     
     for(short i = 0; i < 8; i++){
 
@@ -560,6 +755,119 @@ void Tetramino::gira(TipoInput tipo_rotazione){
 
         }
 
+    } else if(tipo == TipoTetramino::SL){
+
+        if(rotazione % 2 == 0){
+
+            temp[0] = temp[4] = {(short)(temp[0].X), (short)(temp[0].Y + 1)};
+            temp[2] = temp[6] = {(short)(temp[2].X), (short)(temp[2].Y - 1)};
+
+        } else {
+
+            temp[0] = temp[4] = {(short)(temp[0].X), (short)(temp[0].Y - 1)};
+            temp[2] = temp[6] = {(short)(temp[2].X), (short)(temp[2].Y + 1)};
+
+        }
+
+    } else if(tipo == TipoTetramino::BSL){
+
+        if(rotazione % 2 == 0){
+
+            temp[0] = {(short)(temp[0].X + 2), (short)(temp[0].Y)};
+            temp[2] = {(short)(temp[2].X + 6), (short)(temp[2].Y)};
+            temp[4] = {(short)(temp[4].X - 2), (short)(temp[4].Y)};
+            temp[6] = {(short)(temp[6].X - 6), (short)(temp[6].Y)};
+
+        } else {
+
+            temp[0] = {(short)(temp[0].X - 2), (short)(temp[0].Y)};
+            temp[2] = {(short)(temp[2].X - 6), (short)(temp[2].Y)};
+            temp[4] = {(short)(temp[4].X + 2), (short)(temp[4].Y)};
+            temp[6] = {(short)(temp[6].X + 6), (short)(temp[6].Y)};
+
+        }
+
+    } else if(tipo == TipoTetramino::Y){
+
+        if(rotazione == 0){
+
+            temp[2] = {(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+            temp[4] = {(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+            temp[6] = {(short)(temp[0].X - 2), (short)(temp[0].Y)};
+
+        } else if (rotazione == 1){
+
+            temp[2] = {(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+            temp[4] = {(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+            temp[6] = {(short)(temp[0].X), (short)(temp[0].Y - 1)};
+
+        } else if (rotazione == 2){
+ 
+            temp[2] = {(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+            temp[4] = {(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+            temp[6] = {(short)(temp[0].X + 2), (short)(temp[0].Y)};
+
+        } else {
+
+            temp[2] = {(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+            temp[4] = {(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+            temp[6] = {(short)(temp[0].X), (short)(temp[0].Y + 1)};       
+
+        }
+
+    } else if(tipo == TipoTetramino::V){
+
+        if(rotazione == 0){
+
+            temp[2] = temp[6] = {(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+            temp[4] = {(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+
+        } else if (rotazione == 1){
+
+            temp[2] = temp[6] = {(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+            temp[4] = {(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+
+        } else if (rotazione == 2){
+ 
+            temp[2] = temp[6] = {(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+            temp[4] = {(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+
+        } else {
+
+            temp[2] = temp[6] = {(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+            temp[4] = {(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+
+        }
+
+
+    } else if(tipo == TipoTetramino::C){
+
+        if(rotazione == 0){
+
+            temp[2] = {(short)(temp[0].X + 2), (short)(temp[0].Y + 1)};
+            temp[4] = {(short)(temp[0].X - 2), (short)(temp[0].Y)};
+            temp[6] = {(short)(temp[0].X - 4), (short)(temp[0].Y + 1)};
+
+        } else if (rotazione == 1){
+
+            temp[2] = {(short)(temp[0].X - 2), (short)(temp[0].Y + 1)};
+            temp[4] = {(short)(temp[0].X), (short)(temp[0].Y - 1)};
+            temp[6] = {(short)(temp[0].X - 2), (short)(temp[0].Y - 2)};
+
+        } else if (rotazione == 2){
+ 
+            temp[2] = {(short)(temp[0].X - 2), (short)(temp[0].Y - 1)};
+            temp[4] = {(short)(temp[0].X + 2), (short)(temp[0].Y)};
+            temp[6] = {(short)(temp[0].X + 4), (short)(temp[0].Y - 1)};
+
+        } else {
+
+            temp[2] = {(short)(temp[0].X + 2), (short)(temp[0].Y - 1)};
+            temp[4] = {(short)(temp[0].X), (short)(temp[0].Y + 1)};
+            temp[6] = {(short)(temp[0].X + 2), (short)(temp[0].Y + 2)};       
+
+        }
+        
     }
 
 
@@ -676,6 +984,8 @@ void Tetramino::stampa(){
         } else {
             strcpy(campo.casella[p[i].Y][p[i].X].blocco, BLOCCO_DESTRA);
         }
+        //campo.casella[p[i].Y][p[i].X].blocco[0] = i + '0';
+        //campo.casella[p[i].Y][p[i].X].blocco[1] = '\0';
     }
     this->stampa_colore();
 

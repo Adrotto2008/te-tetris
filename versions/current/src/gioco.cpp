@@ -51,7 +51,8 @@ void Gioco::partitaSinglePlayer(){
 
     punteggio.punti = 0;
     punteggio.n_linee_completate = 0;
-    punteggio.livello = 0;
+    punteggio.livello = 1;
+    timer_input_origine = 1000;
 
     for(short i = 0; i < 3; i++){
         CodaTetramini[i] = new Tetramino();
@@ -527,10 +528,10 @@ void Gioco::opzioni(){
     cursore_basso(&pos, 2);
     cursore_sinistra(&pos, 3);
     printf("NORMALE     ");
-    printf("NORMALE");
+    printf("FACILE");
     cursore_basso(&pos, 2);
-    printf("NORMALE     ");
-    printf("NORMALE");
+    printf("DIFFICILE   ");
+    printf("AVANZATA");
 
     pos.X = 7;
     cursore_basso(&pos, 5);
@@ -693,14 +694,14 @@ void Gioco::opzioni(){
                                         if(pos.X == 2 && pos.Y == 12){ // tipo partita normale
                                             TIPO_PARTITA = TipoPartita::NORMALE;
                                         }
-                                        if(pos.X == 2 && pos.Y == 14){ // tipo partita normale
-                                            TIPO_PARTITA = TipoPartita::NORMALE;
+                                        if(pos.X == 2 && pos.Y == 14){ // tipo partita difficile
+                                            TIPO_PARTITA = TipoPartita::DIFFICILE;
                                         }
-                                        if(pos.X == 14 && pos.Y == 12){ // tipo partita normale
-                                            TIPO_PARTITA = TipoPartita::NORMALE;
+                                        if(pos.X == 14 && pos.Y == 12){ // tipo partita facile
+                                            TIPO_PARTITA = TipoPartita::FACILE;
                                         }
-                                        if(pos.X == 14 && pos.Y == 14){ // tipo partita normale
-                                            TIPO_PARTITA = TipoPartita::NORMALE;
+                                        if(pos.X == 14 && pos.Y == 14){ // tipo partita avanzata
+                                            TIPO_PARTITA = TipoPartita::AVANZATA;
                                         }
                                         uscita_piccolo = true;
                                         break;

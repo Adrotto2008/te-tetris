@@ -35,16 +35,7 @@ void Campo::stampa(COORD posizione_tetramino[], COORD backup_posizione_tetramino
     }
 
     /*-----------CONTROLLO COLORI TETRAMINO----------------------*/
-    switch(casella[posizione_tetramino[0].Y][posizione_tetramino[0].X].colore){
-        case bianco : printf(BIANCO); break;
-        case rosso : printf(ROSSO_CHIARO); break;
-        case ciano : printf(CIANO); break;
-        case blu : printf(BLU_CHIARO); break;
-        case arancione : printf(ARANCIONE); break;
-        case giallo : printf(GIALLO_CHIARO); break;
-        case verde : printf(VERDE_CHIARO); break;
-        case magenta : printf(MAGENTA_CHIARO); break;
-    }
+    stampa_colori(casella[posizione_tetramino[0].Y][posizione_tetramino[0].X].colore);
 
     /*-----------STAMPA TETRAMINO----------------------*/
     for(short i = 0; i < 8; i++){
@@ -63,16 +54,7 @@ void Campo::stampaTotale() {
 
         cursore_manuale(1, i + 1);
         for(short j = 0; j < CAMPO_LUNGHEZZA - 2; j++){
-            switch(casella[i][j].colore){
-                case bianco : printf(BIANCO); break;
-                case rosso : printf(ROSSO_CHIARO); break;
-                case ciano : printf(CIANO); break;
-                case blu : printf(BLU_CHIARO); break;
-                case arancione : printf(ARANCIONE); break;
-                case giallo : printf(GIALLO_CHIARO); break;
-                case verde : printf(VERDE_CHIARO); break;
-                case magenta : printf(MAGENTA_CHIARO); break;
-            }            
+            stampa_colori(casella[i][j].colore);        
 
             fwrite(casella[i][j].blocco, 1, strlen(casella[i][j].blocco), stdout);
         }

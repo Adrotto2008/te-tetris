@@ -3,9 +3,8 @@
 
 #include "costanti.hpp"
 #include "grafica.hpp"
-#include "audio.hpp"
 #include "gioco.hpp"
-#include "punteggio.hpp"
+
 #include <stdio.h>
 
 typedef struct{

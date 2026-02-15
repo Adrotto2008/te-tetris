@@ -581,7 +581,7 @@ Collisioni Tetramino::puo_girare(TipoInput tipo_rotazione) {
             return Collisioni::FUORI;
         }
 
-        if(temp[i].Y <= 0 || temp[i].Y >= CAMPO_ALTEZZA - 2){
+        if(temp[i].Y < 0 || temp[i].Y >= CAMPO_ALTEZZA - 2){
             return Collisioni::FUORI;
         }
 

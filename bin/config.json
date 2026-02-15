@@ -36,6 +36,6 @@
     "blocco_destra": "]",
     "ghost_block_sinistra": "█",
     "ghost_block_destra": "█",
-    "musica": 30.0,
-    "suoni": 30.0
+    "musica": 100.0,
+    "suoni": 70.0
 }

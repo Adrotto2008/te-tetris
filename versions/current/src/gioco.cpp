@@ -57,6 +57,8 @@ void Gioco::partitaSinglePlayer(){
     punteggio.livello = 1;
     timer_input_origine = 1000;
 
+    bool cadutaistantanea;
+
     for(short i = 0; i < 3; i++){
         CodaTetramini[i] = new Tetramino();
     }
@@ -115,11 +117,11 @@ void Gioco::partitaSinglePlayer(){
 
 
             do{
-                
+
+                if(CodaTetramini[0]->in_movimento)
                 if(kbhit() || azione_ultima_speranza != TipoInput::NULLA){    
 
-                    if(azione_ultima_speranza == TipoInput::NULLA){
-                        
+                    if(azione_ultima_speranza == TipoInput::NULLA){             
                         input.scan();
                     }else{
                         azione_ultima_speranza = TipoInput::NULLA;
@@ -131,111 +133,112 @@ void Gioco::partitaSinglePlayer(){
                         
                         if(tempo_trascorso_scambio < timer_scambio){
 
-                            //printf("noooooooo, mancano %d millisecondi", tempo_trascorso);
+                            //aggiungere un suono di errore 
 
                         }else{
 
                             inizio_scambio = cronometro::now();
 
                             audio.suona("hold");
-                            ultima_azione == TipoInput::CAMBIO;
+                            ultima_azione = TipoInput::CAMBIO;
                             puo_sostituire = false; //in questo modo posso effettuare una sostituzione per tetramino
                             sostituzioni++;
 
-                            if(sostituzioni != 2){ // != 2 perchè la prima volta lo puoi fare 2 volte quindi è un modo rozzo per evitare il bug                    
+                                              
 
-                                
-                                CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
-                                CodaTetramini[0]->in_movimento = false;
-                                CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
-                                CodaTetramini[0]->sparisci();
+                            
+                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
+                            CodaTetramini[0]->in_movimento = false;
+                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
+                            CodaTetramini[0]->sparisci();
 
-                                if(sostituzioni == 1){
-                                    RiservaTetramino[0] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo, CodaTetramini[0]->colore);
-                                    stampa_riserva_tetramino(RiservaTetramino[0]->tipo, RiservaTetramino[0]->colore);
-                                    //
-                                    goto PRIMO_CAMBIO;
-                                } else {
-                                    RiservaTetramino[1] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo, CodaTetramini[0]->colore);
-                                    delete(CodaTetramini[0]);
-                                    CodaTetramini[0] = new Tetramino(RiservaTetramino[0]->id_tetramino, RiservaTetramino[0]->tipo, RiservaTetramino[0]->colore);
-                                    delete(RiservaTetramino[0]);
-                                    RiservaTetramino[0] = new Tetramino(RiservaTetramino[1]->id_tetramino, RiservaTetramino[1]->tipo, RiservaTetramino[1]->colore);
-                                    delete(RiservaTetramino[1]);
-                                }
-                                
+                            if(sostituzioni == 1){
+                                RiservaTetramino[0] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo, CodaTetramini[0]->colore);
                                 stampa_riserva_tetramino(RiservaTetramino[0]->tipo, RiservaTetramino[0]->colore);
-
+                                //
+                                goto PRIMO_CAMBIO;
+                            } else {
+                                RiservaTetramino[1] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo, CodaTetramini[0]->colore);
+                                delete(CodaTetramini[0]);
+                                CodaTetramini[0] = new Tetramino(RiservaTetramino[0]->id_tetramino, RiservaTetramino[0]->tipo, RiservaTetramino[0]->colore);
+                                delete(RiservaTetramino[0]);
+                                RiservaTetramino[0] = new Tetramino(RiservaTetramino[1]->id_tetramino, RiservaTetramino[1]->tipo, RiservaTetramino[1]->colore);
+                                delete(RiservaTetramino[1]);
                             }
-
-                        }
-
-                    }else{
-
-                        if(input.cadutaVeloce() == TipoInput::CADUTAVELOCE && CodaTetramini[0]->puo_cadere() == Collisioni::LIBERO){
-                            ultima_azione = TipoInput::CADUTAVELOCE;
-                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
-                            punteggio.cadutaVeloce(CodaTetramini[0]->cadutaVeloce());
-                            audio.suona("softdrop");
-                        }
-
-                        if(input.destra() == TipoInput::DESTRA && CodaTetramini[0]->puo_destra() == Collisioni::LIBERO){
-                            ultima_azione = TipoInput::DESTRA;
-                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
-                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
-                            CodaTetramini[0]->sposta_destra();
-                            audio.suona("movimento");
-                        }
-
-                        if(input.sinistra() == TipoInput::SINISTRA && CodaTetramini[0]->puo_sinistra() == Collisioni::LIBERO){
-                            ultima_azione = TipoInput::SINISTRA;
-                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
-                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
-                            CodaTetramini[0]->sposta_sinistra();
-                            audio.suona("movimento");
-                        }
-
-                        if(input.rotazione() == TipoInput::GIROORARIO && CodaTetramini[0]->puo_girare(TipoInput::GIROORARIO) == Collisioni::LIBERO) {
-                            ultima_azione = TipoInput::GIROORARIO;
-                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
-                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
-                            CodaTetramini[0]->gira(TipoInput::GIROORARIO);
-                            audio.suona("rotazione");
-                        }else 
-                        
-                        if(input.rotazione() == TipoInput::GIROANTIORARIO && CodaTetramini[0]->puo_girare(TipoInput::GIROANTIORARIO) == Collisioni::LIBERO) { 
-                            ultima_azione = TipoInput::GIROANTIORARIO;
-                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
-                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
-                            CodaTetramini[0]->gira(TipoInput::GIROANTIORARIO);
-                            audio.suona("rotazione");
-                        }else
-
-                        if(input.rotazione() == TipoInput::GIRODOPPIO && CodaTetramini[0]->puo_girare(TipoInput::GIRODOPPIO) == Collisioni::LIBERO) { 
-                            ultima_azione = TipoInput::GIRODOPPIO;
-                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
-                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
-                            CodaTetramini[0]->gira(TipoInput::GIRODOPPIO);
-                            audio.suona("rotazione");
-                        }
-
-                        if(input.uscita() == TipoInput::ESCI){
-                            //
-                            return;
-                        }
-
-                        if(input.cadutaIstantanea() == TipoInput::CADUTAISTANTANEA){
-                            ultima_azione = TipoInput::CADUTAISTANTANEA;
-                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
-                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
-                            timer_input = 0;
-                            punteggio.cadutaIstantanea(CodaTetramini[0]->caduta_istantanea());
-                            audio.suona("harddrop");
-                        }
+                            
+                            stampa_riserva_tetramino(RiservaTetramino[0]->tipo, RiservaTetramino[0]->colore);
 
                         
-                        
+
+                        }
+
                     }
+
+                    if(input.cadutaVeloce() == TipoInput::CADUTAVELOCE && CodaTetramini[0]->puo_cadere() == Collisioni::LIBERO){
+                        ultima_azione = TipoInput::CADUTAVELOCE;
+                        CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
+                        punteggio.cadutaVeloce(CodaTetramini[0]->cadutaVeloce());
+                        audio.suona("softdrop");
+                    }
+
+                    if(input.destra() == TipoInput::DESTRA && CodaTetramini[0]->puo_destra() == Collisioni::LIBERO){
+                        ultima_azione = TipoInput::DESTRA;
+                        CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
+                        CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
+                        CodaTetramini[0]->sposta_destra();
+                        audio.suona("movimento");
+                    }
+
+                    if(input.sinistra() == TipoInput::SINISTRA && CodaTetramini[0]->puo_sinistra() == Collisioni::LIBERO){
+                        ultima_azione = TipoInput::SINISTRA;
+                        CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
+                        CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
+                        CodaTetramini[0]->sposta_sinistra();
+                        audio.suona("movimento");
+                    }
+
+                    if(input.rotazione() == TipoInput::GIROORARIO && CodaTetramini[0]->puo_girare(TipoInput::GIROORARIO) == Collisioni::LIBERO) {
+                        ultima_azione = TipoInput::GIROORARIO;
+                        CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
+                        CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
+                        CodaTetramini[0]->gira(TipoInput::GIROORARIO);
+                        audio.suona("rotazione");
+                    }else
+                    
+                    if(input.rotazione() == TipoInput::GIROANTIORARIO && CodaTetramini[0]->puo_girare(TipoInput::GIROANTIORARIO) == Collisioni::LIBERO) { 
+                        ultima_azione = TipoInput::GIROANTIORARIO;
+                        CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
+                        CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
+                        CodaTetramini[0]->gira(TipoInput::GIROANTIORARIO);
+                        audio.suona("rotazione");
+                    }else
+
+                    if(input.rotazione() == TipoInput::GIRODOPPIO && CodaTetramini[0]->puo_girare(TipoInput::GIRODOPPIO) == Collisioni::LIBERO) { 
+                        ultima_azione = TipoInput::GIRODOPPIO;
+                        CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
+                        CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
+                        CodaTetramini[0]->gira(TipoInput::GIRODOPPIO);
+                        audio.suona("rotazione");
+                    }
+
+                    if(input.uscita() == TipoInput::ESCI){
+                        //
+                        return;
+                    }
+
+                    if(input.cadutaIstantanea() == TipoInput::CADUTAISTANTANEA){
+                        ultima_azione = TipoInput::CADUTAISTANTANEA;
+                        CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
+                        CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
+                        timer_input = 0;
+                        punteggio.cadutaIstantanea(CodaTetramini[0]->caduta_istantanea());
+                        audio.suona("harddrop");
+                        CodaTetramini[0]->in_movimento = false;
+                    }
+
+                    
+                    
+                    
 
                     CodaTetramini[0]->stampa();
                     campo.stampa(CodaTetramini[0]->p, backup_tetramino, CodaTetramini[0]->ghost_block(), CodaTetramini[0]->in_movimento);

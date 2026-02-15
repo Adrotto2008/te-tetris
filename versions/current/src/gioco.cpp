@@ -137,6 +137,7 @@ void Gioco::partitaSinglePlayer(){
 
                         }else{
 
+                            timer_scambio = 15000;
                             inizio_scambio = cronometro::now();
 
                             audio.suona("hold");
@@ -323,6 +324,10 @@ void Gioco::partitaSinglePlayer(){
 	        campo.stampa(CodaTetramini[0]->p, backup_tetramino, CodaTetramini[0]->ghost_block(), CodaTetramini[0]->in_movimento);
             
 	    }
+
+        //diminuisco il tempo necessario per scambiare ogni volta che viene piazzato un tetramino
+        if(timer_scambio > 0) timer_scambio -= 300;
+
         punteggio.t_spin(CodaTetramini[0]->tipo, CodaTetramini[0]->p[0], ultima_azione);
 		PRIMO_CAMBIO:
         /*---------ELIMINAZIONE DALLA MEMORIA------------*/

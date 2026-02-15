@@ -213,6 +213,7 @@ extern COORD coord_posizione_campo;
 extern COORD coord_punteggio;
 extern COORD coord_linee;
 extern COORD coord_livello;
+extern COORD coord_scambio;
 extern COORD coord_fine;
 
 #endif

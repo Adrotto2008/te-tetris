@@ -94,6 +94,7 @@ extern int timer_input;
 extern int timer_input_origine;
 extern int timer_caduta;
 extern int timer_caduta_origine;
+extern int timer_scambio;
 
 // ---- Config ----
 std::string apri_config();

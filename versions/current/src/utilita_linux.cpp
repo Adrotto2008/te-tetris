@@ -10,6 +10,7 @@ int timer_input;
 int timer_input_origine = 1000;
 int timer_caduta;
 int timer_caduta_origine = 300;
+int timer_scambio = 15000;
 ordered_json config;
 termios term_originale;
 

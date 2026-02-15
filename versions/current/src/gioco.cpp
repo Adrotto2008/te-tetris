@@ -41,6 +41,9 @@ void Gioco::partitaSinglePlayer(){
 
     cronometro::time_point inizio;
     cronometro::time_point attuale;
+    cronometro::time_point inizio_scambio;
+    cronometro::time_point attuale_scambio;
+    int tempo_trascorso_scambio;
 
     Tetramino* CodaTetramini[4] = {NULL};
     Tetramino* RiservaTetramino[2] = {NULL};
@@ -57,6 +60,8 @@ void Gioco::partitaSinglePlayer(){
     for(short i = 0; i < 3; i++){
         CodaTetramini[i] = new Tetramino();
     }
+
+    inizio_scambio = cronometro::now();
 
     /*------------------CONTROLLO PERDITA--------------------*/ // continua fino a quando non perdi
 	for(short j = 0; !CodaTetramini[0]->perdita(); j++){
@@ -108,6 +113,7 @@ void Gioco::partitaSinglePlayer(){
 
             inizio = cronometro::now();
 
+
             do{
                 
                 if(kbhit() || azione_ultima_speranza != TipoInput::NULLA){    
@@ -122,34 +128,45 @@ void Gioco::partitaSinglePlayer(){
 
                     if(input.cambio() == TipoInput::CAMBIO && puo_sostituire){
 
-                        audio.suona("hold");
-                        ultima_azione == TipoInput::CAMBIO;
-                        puo_sostituire = false; //in questo modo posso effettuare una sostituzione per tetramino
-                        sostituzioni++;
+                        
+                        if(tempo_trascorso_scambio < timer_scambio){
 
-                        if(sostituzioni != 2){ // != 2 perchè la prima volta lo puoi fare 2 volte quindi è un modo rozzo per evitare il bug                    
+                            //printf("noooooooo, mancano %d millisecondi", tempo_trascorso);
 
-                            
-                            CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
-                            CodaTetramini[0]->in_movimento = false;
-                            CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
-                            CodaTetramini[0]->sparisci();
+                        }else{
 
-                            if(sostituzioni == 1){
-                                RiservaTetramino[0] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo, CodaTetramini[0]->colore);
+                            inizio_scambio = cronometro::now();
+
+                            audio.suona("hold");
+                            ultima_azione == TipoInput::CAMBIO;
+                            puo_sostituire = false; //in questo modo posso effettuare una sostituzione per tetramino
+                            sostituzioni++;
+
+                            if(sostituzioni != 2){ // != 2 perchè la prima volta lo puoi fare 2 volte quindi è un modo rozzo per evitare il bug                    
+
+                                
+                                CodaTetramini[0]->pulisci(TipoTetramino::NORMALE);
+                                CodaTetramini[0]->in_movimento = false;
+                                CodaTetramini[0]->pulisci(TipoTetramino::GHOST);
+                                CodaTetramini[0]->sparisci();
+
+                                if(sostituzioni == 1){
+                                    RiservaTetramino[0] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo, CodaTetramini[0]->colore);
+                                    stampa_riserva_tetramino(RiservaTetramino[0]->tipo, RiservaTetramino[0]->colore);
+                                    //
+                                    goto PRIMO_CAMBIO;
+                                } else {
+                                    RiservaTetramino[1] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo, CodaTetramini[0]->colore);
+                                    delete(CodaTetramini[0]);
+                                    CodaTetramini[0] = new Tetramino(RiservaTetramino[0]->id_tetramino, RiservaTetramino[0]->tipo, RiservaTetramino[0]->colore);
+                                    delete(RiservaTetramino[0]);
+                                    RiservaTetramino[0] = new Tetramino(RiservaTetramino[1]->id_tetramino, RiservaTetramino[1]->tipo, RiservaTetramino[1]->colore);
+                                    delete(RiservaTetramino[1]);
+                                }
+                                
                                 stampa_riserva_tetramino(RiservaTetramino[0]->tipo, RiservaTetramino[0]->colore);
-                                //
-                                goto PRIMO_CAMBIO;
-                            } else {
-                                RiservaTetramino[1] = new Tetramino(CodaTetramini[0]->id_tetramino, CodaTetramini[0]->tipo, CodaTetramini[0]->colore);
-                                delete(CodaTetramini[0]);
-                                CodaTetramini[0] = new Tetramino(RiservaTetramino[0]->id_tetramino, RiservaTetramino[0]->tipo, RiservaTetramino[0]->colore);
-                                delete(RiservaTetramino[0]);
-                                RiservaTetramino[0] = new Tetramino(RiservaTetramino[1]->id_tetramino, RiservaTetramino[1]->tipo, RiservaTetramino[1]->colore);
-                                delete(RiservaTetramino[1]);
+
                             }
-                            
-                            stampa_riserva_tetramino(RiservaTetramino[0]->tipo, RiservaTetramino[0]->colore);
 
                         }
 
@@ -229,12 +246,21 @@ void Gioco::partitaSinglePlayer(){
 
                 }
 
+                attuale_scambio = cronometro::now();
+                tempo_trascorso_scambio = std::chrono::duration_cast<std::chrono::milliseconds>(attuale_scambio - inizio_scambio).count();
+
                 posizione_cursore(coord_punteggio);
                 printf("punteggio : %.0f", punteggio.punti);
                 posizione_cursore(coord_linee);
                 printf("linee completate : %d", punteggio.n_linee_completate);
                 posizione_cursore(coord_livello);
                 printf("livello : %hd", punteggio.livello);
+                posizione_cursore(coord_scambio);
+                
+                if(tempo_trascorso_scambio < timer_scambio)
+                    printf("%-22s %d %-10s","scambio disponibile fra" , timer_scambio / 1000 - tempo_trascorso_scambio / 1000, "secondi!");
+                else
+                    printf("%-45s","scambio disponibile!");
 
                 std::this_thread::sleep_for(std::chrono::milliseconds(5));
                 attuale = cronometro::now();

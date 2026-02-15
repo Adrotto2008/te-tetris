@@ -286,3 +286,20 @@ bool kbhit() {
     }
     return false;
 }
+
+// ---- Utilità ----
+
+int numero_casuale(int min, int max) {
+    // Controllo per evitare intervallo non valido
+    if (min > max) {
+        std::swap(min, max);
+    }
+    
+    // Usa l'orologio di sistema come seed
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+    
+    std::uniform_int_distribution<int> distrib(min, max);
+    
+    return distrib(gen);
+}

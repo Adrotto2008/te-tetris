@@ -21,12 +21,15 @@ class Campo {
     
         short linee_riempite = 0;
         short posizione_riga[4] = {0};
+        short linee_ricevute = 0;
         Casella casella[CAMPO_ALTEZZA - 2][CAMPO_LUNGHEZZA - 2];
 
         void inizializza();
         void stampa(COORD posizione_tetramino[], COORD backup_posizione_tetramino[], COORD posizione_ghost_block[], bool in_movimento);
         void stampaTotale();
         void scesa();
+        void salita();
+        void attacco();
         void controlloPunti();
         bool controlloPrimaLinea();
         void animazione_linea_liberata();

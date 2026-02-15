@@ -135,7 +135,9 @@ enum Colori {
     ciano_chiaro = -11,
     light_yellow = -12,
     magenta      = -13,
-    bianco       = -14
+    bianco       = -14,
+
+    grigio_chiaro = -15
 };
 
 /*----------COLLISIONI----------*/

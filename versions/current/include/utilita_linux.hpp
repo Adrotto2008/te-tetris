@@ -126,4 +126,8 @@ void cmd_grande(); // stub su Linux
 int _getch();
 bool kbhit();
 
+// ---- Utilità ----
+
+int numero_casuale(int min, int max);
+
 #endif

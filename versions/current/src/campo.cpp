@@ -77,6 +77,63 @@ void Campo::scesa() {
     stampaTotale();
 }
 
+void Campo::salita(){
+
+    if(linee_ricevute == 0) return;
+
+    for(short i = 0; i < CAMPO_ALTEZZA - 3; i++){
+
+        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++){
+            casella[i][k] = casella[i+linee_ricevute][k];
+        }
+    
+    }
+
+    for(short j = 0; j < linee_ricevute; j++){
+
+        for(short i = 0; i < CAMPO_LUNGHEZZA - 2; i++){
+            casella[CAMPO_ALTEZZA-3 - j][i] = casella[0][0];  
+        }
+
+    }
+
+
+
+
+    attacco();
+
+    std::this_thread::sleep_for(10ms);
+
+    stampaTotale();
+
+}
+
+void Campo::attacco(){
+
+    if(linee_ricevute == 0) return;
+
+    int vuoto;
+    do{
+        vuoto = numero_casuale(1, CAMPO_LUNGHEZZA - 3);
+    } while(vuoto % 2 == 1);    
+
+    
+    for(short i = CAMPO_ALTEZZA - 2 - linee_ricevute; i < CAMPO_ALTEZZA - 2; i++){
+
+        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++){
+
+            if(k != vuoto && k != vuoto + 1){
+                casella[i][k].colore = grigio_chiaro;
+                casella[i][k].id = 1; // numero a caso
+                strcpy(casella[i][k].blocco, k % 2 == 0 ? BLOCCO_SINISTRA : BLOCCO_DESTRA);
+            }
+            
+        }
+
+    }
+
+}
+
 void Campo::controlloPunti() {
     bool linea_riempita;
     linee_riempite = 0;

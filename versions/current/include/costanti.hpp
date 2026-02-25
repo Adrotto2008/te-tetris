@@ -1,4 +1,4 @@
-#ifndef COSTANTI_HPP
+#ifndef COSTANTI_HPP3
 #define COSTANTI_HPP
 
 #include <iostream>
@@ -198,10 +198,10 @@ extern float AUDIO_MUSICA;
 extern float AUDIO_SUONI;
 extern TipoPartita TIPO_PARTITA;
 extern TipoColori TIPO_COLORI;
-extern char BLOCCO_GHOST_SINISTRA[4]; //blocco intero usato dai ghost block 219
-extern char BLOCCO_GHOST_DESTRA[4]; //blocco intero usato dai ghost block 219
-extern char BLOCCO_SINISTRA[4]; //metà blocco usato per la parte sinistra
-extern char BLOCCO_DESTRA[4]; //metà blocco usato per la parte destra
+extern std::string BLOCCO_GHOST_SINISTRA;
+extern std::string BLOCCO_GHOST_DESTRA;
+extern std::string BLOCCO_SINISTRA;
+extern std::string BLOCCO_DESTRA;
 
 /*--------------CORDINATE GLOBALI----------------------*/
 

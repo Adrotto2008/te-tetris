@@ -1,12 +1,13 @@
 #ifndef INPUT_HPP
 #define INPUT_HPP
 
-#include "costanti.hpp"
 #ifdef __linux__
 #include "utilita_linux.hpp"
 #else
 #include "utilita.hpp"
 #endif
+
+#include "costanti.hpp"
 
 #include <array>
 

@@ -294,16 +294,16 @@ Collisioni Tetramino::puo_girare(TipoInput tipo_rotazione) {
 
     COORD temp[8];
     
-    short rotazione_ipotetica;
+    short rotazione_ipotetica = 0;
 
     if(tipo_rotazione == TipoInput::GIROORARIO) //antioraria
         rotazione_ipotetica = rotazione;
     else
     if(tipo_rotazione == TipoInput::GIROANTIORARIO) //antioraria
-        rotazione_ipotetica+= 2;
+        rotazione_ipotetica += 2;
     else
     if(tipo_rotazione == TipoInput::GIRODOPPIO) //doppia
-        rotazione_ipotetica+=1;
+        rotazione_ipotetica += 1;
 
     for(short i = 0; i < 8; i++){
         if(i % 2 == 0){
@@ -980,9 +980,9 @@ void Tetramino::stampa(){
 
     for(short i = 0; i < 8; i++){
         if(i % 2 == 0){
-            strcpy(campo.casella[p[i].Y][p[i].X].blocco, BLOCCO_SINISTRA);
+            campo.casella[p[i].Y][p[i].X].blocco = BLOCCO_SINISTRA;
         } else {
-            strcpy(campo.casella[p[i].Y][p[i].X].blocco, BLOCCO_DESTRA);
+            campo.casella[p[i].Y][p[i].X].blocco = BLOCCO_DESTRA;
         }
         //campo.casella[p[i].Y][p[i].X].blocco[0] = i + '0';
         //campo.casella[p[i].Y][p[i].X].blocco[1] = '\0';
@@ -998,7 +998,7 @@ short Tetramino::caduta_lenta(){
 
     for(short i = 0; i < 8; i++){
         campo.casella[p[i].Y][p[i].X].id = 32;
-        campo.casella[p[i].Y][p[i].X].blocco[0] = 32; campo.casella[p[i].Y][p[i].X].blocco[1] ='\0';
+        campo.casella[p[i].Y][p[i].X].blocco = " ";
         campo.casella[p[i].Y][p[i].X].colore = bianco;
         p[i].Y+= 1;
     }
@@ -1017,7 +1017,7 @@ short Tetramino::cadutaVeloce(){
 
     for(short i = 0; i < 8; i++){
         campo.casella[p[i].Y][p[i].X].id = 32;
-        campo.casella[p[i].Y][p[i].X].blocco[0] = 32; campo.casella[p[i].Y][p[i].X].blocco[1] ='\0';
+        campo.casella[p[i].Y][p[i].X].blocco = " ";
         campo.casella[p[i].Y][p[i].X].colore = bianco;
         p[i].Y+= 1;
     }
@@ -1035,7 +1035,7 @@ short Tetramino::caduta_istantanea(){
 
     for(short i = 0; i < 8; i++){
         campo.casella[p[i].Y][p[i].X].id = 32;
-        campo.casella[p[i].Y][p[i].X].blocco[0] = 32; campo.casella[p[i].Y][p[i].X].blocco[1] ='\0';
+        campo.casella[p[i].Y][p[i].X].blocco = " ";
         campo.casella[p[i].Y][p[i].X].colore = bianco;
     }
 

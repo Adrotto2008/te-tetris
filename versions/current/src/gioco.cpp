@@ -8,6 +8,7 @@ Gioco gioco;
 
 void Gioco::partitaSinglePlayer(){
 
+    cmd_type();
     printf(BIANCO);
     cmd_grande();
     nascondi_cursore();
@@ -118,8 +119,7 @@ void Gioco::partitaSinglePlayer(){
 
             do{
 
-                if(CodaTetramini[0]->in_movimento)
-                if(kbhit() || azione_ultima_speranza != TipoInput::NULLA){    
+                if((CodaTetramini[0]->in_movimento && kbhit()) || azione_ultima_speranza != TipoInput::NULLA){    
 
                     if(azione_ultima_speranza == TipoInput::NULLA){             
                         input.scan();
@@ -356,6 +356,7 @@ void Gioco::partitaSinglePlayer(){
 
 void Gioco::multiPlayerStanza(std::string& nome){
 
+    cmd_type();
     int scelta;
 
     enum class STANZA{
@@ -403,6 +404,7 @@ void Gioco::multiPlayerStanza(std::string& nome){
 void Gioco::opzioniStanza(Online* online, RoomDTO stanza, bool owner){
 
     pulisci();
+    cmd_type();
 
     Input input;
     bool esci = false;
@@ -450,6 +452,7 @@ void Gioco::opzioniStanza(Online* online, RoomDTO stanza, bool owner){
 
 void Gioco::listaStanze(Online* online, std::string& nome){    
     
+    cmd_type();
     pulisci();
     bool esci = false;
     Input input;
@@ -461,12 +464,12 @@ void Gioco::listaStanze(Online* online, std::string& nome){
 
     cursore_manuale(5, 2);
     
-    printf("stanze : (%d/%hd) ", stanze.size(), stanze_massime);
+    printf("stanze : (%d/%hd) ", (int)stanze.size(), stanze_massime);
 
     for(size_t j = 0; j < stanze.size(); j++, i += 5){
 
         cursore_manuale(5, i);
-        printf("  %-*s", strlen(stanze[j].name) + 2, stanze[j].name);
+        printf("  %-*s", (int)strlen(stanze[j].name) + 2, stanze[j].name);
 
     }
 
@@ -525,6 +528,7 @@ void Gioco::listaStanze(Online* online, std::string& nome){
 
 void Gioco::opzioni(){
 
+    cmd_type();
     pulisci();
     AudioManager audio;
     audio.caricaMusiche("../sounds/music/opzioni");
@@ -806,24 +810,24 @@ void Gioco::opzioni(){
 
                                     case TipoInput::CADUTAISTANTANEA:
                                         if(pos.X == 7 && pos.Y == 21){ // tipo ghostblock : █
-                                            strcpy(BLOCCO_GHOST_SINISTRA, "█");
-                                            strcpy(BLOCCO_GHOST_DESTRA, "█");
+                                            BLOCCO_GHOST_SINISTRA = "█";
+                                            BLOCCO_GHOST_DESTRA   = "█";
                                         }
                                         if(pos.X == 7 && pos.Y == 23){ // tipo ghostblock : []
-                                            strcpy(BLOCCO_GHOST_SINISTRA, "[\0");
-                                            strcpy(BLOCCO_GHOST_DESTRA, "]\0");
+                                            BLOCCO_GHOST_SINISTRA = "[";
+                                            BLOCCO_GHOST_DESTRA   = "]";
                                         }
                                         if(pos.X == 13 && pos.Y == 21){ // tipo ghostblock : ()
-                                            strcpy(BLOCCO_GHOST_SINISTRA, "(");
-                                            strcpy(BLOCCO_GHOST_DESTRA, ")");
+                                            BLOCCO_GHOST_SINISTRA = "(";
+                                            BLOCCO_GHOST_DESTRA   = ")";
                                         }
                                         if(pos.X == 13 && pos.Y == 23){ // tipo ghostblock : nessuno
-                                            strcpy(BLOCCO_GHOST_SINISTRA, " \0");
-                                            strcpy(BLOCCO_GHOST_DESTRA, " \0");
+                                            BLOCCO_GHOST_SINISTRA = " ";
+                                            BLOCCO_GHOST_DESTRA   = " ";
                                         }
                                         if(pos.X == 7 && pos.Y == 25){ // tipo ghostblock : {}
-                                            strcpy(BLOCCO_GHOST_SINISTRA, "{\0");
-                                            strcpy(BLOCCO_GHOST_DESTRA, "}\0");
+                                            BLOCCO_GHOST_SINISTRA = "{";
+                                            BLOCCO_GHOST_DESTRA   = "}";
                                         }
                                         if(pos.X == 13 && pos.Y == 25){ // tipo ghostblock : personale
                                             cursore_manuale(16, 25);
@@ -831,12 +835,12 @@ void Gioco::opzioni(){
                                                 input_sinistra.scan();
                                             }while(!input_sinistra.valido());
                                             printf("%c", input_sinistra.input);
-                                            sprintf(BLOCCO_GHOST_SINISTRA, "%c\0",input_sinistra.input);
+                                            BLOCCO_GHOST_SINISTRA = std::string(1, input_sinistra.input);
                                             do{
                                                 input_destra.scan();
                                             }while (!input_destra.valido());
                                             printf("%c", input_destra.input);
-                                            sprintf(BLOCCO_GHOST_DESTRA, "%c\0",input_destra.input);
+                                            BLOCCO_GHOST_DESTRA = std::string(1, input_destra.input);
                                         }
                                         uscita_piccolo = true;
                                         break;
@@ -906,20 +910,20 @@ void Gioco::opzioni(){
 
                                     case TipoInput::CADUTAISTANTANEA:
                                         if(pos.X == 38 && pos.Y == 12){ // tipo blocchi : []
-                                            BLOCCO_SINISTRA[0] = '['; BLOCCO_SINISTRA[1] = '\0';
-                                            BLOCCO_DESTRA[0]   = ']'; BLOCCO_DESTRA[1]   = '\0';
+                                            BLOCCO_SINISTRA = "[";
+                                            BLOCCO_DESTRA   = "]";
                                         }
                                         if(pos.X == 45 && pos.Y == 12){ // tipo blocchi : ()
-                                            BLOCCO_SINISTRA[0] = '('; BLOCCO_SINISTRA[1] = '\0';
-                                            BLOCCO_DESTRA[0]   = ')'; BLOCCO_DESTRA[1]   = '\0';
+                                            BLOCCO_SINISTRA = "(";
+                                            BLOCCO_DESTRA   = ")";
                                         }
                                         if(pos.X == 38 && pos.Y == 14){ // tipo blocchi : {}
-                                            BLOCCO_SINISTRA[0] = '{'; BLOCCO_SINISTRA[1] = '\0';
-                                            BLOCCO_DESTRA[0]   = '}'; BLOCCO_DESTRA[1]   = '\0';
+                                            BLOCCO_SINISTRA = "{";
+                                            BLOCCO_DESTRA   = "}";
                                         }
                                         if(pos.X == 45 && pos.Y == 14){ // tipo blocchi : █
-                                            strcpy(BLOCCO_SINISTRA, "█");
-                                            strcpy(BLOCCO_DESTRA, "█");
+                                            BLOCCO_SINISTRA = "█";
+                                            BLOCCO_DESTRA = "█";
                                         }
                                         uscita_piccolo = true;
                                         break;
@@ -1121,6 +1125,7 @@ void Gioco::opzioni(){
 
 void Gioco::stampaSuoni(bool is_suoni){
 
+    cmd_type();
     COORD coord_pos = {74, 12};
     float audio = AUDIO_MUSICA;
 
@@ -1145,10 +1150,12 @@ void Gioco::stampaSuoni(bool is_suoni){
 }
 
 void Gioco::comandi(){
-    system("chcp 65001");
 
-    printf(CURSORE_INVISIBILE);
+    cmd_type();
+    //system("chcp 65001");
     pulisci();
+    printf(CURSORE_INVISIBILE);
+    
     COORD posizione_att;
     Input input;
     bool esci = false;
@@ -1160,7 +1167,7 @@ void Gioco::comandi(){
 
     short i = 3;
         
-    scritta(5, "                                                                                 "); cursore_manuale(PADDING, i++);
+    scritta(5, "                                                                                "); cursore_manuale(PADDING, i++);
     scritta(5, "    ▄▄▄▄             ▄▄▄  ▄▄▄               ▄▄               ▄▄▄▄▄              "); cursore_manuale(PADDING, i++);
     scritta(5, "  ██▀▀▀▀█            ███  ███              ████              ██▀▀▀██            "); cursore_manuale(PADDING, i++);
     scritta(5, " ██▀        ▄████▄   ████████  ████▄██▄    ████    ██▄████▄  ██    ██  ▄▄█████▄ "); cursore_manuale(PADDING, i++);
@@ -1598,7 +1605,7 @@ void Gioco::comandi(){
     }while(!esci);
 
     audio.fermaMusica();
-    system("chcp 850");
-    setlocale(LC_ALL, "");
+    //system("chcp 850");
+    //setlocale(LC_ALL, "");
     salva_config();
 }

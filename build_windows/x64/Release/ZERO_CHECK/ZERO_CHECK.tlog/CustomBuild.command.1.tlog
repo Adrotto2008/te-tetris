@@ -1,0 +1,10 @@
+^D:\SERVER\PROGRAMMAZIONE\C++\TE_TETRIS\TE_TETRIS\BUILD_WINDOWS\CMAKEFILES\819BEC36123281D3934B42AC4A210721\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/server/programmazione/c++/te_tetris/te_tetris -BD:/server/programmazione/c++/te_tetris/te_tetris/build_windows --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/TeTetris.slnx
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

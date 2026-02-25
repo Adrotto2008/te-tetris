@@ -1,0 +1,3 @@
+D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/CMakeFiles/te_tetris.dir
+D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/CMakeFiles/ALL_BUILD.dir
+D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/CMakeFiles/ZERO_CHECK.dir

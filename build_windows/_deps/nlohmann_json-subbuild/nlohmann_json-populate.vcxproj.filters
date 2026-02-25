@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\server\programmazione\c++\te_tetris\te_tetris\build_windows\_deps\nlohmann_json-subbuild\CMakeFiles\d9d4f6f9ac847a11c23b8078604286b3\nlohmann_json-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\server\programmazione\c++\te_tetris\te_tetris\build_windows\_deps\nlohmann_json-subbuild\CMakeFiles\d9d4f6f9ac847a11c23b8078604286b3\nlohmann_json-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\server\programmazione\c++\te_tetris\te_tetris\build_windows\_deps\nlohmann_json-subbuild\CMakeFiles\d9d4f6f9ac847a11c23b8078604286b3\nlohmann_json-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\server\programmazione\c++\te_tetris\te_tetris\build_windows\_deps\nlohmann_json-subbuild\CMakeFiles\d9d4f6f9ac847a11c23b8078604286b3\nlohmann_json-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\server\programmazione\c++\te_tetris\te_tetris\build_windows\_deps\nlohmann_json-subbuild\CMakeFiles\d9d4f6f9ac847a11c23b8078604286b3\nlohmann_json-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\server\programmazione\c++\te_tetris\te_tetris\build_windows\_deps\nlohmann_json-subbuild\CMakeFiles\d9d4f6f9ac847a11c23b8078604286b3\nlohmann_json-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\server\programmazione\c++\te_tetris\te_tetris\build_windows\_deps\nlohmann_json-subbuild\CMakeFiles\d9d4f6f9ac847a11c23b8078604286b3\nlohmann_json-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\server\programmazione\c++\te_tetris\te_tetris\build_windows\_deps\nlohmann_json-subbuild\CMakeFiles\d9d4f6f9ac847a11c23b8078604286b3\nlohmann_json-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\server\programmazione\c++\te_tetris\te_tetris\build_windows\_deps\nlohmann_json-subbuild\CMakeFiles\9bf1cb89c110ebf8e586d1a710f4f136\nlohmann_json-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\server\programmazione\c++\te_tetris\te_tetris\build_windows\_deps\nlohmann_json-subbuild\CMakeFiles\7467f87e4e78fa97cb43e1d337188a09\nlohmann_json-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\server\programmazione\c++\te_tetris\te_tetris\build_windows\_deps\nlohmann_json-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\server\programmazione\c++\te_tetris\te_tetris\build_windows\_deps\nlohmann_json-subbuild\CMakeFiles\nlohmann_json-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{A846EBB7-4159-32FD-BBA8-F75872AA967A}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -2,10 +2,11 @@
 #ifndef UTILITA_HPP
 #define UTILITA_HPP
 
-#include "costanti.hpp"
-#include "input.hpp"
+
 #include <winsock2.h>
+#include <ws2tcpip.h>
 #include <windows.h>
+
 #include <conio.h>
 #include <iostream>
 #include <string>
@@ -22,18 +23,25 @@
 #include <optional>
 #include <stdexcept>
 #include <thread>
+#include <random>
+
 #include <nlohmann/json.hpp>
 #include <httplib.h>
 #include <ixwebsocket/IXWebSocket.h>
 
+#include "costanti.hpp"
+#include "input.hpp"
+
 // Usiamo nlohmann::json standard
 using json = nlohmann::json;
+using ordered_json = nlohmann::ordered_json;
 
 #define GRID_ROWS (CAMPO_ALTEZZA - 2)
 #define GRID_COLS (CAMPO_LUNGHEZZA - 2)
 #define MAX_PLAYERS 2
 #define MAX_STR_LEN 64
 
+// --- DTO ---
 struct CasellaDTO {
     int id;
     char colore;
@@ -63,29 +71,52 @@ struct RoomDTO {
     int memberCount;
 };
 
-// --- Funzioni di conversione esplicite ---
-json casellaToJson(const CasellaDTO& c);
-CasellaDTO casellaFromJson(const json& j);
+// --- Funzioni DTO/JSON ---
+ordered_json casellaToJson(const CasellaDTO& c);
+CasellaDTO casellaFromJson(const ordered_json& j);
 
-json messageToJson(const MessageDTO& m);
-MessageDTO messageFromJson(const json& j);
+ordered_json messageToJson(const MessageDTO& m);
+MessageDTO messageFromJson(const ordered_json& j);
 
-GameStartedDTO gameStartedFromJson(const json& j);
-RoomDTO roomFromJson(const json& j);
+GameStartedDTO gameStartedFromJson(const ordered_json& j);
+RoomDTO roomFromJson(const ordered_json& j);
 
-// Variabili globali e altre funzioni...
+// --- Conversioni automatiche JSON ---
+void to_json(ordered_json& j, const MessageDTO& m);
+void from_json(const ordered_json& j, MessageDTO& m);
+
+void to_json(ordered_json& j, const RoomDTO& r);
+void from_json(const ordered_json& j, RoomDTO& r);
+
+void to_json(ordered_json& j, const GameStartedDTO& g);
+void from_json(const ordered_json& j, GameStartedDTO& g);
+
+// --- Variabili globali ---
 extern int timer_input;
+extern int timer_input_origine;
 extern int timer_caduta;
+extern int timer_caduta_origine;
+extern int timer_scambio;
+extern ordered_json config;
 
+// --- Configurazione ---
 std::string apri_config();
-std::string inizializza_config(bool esiste);
-void salva_config();
-void scrivi_due_tasti(nlohmann::ordered_json& config, const char* chiave, const char& a, const char& b);
-void carica_due_tasti(const nlohmann::ordered_json& config, const char* chiave, char& a, char& b);
+std::string inizializza_config();
+void salva_config(std::string nome = "");
+void scrivi_due_tasti(ordered_json& config, const char* chiave, const char& a, const char& b);
+void carica_due_tasti(const ordered_json& config, const char* chiave, char& a, char& b);
 
-void countdown_input(int seconds);
-void countdown_caduta(int seconds);
-void scritta(int dormi, std::string stringa);
+// --- Countdown ---
+void countdown_input(int tempo);
+void countdown_caduta(int tempo);
+
+// --- Terminale/Console (compatibilità Linux) ---
+void cmd_type();
+void disabilita_echo();
+void ripristina_echo();
+
+// --- Output e cursore ---
+void scritta(int dormi, const std::string& testo);
 void cursore_manuale(short x, short y);
 void posizione_cursore(COORD coord_posizione);
 void cursore_alto(COORD* coord_posizione, short delta);
@@ -98,5 +129,12 @@ void mostra_cursore();
 void pulisci();
 void cmd_grande();
 
-#endif
-#endif
+// --- Input ---
+//int _getch();
+//bool kbhit();
+
+// --- Random ---
+int numero_casuale(int min, int max);
+
+#endif // UTILITA_HPP
+#endif // __linux__

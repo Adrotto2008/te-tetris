@@ -108,6 +108,7 @@ void countdown_input(int ms);
 void countdown_caduta(int ms);
 
 // ---- Console ----
+void cmd_type();
 void disabilita_echo();
 void ripristina_echo();
 void scritta(int dormi, const std::string& testo);

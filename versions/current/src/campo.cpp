@@ -8,7 +8,7 @@ void Campo::inizializza() {
     for(short i = 0; i < CAMPO_ALTEZZA - 2; i++){
         for(short j = 0; j < CAMPO_LUNGHEZZA - 2; j++){
             casella[i][j].id = 32;
-            casella[i][j].blocco[0] = ' '; casella[i][j].blocco[1] = '\0';
+            casella[i][j].blocco = " ";
             casella[i][j].colore = bianco;
         }
     }
@@ -28,10 +28,10 @@ void Campo::stampa(COORD posizione_tetramino[], COORD backup_posizione_tetramino
         for(short i = 0; i < 8; i++){
             cursore_manuale(posizione_ghost_block[i].X + 1, posizione_ghost_block[i].Y + 1);
             if(i%2==0)
-                fwrite(BLOCCO_GHOST_SINISTRA, 1, strlen(BLOCCO_GHOST_SINISTRA), stdout);
+                fwrite(BLOCCO_GHOST_SINISTRA.c_str(), 1, BLOCCO_GHOST_SINISTRA.size(), stdout);
             else 
-                fwrite(BLOCCO_GHOST_DESTRA, 1, strlen(BLOCCO_GHOST_DESTRA), stdout);
-            }
+                fwrite(BLOCCO_GHOST_DESTRA.c_str(), 1, BLOCCO_GHOST_DESTRA.size(), stdout);
+        }
     }
 
     /*-----------CONTROLLO COLORI TETRAMINO----------------------*/
@@ -40,8 +40,10 @@ void Campo::stampa(COORD posizione_tetramino[], COORD backup_posizione_tetramino
     /*-----------STAMPA TETRAMINO----------------------*/
     for(short i = 0; i < 8; i++){
         cursore_manuale(posizione_tetramino[i].X + 1, posizione_tetramino[i].Y + 1);
-        fwrite(casella[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco, 1, strlen(casella[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco), stdout);
-        //printf("%hd", casella[posizione_tetramino[i].Y][posizione_tetramino[i].X].id % 10);
+        fwrite(casella[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco.c_str(),
+               1,
+               casella[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco.size(),
+               stdout);
     }
     
     posizione_cursore(coord_fine);
@@ -50,13 +52,13 @@ void Campo::stampa(COORD posizione_tetramino[], COORD backup_posizione_tetramino
 
 void Campo::stampaTotale() {
 
-    for(short i = 0; i < CAMPO_ALTEZZA - 2; i++){ // short i = 0; i <= posizione_riga + 1; i++
+    for(short i = 0; i < CAMPO_ALTEZZA - 2; i++){
 
         cursore_manuale(1, i + 1);
         for(short j = 0; j < CAMPO_LUNGHEZZA - 2; j++){
             stampa_colori(casella[i][j].colore);        
 
-            fwrite(casella[i][j].blocco, 1, strlen(casella[i][j].blocco), stdout);
+            fwrite(casella[i][j].blocco.c_str(), 1, casella[i][j].blocco.size(), stdout);
         }
     }
 }
@@ -86,7 +88,6 @@ void Campo::salita(){
         for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++){
             casella[i][k] = casella[i+linee_ricevute][k];
         }
-    
     }
 
     for(short j = 0; j < linee_ricevute; j++){
@@ -94,18 +95,13 @@ void Campo::salita(){
         for(short i = 0; i < CAMPO_LUNGHEZZA - 2; i++){
             casella[CAMPO_ALTEZZA-3 - j][i] = casella[0][0];  
         }
-
     }
-
-
-
 
     attacco();
 
     std::this_thread::sleep_for(10ms);
 
     stampaTotale();
-
 }
 
 void Campo::attacco(){
@@ -124,8 +120,8 @@ void Campo::attacco(){
 
             if(k != vuoto && k != vuoto + 1){
                 casella[i][k].colore = grigio_chiaro;
-                casella[i][k].id = 1; // numero a caso
-                strcpy(casella[i][k].blocco, k % 2 == 0 ? BLOCCO_SINISTRA : BLOCCO_DESTRA);
+                casella[i][k].id = 1;
+                casella[i][k].blocco = (k % 2 == 0 ? BLOCCO_SINISTRA : BLOCCO_DESTRA);
             }
             
         }
@@ -152,14 +148,9 @@ void Campo::controlloPunti() {
     }
 
     if(linee_riempite != 0){
-        //for(short i = 0; i < linee_riempite; i++)   printf("n linee : %hd, riga %hd : %hd  ", linee_riempite, i + 1, posizione_riga[i]);
-        //std::this_thread::sleep_for(1000ms);
         animazione_linea_liberata();
         scesa();
     }
-        
-
-
 }
 
 bool Campo::controlloPrimaLinea(){
@@ -191,9 +182,9 @@ void Campo::animazione_linea_liberata(){
         printf(GRIGIO);
 
         cursore_manuale(1, posizione_riga[j] + 1);
-        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga[j]][k].blocco);
+        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga[j]][k].blocco.c_str());
         cursore_manuale(1, posizione_riga[j] + 1);
-        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga[j]][k].blocco);
+        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga[j]][k].blocco.c_str());
         
     }
 
@@ -206,9 +197,9 @@ void Campo::animazione_linea_liberata(){
         printf(BIANCO);
         
         cursore_manuale(1, posizione_riga[j] + 1);
-        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga[j] ][k].blocco);
+        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga[j]][k].blocco.c_str());
         cursore_manuale(1, posizione_riga[j] + 1);
-        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga[j]][k].blocco);
+        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga[j]][k].blocco.c_str());
 
     }
 
@@ -221,17 +212,13 @@ void Campo::animazione_linea_liberata(){
         printf(GRIGIO);
 
         cursore_manuale(1, posizione_riga[j] + 1);
-        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga[j] ][k].blocco);
+        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga[j]][k].blocco.c_str());
         cursore_manuale(1, posizione_riga[j] + 1);
-        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga[j] ][k].blocco);
+        for(short k = 0; k < CAMPO_LUNGHEZZA - 2; k++) printf("%s", casella[posizione_riga[j]][k].blocco.c_str());
 
     }
 
     std::this_thread::sleep_for(50ms);
     
     printf(BIANCO);
-
-    
-
-
 }

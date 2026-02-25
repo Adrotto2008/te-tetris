@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/_deps/ixwebsocket-subbuild/CMakeFiles/ixwebsocket-populate"
+		},
+		{
+			"file" : "D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/_deps/ixwebsocket-subbuild/CMakeFiles/9b8f96efa42d4fb3919212e1a34b9270/ixwebsocket-populate.rule"
+		},
+		{
+			"file" : "D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/_deps/ixwebsocket-subbuild/CMakeFiles/00af747048534e6e3967511071a4eab1/ixwebsocket-populate-complete.rule"
+		},
+		{
+			"file" : "D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/_deps/ixwebsocket-subbuild/CMakeFiles/75bc8af0e2de462fd21ec85d2174ceb4/ixwebsocket-populate-build.rule"
+		},
+		{
+			"file" : "D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/_deps/ixwebsocket-subbuild/CMakeFiles/75bc8af0e2de462fd21ec85d2174ceb4/ixwebsocket-populate-configure.rule"
+		},
+		{
+			"file" : "D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/_deps/ixwebsocket-subbuild/CMakeFiles/75bc8af0e2de462fd21ec85d2174ceb4/ixwebsocket-populate-download.rule"
+		},
+		{
+			"file" : "D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/_deps/ixwebsocket-subbuild/CMakeFiles/75bc8af0e2de462fd21ec85d2174ceb4/ixwebsocket-populate-install.rule"
+		},
+		{
+			"file" : "D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/_deps/ixwebsocket-subbuild/CMakeFiles/75bc8af0e2de462fd21ec85d2174ceb4/ixwebsocket-populate-mkdir.rule"
+		},
+		{
+			"file" : "D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/_deps/ixwebsocket-subbuild/CMakeFiles/75bc8af0e2de462fd21ec85d2174ceb4/ixwebsocket-populate-patch.rule"
+		},
+		{
+			"file" : "D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/_deps/ixwebsocket-subbuild/CMakeFiles/75bc8af0e2de462fd21ec85d2174ceb4/ixwebsocket-populate-test.rule"
+		},
+		{
+			"file" : "D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/_deps/ixwebsocket-subbuild/CMakeFiles/75bc8af0e2de462fd21ec85d2174ceb4/ixwebsocket-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"ixwebsocket-populate"
+		],
+		"name" : "ixwebsocket-populate"
+	}
+}

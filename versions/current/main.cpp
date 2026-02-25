@@ -21,6 +21,7 @@ void menu();
 
 int main(void){
 
+    cmd_type();
     cmd_grande();
     Input input;
     std::string nome;
@@ -41,6 +42,7 @@ int main(void){
 
     do{
 
+        cmd_type();
         uscita = false;
         uscita_menu = false;
 

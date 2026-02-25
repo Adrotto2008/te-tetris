@@ -209,6 +209,10 @@ void carica_due_tasti(const ordered_json& cfg, const char* chiave, char& a, char
 
 // ---------------- Console ----------------
 
+void cmd_type(){
+    return;
+}
+
 void disabilita_echo() {
     tcgetattr(STDIN_FILENO, &term_originale); // salva lo stato originale
     termios nuovo = term_originale;

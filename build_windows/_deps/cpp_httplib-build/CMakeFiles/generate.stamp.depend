@@ -1,0 +1,20 @@
+# CMake generation dependency list for this directory.
+C:/Program Files/CMake/share/cmake-4.2/Modules/BasicConfigVersion-SameMinorVersion.cmake.in
+C:/Program Files/CMake/share/cmake-4.2/Modules/CMakePackageConfigHelpers.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/CheckCXXSourceCompiles.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/CheckIncludeFileCXX.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/CheckLibraryExists.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/FindOpenSSL.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/FindPkgConfig.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/FindThreads.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/FindZLIB.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/GNUInstallDirs.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Internal/CheckSourceCompiles.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/SelectLibraryConfigurations.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/WriteBasicConfigVersionFile.cmake
+D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/_deps/cpp_httplib-src/CMakeLists.txt
+D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/_deps/cpp_httplib-src/cmake/FindBrotli.cmake
+D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/_deps/cpp_httplib-src/httplibConfig.cmake.in
+D:/server/programmazione/c++/te_tetris/te_tetris/vcpkg/installed/x64-windows/share/zlib/vcpkg-cmake-wrapper.cmake

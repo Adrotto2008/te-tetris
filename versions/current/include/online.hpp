@@ -1,13 +1,13 @@
 #ifndef ONLINE_HPP
 #define ONLINE_HPP
 
-#include "costanti.hpp"
+
 #ifdef __linux__
 #include "utilita_linux.hpp"
 #else
 #include "utilita.hpp"
 #endif
-
+#include "costanti.hpp"
 #include <ixwebsocket/IXWebSocket.h>
 #include <httplib.h>
 #include <nlohmann/json.hpp>

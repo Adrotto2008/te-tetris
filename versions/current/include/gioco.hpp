@@ -1,12 +1,14 @@
 #ifndef GIOCO_HPP
 #define GIOCO_HPP
 
-#include "costanti.hpp"
 #ifdef __linux__
 #include "utilita_linux.hpp"
 #else
 #include "utilita.hpp"
 #endif
+
+#include "costanti.hpp"
+
 
 #include "online.hpp"
 #include "campo.hpp"

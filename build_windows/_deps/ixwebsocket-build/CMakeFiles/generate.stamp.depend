@@ -1,0 +1,23 @@
+# CMake generation dependency list for this directory.
+C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCInformation.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCommonLanguageInclude.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeLanguageInformation.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Compiler/CMakeCommonCompilerMacros.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Compiler/MSVC-C.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Compiler/MSVC.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/FindZLIB.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/GNUInstallDirs.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Internal/CMakeCLinkerInformation.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Internal/CMakeCommonLinkerInformation.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Linker/MSVC-C.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Linker/MSVC.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Platform/Linker/Windows-MSVC-C.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Platform/Linker/Windows-MSVC.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Platform/Windows-MSVC-C.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/Platform/Windows-MSVC.cmake
+C:/Program Files/CMake/share/cmake-4.2/Modules/SelectLibraryConfigurations.cmake
+D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/CMakeFiles/4.2.3/CMakeCCompiler.cmake
+D:/server/programmazione/c++/te_tetris/te_tetris/build_windows/_deps/ixwebsocket-src/CMakeLists.txt
+D:/server/programmazione/c++/te_tetris/te_tetris/vcpkg/installed/x64-windows/share/zlib/vcpkg-cmake-wrapper.cmake

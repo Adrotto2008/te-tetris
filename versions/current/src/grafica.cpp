@@ -4,28 +4,29 @@
 
 void stampa_riserva_tetramino(TipoTetramino tipo, int colore){
 
-    char tetramino[8][8][4] = {0};
+    std::string tetramino[8][8]; // usa std::string al posto di char[8][8][4]
 
     // Stampa il colore prima della stampa
     stampa_colori(colore);
 
+    // Imposta la forma del tetramino
     stampa_tetramini_rozzi(tipo, tetramino);
 
-    // Stampa i tetramini usando le matrici
+    // Stampa i tetramini usando std::cout
     for(short i = 0; i < 8; i++) {
-        posizione_cursore({coord_tetramino_riserva.X, (short)(coord_tetramino_riserva.Y + i)});
+        posizione_cursore({coord_tetramino_riserva.X, static_cast<short>(coord_tetramino_riserva.Y + i)});
         for(short j = 0; j < 8; j++) {
-            printf("%s", tetramino[i][j][0] != '\0' ? tetramino[i][j] : " ");
+            std::cout << (tetramino[i][j].empty() ? " " : tetramino[i][j]);
         }
     }   
-
 }
+
 
 void stampa_coda_tetramini(TipoTetramino tipo1, TipoTetramino tipo2, TipoTetramino tipo3, int colore1, int colore2, int colore3) {
 
-    char tetramino[3][8][8][4] = {0};
+    std::string tetramino[3][8][8];  // Matrici per 3 tetramini
     COORD coord_futuro[3] = {coord_tetramino_futuro, coord_secondo_tetramino_futuro, coord_terzo_tetramino_futuro};
-    TipoTetramino tipo[3] = {tipo1, tipo2, tipo3};
+    TipoTetramino tipi[3] = {tipo1, tipo2, tipo3};
     int colori[3] = {colore1, colore2, colore3};
 
     for(short j = 0; j < 3; j++) {
@@ -33,150 +34,163 @@ void stampa_coda_tetramini(TipoTetramino tipo1, TipoTetramino tipo2, TipoTetrami
         // Stampa il colore prima della stampa
         stampa_colori(colori[j]);
 
-        // Imposta la forma del tetramino senza printf di colore
-        stampa_tetramini_rozzi(tipo[j], tetramino[j]);
+        // Imposta la forma del tetramino
+        stampa_tetramini_rozzi(tipi[j], tetramino[j]);
 
-        // Stampa i tetramini usando le matrici
+        // Stampa il tetramino usando std::cout
         for(short i = 0; i < 8; i++) {
-            posizione_cursore({coord_futuro[j].X, (short)(coord_futuro[j].Y + i)});
+            posizione_cursore({coord_futuro[j].X, static_cast<short>(coord_futuro[j].Y + i)});
             for(short k = 0; k < 8; k++) {
-                printf("%s", tetramino[j][i][k][0] != '\0' ? tetramino[j][i][k] : " ");
+                // Se la stringa è vuota, stampa uno spazio
+                std::cout << (tetramino[j][i][k].empty() ? " " : tetramino[j][i][k]);
             }
         }
     }
 }
 
-void stampa_tetramini_rozzi(TipoTetramino tipo, char tetramino[8][8][4]){
+void stampa_tetramini_rozzi(TipoTetramino tipo, std::string tetramino[8][8]) {
 
     switch(tipo){ 
         case TipoTetramino::I:
-            strcpy(tetramino[2][1], BLOCCO_SINISTRA);
-            strcpy(tetramino[3][1], BLOCCO_SINISTRA);
-            strcpy(tetramino[4][1], BLOCCO_SINISTRA);
-            strcpy(tetramino[5][1], BLOCCO_SINISTRA);
-            strcpy(tetramino[2][2], BLOCCO_DESTRA);
-            strcpy(tetramino[3][2], BLOCCO_DESTRA);
-            strcpy(tetramino[4][2], BLOCCO_DESTRA);
-            strcpy(tetramino[5][2], BLOCCO_DESTRA);
+            tetramino[2][1] = BLOCCO_SINISTRA;
+            tetramino[3][1] = BLOCCO_SINISTRA;
+            tetramino[4][1] = BLOCCO_SINISTRA;
+            tetramino[5][1] = BLOCCO_SINISTRA;
+            tetramino[2][2] = BLOCCO_DESTRA;
+            tetramino[3][2] = BLOCCO_DESTRA;
+            tetramino[4][2] = BLOCCO_DESTRA;
+            tetramino[5][2] = BLOCCO_DESTRA;
             break;
+
         case TipoTetramino::J:
-            strcpy(tetramino[0][2], BLOCCO_SINISTRA);
-            strcpy(tetramino[1][2], BLOCCO_SINISTRA);
-            strcpy(tetramino[2][0], BLOCCO_SINISTRA);
-            strcpy(tetramino[2][2], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][3], BLOCCO_DESTRA);
-            strcpy(tetramino[1][3], BLOCCO_DESTRA);
-            strcpy(tetramino[2][1], BLOCCO_DESTRA);
-            strcpy(tetramino[2][3], BLOCCO_DESTRA);
+            tetramino[0][2] = BLOCCO_SINISTRA;
+            tetramino[1][2] = BLOCCO_SINISTRA;
+            tetramino[2][0] = BLOCCO_SINISTRA;
+            tetramino[2][2] = BLOCCO_SINISTRA;
+            tetramino[0][3] = BLOCCO_DESTRA;
+            tetramino[1][3] = BLOCCO_DESTRA;
+            tetramino[2][1] = BLOCCO_DESTRA;
+            tetramino[2][3] = BLOCCO_DESTRA;
             break;
+
         case TipoTetramino::L:
-            strcpy(tetramino[0][1], BLOCCO_SINISTRA);
-            strcpy(tetramino[1][1], BLOCCO_SINISTRA);
-            strcpy(tetramino[2][1], BLOCCO_SINISTRA);
-            strcpy(tetramino[2][3], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][2], BLOCCO_DESTRA);
-            strcpy(tetramino[1][2], BLOCCO_DESTRA);
-            strcpy(tetramino[2][2], BLOCCO_DESTRA);
-            strcpy(tetramino[2][4], BLOCCO_DESTRA);
+            tetramino[0][1] = BLOCCO_SINISTRA;
+            tetramino[1][1] = BLOCCO_SINISTRA;
+            tetramino[2][1] = BLOCCO_SINISTRA;
+            tetramino[2][3] = BLOCCO_SINISTRA;
+            tetramino[0][2] = BLOCCO_DESTRA;
+            tetramino[1][2] = BLOCCO_DESTRA;
+            tetramino[2][2] = BLOCCO_DESTRA;
+            tetramino[2][4] = BLOCCO_DESTRA;
             break;
+
         case TipoTetramino::O:
-            strcpy(tetramino[0][0], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][2], BLOCCO_SINISTRA);
-            strcpy(tetramino[1][0], BLOCCO_SINISTRA);
-            strcpy(tetramino[1][2], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][1], BLOCCO_DESTRA);
-            strcpy(tetramino[0][3], BLOCCO_DESTRA);
-            strcpy(tetramino[1][1], BLOCCO_DESTRA);
-            strcpy(tetramino[1][3], BLOCCO_DESTRA);
+            tetramino[0][0] = BLOCCO_SINISTRA;
+            tetramino[0][2] = BLOCCO_SINISTRA;
+            tetramino[1][0] = BLOCCO_SINISTRA;
+            tetramino[1][2] = BLOCCO_SINISTRA;
+            tetramino[0][1] = BLOCCO_DESTRA;
+            tetramino[0][3] = BLOCCO_DESTRA;
+            tetramino[1][1] = BLOCCO_DESTRA;
+            tetramino[1][3] = BLOCCO_DESTRA;
             break;
+
         case TipoTetramino::Z:
-            strcpy(tetramino[0][0], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][2], BLOCCO_SINISTRA);
-            strcpy(tetramino[1][2], BLOCCO_SINISTRA);
-            strcpy(tetramino[1][4], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][1], BLOCCO_DESTRA);
-            strcpy(tetramino[0][3], BLOCCO_DESTRA);
-            strcpy(tetramino[1][3], BLOCCO_DESTRA);
-            strcpy(tetramino[1][5], BLOCCO_DESTRA);
+            tetramino[0][0] = BLOCCO_SINISTRA;
+            tetramino[0][2] = BLOCCO_SINISTRA;
+            tetramino[1][2] = BLOCCO_SINISTRA;
+            tetramino[1][4] = BLOCCO_SINISTRA;
+            tetramino[0][1] = BLOCCO_DESTRA;
+            tetramino[0][3] = BLOCCO_DESTRA;
+            tetramino[1][3] = BLOCCO_DESTRA;
+            tetramino[1][5] = BLOCCO_DESTRA;
             break;
+
         case TipoTetramino::S:
-            strcpy(tetramino[0][2], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][4], BLOCCO_SINISTRA);
-            strcpy(tetramino[1][0], BLOCCO_SINISTRA);
-            strcpy(tetramino[1][2], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][3], BLOCCO_DESTRA);
-            strcpy(tetramino[0][5], BLOCCO_DESTRA);
-            strcpy(tetramino[1][1], BLOCCO_DESTRA);
-            strcpy(tetramino[1][3], BLOCCO_DESTRA);
+            tetramino[0][2] = BLOCCO_SINISTRA;
+            tetramino[0][4] = BLOCCO_SINISTRA;
+            tetramino[1][0] = BLOCCO_SINISTRA;
+            tetramino[1][2] = BLOCCO_SINISTRA;
+            tetramino[0][3] = BLOCCO_DESTRA;
+            tetramino[0][5] = BLOCCO_DESTRA;
+            tetramino[1][1] = BLOCCO_DESTRA;
+            tetramino[1][3] = BLOCCO_DESTRA;
             break;
+
         case TipoTetramino::T:
-            strcpy(tetramino[0][0], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][2], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][4], BLOCCO_SINISTRA);
-            strcpy(tetramino[1][2], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][1], BLOCCO_DESTRA);
-            strcpy(tetramino[0][3], BLOCCO_DESTRA);
-            strcpy(tetramino[0][5], BLOCCO_DESTRA);
-            strcpy(tetramino[1][3], BLOCCO_DESTRA);
+            tetramino[0][0] = BLOCCO_SINISTRA;
+            tetramino[0][2] = BLOCCO_SINISTRA;
+            tetramino[0][4] = BLOCCO_SINISTRA;
+            tetramino[1][2] = BLOCCO_SINISTRA;
+            tetramino[0][1] = BLOCCO_DESTRA;
+            tetramino[0][3] = BLOCCO_DESTRA;
+            tetramino[0][5] = BLOCCO_DESTRA;
+            tetramino[1][3] = BLOCCO_DESTRA;
             break;
 
         case TipoTetramino::SL:
-            strcpy(tetramino[0][4], BLOCCO_SINISTRA);
-            strcpy(tetramino[1][2], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][5], BLOCCO_DESTRA);
-            strcpy(tetramino[1][3], BLOCCO_DESTRA);
+            tetramino[0][4] = BLOCCO_SINISTRA;
+            tetramino[1][2] = BLOCCO_SINISTRA;
+            tetramino[0][5] = BLOCCO_DESTRA;
+            tetramino[1][3] = BLOCCO_DESTRA;
             break;
+
         case TipoTetramino::BSL:
-            strcpy(tetramino[1][2], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][0], BLOCCO_SINISTRA);
-            strcpy(tetramino[2][4], BLOCCO_SINISTRA);
-            strcpy(tetramino[3][6], BLOCCO_SINISTRA);
-            strcpy(tetramino[1][3], BLOCCO_DESTRA);
-            strcpy(tetramino[0][1], BLOCCO_DESTRA);
-            strcpy(tetramino[2][5], BLOCCO_DESTRA);
-            strcpy(tetramino[3][7], BLOCCO_DESTRA);
+            tetramino[1][2] = BLOCCO_SINISTRA;
+            tetramino[0][0] = BLOCCO_SINISTRA;
+            tetramino[2][4] = BLOCCO_SINISTRA;
+            tetramino[3][6] = BLOCCO_SINISTRA;
+            tetramino[1][3] = BLOCCO_DESTRA;
+            tetramino[0][1] = BLOCCO_DESTRA;
+            tetramino[2][5] = BLOCCO_DESTRA;
+            tetramino[3][7] = BLOCCO_DESTRA;
             break;
+
         case TipoTetramino::Y:
-            strcpy(tetramino[1][4], BLOCCO_SINISTRA);
-            strcpy(tetramino[2][4], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][2], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][6], BLOCCO_SINISTRA);
-            strcpy(tetramino[1][5], BLOCCO_DESTRA);
-            strcpy(tetramino[2][5], BLOCCO_DESTRA);
-            strcpy(tetramino[0][3], BLOCCO_DESTRA);
-            strcpy(tetramino[0][7], BLOCCO_DESTRA);
+            tetramino[1][4] = BLOCCO_SINISTRA;
+            tetramino[2][4] = BLOCCO_SINISTRA;
+            tetramino[0][2] = BLOCCO_SINISTRA;
+            tetramino[0][6] = BLOCCO_SINISTRA;
+            tetramino[1][5] = BLOCCO_DESTRA;
+            tetramino[2][5] = BLOCCO_DESTRA;
+            tetramino[0][3] = BLOCCO_DESTRA;
+            tetramino[0][7] = BLOCCO_DESTRA;
             break;
+
         case TipoTetramino::P:
-            strcpy(tetramino[0][4], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][5], BLOCCO_DESTRA);
+            tetramino[0][4] = BLOCCO_SINISTRA;
+            tetramino[0][5] = BLOCCO_DESTRA;
             break;
+
         case TipoTetramino::V:
-            strcpy(tetramino[1][4], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][2], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][6], BLOCCO_SINISTRA);
-            strcpy(tetramino[1][5], BLOCCO_DESTRA);
-            strcpy(tetramino[0][3], BLOCCO_DESTRA);
-            strcpy(tetramino[0][7], BLOCCO_DESTRA);
+            tetramino[1][4] = BLOCCO_SINISTRA;
+            tetramino[0][2] = BLOCCO_SINISTRA;
+            tetramino[0][6] = BLOCCO_SINISTRA;
+            tetramino[1][5] = BLOCCO_DESTRA;
+            tetramino[0][3] = BLOCCO_DESTRA;
+            tetramino[0][7] = BLOCCO_DESTRA;
             break;
+
         case TipoTetramino::M:
-            strcpy(tetramino[2][4], BLOCCO_SINISTRA);
-            strcpy(tetramino[1][2], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][4], BLOCCO_SINISTRA);
-            strcpy(tetramino[1][6], BLOCCO_SINISTRA);
-            strcpy(tetramino[2][5], BLOCCO_DESTRA);
-            strcpy(tetramino[1][3], BLOCCO_DESTRA);
-            strcpy(tetramino[0][5], BLOCCO_DESTRA);
-            strcpy(tetramino[1][7], BLOCCO_DESTRA);
+            tetramino[2][4] = BLOCCO_SINISTRA;
+            tetramino[1][2] = BLOCCO_SINISTRA;
+            tetramino[0][4] = BLOCCO_SINISTRA;
+            tetramino[1][6] = BLOCCO_SINISTRA;
+            tetramino[2][5] = BLOCCO_DESTRA;
+            tetramino[1][3] = BLOCCO_DESTRA;
+            tetramino[0][5] = BLOCCO_DESTRA;
+            tetramino[1][7] = BLOCCO_DESTRA;
             break;
+
         case TipoTetramino::C:
-            strcpy(tetramino[1][2], BLOCCO_SINISTRA);
-            strcpy(tetramino[0][4], BLOCCO_SINISTRA);
-            strcpy(tetramino[2][2], BLOCCO_SINISTRA);
-            strcpy(tetramino[3][4], BLOCCO_SINISTRA);
-            strcpy(tetramino[1][3], BLOCCO_DESTRA);
-            strcpy(tetramino[0][5], BLOCCO_DESTRA);
-            strcpy(tetramino[2][3], BLOCCO_DESTRA);
-            strcpy(tetramino[3][5], BLOCCO_DESTRA);
+            tetramino[1][2] = BLOCCO_SINISTRA;
+            tetramino[0][4] = BLOCCO_SINISTRA;
+            tetramino[2][2] = BLOCCO_SINISTRA;
+            tetramino[3][4] = BLOCCO_SINISTRA;
+            tetramino[1][3] = BLOCCO_DESTRA;
+            tetramino[0][5] = BLOCCO_DESTRA;
+            tetramino[2][3] = BLOCCO_DESTRA;
+            tetramino[3][5] = BLOCCO_DESTRA;
             break;
     }
 

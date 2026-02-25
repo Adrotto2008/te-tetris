@@ -10,7 +10,7 @@
 typedef struct{
 
     char colore;
-    char blocco[4];
+    std::string blocco;
     int id;
 
 } Casella;

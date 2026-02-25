@@ -8,7 +8,7 @@
 /*-----------COSTANTI----------------*/
 
 /*------------CORDINATE---------*/
-#define CAMPO_ALTEZZA 27 // 27
+#define CAMPO_ALTEZZA 27 // 27.
 #define CAMPO_LUNGHEZZA 20 // 20
 #define CAMPO_CENTRO CAMPO_LUNGHEZZA / 2
 

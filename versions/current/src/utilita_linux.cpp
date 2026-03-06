@@ -142,10 +142,13 @@ string apri_config() {
     carica_due_tasti(config, "caduta_veloce", CADUTA_VELOCE[0], CADUTA_VELOCE[1]);
     carica_due_tasti(config, "caduta_istantanea", CADUTA_ISTANTANEA[0], CADUTA_ISTANTANEA[1]);
     carica_due_tasti(config, "cambio", CAMBIO[0], CAMBIO[1]);
-    strcpy(BLOCCO_SINISTRA, config.at("blocco_sinistra").get<std::string>().c_str());
-    strcpy(BLOCCO_DESTRA, config.at("blocco_destra").get<std::string>().c_str());
-    strcpy(BLOCCO_GHOST_SINISTRA, config.at("ghost_block_sinistra").get<std::string>().c_str());
-    strcpy(BLOCCO_GHOST_DESTRA, config.at("ghost_block_destra").get<std::string>().c_str());
+    carica_due_tasti(config, "cambio", CAMBIO[0], CAMBIO[1]);
+
+    BLOCCO_SINISTRA = config.at("blocco_sinistra").get<string>();
+    BLOCCO_DESTRA = config.at("blocco_destra").get<string>();
+    BLOCCO_GHOST_SINISTRA = config.at("ghost_block_sinistra").get<string>();
+    BLOCCO_GHOST_DESTRA = config.at("ghost_block_destra").get<string>();
+
     AUDIO_MUSICA = config.at("musica").get<float>();
     AUDIO_SUONI  = config.at("suoni").get<float>();
 
@@ -186,10 +189,10 @@ void salva_config(std::string nome) {
     scrivi_due_tasti(config, "caduta_veloce", CADUTA_VELOCE[0], CADUTA_VELOCE[1]);
     scrivi_due_tasti(config, "caduta_istantanea", CADUTA_ISTANTANEA[0], CADUTA_ISTANTANEA[1]);
     scrivi_due_tasti(config, "cambio", CAMBIO[0], CAMBIO[1]);
-    config["blocco_sinistra"]      = std::string(BLOCCO_SINISTRA);
-    config["blocco_destra"]        = std::string(BLOCCO_DESTRA);
-    config["ghost_block_sinistra"] = std::string(BLOCCO_GHOST_SINISTRA);
-    config["ghost_block_destra"]   = std::string(BLOCCO_GHOST_DESTRA);
+    config["blocco_sinistra"]      = BLOCCO_SINISTRA;
+    config["blocco_destra"]        = BLOCCO_DESTRA;
+    config["ghost_block_sinistra"] = BLOCCO_GHOST_SINISTRA;
+    config["ghost_block_destra"]   = BLOCCO_GHOST_DESTRA;
     config["musica"]        = AUDIO_MUSICA;
     config["suoni"]         = AUDIO_SUONI;
     

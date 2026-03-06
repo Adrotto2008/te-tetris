@@ -1,0 +1,219 @@
+#ifndef COSTANTI_HPP3
+#define COSTANTI_HPP
+
+#include <iostream>
+#include <array>
+
+
+/*-----------COSTANTI----------------*/
+
+/*------------CORDINATE---------*/
+#define CAMPO_ALTEZZA 27 // 27.
+#define CAMPO_LUNGHEZZA 20 // 20
+#define CAMPO_CENTRO CAMPO_LUNGHEZZA / 2
+
+#define PADDING 7
+#define PADDING_COMANDI 3
+
+#define FUTURI_ALTEZZA 10
+#define FUTURI_LUNGHEZZA 20
+#define FUTURI_SECONDO (FUTURI_LUNGHEZZA - (CAMPO_LUNGHEZZA + 4) / 3)
+#define FUTURI_CENTRO CAMPO_LUNGHEZZA + 4 + ((FUTURI_LUNGHEZZA - (CAMPO_LUNGHEZZA + 4)) / 2)
+
+
+/*------------COLORI------------*/
+#define RESET   "\033[0m" //
+#define NERO    "\033[30m" //
+#define ROSSO   "\033[31m" //
+#define VERDE   "\033[32m" //
+#define GIALLO  "\033[33m" //
+#define BLU     "\033[34m" //
+#define MAGENTA "\033[35m" //
+#define CIANO   "\033[36m" //
+#define BIANCO  "\033[37m" //
+#define ARANCIONE "\033[38;5;208m"
+#define VIOLA "\033[38;5;129m"
+#define GRIGIO "\033[38;5;245m" //
+#define MARRONE "\033[38;5;94m"
+
+#define BLU_CHIARO "\033[38;5;123m"
+#define VERDE_CHIARO "\033[38;5;82m"
+#define GIALLO_CHIARO "\033[38;5;226m"
+#define ROSSO_CHIARO "\033[38;5;196m"
+#define VERDE_SCURO "\033[38;5;34m"
+#define GIALLO_SCURO "\033[38;5;220m"
+#define BLU_SCURO "\033[38;5;24m"
+#define MAGENTA_CHIARO "\033[38;5;201m"
+#define CIANO_CHIARO "\033[38;5;51m"
+#define GRIGIO_CHIARO "\033[38;5;250m"
+#define VIOLA_CHIARO "\033[38;5;135m"
+#define LIGHT_RED "\033[38;5;9m"
+#define LIGHT_GREEN "\033[38;5;10m"
+#define LIGHT_YELLOW "\033[38;5;11m"
+#define LIGHT_BLUE "\033[38;5;12m"
+#define LIGHT_MAGENTA "\033[38;5;13m"
+#define LIGHT_CYAN "\033[38;5;14m"
+#define DARK_GRAY "\033[38;5;8m"
+/*------------------------------*/
+
+#ifdef __linux__
+// ---- Struct compatibile con COORD ----
+struct COORD {
+    short X;
+    short Y;
+};
+
+#else
+
+#include <windows.h>
+
+#endif
+
+/*-----------CURSORE-------------*/
+#define CURSORE_INVISIBILE "\033[?25l"
+#define CURSORE_VISIBILE "\033[?25h"
+/*------------------------------*/
+
+/*--------------ENUMS----------------*/
+
+/*----------CORDINATE------------*/
+enum class CordinateOpzioni{
+    SINGLEPLAYER = 12,
+    MULTIPLAYER = 14,
+    OPZIONI = 16,
+    COMANDI = 18,
+    CREDITI = 20,
+    ESCI = 22
+};
+
+enum class CordinateComandi{
+    DESTRA = 11,
+    SINISTRA = 13,
+    CADUTAVELOCE = 15,
+    CADUTAISTANTANEA = 17,
+    GIROORARIO = 11,
+    GIROANTIORARIO = 13,
+    GIRODOPPIO = 15,
+    CAMBIO = 17,
+    ESCI = 19
+};
+/*-------------TIPI-------------*/ // gli ultimi 2 sono usati per la pulizia, non sono dei tipi di tetramini ma se è vero o ghostblock
+enum class TipoTetramino {
+    I = 1,
+    J = 2,
+    L = 3,
+    O = 4,
+    S = 5,
+    Z = 6,
+    T = 7,
+
+    SL = 8,
+    BSL = 9,
+    Y = 10,
+    P = 11,
+    V = 12,
+    M = 13,
+    C = 14,
+
+    NORMALE = 15,
+    GHOST = 16
+};
+
+/*------------COLORI------------*/
+enum Colori {
+    rosso        = -1,
+    ciano        = -2,
+    blu          = -3,
+    arancione    = -4,
+    giallo       = -5,
+    verde        = -6,
+    magenta_chiaro = -7,
+    
+    marrone      = -8,
+    light_green  = -9,
+    blu_scuro    = -10,
+    ciano_chiaro = -11,
+    light_yellow = -12,
+    magenta      = -13,
+    bianco       = -14,
+
+    grigio_chiaro = -15
+};
+
+/*----------COLLISIONI----------*/
+
+enum class Collisioni{
+    FUORI,
+    COLLISIONE,
+    LIBERO
+};
+
+/*------------INPUT------------*/
+
+enum class TipoInput{
+    DESTRA,
+    SINISTRA,
+    GIROORARIO,
+    GIROANTIORARIO,
+    GIRODOPPIO,
+    CADUTAVELOCE,
+    CADUTAISTANTANEA,
+    CAMBIO,
+    ESCI,
+    NULLA
+};
+
+/*-----------VARIABILI DI IMPOSTAZIONI------------*/
+
+enum class TipoPartita{
+    NORMALE,
+    FACILE,
+    DIFFICILE,
+    AVANZATA
+};
+
+enum class TipoColori{
+    NORMALE,
+    ALTERNATIVO,
+    CASUALE,
+    NESSUNO
+};
+/*-------------VARIABILI GLOBALI DI IMPOSTAZIONI-----------*/
+
+/*------------INPUT-------------*/
+extern std::array<char, 80> CARATTERI_POSSIBILI;
+extern std::array<char, 3> ROTAZIONE;        // freccia su
+extern std::array<char, 2> ROTAZIONE_ANTIORARIA;        
+extern std::array<char, 2> ROTAZIONE_DOPPIA;        
+extern std::array<char, 3> SINISTRA;        // freccia sinistra
+extern std::array<char, 3> DESTRA;          // freccia destra
+extern std::array<char, 3> CADUTA_VELOCE;   // freccia giù
+extern std::array<char, 4> CADUTA_ISTANTANEA; // barra spaziatrice
+extern std::array<char, 2> CAMBIO;          // tasto cambio
+extern std::array<char, 1> ESCI;  
+
+/*-------------IMPOSTAZIONI-----------*/
+
+extern float AUDIO_MUSICA;
+extern float AUDIO_SUONI;
+extern TipoPartita TIPO_PARTITA;
+extern TipoColori TIPO_COLORI;
+extern std::string BLOCCO_GHOST_SINISTRA;
+extern std::string BLOCCO_GHOST_DESTRA;
+extern std::string BLOCCO_SINISTRA;
+extern std::string BLOCCO_DESTRA;
+
+/*--------------CORDINATE GLOBALI----------------------*/
+
+extern COORD coord_tetramino_futuro;
+extern COORD coord_secondo_tetramino_futuro;
+extern COORD coord_terzo_tetramino_futuro;
+extern COORD coord_tetramino_riserva;
+extern COORD coord_posizione_campo;
+extern COORD coord_punteggio;
+extern COORD coord_linee;
+extern COORD coord_livello;
+extern COORD coord_scambio;
+extern COORD coord_fine;
+
+#endif

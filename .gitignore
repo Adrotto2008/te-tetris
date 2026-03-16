@@ -1,23 +1,35 @@
 # Cartelle di build CMake
 build/
-Microsoft.Windows.SDK.BuildTools/
 build_windows/
 .build_backup/
+**/build/
+**/build_windows/
 
+# Dipendenze scaricate da CMake
+**/_deps/
 
-# File temporanei
+# Toolchain e librerie locali
+vcpkg/
+lib/
+coso/
+
+# SDK Windows
+Microsoft.Windows.SDK.BuildTools/
+
+# File compilati
 *.o
 *.obj
-*.dll
 *.so
+*.dll
+*.a
+*.lib
+
+# File temporanei editor
+*.log
+*.tmp
 
 # VS Code
 .vscode/
 
-# Compilazione
-coso/
-vcpkg/
-lib/
-
-# file di configurazione
+# file di configurazione locali
 config.json

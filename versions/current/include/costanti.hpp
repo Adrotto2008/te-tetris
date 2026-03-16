@@ -194,6 +194,7 @@ extern std::array<char, 1> ESCI;
 
 /*-------------IMPOSTAZIONI-----------*/
 
+extern int FRAME;
 extern float AUDIO_MUSICA;
 extern float AUDIO_SUONI;
 extern TipoPartita TIPO_PARTITA;

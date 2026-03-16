@@ -45,6 +45,8 @@ void Gioco::partitaSinglePlayer(){
     cronometro::time_point inizio_scambio;
     cronometro::time_point attuale_scambio;
     int tempo_trascorso_scambio;
+    cronometro::time_point frame_attuale;
+    cronometro::time_point frame_iniziale;
 
     Tetramino* CodaTetramini[4] = {NULL};
     Tetramino* RiservaTetramino[2] = {NULL};
@@ -92,7 +94,7 @@ void Gioco::partitaSinglePlayer(){
         punteggio.comboAttuale();        
 
 		bool puo_sostituire = true;
-
+        frame_iniziale = cronometro::now();
 		while(CodaTetramini[0]->in_movimento){//FARE in_movimento
 
 
@@ -116,13 +118,15 @@ void Gioco::partitaSinglePlayer(){
 
             inizio = cronometro::now();
 
-
+            
             do{
-
-                if((CodaTetramini[0]->in_movimento && kbhit()) || azione_ultima_speranza != TipoInput::NULLA){    
+                frame_attuale = cronometro::now();
+                int fr = std::chrono::duration_cast<std::chrono::milliseconds>(frame_attuale - frame_iniziale).count();
+                if((CodaTetramini[0]->in_movimento && fr > FRAME) || azione_ultima_speranza != TipoInput::NULLA){    
 
                     if(azione_ultima_speranza == TipoInput::NULLA){             
                         input.scan();
+                        if(input.azione() != TipoInput::NULLA) frame_iniziale = cronometro::now();
                     }else{
                         azione_ultima_speranza = TipoInput::NULLA;
                     }
@@ -140,7 +144,7 @@ void Gioco::partitaSinglePlayer(){
                             timer_scambio = 15000;
                             inizio_scambio = cronometro::now();
 
-                            audio.suona("hold");
+                        
                             ultima_azione = TipoInput::CAMBIO;
                             puo_sostituire = false; //in questo modo posso effettuare una sostituzione per tetramino
                             sostituzioni++;

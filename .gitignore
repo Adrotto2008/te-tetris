@@ -1,5 +1,9 @@
 # Cartelle di build CMake
 build/
+Microsoft.Windows.SDK.BuildTools/
+build_windows/
+.build_backup/
+
 
 # File temporanei
 *.o
@@ -9,6 +13,11 @@ build/
 
 # VS Code
 .vscode/
+
+# Compilazione
+coso/
+vcpkg/
+lib/
 
 # file di configurazione
 config.json

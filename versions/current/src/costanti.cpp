@@ -25,6 +25,7 @@ std::array<char, 1> ESCI = {27};
 
 /*-------------VARIABILI GLOBALI DI IMPOSTAZIONI-----------*/
 
+int FRAME = 100;
 float AUDIO_MUSICA = 40;
 float AUDIO_SUONI = 50;
 TipoPartita TIPO_PARTITA = TipoPartita::NORMALE;

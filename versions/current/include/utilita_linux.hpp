@@ -1,6 +1,8 @@
 #ifndef UTILITA_LINUX_HPP
 #define UTILITA_LINUX_HPP
 
+#ifdef __linux__
+
 #include "costanti.hpp"
 
 #include <iostream>
@@ -131,5 +133,7 @@ bool kbhit();
 // ---- Utilità ----
 
 int numero_casuale(int min, int max);
+
+#endif
 
 #endif

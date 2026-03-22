@@ -28,9 +28,9 @@ void Campo::stampa(COORD posizione_tetramino[], COORD backup_posizione_tetramino
         for(short i = 0; i < 8; i++){
             cursore_manuale(posizione_ghost_block[i].X + 1, posizione_ghost_block[i].Y + 1);
             if(i%2==0)
-                fwrite(BLOCCO_GHOST_SINISTRA.c_str(), 1, BLOCCO_GHOST_SINISTRA.size(), stdout);
-            else 
-                fwrite(BLOCCO_GHOST_DESTRA.c_str(), 1, BLOCCO_GHOST_DESTRA.size(), stdout);
+                printf("%s", BLOCCO_GHOST_SINISTRA.c_str());
+            else
+                printf("%s", BLOCCO_GHOST_DESTRA.c_str());
         }
     }
 
@@ -40,10 +40,7 @@ void Campo::stampa(COORD posizione_tetramino[], COORD backup_posizione_tetramino
     /*-----------STAMPA TETRAMINO----------------------*/
     for(short i = 0; i < 8; i++){
         cursore_manuale(posizione_tetramino[i].X + 1, posizione_tetramino[i].Y + 1);
-        fwrite(casella[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco.c_str(),
-               1,
-               casella[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco.size(),
-               stdout);
+        printf("%s", casella[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco.c_str());
     }
     
     posizione_cursore(coord_fine);
@@ -58,7 +55,7 @@ void Campo::stampaTotale() {
         for(short j = 0; j < CAMPO_LUNGHEZZA - 2; j++){
             stampa_colori(casella[i][j].colore);        
 
-            fwrite(casella[i][j].blocco.c_str(), 1, casella[i][j].blocco.size(), stdout);
+            printf("%s", casella[i][j].blocco.c_str());
         }
     }
 }

@@ -32,7 +32,7 @@ bool AudioManager::avviaMusica(const std::string& file){
     if (!musica.openFromFile(file)) {
         std::cerr << "Errore caricando musica: " << file << std::endl;
         return false;
-    } 
+    }
     musica.play();
     return true;
 }
@@ -69,7 +69,7 @@ void AudioManager::setVolumeSuoni(float volume) {
 
 void AudioManager::caricaSuono(const std::string& nome, const std::string& file) {
     auto buffer = std::make_shared<sf::SoundBuffer>();
-    if (!buffer->loadFromFile("../sounds/sfx/" + file + ".wav")) {
+    if (!buffer->loadFromFile("sounds/sfx/" + file + ".wav")) {
         std::cerr << "Errore caricando suono: " << file << std::endl;
         return;
     }

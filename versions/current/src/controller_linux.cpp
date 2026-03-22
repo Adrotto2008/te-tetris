@@ -1,3 +1,5 @@
+#ifdef __linux__
+
 #include "controller_linux.hpp"
 #include <fcntl.h>
 #include <unistd.h>
@@ -35,3 +37,5 @@ bool Controller::buttonPressed(int id){
 int Controller::axisValue(int id){
     return axes[id];
 }
+
+#endif

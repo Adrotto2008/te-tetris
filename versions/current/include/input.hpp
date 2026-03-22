@@ -1,6 +1,15 @@
 #ifndef INPUT_HPP
 #define INPUT_HPP
 
+//provvisoria per farlo compilare da windows
+typedef struct {
+    int i;
+
+    //bool init();
+}Controller;
+
+
+
 #ifdef __linux__
 #include "utilita_linux.hpp"
 #include "controller_linux.hpp"

@@ -3,7 +3,7 @@
 using namespace std;
 using namespace chrono;
 using cronometro = std::chrono::steady_clock;
-
+//
 Gioco gioco;
 
 void Gioco::partitaSinglePlayer(){
@@ -15,7 +15,7 @@ void Gioco::partitaSinglePlayer(){
     pulisci();
 
     AudioManager audio;
-    audio.caricaMusiche("../sounds/music/gioco");
+    audio.caricaMusiche("sounds/music/gioco");
     audio.avviaMusicaCasuale();
     audio.setVolumeMusica(AUDIO_MUSICA);
 
@@ -120,6 +120,7 @@ void Gioco::partitaSinglePlayer(){
 
             
             do{
+
                 frame_attuale = cronometro::now();
                 int fr = std::chrono::duration_cast<std::chrono::milliseconds>(frame_attuale - frame_iniziale).count();
                 if((CodaTetramini[0]->in_movimento && fr > FRAME) || azione_ultima_speranza != TipoInput::NULLA){    
@@ -535,7 +536,7 @@ void Gioco::opzioni(){
     cmd_type();
     pulisci();
     AudioManager audio;
-    audio.caricaMusiche("../sounds/music/opzioni");
+    audio.caricaMusiche("sounds/music/opzioni");
     audio.setVolumeMusica(AUDIO_MUSICA);
     cornice(0, 0, 100, 30);
 
@@ -1164,7 +1165,7 @@ void Gioco::comandi(){
     Input input;
     bool esci = false;
     AudioManager audio;
-    audio.caricaMusiche("../sounds/music/opzioni");
+    audio.caricaMusiche("sounds/music/opzioni");
     audio.setVolumeMusica(AUDIO_MUSICA);
 
     cornice(0, 0, 120, 25);

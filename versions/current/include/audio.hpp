@@ -26,3 +26,4 @@ private:
     std::unordered_map<std::string, std::shared_ptr<sf::SoundBuffer>> buffers;
     std::unordered_map<std::string, std::shared_ptr<sf::Sound>> sounds;
 };
+

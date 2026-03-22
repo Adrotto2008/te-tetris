@@ -10,7 +10,7 @@ void Input::scan(){
 
     // inizializza controller una sola volta
     if(!controllerReady){
-        controllerReady = controller.init();
+        //controllerReady = controller.init();
     }
 
     #ifdef __linux__

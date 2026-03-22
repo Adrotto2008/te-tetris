@@ -1,3 +1,5 @@
+#ifdef __linux__
+
 #include "utilita_linux.hpp"
 
 using namespace std;
@@ -311,3 +313,5 @@ int numero_casuale(int min, int max) {
     
     return distrib(gen);
 }
+
+#endif

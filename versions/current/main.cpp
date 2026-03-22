@@ -31,8 +31,9 @@ int main(void){
     nome = apri_config();
 
     AudioManager audio;
-    audio.caricaMusiche("../sounds/music/menu");
+    audio.caricaMusiche("sounds/music/menu");
     audio.setVolumeMusica(AUDIO_MUSICA);
+    audio.avviaMusicaCasuale();
 
     short i;
     bool uscita = false;

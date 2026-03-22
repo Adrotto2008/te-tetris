@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef __linux__
+
 #include <linux/joystick.h>
 
 class Controller {
@@ -20,3 +22,5 @@ public:
     int axisValue(int id);
 
 };
+
+#endif

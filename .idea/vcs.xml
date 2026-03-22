@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/_deps/cpp_httplib-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/_deps/ixwebsocket-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/_deps/nlohmann_json-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/_deps/zlib-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build_copilot_check/_deps/cpp_httplib-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build_copilot_check/_deps/ixwebsocket-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build_copilot_check/_deps/nlohmann_json-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build_copilot_check/_deps/sfml-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build_copilot_check/_deps/zlib-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build_run/_deps/cpp_httplib-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build_run/_deps/ixwebsocket-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build_run/_deps/nlohmann_json-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build_run/_deps/sfml-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build_run/_deps/zlib-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build_windows/_deps/cpp_httplib-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build_windows/_deps/ixwebsocket-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build_windows/_deps/nlohmann_json-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build_windows/_deps/zlib-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/ixwebsocket-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/sfml-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/zlib-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/coso/SFML" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/coso/SFML/build/_deps/sheenbidi-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vcpkg" vcs="Git" />
+  </component>
+</project>

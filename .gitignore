@@ -14,7 +14,7 @@ vcpkg/
 # File temporanei/compilati
 *.o
 *.obj
-*.dll
+# *.dll
 *.so
 *.exe
 

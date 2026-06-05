@@ -134,8 +134,7 @@ L'eseguibile viene generato nella cartella `bin/`.
 Se vuoi scaricare il gioco senza compilarlo 
 
 ```
-devi scaricare la cartella `bin/` e la cartella `sounds/`,
-e avviare il gioco dovrai usare il rispettivo file `avvio.cmd` o `avvio.sh`.
+scarica il gioco dalla release seguendo le istruzioni
 ```
 
 ---

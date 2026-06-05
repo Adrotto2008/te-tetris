@@ -159,6 +159,8 @@ enum class TipoInput{
     CADUTAVELOCE,
     CADUTAISTANTANEA,
     CAMBIO,
+    SENSIBILITA_MENO,
+    SENSIBILITA_PIU,
     ESCI,
     NULLA
 };
@@ -197,6 +199,7 @@ extern std::array<char, 1> ESCI;
 extern int FRAME;
 extern float AUDIO_MUSICA;
 extern float AUDIO_SUONI;
+extern int CONTROLLER_REPEAT_MS;
 extern TipoPartita TIPO_PARTITA;
 extern TipoColori TIPO_COLORI;
 extern std::string BLOCCO_GHOST_SINISTRA;
@@ -212,9 +215,11 @@ extern COORD coord_terzo_tetramino_futuro;
 extern COORD coord_tetramino_riserva;
 extern COORD coord_posizione_campo;
 extern COORD coord_punteggio;
+extern COORD coord_sensibilita;
 extern COORD coord_linee;
 extern COORD coord_livello;
 extern COORD coord_scambio;
 extern COORD coord_fine;
+extern COORD coord_cursore_vuoto;
 
 #endif

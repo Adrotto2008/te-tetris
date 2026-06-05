@@ -353,15 +353,15 @@ void Gioco::opzioni(){
     short i = 5;
     
     cursore_manuale(PADDING, i++);
-    scritta(5, "  ___  _____ _____ ___ ___ ___ _   _ ");
+    scritta(1, "  ___  _____ _____ ___ ___ ___ _   _ ");
     cursore_manuale(PADDING, i++);
-    scritta(5, " / _ \\|  _  |_   _|_ _/ _ \\_ _| \\ | |");
+    scritta(1, " / _ \\|  _  |_   _|_ _/ _ \\_ _| \\ | |");
     cursore_manuale(PADDING, i++);
-    scritta(5, "| | | | | | | | |  | | | | | ||  \\| |");
+    scritta(1, "| | | | | | | | |  | | | | | ||  \\| |");
     cursore_manuale(PADDING, i++);
-    scritta(5, "| |_| | |_| | | |  | | |_| | || |\\  |");
+    scritta(1, "| |_| | |_| | | |  | | |_| | || |\\  |");
     cursore_manuale(PADDING, i++);
-    scritta(5, " \\___/|_____| |_| |___\\___/___|_| \\_|");
+    scritta(1, " \\___/|_____| |_| |___\\___/___|_| \\_|");
 
     
 
@@ -382,15 +382,15 @@ void Gioco::comandi(){
     short i = 3;
     
     cursore_manuale(PADDING, i++);
-    scritta(5, "  ___  _____ _____ ___ ___ ___ _   _ ");
+    scritta(1, "  ___  _____ _____ ___ ___ ___ _   _ ");
     cursore_manuale(PADDING, i++);
-    scritta(5, " / _ \\|  _  |_   _|_ _/ _ \\_ _| \\ | |");
+    scritta(1, " / _ \\|  _  |_   _|_ _/ _ \\_ _| \\ | |");
     cursore_manuale(PADDING, i++);
-    scritta(5, "| | | | | | | | |  | | | | | ||  \\| |");
+    scritta(1, "| | | | | | | | |  | | | | | ||  \\| |");
     cursore_manuale(PADDING, i++);
-    scritta(5, "| |_| | |_| | | |  | | |_| | || |\\  |");
+    scritta(1, "| |_| | |_| | | |  | | |_| | || |\\  |");
     cursore_manuale(PADDING, i++);
-    scritta(5, " \\___/|_____| |_| |___\\___/___|_| \\_|");
+    scritta(1, " \\___/|_____| |_| |___\\___/___|_| \\_|");
 
     i = 11;
 

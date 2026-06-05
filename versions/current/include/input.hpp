@@ -1,25 +1,27 @@
 #ifndef INPUT_HPP
 #define INPUT_HPP
 
-//provvisoria per farlo compilare da windows
-typedef struct {
-    int i;
-
-    //bool init();
-}Controller;
-
-
-
-#ifdef __linux__
+// Su Linux includiamo la classe reale del controller Linux.
+// Su Windows includiamo la classe reale del controller Windows.
+// Su altre piattaforme usiamo un placeholder minimale.
+#if defined(__linux__)
 #include "utilita_linux.hpp"
 #include "controller_linux.hpp"
+#elif defined(_WIN32)
+#include "utilita.hpp"
+#include "controller_windows.hpp"
 #else
 #include "utilita.hpp"
+typedef struct {
+    int i;
+    //bool init();
+} Controller;
 #endif
 
 #include "costanti.hpp"
 
 #include <array>
+#include <chrono>
 
 /*------------CLASSE------------*/
 class Input {
@@ -28,7 +30,10 @@ public:
     Controller controller;
     bool controllerReady = false;
     bool controllerButtonState[16] = {false};
-    bool controllerAxisState[8] = {false};
+    bool controllerAxisState[12] = {false};
+    // timestamps per trigger (steady_clock)
+    std::chrono::steady_clock::time_point lastButtonTime[16];
+    std::chrono::steady_clock::time_point lastAxisTime[12];
 
     void scan();      
     bool valido();

@@ -138,7 +138,7 @@ string apri_config() {
 string inizializza_config(bool esiste) {
     string nome = "Player";
     if (!esiste) {
-        scritta(5, "hey player, come ti chiami?");
+        scritta(1, "hey player, come ti chiami?");
         getline(cin, nome);
         string _nome = nome;
         config["nome"] = _nome;

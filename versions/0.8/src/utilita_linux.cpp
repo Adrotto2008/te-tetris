@@ -159,7 +159,7 @@ string apri_config() {
 string inizializza_config() {
     string nome;
 
-    scritta(50, "hey player, come ti chiami?");
+    scritta(10, "hey player, come ti chiami?");
     getline(cin, nome);
     
     salva_config(nome);

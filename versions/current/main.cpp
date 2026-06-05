@@ -27,7 +27,7 @@ int main(void){
     std::string nome;
     
     pulisci();
-    printf(CURSORE_INVISIBILE);
+    nascondi_cursore();
     nome = apri_config();
 
     AudioManager audio;
@@ -58,74 +58,72 @@ int main(void){
 
             audio.aggiornaMusica();
 
-            if(kbhit()){
+            // processa sempre gli input sia da tastiera che da controller
+            input.scan();
 
-                input.scan();
-
-                if(input.azione() == TipoInput::GIROORARIO){// freccia in alto
-                    
-                    cursore_manuale(PADDING + 13, i);
-                    printf(" ");
-
-                    i -= 2;
-
-                    if(i < static_cast<short>(CordinateOpzioni::SINGLEPLAYER)) i = static_cast<short>(CordinateOpzioni::ESCI);
-                }
-
-                if(input.azione() == TipoInput::CADUTAVELOCE){// freccia in basso
-                    
-                    cursore_manuale(PADDING + 13, i);
-                    printf(" ");
-
-                    i += 2;
-
-                    if(i > static_cast<short>(CordinateOpzioni::ESCI)) i = static_cast<short>(CordinateOpzioni::SINGLEPLAYER);
-                }
+            if(input.azione() == TipoInput::GIROORARIO){// freccia in alto
 
                 cursore_manuale(PADDING + 13, i);
-                printf(">");
+                printf(" ");
 
-                if(input.azione() == TipoInput::CADUTAISTANTANEA){ //spazio o invio
-                    
-                    switch(i){
+                i -= 2;
 
-                        case static_cast<short>(CordinateOpzioni::SINGLEPLAYER):
-                            audio.fermaMusica();
-                            gioco.partitaSinglePlayer();
-                            uscita_menu = true;
-                            break;
+                if(i < static_cast<short>(CordinateOpzioni::SINGLEPLAYER)) i = static_cast<short>(CordinateOpzioni::ESCI);
+            }
 
-                        case static_cast<short>(CordinateOpzioni::MULTIPLAYER):
-                            gioco.multiPlayerStanza(nome);
-                            uscita_menu = true;
-                            break;
+            if(input.azione() == TipoInput::CADUTAVELOCE){// freccia in basso
 
-                        case static_cast<short>(CordinateOpzioni::OPZIONI):
-                            audio.fermaMusica();
-                            gioco.opzioni();
-                            uscita_menu = true;
-                            break;
+                cursore_manuale(PADDING + 13, i);
+                printf(" ");
 
-                        case static_cast<short>(CordinateOpzioni::COMANDI):
-                            audio.fermaMusica();
-                            gioco.comandi();
-                            uscita_menu = true;
-                            break;
+                i += 2;
 
-                        case static_cast<short>(CordinateOpzioni::CREDITI):
-                            audio.fermaMusica();
-                            break;
+                if(i > static_cast<short>(CordinateOpzioni::ESCI)) i = static_cast<short>(CordinateOpzioni::SINGLEPLAYER);
+            }
 
-                        case static_cast<short>(CordinateOpzioni::ESCI):
-                            uscita_menu = true;
-                            uscita = true;
-                            break;
+            cursore_manuale(PADDING + 13, i);
+            printf(">");
 
-                    }
+            if(input.azione() == TipoInput::CADUTAISTANTANEA){ //spazio o invio
 
-                    audio.setVolumeMusica(AUDIO_MUSICA);
+                switch(i){
+
+                    case static_cast<short>(CordinateOpzioni::SINGLEPLAYER):
+                        audio.fermaMusica();
+                        gioco.partitaSinglePlayer();
+                        uscita_menu = true;
+                        break;
+
+                    case static_cast<short>(CordinateOpzioni::MULTIPLAYER):
+                        gioco.multiPlayerStanza(nome);
+                        uscita_menu = true;
+                        break;
+
+                    case static_cast<short>(CordinateOpzioni::OPZIONI):
+                        audio.fermaMusica();
+                        gioco.opzioni();
+                        uscita_menu = true;
+                        break;
+
+                    case static_cast<short>(CordinateOpzioni::COMANDI):
+                        audio.fermaMusica();
+                        gioco.comandi();
+                        uscita_menu = true;
+                        break;
+
+                    case static_cast<short>(CordinateOpzioni::CREDITI):
+                        audio.fermaMusica();
+                        break;
+
+                    case static_cast<short>(CordinateOpzioni::ESCI):
+                        uscita_menu = true;
+                        uscita = true;
+                        break;
 
                 }
+
+                audio.setVolumeMusica(AUDIO_MUSICA);
+
 
             }
         
@@ -151,17 +149,17 @@ void menu(){
 
     short i = 3;
     cursore_manuale(PADDING, i++);
-    scritta(5, " _____ _____     _____ _____ ___________ _____ _____ ");
+    scritta(1, " _____ _____     _____ _____ ___________ _____ _____ ");
     cursore_manuale(PADDING, i++);
-    scritta(5, "|_   _|  ___|   |_   _|  ___|_   _| ___ \\_   _/  ___|");
+    scritta(1, "|_   _|  ___|   |_   _|  ___|_   _| ___ \\_   _/  ___|");
     cursore_manuale(PADDING, i++);
-    scritta(5, "  | | | |__ ______| | | |__   | | | |_/ / | | \\ `--. ");
+    scritta(1, "  | | | |__ ______| | | |__   | | | |_/ / | | \\ `--. ");
     cursore_manuale(PADDING, i++);
-    scritta(5, "  | | |  __|______| | |  __|  | | |    /  | |  `--. \\");
+    scritta(1, "  | | |  __|______| | |  __|  | | |    /  | |  `--. \\");
     cursore_manuale(PADDING, i++);
-    scritta(5, "  | | | |___      | | | |___  | | | |\\ \\ _| |_/\\__/ /");
+    scritta(1, "  | | | |___      | | | |___  | | | |\\ \\ _| |_/\\__/ /");
     cursore_manuale(PADDING, i++);
-    scritta(5, "  \\_/ \\____/      \\_/ \\____/  \\_/ \\_| \\_|\\___/\\____/ ");
+    scritta(1, "  \\_/ \\____/      \\_/ \\____/  \\_/ \\_| \\_|\\___/\\____/ ");
 
     cursore_manuale(PADDING + 15, static_cast<short>(CordinateOpzioni::SINGLEPLAYER));
     printf("singleplayer");

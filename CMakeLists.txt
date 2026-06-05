@@ -12,8 +12,6 @@ set(CMAKE_CXX_EXTENSIONS        OFF)
 # Opzioni globali / variabili progetto
 # ============================================================
 set(SFML_VERSION "2.6.1")  # Cambia se usi una versione diversa
-set(SFML_ROOT    "/home/arklight/nextcloud-data/data/arklight/files/programmazione/c++/te_tetris/te_tetris/coso/SFML/build")
-set(SFML_BUILD_DIR "${SFML_ROOT}")
 
 # ============================================================
 # FetchContent per dipendenze esterne
@@ -63,6 +61,23 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(ixwebsocket)
 
+# SFML (FetchContent)
+set(SFML_BUILD_AUDIO       ON  CACHE BOOL "" FORCE)
+set(SFML_BUILD_GRAPHICS    ON  CACHE BOOL "" FORCE)
+set(SFML_BUILD_WINDOW      ON  CACHE BOOL "" FORCE)
+set(SFML_BUILD_SYSTEM      ON  CACHE BOOL "" FORCE)
+set(SFML_BUILD_NETWORK     OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_EXAMPLES    OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_DOC         OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_TEST_SUITE  OFF CACHE BOOL "" FORCE)
+
+FetchContent_Declare(
+    sfml
+    GIT_REPOSITORY https://github.com/SFML/SFML.git
+    GIT_TAG        ${SFML_VERSION}
+)
+FetchContent_MakeAvailable(sfml)
+
 # ============================================================
 # File sorgente del progetto
 # ============================================================
@@ -81,63 +96,17 @@ add_executable(te_tetris
 target_include_directories(te_tetris PRIVATE
     versions/current/include
     ${cpp_httplib_SOURCE_DIR}
-    ${SFML_ROOT}/../include
 )
 
 # ============================================================
-# SFML - Tentativo 1: find_package (se hai buildato SFML con CMake modern)
+# SFML - FetchContent (link diretto ai target)
 # ============================================================
-set(SFML_STATIC_LIBRARIES TRUE)
-find_package(SFML ${SFML_VERSION} COMPONENTS system window graphics audio QUIET
-    PATHS ${SFML_BUILD_DIR} ${SFML_ROOT} NO_DEFAULT_PATH)
-
-if(SFML_FOUND)
-    message(STATUS "→ SFML trovato tramite find_package!")
-    target_link_libraries(te_tetris PRIVATE
-        SFML::System
-        SFML::Window
-        SFML::Graphics
-        SFML::Audio
-    )
-else()
-    # ============================================================
-    # SFML - Tentativo 2: linking manuale (fallback)
-    # ============================================================
-    message(WARNING "SFML non trovato con find_package → linking manuale")
-
-    if(NOT EXISTS "${SFML_BUILD_DIR}/lib")
-        message(FATAL_ERROR
-            "Cartella SFML/lib non trovata!\n"
-            "Percorso cercato: ${SFML_BUILD_DIR}/lib\n"
-            "Ricompila SFML statico con:\n"
-            "  cmake .. -DBUILD_SHARED_LIBS=OFF -DCMAKE_BUILD_TYPE=Release\n"
-            "  make -j$(nproc)"
-        )
-    endif()
-
-    set(SFML_LIB_DIR "${SFML_BUILD_DIR}/lib")
-
-    set(SFML_STATIC_LIBS
-        "${SFML_LIB_DIR}/libsfml-audio-s.a"
-        "${SFML_LIB_DIR}/libsfml-graphics-s.a"
-        "${SFML_LIB_DIR}/libsfml-window-s.a"
-        "${SFML_LIB_DIR}/libsfml-system-s.a"
-    )
-
-    # Dipendenze audio (statiche - tipiche su Ubuntu/Debian)
-    set(AUDIO_DEPS
-        /usr/lib/x86_64-linux-gnu/libFLAC.a
-        /usr/lib/x86_64-linux-gnu/libvorbisfile.a
-        /usr/lib/x86_64-linux-gnu/libvorbis.a
-        /usr/lib/x86_64-linux-gnu/libvorbisenc.a
-        /usr/lib/x86_64-linux-gnu/libogg.a
-    )
-
-    target_link_libraries(te_tetris PRIVATE
-        ${SFML_STATIC_LIBS}
-        ${AUDIO_DEPS}
-    )
-endif()
+target_link_libraries(te_tetris PRIVATE
+    sfml-system
+    sfml-window
+    sfml-graphics
+    sfml-audio
+)
 
 # ============================================================
 # Altre librerie del progetto
@@ -161,6 +130,40 @@ if(UNIX AND NOT APPLE)
     )
 endif()
 
+if(WIN32)
+    target_link_libraries(te_tetris PRIVATE
+        xinput9_1_0
+    )
+endif()
+
+if(MINGW)
+    get_filename_component(MINGW_BIN_DIR "${CMAKE_CXX_COMPILER}" DIRECTORY)
+    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+        set(SFML_OPENAL_DLL "${sfml_SOURCE_DIR}/extlibs/bin/x64/openal32.dll")
+    else()
+        set(SFML_OPENAL_DLL "${sfml_SOURCE_DIR}/extlibs/bin/x86/openal32.dll")
+    endif()
+
+    set(RUNTIME_DLLS
+        "${MINGW_BIN_DIR}/libwinpthread-1.dll"
+        "${MINGW_BIN_DIR}/libgcc_s_seh-1.dll"
+        "${MINGW_BIN_DIR}/libstdc++-6.dll"
+        "${SFML_OPENAL_DLL}"
+    )
+
+    foreach(dll IN LISTS RUNTIME_DLLS)
+        if(EXISTS "${dll}")
+            add_custom_command(TARGET te_tetris POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                        "${dll}"
+                        "$<TARGET_FILE_DIR:te_tetris>"
+            )
+        else()
+            message(WARNING "Runtime DLL non trovato: ${dll}")
+        endif()
+    endforeach()
+endif()
+
 # ============================================================
 # Output eseguibile
 # ============================================================
@@ -178,11 +181,6 @@ message(STATUS " ZLIB        → FetchContent")
 message(STATUS " json        → nlohmann_json")
 message(STATUS " httplib     → cpp-httplib")
 message(STATUS " WebSocket   → ixwebsocket (no TLS)")
-message(STATUS " SFML        → ${SFML_VERSION} statico")
-if(SFML_FOUND)
-    message(STATUS "   → tramite find_package")
-else()
-    message(STATUS "   → linking manuale da ${SFML_LIB_DIR}")
-endif()
+message(STATUS " SFML        → ${SFML_VERSION} (FetchContent)")
 message(STATUS " Output → ${CMAKE_SOURCE_DIR}/bin")
 message(STATUS "======================================")

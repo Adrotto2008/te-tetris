@@ -19,6 +19,9 @@ void stampa_riserva_tetramino(TipoTetramino tipo, int colore){
             std::cout << (tetramino[i][j].empty() ? " " : tetramino[i][j]);
         }
     }   
+
+    posizione_cursore(coord_cursore_vuoto);
+    printf("%c", 32);
 }
 
 
@@ -46,6 +49,9 @@ void stampa_coda_tetramini(TipoTetramino tipo1, TipoTetramino tipo2, TipoTetrami
             }
         }
     }
+
+    posizione_cursore(coord_cursore_vuoto);
+    printf("%c", 32);
 }
 
 void stampa_tetramini_rozzi(TipoTetramino tipo, std::string tetramino[8][8]) {

@@ -43,7 +43,7 @@ void Campo::stampa(COORD posizione_tetramino[], COORD backup_posizione_tetramino
         printf("%s", casella[posizione_tetramino[i].Y][posizione_tetramino[i].X].blocco.c_str());
     }
     
-    posizione_cursore(coord_fine);
+    posizione_cursore(coord_cursore_vuoto);
     printf("%c", 32);
 }
 
@@ -58,6 +58,9 @@ void Campo::stampaTotale() {
             printf("%s", casella[i][j].blocco.c_str());
         }
     }
+
+    posizione_cursore(coord_cursore_vuoto);
+    printf("%c", 32);
 }
 
 void Campo::scesa() {

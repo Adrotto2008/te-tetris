@@ -546,15 +546,15 @@ void Gioco::opzioni(){
 
     posizione_cursore(pos);
         
-    scritta(5, " ▒█████   ██▓███  ▄▄▄█████▓ ██▓ ▒█████   ███▄    █   ██████ "); cursore_basso(&pos, 1);
-    scritta(5, "▒██▒  ██▒▓██░  ██▒▓  ██▒ ▓▒▓██▒▒██▒  ██▒ ██ ▀█   █ ▒██    ▒ "); cursore_basso(&pos, 1);
-    scritta(5, "▒██░  ██▒▓██░ ██▓▒▒ ▓██░ ▒░▒██▒▒██░  ██▒▓██  ▀█ ██▒░ ▓██▄   "); cursore_basso(&pos, 1);
-    scritta(5, "▒██   ██░▒██▄█▓▒ ▒░ ▓██▓ ░ ░██░▒██   ██░▓██▒  ▐▌██▒  ▒   ██▒"); cursore_basso(&pos, 1);
-    scritta(5, "░ ████▓▒░▒██▒ ░  ░  ▒██▒ ░ ░██░░ ████▓▒░▒██░   ▓██░▒██████▒▒"); cursore_basso(&pos, 1);
-    scritta(5, "░ ▒░▒░▒░ ▒▓▒░ ░  ░  ▒ ░░   ░▓  ░ ▒░▒░▒░ ░ ▒░   ▒ ▒ ▒ ▒▓▒ ▒ ░"); cursore_basso(&pos, 1);
-    scritta(5, "  ░ ▒ ▒░ ░▒ ░         ░     ▒ ░  ░ ▒ ▒░ ░ ░░   ░ ▒░░ ░▒  ░ ░"); cursore_basso(&pos, 1);
-    scritta(5, "░ ░ ░ ▒  ░░         ░       ▒ ░░ ░ ░ ▒     ░   ░ ░ ░  ░  ░  "); cursore_basso(&pos, 1);
-    scritta(5, "    ░ ░                     ░      ░ ░           ░       ░  "); cursore_basso(&pos, 1);
+    scritta(1, " ▒█████   ██▓███  ▄▄▄█████▓ ██▓ ▒█████   ███▄    █   ██████ "); cursore_basso(&pos, 1);
+    scritta(1, "▒██▒  ██▒▓██░  ██▒▓  ██▒ ▓▒▓██▒▒██▒  ██▒ ██ ▀█   █ ▒██    ▒ "); cursore_basso(&pos, 1);
+    scritta(1, "▒██░  ██▒▓██░ ██▓▒▒ ▓██░ ▒░▒██▒▒██░  ██▒▓██  ▀█ ██▒░ ▓██▄   "); cursore_basso(&pos, 1);
+    scritta(1, "▒██   ██░▒██▄█▓▒ ▒░ ▓██▓ ░ ░██░▒██   ██░▓██▒  ▐▌██▒  ▒   ██▒"); cursore_basso(&pos, 1);
+    scritta(1, "░ ████▓▒░▒██▒ ░  ░  ▒██▒ ░ ░██░░ ████▓▒░▒██░   ▓██░▒██████▒▒"); cursore_basso(&pos, 1);
+    scritta(1, "░ ▒░▒░▒░ ▒▓▒░ ░  ░  ▒ ░░   ░▓  ░ ▒░▒░▒░ ░ ▒░   ▒ ▒ ▒ ▒▓▒ ▒ ░"); cursore_basso(&pos, 1);
+    scritta(1, "  ░ ▒ ▒░ ░▒ ░         ░     ▒ ░  ░ ▒ ▒░ ░ ░░   ░ ▒░░ ░▒  ░ ░"); cursore_basso(&pos, 1);
+    scritta(1, "░ ░ ░ ▒  ░░         ░       ▒ ░░ ░ ░ ▒     ░   ░ ░ ░  ░  ░  "); cursore_basso(&pos, 1);
+    scritta(1, "    ░ ░                     ░      ░ ░           ░       ░  "); cursore_basso(&pos, 1);
 
 
     
@@ -1167,14 +1167,14 @@ void Gioco::comandi(){
 
     short i = 3;
         
-    scritta(5, "                                                                                "); cursore_manuale(PADDING, i++);
-    scritta(5, "    ▄▄▄▄             ▄▄▄  ▄▄▄               ▄▄               ▄▄▄▄▄              "); cursore_manuale(PADDING, i++);
-    scritta(5, "  ██▀▀▀▀█            ███  ███              ████              ██▀▀▀██            "); cursore_manuale(PADDING, i++);
-    scritta(5, " ██▀        ▄████▄   ████████  ████▄██▄    ████    ██▄████▄  ██    ██  ▄▄█████▄ "); cursore_manuale(PADDING, i++);
-    scritta(5, " ██        ██▀  ▀██  ██ ██ ██  ██ ██ ██   ██  ██   ██▀   ██  ██    ██  ██▄▄▄▄ ▀ "); cursore_manuale(PADDING, i++);
-    scritta(5, " ██▄       ██    ██  ██ ▀▀ ██  ██ ██ ██   ██████   ██    ██  ██    ██   ▀▀▀▀██▄ "); cursore_manuale(PADDING, i++);
-    scritta(5, "  ██▄▄▄▄█  ▀██▄▄██▀  ██    ██  ██ ██ ██  ▄██  ██▄  ██    ██  ██▄▄▄██   █▄▄▄▄▄██ "); cursore_manuale(PADDING, i++);
-    scritta(5, "    ▀▀▀▀     ▀▀▀▀    ▀▀    ▀▀  ▀▀ ▀▀ ▀▀  ▀▀    ▀▀  ▀▀    ▀▀  ▀▀▀▀▀      ▀▀▀▀▀▀  "); cursore_manuale(PADDING, i++);
+    scritta(1, "                                                                                "); cursore_manuale(PADDING, i++);
+    scritta(1, "    ▄▄▄▄             ▄▄▄  ▄▄▄               ▄▄               ▄▄▄▄▄              "); cursore_manuale(PADDING, i++);
+    scritta(1, "  ██▀▀▀▀█            ███  ███              ████              ██▀▀▀██            "); cursore_manuale(PADDING, i++);
+    scritta(1, " ██▀        ▄████▄   ████████  ████▄██▄    ████    ██▄████▄  ██    ██  ▄▄█████▄ "); cursore_manuale(PADDING, i++);
+    scritta(1, " ██        ██▀  ▀██  ██ ██ ██  ██ ██ ██   ██  ██   ██▀   ██  ██    ██  ██▄▄▄▄ ▀ "); cursore_manuale(PADDING, i++);
+    scritta(1, " ██▄       ██    ██  ██ ▀▀ ██  ██ ██ ██   ██████   ██    ██  ██    ██   ▀▀▀▀██▄ "); cursore_manuale(PADDING, i++);
+    scritta(1, "  ██▄▄▄▄█  ▀██▄▄██▀  ██    ██  ██ ██ ██  ▄██  ██▄  ██    ██  ██▄▄▄██   █▄▄▄▄▄██ "); cursore_manuale(PADDING, i++);
+    scritta(1, "    ▀▀▀▀     ▀▀▀▀    ▀▀    ▀▀  ▀▀ ▀▀ ▀▀  ▀▀    ▀▀  ▀▀    ▀▀  ▀▀▀▀▀      ▀▀▀▀▀▀  "); cursore_manuale(PADDING, i++);
 
 
     i = 11;

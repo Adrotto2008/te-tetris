@@ -132,17 +132,17 @@ void menu(){
 
     short i = 3;
     cursore_manuale(PADDING, i++);
-    scritta(5, " _____ _____     _____ _____ ___________ _____ _____ ");
+    scritta(1, " _____ _____     _____ _____ ___________ _____ _____ ");
     cursore_manuale(PADDING, i++);
-    scritta(5, "|_   _|  ___|   |_   _|  ___|_   _| ___ \\_   _/  ___|");
+    scritta(1, "|_   _|  ___|   |_   _|  ___|_   _| ___ \\_   _/  ___|");
     cursore_manuale(PADDING, i++);
-    scritta(5, "  | | | |__ ______| | | |__   | | | |_/ / | | \\ `--. ");
+    scritta(1, "  | | | |__ ______| | | |__   | | | |_/ / | | \\ `--. ");
     cursore_manuale(PADDING, i++);
-    scritta(5, "  | | |  __|______| | |  __|  | | |    /  | |  `--. \\");
+    scritta(1, "  | | |  __|______| | |  __|  | | |    /  | |  `--. \\");
     cursore_manuale(PADDING, i++);
-    scritta(5, "  | | | |___      | | | |___  | | | |\\ \\ _| |_/\\__/ /");
+    scritta(1, "  | | | |___      | | | |___  | | | |\\ \\ _| |_/\\__/ /");
     cursore_manuale(PADDING, i++);
-    scritta(5, "  \\_/ \\____/      \\_/ \\____/  \\_/ \\_| \\_|\\___/\\____/ ");
+    scritta(1, "  \\_/ \\____/      \\_/ \\____/  \\_/ \\_| \\_|\\___/\\____/ ");
 
     cursore_manuale(PADDING + 15, static_cast<short>(CordinateOpzioni::SINGLEPLAYER));
     printf("singleplayer");

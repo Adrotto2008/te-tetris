@@ -1,5 +1,5 @@
 {
-    "nome": "aarthur",
+    "nome": "dgggg",
     "rotazione": [
         "W",
         "w"
@@ -34,8 +34,8 @@
     ],
     "blocco_sinistra": "[",
     "blocco_destra": "]",
-    "ghost_block_sinistra": "█",
-    "ghost_block_destra": "█",
+    "ghost_block_sinistra": "(",
+    "ghost_block_destra": ")",
     "musica": 40.0,
     "suoni": 50.0
 }

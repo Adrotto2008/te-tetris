@@ -258,6 +258,8 @@ void Gioco::partitaSinglePlayer(){
                 attuale_scambio = cronometro::now();
                 tempo_trascorso_scambio = std::chrono::duration_cast<std::chrono::milliseconds>(attuale_scambio - inizio_scambio).count();
 
+                posizione_cursore(coord_sensibilita);
+                printf("sensibilità : %d ms  ", CONTROLLER_REPEAT_MS);
                 posizione_cursore(coord_punteggio);
                 printf("punteggio : %.0f", punteggio.punti);
                 posizione_cursore(coord_linee);
@@ -295,18 +297,15 @@ void Gioco::partitaSinglePlayer(){
                     do{
 
                         
-                        if(kbhit()){
-                            
-                            input.scan();
-                            azione_ultima_speranza = input.azione();
-                            if(azione_ultima_speranza == TipoInput::CADUTAVELOCE || azione_ultima_speranza == TipoInput::CADUTAISTANTANEA)
-                                azione_ultima_speranza = TipoInput::NULLA;
+                        input.scan();
+                        azione_ultima_speranza = input.azione();
+                        if(azione_ultima_speranza == TipoInput::CADUTAVELOCE || azione_ultima_speranza == TipoInput::CADUTAISTANTANEA)
+                            azione_ultima_speranza = TipoInput::NULLA;
 
-                            if(azione_ultima_speranza != TipoInput::NULLA && ultima_speranza < 4){
-                                ultima_speranza++;
-                                //
-                                goto prova;
-                            }
+                        if(azione_ultima_speranza != TipoInput::NULLA && ultima_speranza < 4){
+                            ultima_speranza++;
+                            //
+                            goto prova;
                         }
 
                         std::this_thread::sleep_for(std::chrono::milliseconds(5));
@@ -352,8 +351,13 @@ void Gioco::partitaSinglePlayer(){
     posizione_cursore(coord_fine);
     printf("hai perso");
     printf(BIANCO);
-    getchar();
-    getchar();
+    for(;;){
+        input.scan();
+        if(input.azione() == TipoInput::CADUTAISTANTANEA || input.azione() == TipoInput::ESCI){
+            break;
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
 
     return;
 
@@ -432,21 +436,18 @@ void Gioco::opzioniStanza(Online* online, RoomDTO stanza, bool owner){
 
     do{
 
-        if(kbhit()){
-            input.scan();
+        input.scan();
 
-            if(input.azione() == TipoInput::ESCI){
-                esci = true;
-            }
+        if(input.azione() == TipoInput::ESCI){
+            esci = true;
+        }
 
-            if(input.azione() == TipoInput::CADUTAISTANTANEA){
+        if(input.azione() == TipoInput::CADUTAISTANTANEA){
 
-                if(owner){
-                    
-                //  do 
-                    
-                }
-
+            if(owner){
+                
+            //  do 
+                
             }
 
         }
@@ -482,50 +483,43 @@ void Gioco::listaStanze(Online* online, std::string& nome){
 
     do{
 
-        if(kbhit()){
+        input.scan();
 
-            input.scan();
+        if(input.azione() == TipoInput::CADUTAVELOCE){
 
-            if(input.azione() == TipoInput::CADUTAVELOCE){
+            posizione = posizione_attuale(); posizione.X--;
+            posizione_cursore(posizione);
+            printf(" ");
+            i += 5;
 
-                posizione = posizione_attuale(); posizione.X--;
-                posizione_cursore(posizione);
-                printf(" ");
-                i += 5;
+            if(i > 45) i = 5;
 
-                if(i > 45) i = 5;
+            cursore_manuale(5, i);
 
-                cursore_manuale(5, i);
-
-                printf(">");
-
-            }
-
-            if(input.azione() == TipoInput::GIROORARIO){
-
-                posizione = posizione_attuale(); posizione.X--;
-                posizione_cursore(posizione);
-                printf(" ");
-                i -= 5;
-
-                if(i < 5) i = 45;
-
-                cursore_manuale(5, i);
-
-                printf(">");
-
-            }
-
-            if(input.azione() == TipoInput::ESCI){
-
-                return;
-
-            }
-
-
+            printf(">");
 
         }
 
+        if(input.azione() == TipoInput::GIROORARIO){
+
+            posizione = posizione_attuale(); posizione.X--;
+            posizione_cursore(posizione);
+            printf(" ");
+            i -= 5;
+
+            if(i < 5) i = 45;
+
+            cursore_manuale(5, i);
+
+            printf(">");
+
+        }
+
+        if(input.azione() == TipoInput::ESCI){
+
+            return;
+
+        }
 
     }while(!esci);
 
@@ -551,15 +545,15 @@ void Gioco::opzioni(){
 
     posizione_cursore(pos);
         
-    scritta(5, " ▒█████   ██▓███  ▄▄▄█████▓ ██▓ ▒█████   ███▄    █   ██████ "); cursore_basso(&pos, 1);
-    scritta(5, "▒██▒  ██▒▓██░  ██▒▓  ██▒ ▓▒▓██▒▒██▒  ██▒ ██ ▀█   █ ▒██    ▒ "); cursore_basso(&pos, 1);
-    scritta(5, "▒██░  ██▒▓██░ ██▓▒▒ ▓██░ ▒░▒██▒▒██░  ██▒▓██  ▀█ ██▒░ ▓██▄   "); cursore_basso(&pos, 1);
-    scritta(5, "▒██   ██░▒██▄█▓▒ ▒░ ▓██▓ ░ ░██░▒██   ██░▓██▒  ▐▌██▒  ▒   ██▒"); cursore_basso(&pos, 1);
-    scritta(5, "░ ████▓▒░▒██▒ ░  ░  ▒██▒ ░ ░██░░ ████▓▒░▒██░   ▓██░▒██████▒▒"); cursore_basso(&pos, 1);
-    scritta(5, "░ ▒░▒░▒░ ▒▓▒░ ░  ░  ▒ ░░   ░▓  ░ ▒░▒░▒░ ░ ▒░   ▒ ▒ ▒ ▒▓▒ ▒ ░"); cursore_basso(&pos, 1);
-    scritta(5, "  ░ ▒ ▒░ ░▒ ░         ░     ▒ ░  ░ ▒ ▒░ ░ ░░   ░ ▒░░ ░▒  ░ ░"); cursore_basso(&pos, 1);
-    scritta(5, "░ ░ ░ ▒  ░░         ░       ▒ ░░ ░ ░ ▒     ░   ░ ░ ░  ░  ░  "); cursore_basso(&pos, 1);
-    scritta(5, "    ░ ░                     ░      ░ ░           ░       ░  "); cursore_basso(&pos, 1);
+    scritta(1, " ▒█████   ██▓███  ▄▄▄█████▓ ██▓ ▒█████   ███▄    █   ██████ "); cursore_basso(&pos, 1);
+    scritta(1, "▒██▒  ██▒▓██░  ██▒▓  ██▒ ▓▒▓██▒▒██▒  ██▒ ██ ▀█   █ ▒██    ▒ "); cursore_basso(&pos, 1);
+    scritta(1, "▒██░  ██▒▓██░ ██▓▒▒ ▓██░ ▒░▒██▒▒██░  ██▒▓██  ▀█ ██▒░ ▓██▄   "); cursore_basso(&pos, 1);
+    scritta(1, "▒██   ██░▒██▄█▓▒ ▒░ ▓██▓ ░ ░██░▒██   ██░▓██▒  ▐▌██▒  ▒   ██▒"); cursore_basso(&pos, 1);
+    scritta(1, "░ ████▓▒░▒██▒ ░  ░  ▒██▒ ░ ░██░░ ████▓▒░▒██░   ▓██░▒██████▒▒"); cursore_basso(&pos, 1);
+    scritta(1, "░ ▒░▒░▒░ ▒▓▒░ ░  ░  ▒ ░░   ░▓  ░ ▒░▒░▒░ ░ ▒░   ▒ ▒ ▒ ▒▓▒ ▒ ░"); cursore_basso(&pos, 1);
+    scritta(1, "  ░ ▒ ▒░ ░▒ ░         ░     ▒ ░  ░ ▒ ▒░ ░ ░░   ░ ▒░░ ░▒  ░ ░"); cursore_basso(&pos, 1);
+    scritta(1, "░ ░ ░ ▒  ░░         ░       ▒ ░░ ░ ░ ▒     ░   ░ ░ ░  ░  ░  "); cursore_basso(&pos, 1);
+    scritta(1, "    ░ ░                     ░      ░ ░           ░       ░  "); cursore_basso(&pos, 1);
 
 
     
@@ -642,10 +636,9 @@ void Gioco::opzioni(){
 
         audio.aggiornaMusica();
 
-        if(kbhit()){
-            input.scan();
+        input.scan();
 
-            switch (input.azione()){
+        switch (input.azione()){
                 case TipoInput::GIROORARIO:
                     cursore_manuale(pos.X, pos.Y);
                     printf(" ");
@@ -692,10 +685,9 @@ void Gioco::opzioni(){
                         printf(">");
                         uscita_piccolo = false;
                         do{
-                            if(kbhit()){
-                                input2.scan();
+                            input2.scan();
 
-                                switch(input2.azione()){
+                            switch(input2.azione()){
 
                                     case TipoInput::GIROORARIO:
                                         cursore_manuale(pos.X, pos.Y);
@@ -753,8 +745,6 @@ void Gioco::opzioni(){
                                         uscita_piccolo = true;
                                         break;
                                 }
-
-                            }
                         }while(!uscita_piccolo);
 
                         cursore_manuale(pos.X, pos.Y);
@@ -772,10 +762,9 @@ void Gioco::opzioni(){
                         printf(">");
                         uscita_piccolo = false;
                         do{
-                            if(kbhit()){
-                                input2.scan();
+                            input2.scan();
 
-                                switch(input2.azione()){
+                            switch(input2.azione()){
 
                                     case TipoInput::GIROORARIO:
                                         cursore_manuale(pos.X, pos.Y);
@@ -854,8 +843,6 @@ void Gioco::opzioni(){
                                         uscita_piccolo = true;
                                         break;
                                 }
-
-                            }
                         }while(!uscita_piccolo);
 
                         cursore_manuale(pos.X, pos.Y);
@@ -872,73 +859,71 @@ void Gioco::opzioni(){
                         printf(">");
                         uscita_piccolo = false;
                         do{
-                            if(kbhit()){
-                                input2.scan();
+                            input2.scan();
 
-                                switch(input2.azione()){
+                            switch(input2.azione()){
 
-                                    case TipoInput::GIROORARIO:
-                                        cursore_manuale(pos.X, pos.Y);
-                                        printf(" ");
-                                        pos.Y -= 2;
-                                        if(pos.Y < 12)   pos.Y = 14;
-                                        posizione_cursore(pos);
-                                        printf(">");
-                                        break;
+                                case TipoInput::GIROORARIO:
+                                    cursore_manuale(pos.X, pos.Y);
+                                    printf(" ");
+                                    pos.Y -= 2;
+                                    if(pos.Y < 12)   pos.Y = 14;
+                                    posizione_cursore(pos);
+                                    printf(">");
+                                    break;
 
-                                    case TipoInput::CADUTAVELOCE:
-                                        cursore_manuale(pos.X, pos.Y);
-                                        printf(" ");
-                                        pos.Y += 2;
-                                        if(pos.Y > 14)   pos.Y = 12;
-                                        posizione_cursore(pos);
-                                        printf(">");
-                                        break;
+                                case TipoInput::CADUTAVELOCE:
+                                    cursore_manuale(pos.X, pos.Y);
+                                    printf(" ");
+                                    pos.Y += 2;
+                                    if(pos.Y > 14)   pos.Y = 12;
+                                    posizione_cursore(pos);
+                                    printf(">");
+                                    break;
 
-                                    case TipoInput::SINISTRA:
-                                        cursore_manuale(pos.X, pos.Y);
-                                        printf(" ");
-                                        pos.X -= 7;
-                                        if(pos.X < 38)   pos.X = 45;
-                                        posizione_cursore(pos);
-                                        printf(">");
-                                        break;
+                                case TipoInput::SINISTRA:
+                                    cursore_manuale(pos.X, pos.Y);
+                                    printf(" ");
+                                    pos.X -= 7;
+                                    if(pos.X < 38)   pos.X = 45;
+                                    posizione_cursore(pos);
+                                    printf(">");
+                                    break;
 
-                                    case TipoInput::DESTRA:
-                                        cursore_manuale(pos.X, pos.Y);
-                                        printf(" ");
-                                        pos.X += 7;
-                                        if(pos.X > 45)   pos.X = 38;
-                                        posizione_cursore(pos);
-                                        printf(">");
-                                        break;
+                                case TipoInput::DESTRA:
+                                    cursore_manuale(pos.X, pos.Y);
+                                    printf(" ");
+                                    pos.X += 7;
+                                    if(pos.X > 45)   pos.X = 38;
+                                    posizione_cursore(pos);
+                                    printf(">");
+                                    break;
 
-                                    case TipoInput::CADUTAISTANTANEA:
-                                        if(pos.X == 38 && pos.Y == 12){ // tipo blocchi : []
-                                            BLOCCO_SINISTRA = "[";
-                                            BLOCCO_DESTRA   = "]";
-                                        }
-                                        if(pos.X == 45 && pos.Y == 12){ // tipo blocchi : ()
-                                            BLOCCO_SINISTRA = "(";
-                                            BLOCCO_DESTRA   = ")";
-                                        }
-                                        if(pos.X == 38 && pos.Y == 14){ // tipo blocchi : {}
-                                            BLOCCO_SINISTRA = "{";
-                                            BLOCCO_DESTRA   = "}";
-                                        }
-                                        if(pos.X == 45 && pos.Y == 14){ // tipo blocchi : █
-                                            BLOCCO_SINISTRA = "█";
-                                            BLOCCO_DESTRA = "█";
-                                        }
-                                        uscita_piccolo = true;
-                                        break;
+                                case TipoInput::CADUTAISTANTANEA:
+                                    if(pos.X == 38 && pos.Y == 12){ // tipo blocchi : []
+                                        BLOCCO_SINISTRA = "[";
+                                        BLOCCO_DESTRA   = "]";
+                                    }
+                                    if(pos.X == 45 && pos.Y == 12){ // tipo blocchi : ()
+                                        BLOCCO_SINISTRA = "(";
+                                        BLOCCO_DESTRA   = ")";
+                                    }
+                                    if(pos.X == 38 && pos.Y == 14){ // tipo blocchi : {}
+                                        BLOCCO_SINISTRA = "{";
+                                        BLOCCO_DESTRA   = "}";
+                                    }
+                                    if(pos.X == 45 && pos.Y == 14){ // tipo blocchi : █
+                                        BLOCCO_SINISTRA = "█";
+                                        BLOCCO_DESTRA = "█";
+                                    }
+                                    uscita_piccolo = true;
+                                    break;
 
-                                    case TipoInput::ESCI:
-                                        uscita_piccolo = true;
-                                        break;
-                                }
-
+                                case TipoInput::ESCI:
+                                    uscita_piccolo = true;
+                                    break;
                             }
+
                         }while(!uscita_piccolo);
 
                         cursore_manuale(pos.X, pos.Y);
@@ -955,69 +940,67 @@ void Gioco::opzioni(){
                         printf(">");
                         uscita_piccolo = false;
                         do{
-                            if(kbhit()){
-                                input2.scan();
+                            input2.scan();
 
-                                switch(input2.azione()){
+                            switch(input2.azione()){
 
-                                    case TipoInput::GIROORARIO:
-                                        cursore_manuale(pos.X, pos.Y);
-                                        printf(" ");
-                                        pos.Y -= 2;
-                                        if(pos.Y < 21)   pos.Y = 23;
-                                        posizione_cursore(pos);
-                                        printf(">");
-                                        break;
+                                case TipoInput::GIROORARIO:
+                                    cursore_manuale(pos.X, pos.Y);
+                                    printf(" ");
+                                    pos.Y -= 2;
+                                    if(pos.Y < 21)   pos.Y = 23;
+                                    posizione_cursore(pos);
+                                    printf(">");
+                                    break;
 
-                                    case TipoInput::CADUTAVELOCE:
-                                        cursore_manuale(pos.X, pos.Y);
-                                        printf(" ");
-                                        pos.Y += 2;
-                                        if(pos.Y > 23)   pos.Y = 21;
-                                        posizione_cursore(pos);
-                                        printf(">");
-                                        break;
+                                case TipoInput::CADUTAVELOCE:
+                                    cursore_manuale(pos.X, pos.Y);
+                                    printf(" ");
+                                    pos.Y += 2;
+                                    if(pos.Y > 23)   pos.Y = 21;
+                                    posizione_cursore(pos);
+                                    printf(">");
+                                    break;
 
-                                    case TipoInput::SINISTRA:
-                                        cursore_manuale(pos.X, pos.Y);
-                                        printf(" ");
-                                        pos.X -= 13;
-                                        if(pos.X < 34)   pos.X = 47;
-                                        posizione_cursore(pos);
-                                        printf(">");
-                                        break;
+                                case TipoInput::SINISTRA:
+                                    cursore_manuale(pos.X, pos.Y);
+                                    printf(" ");
+                                    pos.X -= 13;
+                                    if(pos.X < 34)   pos.X = 47;
+                                    posizione_cursore(pos);
+                                    printf(">");
+                                    break;
 
-                                    case TipoInput::DESTRA:
-                                        cursore_manuale(pos.X, pos.Y);
-                                        printf(" ");
-                                        pos.X += 13;
-                                        if(pos.X > 47)   pos.X = 34;
-                                        posizione_cursore(pos);
-                                        printf(">");
-                                        break;
+                                case TipoInput::DESTRA:
+                                    cursore_manuale(pos.X, pos.Y);
+                                    printf(" ");
+                                    pos.X += 13;
+                                    if(pos.X > 47)   pos.X = 34;
+                                    posizione_cursore(pos);
+                                    printf(">");
+                                    break;
 
-                                    case TipoInput::CADUTAISTANTANEA:
-                                        if(pos.X == 34 && pos.Y == 21){ // tipo colori : normale
-                                            TIPO_COLORI = TipoColori::NORMALE;
-                                        }
-                                        if(pos.X == 34 && pos.Y == 23){ // tipo colori :casuali
-                                            TIPO_COLORI = TipoColori::CASUALE;
-                                        }
-                                        if(pos.X == 47 && pos.Y == 21){ // tipo colori : alternativi
-                                            TIPO_COLORI = TipoColori::ALTERNATIVO;
-                                        }
-                                        if(pos.X == 47 && pos.Y == 23){ // tipo colori : nessuno
-                                            TIPO_COLORI = TipoColori::NESSUNO;
-                                        }
-                                        uscita_piccolo = true;
-                                        break;
+                                case TipoInput::CADUTAISTANTANEA:
+                                    if(pos.X == 34 && pos.Y == 21){ // tipo colori : normale
+                                        TIPO_COLORI = TipoColori::NORMALE;
+                                    }
+                                    if(pos.X == 34 && pos.Y == 23){ // tipo colori :casuali
+                                        TIPO_COLORI = TipoColori::CASUALE;
+                                    }
+                                    if(pos.X == 47 && pos.Y == 21){ // tipo colori : alternativi
+                                        TIPO_COLORI = TipoColori::ALTERNATIVO;
+                                    }
+                                    if(pos.X == 47 && pos.Y == 23){ // tipo colori : nessuno
+                                        TIPO_COLORI = TipoColori::NESSUNO;
+                                    }
+                                    uscita_piccolo = true;
+                                    break;
 
-                                    case TipoInput::ESCI:
-                                        uscita_piccolo = true;
-                                        break;
-                                }
-
+                                case TipoInput::ESCI:
+                                    uscita_piccolo = true;
+                                    break;
                             }
+
                         }while(!uscita_piccolo);
                         cursore_manuale(pos.X, pos.Y);
                         printf(" ");
@@ -1033,30 +1016,26 @@ void Gioco::opzioni(){
 
                         do{
 
-                            if(kbhit()){
+                            input2.scan();
 
-                                input2.scan();
+                            switch (input2.azione()){
+                            
+                                case TipoInput::SINISTRA :
+                                    if(AUDIO_MUSICA > 0) AUDIO_MUSICA -= 10;
+                                    audio.setVolumeMusica(AUDIO_MUSICA);
+                                    stampaSuoni(false);
+                                    break;
 
-                                switch (input2.azione()){
-                                
-                                    case TipoInput::SINISTRA :
-                                        if(AUDIO_MUSICA > 0) AUDIO_MUSICA -= 10;
-                                        audio.setVolumeMusica(AUDIO_MUSICA);
-                                        stampaSuoni(false);
-                                        break;
+                                case TipoInput::DESTRA :
+                                    if(AUDIO_MUSICA < 100) AUDIO_MUSICA += 10;
+                                    audio.setVolumeMusica(AUDIO_MUSICA);
+                                    stampaSuoni(false);
+                                    break;
 
-                                    case TipoInput::DESTRA :
-                                        if(AUDIO_MUSICA < 100) AUDIO_MUSICA += 10;
-                                        audio.setVolumeMusica(AUDIO_MUSICA);
-                                        stampaSuoni(false);
-                                        break;
-
-                                    case TipoInput::ESCI :
-                                        uscita_piccolo = true;
-                                        break;
-                                
-                                }
-
+                                case TipoInput::ESCI :
+                                    uscita_piccolo = true;
+                                    break;
+                            
                             }
 
                         }while(!uscita_piccolo);
@@ -1076,30 +1055,26 @@ void Gioco::opzioni(){
 
                         do{
 
-                            if(kbhit()){
+                            input2.scan();
 
-                                input2.scan();
+                            switch (input2.azione()){
+                            
+                                case TipoInput::SINISTRA :
+                                    if(AUDIO_SUONI > 0) AUDIO_SUONI -= 10;
+                                    audio.setVolumeSuoni(AUDIO_SUONI);
+                                    stampaSuoni(true);
+                                    break;
 
-                                switch (input2.azione()){
-                                
-                                    case TipoInput::SINISTRA :
-                                        if(AUDIO_SUONI > 0) AUDIO_SUONI -= 10;
-                                        audio.setVolumeSuoni(AUDIO_SUONI);
-                                        stampaSuoni(true);
-                                        break;
+                                case TipoInput::DESTRA :
+                                    if(AUDIO_SUONI < 100) AUDIO_SUONI += 10;
+                                    audio.setVolumeSuoni(AUDIO_SUONI);
+                                    stampaSuoni(true);
+                                    break;
 
-                                    case TipoInput::DESTRA :
-                                        if(AUDIO_SUONI < 100) AUDIO_SUONI += 10;
-                                        audio.setVolumeSuoni(AUDIO_SUONI);
-                                        stampaSuoni(true);
-                                        break;
-
-                                    case TipoInput::ESCI :
-                                        uscita_piccolo = true;
-                                        break;
-                                
-                                }
-
+                                case TipoInput::ESCI :
+                                    uscita_piccolo = true;
+                                    break;
+                            
                             }
 
                         }while(!uscita_piccolo);
@@ -1118,8 +1093,6 @@ void Gioco::opzioni(){
                 case TipoInput::ESCI:
                     uscita = true;
                     break;
-            }
-
         }
 
     }while(!uscita);
@@ -1159,7 +1132,7 @@ void Gioco::comandi(){
     cmd_type();
     //system("chcp 65001");
     pulisci();
-    printf(CURSORE_INVISIBILE);
+    nascondi_cursore();
     
     COORD posizione_att;
     Input input;
@@ -1172,14 +1145,14 @@ void Gioco::comandi(){
 
     short i = 3;
         
-    scritta(5, "                                                                                "); cursore_manuale(PADDING, i++);
-    scritta(5, "    ▄▄▄▄             ▄▄▄  ▄▄▄               ▄▄               ▄▄▄▄▄              "); cursore_manuale(PADDING, i++);
-    scritta(5, "  ██▀▀▀▀█            ███  ███              ████              ██▀▀▀██            "); cursore_manuale(PADDING, i++);
-    scritta(5, " ██▀        ▄████▄   ████████  ████▄██▄    ████    ██▄████▄  ██    ██  ▄▄█████▄ "); cursore_manuale(PADDING, i++);
-    scritta(5, " ██        ██▀  ▀██  ██ ██ ██  ██ ██ ██   ██  ██   ██▀   ██  ██    ██  ██▄▄▄▄ ▀ "); cursore_manuale(PADDING, i++);
-    scritta(5, " ██▄       ██    ██  ██ ▀▀ ██  ██ ██ ██   ██████   ██    ██  ██    ██   ▀▀▀▀██▄ "); cursore_manuale(PADDING, i++);
-    scritta(5, "  ██▄▄▄▄█  ▀██▄▄██▀  ██    ██  ██ ██ ██  ▄██  ██▄  ██    ██  ██▄▄▄██   █▄▄▄▄▄██ "); cursore_manuale(PADDING, i++);
-    scritta(5, "    ▀▀▀▀     ▀▀▀▀    ▀▀    ▀▀  ▀▀ ▀▀ ▀▀  ▀▀    ▀▀  ▀▀    ▀▀  ▀▀▀▀▀      ▀▀▀▀▀▀  "); cursore_manuale(PADDING, i++);
+    scritta(1, "                                                                                "); cursore_manuale(PADDING, i++);
+    scritta(1, "    ▄▄▄▄             ▄▄▄  ▄▄▄               ▄▄               ▄▄▄▄▄              "); cursore_manuale(PADDING, i++);
+    scritta(1, "  ██▀▀▀▀█            ███  ███              ████              ██▀▀▀██            "); cursore_manuale(PADDING, i++);
+    scritta(1, " ██▀        ▄████▄   ████████  ████▄██▄    ████    ██▄████▄  ██    ██  ▄▄█████▄ "); cursore_manuale(PADDING, i++);
+    scritta(1, " ██        ██▀  ▀██  ██ ██ ██  ██ ██ ██   ██  ██   ██▀   ██  ██    ██  ██▄▄▄▄ ▀ "); cursore_manuale(PADDING, i++);
+    scritta(1, " ██▄       ██    ██  ██ ▀▀ ██  ██ ██ ██   ██████   ██    ██  ██    ██   ▀▀▀▀██▄ "); cursore_manuale(PADDING, i++);
+    scritta(1, "  ██▄▄▄▄█  ▀██▄▄██▀  ██    ██  ██ ██ ██  ▄██  ██▄  ██    ██  ██▄▄▄██   █▄▄▄▄▄██ "); cursore_manuale(PADDING, i++);
+    scritta(1, "    ▀▀▀▀     ▀▀▀▀    ▀▀    ▀▀  ▀▀ ▀▀ ▀▀  ▀▀    ▀▀  ▀▀    ▀▀  ▀▀▀▀▀      ▀▀▀▀▀▀  "); cursore_manuale(PADDING, i++);
 
 
     i = 11;
@@ -1250,6 +1223,12 @@ void Gioco::comandi(){
     }
 
     cursore_manuale(65, i+=2);
+    printf("esci");
+
+    cursore_manuale(65, i+=2);
+    printf("%-30s : L3/R3 o +/-", "sensibilità");
+
+    cursore_manuale(65, i+=2);
     printf("reset");
 
     i = static_cast<short>(CordinateComandi::DESTRA);
@@ -1263,11 +1242,7 @@ void Gioco::comandi(){
 
     audio.aggiornaMusica();
 
-        if(kbhit()){
-
-            
-
-            input.scan();
+        input.scan();
 
             if(input.azione() == TipoInput::GIROORARIO){// freccia in alto
                     
@@ -1322,7 +1297,7 @@ void Gioco::comandi(){
                 switch(i){
 
                     case static_cast<short>(CordinateComandi::DESTRA):
-                        printf(CURSORE_VISIBILE);
+                        mostra_cursore();
 
                         if(j == 2){
                             h = 39;
@@ -1330,29 +1305,27 @@ void Gioco::comandi(){
                             do{
                                 cursore_manuale(h, static_cast<short>(CordinateComandi::DESTRA));
                                 
-                                if(kbhit()){
-                                    input.scan();
+                                input.scan();
 
-                                    if(input.azione() == TipoInput::DESTRA){
-                                        h += 2;
-                                        if(h > 41) h = 39;
-                                    } else if (input.azione() == TipoInput::SINISTRA){
-                                        h -= 2;
-                                        if(h < 39) h = 41;
-                                    } else if (input.azione() == TipoInput::ESCI){
-                                        esci_piccolo = true;
-                                    } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
-                                        do{
-                                            nuovo = _getch();
-                                        }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
-                                        printf("%c", nuovo);
-                                        if(h == 39) DESTRA[0] = nuovo; else DESTRA[1] = nuovo;
-                                    }
-                                    
+                                if(input.azione() == TipoInput::DESTRA){
+                                    h += 2;
+                                    if(h > 41) h = 39;
+                                } else if (input.azione() == TipoInput::SINISTRA){
+                                    h -= 2;
+                                    if(h < 39) h = 41;
+                                } else if (input.azione() == TipoInput::ESCI){
+                                    esci_piccolo = true;
+                                } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
+                                    do{
+                                        nuovo = _getch();
+                                    }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
+                                    printf("%c", nuovo);
+                                    if(h == 39) DESTRA[0] = nuovo; else DESTRA[1] = nuovo;
                                 }
+                                
                             }while(!esci_piccolo);
                                 
-                            printf(CURSORE_INVISIBILE);
+                            nascondi_cursore();
 
 
                         }else if (j == 62){
@@ -1361,33 +1334,31 @@ void Gioco::comandi(){
                             do{
                                 cursore_manuale(h, static_cast<short>(CordinateComandi::DESTRA));
                                 
-                                if(kbhit()){
-                                    input.scan();
+                                input.scan();
 
-                                    if(input.azione() == TipoInput::DESTRA){
-                                        h += 2;
-                                        if(h > 101) h = 99;
-                                    } else if (input.azione() == TipoInput::SINISTRA){
-                                        h -= 2;
-                                        if(h < 99) h = 101;
-                                    } else if (input.azione() == TipoInput::ESCI){
-                                        esci_piccolo = true;
-                                    } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
-                                        do{
-                                            nuovo = _getch();
-                                        }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
-                                        printf("%c", nuovo);
-                                        if(h == 39) ROTAZIONE[0] = nuovo; else ROTAZIONE[1] = nuovo;
-                                    }
-                                    
+                                if(input.azione() == TipoInput::DESTRA){
+                                    h += 2;
+                                    if(h > 101) h = 99;
+                                } else if (input.azione() == TipoInput::SINISTRA){
+                                    h -= 2;
+                                    if(h < 99) h = 101;
+                                } else if (input.azione() == TipoInput::ESCI){
+                                    esci_piccolo = true;
+                                } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
+                                    do{
+                                        nuovo = _getch();
+                                    }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
+                                    printf("%c", nuovo);
+                                    if(h == 39) ROTAZIONE[0] = nuovo; else ROTAZIONE[1] = nuovo;
                                 }
+                                
                             }while(!esci_piccolo);
                         }
                         break;
 
                     case static_cast<short>(CordinateComandi::SINISTRA):
 
-                        printf(CURSORE_VISIBILE);
+                        mostra_cursore();
 
                         if(j == 2){
                             h = 39;
@@ -1395,29 +1366,27 @@ void Gioco::comandi(){
                             do{
                                 cursore_manuale(h, static_cast<short>(CordinateComandi::SINISTRA));
                                 
-                                if(kbhit()){
-                                    input.scan();
+                                input.scan();
 
-                                    if(input.azione() == TipoInput::DESTRA){
-                                        h += 2;
-                                        if(h > 41) h = 39;
-                                    } else if (input.azione() == TipoInput::SINISTRA){
-                                        h -= 2;
-                                        if(h < 39) h = 41;
-                                    } else if (input.azione() == TipoInput::ESCI){
-                                        esci_piccolo = true;
-                                    } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
-                                        do{
-                                            nuovo = _getch();
-                                        }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
-                                        printf("%c", nuovo);
-                                        if(h == 39) SINISTRA[0] = nuovo; else SINISTRA[1] = nuovo;
-                                    }
-                                    
+                                if(input.azione() == TipoInput::DESTRA){
+                                    h += 2;
+                                    if(h > 41) h = 39;
+                                } else if (input.azione() == TipoInput::SINISTRA){
+                                    h -= 2;
+                                    if(h < 39) h = 41;
+                                } else if (input.azione() == TipoInput::ESCI){
+                                    esci_piccolo = true;
+                                } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
+                                    do{
+                                        nuovo = _getch();
+                                    }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
+                                    printf("%c", nuovo);
+                                    if(h == 39) SINISTRA[0] = nuovo; else SINISTRA[1] = nuovo;
                                 }
+                                
                             }while(!esci_piccolo);
                                 
-                            printf(CURSORE_INVISIBILE);
+                            nascondi_cursore();
 
 
                         }else if (j == 62){
@@ -1426,32 +1395,30 @@ void Gioco::comandi(){
                             do{
                                 cursore_manuale(h, static_cast<short>(CordinateComandi::SINISTRA));
                                 
-                                if(kbhit()){
-                                    input.scan();
+                                input.scan();
 
-                                    if(input.azione() == TipoInput::DESTRA){
-                                        h += 2;
-                                        if(h > 101) h = 99;
-                                    } else if (input.azione() == TipoInput::SINISTRA){
-                                        h -= 2;
-                                        if(h < 99) h = 101;
-                                    } else if (input.azione() == TipoInput::ESCI){
-                                        esci_piccolo = true;
-                                    } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
-                                        do{
-                                            nuovo = _getch();
-                                        }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
-                                        printf("%c", nuovo);
-                                        if(h == 39) ROTAZIONE_ANTIORARIA[0] = nuovo; else ROTAZIONE_ANTIORARIA[1] = nuovo;
-                                    }
-                                    
+                                if(input.azione() == TipoInput::DESTRA){
+                                    h += 2;
+                                    if(h > 101) h = 99;
+                                } else if (input.azione() == TipoInput::SINISTRA){
+                                    h -= 2;
+                                    if(h < 99) h = 101;
+                                } else if (input.azione() == TipoInput::ESCI){
+                                    esci_piccolo = true;
+                                } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
+                                    do{
+                                        nuovo = _getch();
+                                    }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
+                                    printf("%c", nuovo);
+                                    if(h == 39) ROTAZIONE_ANTIORARIA[0] = nuovo; else ROTAZIONE_ANTIORARIA[1] = nuovo;
                                 }
+                                
                             }while(!esci_piccolo);
                         }                        
                         break;
 
                     case static_cast<short>(CordinateComandi::CADUTAVELOCE):
-                        printf(CURSORE_VISIBILE);
+                        mostra_cursore();
 
                         if(j == 2){
                             h = 39;
@@ -1459,29 +1426,27 @@ void Gioco::comandi(){
                             do{
                                 cursore_manuale(h, static_cast<short>(CordinateComandi::CADUTAVELOCE));
                                 
-                                if(kbhit()){
-                                    input.scan();
+                                input.scan();
 
-                                    if(input.azione() == TipoInput::DESTRA){
-                                        h += 2;
-                                        if(h > 41) h = 39;
-                                    } else if (input.azione() == TipoInput::SINISTRA){
-                                        h -= 2;
-                                        if(h < 39) h = 41;
-                                    } else if (input.azione() == TipoInput::ESCI){
-                                        esci_piccolo = true;
-                                    } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
-                                        do{
-                                            nuovo = _getch();
-                                        }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
-                                        printf("%c", nuovo);
-                                        if(h == 39) CADUTA_VELOCE[0] = nuovo; else CADUTA_VELOCE[1] = nuovo;
-                                    }
-                                    
+                                if(input.azione() == TipoInput::DESTRA){
+                                    h += 2;
+                                    if(h > 41) h = 39;
+                                } else if (input.azione() == TipoInput::SINISTRA){
+                                    h -= 2;
+                                    if(h < 39) h = 41;
+                                } else if (input.azione() == TipoInput::ESCI){
+                                    esci_piccolo = true;
+                                } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
+                                    do{
+                                        nuovo = _getch();
+                                    }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
+                                    printf("%c", nuovo);
+                                    if(h == 39) CADUTA_VELOCE[0] = nuovo; else CADUTA_VELOCE[1] = nuovo;
                                 }
+                                
                             }while(!esci_piccolo);
                                 
-                            printf(CURSORE_INVISIBILE);
+                            nascondi_cursore();
 
 
                         }else if (j == 62){
@@ -1490,32 +1455,30 @@ void Gioco::comandi(){
                             do{
                                 cursore_manuale(h, static_cast<short>(CordinateComandi::CADUTAVELOCE));
                                 
-                                if(kbhit()){
-                                    input.scan();
+                                input.scan();
 
-                                    if(input.azione() == TipoInput::DESTRA){
-                                        h += 2;
-                                        if(h > 101) h = 99;
-                                    } else if (input.azione() == TipoInput::SINISTRA){
-                                        h -= 2;
-                                        if(h < 99) h = 101;
-                                    } else if (input.azione() == TipoInput::ESCI){
-                                        esci_piccolo = true;
-                                    } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
-                                        do{
-                                            nuovo = _getch();
-                                        }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
-                                        printf("%c", nuovo);
-                                        if(h == 39) ROTAZIONE_DOPPIA[0] = nuovo; else ROTAZIONE_DOPPIA[1] = nuovo;
-                                    }
-                                    
+                                if(input.azione() == TipoInput::DESTRA){
+                                    h += 2;
+                                    if(h > 101) h = 99;
+                                } else if (input.azione() == TipoInput::SINISTRA){
+                                    h -= 2;
+                                    if(h < 99) h = 101;
+                                } else if (input.azione() == TipoInput::ESCI){
+                                    esci_piccolo = true;
+                                } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
+                                    do{
+                                        nuovo = _getch();
+                                    }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
+                                    printf("%c", nuovo);
+                                    if(h == 39) ROTAZIONE_DOPPIA[0] = nuovo; else ROTAZIONE_DOPPIA[1] = nuovo;
                                 }
+                                
                             }while(!esci_piccolo);
                         }
                         break;
 
                     case static_cast<short>(CordinateComandi::CADUTAISTANTANEA):
-                        printf(CURSORE_VISIBILE);
+                        mostra_cursore();
 
                         if(j == 2){
                             h = 39;
@@ -1523,29 +1486,27 @@ void Gioco::comandi(){
                             do{
                                 cursore_manuale(h, static_cast<short>(CordinateComandi::CADUTAISTANTANEA));
                                 
-                                if(kbhit()){
-                                    input.scan();
+                                input.scan();
 
-                                    if(input.azione() == TipoInput::DESTRA){
-                                        h += 2;
-                                        if(h > 41) h = 39;
-                                    } else if (input.azione() == TipoInput::SINISTRA){
-                                        h -= 2;
-                                        if(h < 39) h = 41;
-                                    } else if (input.azione() == TipoInput::ESCI){
-                                        esci_piccolo = true;
-                                    } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
-                                        do{
-                                            nuovo = _getch();
-                                        }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
-                                        printf("%c", nuovo);
-                                        if(h == 39) CADUTA_ISTANTANEA[0] = nuovo; else CADUTA_ISTANTANEA[1] = nuovo;
-                                    }
-                                    
+                                if(input.azione() == TipoInput::DESTRA){
+                                    h += 2;
+                                    if(h > 41) h = 39;
+                                } else if (input.azione() == TipoInput::SINISTRA){
+                                    h -= 2;
+                                    if(h < 39) h = 41;
+                                } else if (input.azione() == TipoInput::ESCI){
+                                    esci_piccolo = true;
+                                } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
+                                    do{
+                                        nuovo = _getch();
+                                    }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
+                                    printf("%c", nuovo);
+                                    if(h == 39) CADUTA_ISTANTANEA[0] = nuovo; else CADUTA_ISTANTANEA[1] = nuovo;
                                 }
+                                
                             }while(!esci_piccolo);
                                 
-                            printf(CURSORE_INVISIBILE);
+                            nascondi_cursore();
 
 
                         }else if (j == 62){
@@ -1554,26 +1515,24 @@ void Gioco::comandi(){
                             do{
                                 cursore_manuale(h, static_cast<short>(CordinateComandi::CADUTAISTANTANEA));
                                 
-                                if(kbhit()){
-                                    input.scan();
+                                input.scan();
 
-                                    if(input.azione() == TipoInput::DESTRA){
-                                        h += 2;
-                                        if(h > 101) h = 99;
-                                    } else if (input.azione() == TipoInput::SINISTRA){
-                                        h -= 2;
-                                        if(h < 99) h = 101;
-                                    } else if (input.azione() == TipoInput::ESCI){
-                                        esci_piccolo = true;
-                                    } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
-                                        do{
-                                            nuovo = _getch();
-                                        }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
-                                        printf("%c", nuovo);
-                                        if(h == 39) CAMBIO[0] = nuovo; else CAMBIO[1] = nuovo;
-                                    }
-                                    
+                                if(input.azione() == TipoInput::DESTRA){
+                                    h += 2;
+                                    if(h > 101) h = 99;
+                                } else if (input.azione() == TipoInput::SINISTRA){
+                                    h -= 2;
+                                    if(h < 99) h = 101;
+                                } else if (input.azione() == TipoInput::ESCI){
+                                    esci_piccolo = true;
+                                } else if (input.azione() == TipoInput::CADUTAISTANTANEA){
+                                    do{
+                                        nuovo = _getch();
+                                    }while((nuovo < 'a' || nuovo > 'z') && (nuovo < 'A' || nuovo > 'Z'));
+                                    printf("%c", nuovo);
+                                    if(h == 39) CAMBIO[0] = nuovo; else CAMBIO[1] = nuovo;
                                 }
+                                
                             }while(!esci_piccolo);
                         }
                         break;
@@ -1600,10 +1559,8 @@ void Gioco::comandi(){
 
             }
 
-
         cursore_manuale(j, i);
         printf(">");
-        }
 
 
 

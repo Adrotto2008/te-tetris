@@ -4,31 +4,36 @@ build_windows/
 build_copilot_check/
 build_run/
 cmake-build-debug/
+
+# Cartelle/librerie locali
 coso/
 lib/
 Microsoft.Windows.SDK.BuildTools/
 vcpkg/
 
-# File temporanei
+# File temporanei/compilati
 *.o
 *.obj
 *.dll
 *.so
+*.exe
 
-# VS Code
+# VS Code e JetBrains IDE
 .vscode/
+.idea/
 
-# file di configurazione
+# File di configurazione
 config.json
+bin/config.json
 
-# file di compilazione aggiuntivi
-CMakeLists.txt
+# File generati nella cartella bin
+bin/*.exe
+
+# File di compilazione aggiuntivi
 CMakeLists2.txt
 CMakeListSTATICO.txt
 CMakeLists_l.txt
-
 compila.bat
 compila.sh
-
 build.bat
 build.sh

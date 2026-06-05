@@ -130,6 +130,14 @@ build.bat           # Windows
 
 L'eseguibile viene generato nella cartella `bin/`.
 
+
+Se vuoi scaricare il gioco senza compilarlo 
+
+```
+devi scaricare la cartella `bin/` e la cartella `sounds/`,
+e avviare il gioco dovrai usare il rispettivo file `avvio.cmd` o `avvio.sh`.
+```
+
 ---
 
 ## 📁 Struttura del progetto
